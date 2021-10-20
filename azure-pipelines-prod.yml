@@ -59,6 +59,19 @@ stages:
           workingFile: '.npmrc'
         displayName: 'npm authenticate'
 
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '12.16.3'
+        displayName: 'Install Node.js'
+
+      - script: |
+          cd mogenius; npm ci
+        displayName: 'Install dependencies'
+
+      - script: |
+          cd mogenius; npm run build
+        displayName: 'Build package'
+
       - task: Docker@2
         displayName: Build and push an image to container registry
         inputs:

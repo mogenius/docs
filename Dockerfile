@@ -5,6 +5,4 @@ WORKDIR /app/website
 EXPOSE 3000 35729
 COPY ./mogenius /app/website
 
-RUN npm install
-
-CMD ["npm", "start"]
+CMD ["npm", "run", "serve"]

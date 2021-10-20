@@ -27,5 +27,5 @@ spec:
               cpu: '10m'
             limits:
               ephemeral-storage: '500Mi'
-              memory: '256Mi'
-              cpu: '400m'
+              memory: '512Mi'
+              cpu: '500m'
