@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mo-doc-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mo-doc-prod
+  template:
+    metadata:
+      labels:
+        app: mo-doc-prod
+    spec:
+      containers:
+        - name: mo-doc-prod
+          image: mogenius.azurecr.io/mo-doc-prod
+          ports:
+            - containerPort: 1337
+          env:
+            - name: STAGE
+              value: production
+          resources:
+            requests:
+              ephemeral-storage: '100Mi'
+              memory: '128Mi'
+              cpu: '10m'
+            limits:
+              ephemeral-storage: '500Mi'
+              memory: '256Mi'
+              cpu: '400m'
+          volumeMounts:
+            - mountPath: '/mo-data'
+              name: mo-doc-prod
+      volumes:
+        - name: mo-doc-prod
+          persistentVolumeClaim:
+            claimName: mo-doc-prod

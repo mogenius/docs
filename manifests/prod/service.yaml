@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: mo-doc-prod
+spec:
+    type: NodePort
+    ports:
+        - port: 1337
+    selector:
+        app: mo-doc-prod
