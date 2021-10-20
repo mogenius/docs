@@ -65,16 +65,12 @@ stages:
         displayName: 'Install Node.js'
 
       - script: |
-          npm ci
+          cd website; npm ci
         displayName: 'Install dependencies'
 
       - script: |
-          npm run build
+          cd website; npm run build
         displayName: 'Build package'
-
-      - script: |
-          npm run semantic-release
-        displayName: 'Semantic release'
 
       - task: Docker@2
         displayName: Build and push an image to container registry
