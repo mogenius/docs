@@ -20,4 +20,4 @@ spec:
               service:
                 name: mo-doc-prod
                 port:
-                  number: 1337
+                  number: 3000

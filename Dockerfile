@@ -1,20 +1,10 @@
-FROM node:12.21.0-buster
-ENV TZ Europe/Berlin
+FROM node:lts
 
-WORKDIR /usr/src/app
+WORKDIR /app/website
 
-### Install dependencies ###
-COPY package.json .
+EXPOSE 3000 35729
+COPY ./docs /app/docs
+COPY ./website /app/website
+RUN yarn install
 
-COPY . .
-
-### BUILD ###
-ENV NODE_ENV production
-# ENV STAGE production
-
-RUN rm -rf /node_modules
-RUN npm uninstall bcrypt
-RUN npm i bcrypt
-
-CMD ["node", "dist/main"]
-EXPOSE 1337
+CMD ["yarn", "start"]

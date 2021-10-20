@@ -16,7 +16,7 @@ spec:
         - name: mo-doc-prod
           image: mogenius.azurecr.io/mo-doc-prod
           ports:
-            - containerPort: 1337
+            - containerPort: 3000
           env:
             - name: STAGE
               value: production
