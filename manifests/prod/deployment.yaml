@@ -29,10 +29,3 @@ spec:
               ephemeral-storage: '500Mi'
               memory: '256Mi'
               cpu: '400m'
-          volumeMounts:
-            - mountPath: '/mo-data'
-              name: mo-doc-prod
-      volumes:
-        - name: mo-doc-prod
-          persistentVolumeClaim:
-            claimName: mo-doc-prod
