@@ -1,7 +1,9 @@
 ---
 sidebar_position: 1
+id: docs
 slug: /
 ---
+
 
 # Welcome to mogenius
 
