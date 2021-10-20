@@ -43,7 +43,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'mogenius Documentation',
+        title: 'mogenius',
         logo: {
           alt: 'mogenius Logo',
           src: 'img/logo.svg',
@@ -55,7 +55,7 @@ const config = {
             position: 'left',
             label: 'Tutorial',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+         /* {to: '/blog', label: 'Blog', position: 'left'},*/
           {
             href: 'https://github.com/mogeniuscom/documentation',
             label: 'GitHub',
