@@ -6,9 +6,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'mogenius Documentation',
+  title: 'mogenius',
   tagline: 'Dinosaurs are cool',
-  url: 'https://docs.mogenius.com',
+  url: 'https://doc.mogenius.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -46,7 +46,7 @@ const config = {
       navbar: {
         title: 'mogenius',
         logo: {
-          alt: 'mogenius Logo',
+          alt: 'My Site Logo',
           src: 'img/logo.svg',
         },
         items: [
@@ -54,13 +54,7 @@ const config = {
             type: 'doc',
             docId: 'intro',
             position: 'left',
-            label: 'Tutorial',
-          },
-         /* {to: '/blog', label: 'Blog', position: 'left'},*/
-          {
-            href: 'https://github.com/mogeniuscom/documentation',
-            label: 'GitHub',
-            position: 'right',
+            label: 'Documentation',
           },
         ],
       },
@@ -68,37 +62,28 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
-            items: [
-              {
-                label: 'Tutorial',
-                to: '/docs/intro',
-              },
-            ],
-          },
-          {
-            title: 'Community',
-            items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/mogenius',
-              },
-            ],
-          },
-          {
             title: 'More',
             items: [
               {
-                label: 'Blog',
-                to: '/blog',
+                label: 'Website',
+                href: 'https://mogenius.com',
+              },
+              {
+                label: 'mogenius studio',
+                href: 'https://studio.mogenius.com',
+              },
+              
+            
+            ],
+          },
+          
+          {
+            title: 'Community',
+            items: [
+            
+              {
+                label: 'Twitter',
+                href: 'https://twitter.com/mogenius',
               },
               {
                 label: 'GitHub',
@@ -106,6 +91,7 @@ const config = {
               },
             ],
           },
+          
         ],
         copyright: `Copyright © ${new Date().getFullYear()} mogenius. Built with Docusaurus.`,
       },

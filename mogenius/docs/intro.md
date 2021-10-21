@@ -1,23 +1,38 @@
 ---
 sidebar_position: 1
-id: intro
 slug: /
 ---
 
+# Welcome
 
-# Welcome to mogenius
-
-Let's discover **mogenius in less than 5 minutes**.
+Let's discover **Docusaurus in less than 5 minutes**.
 
 ## Getting Started
 
-Get started by **creating a new cloudspace**.
+Get started by **creating a new site**.
 
-## Add Services
+Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
 
+## Generate a new site
 
+Generate a new Docusaurus site using the **classic template**:
 
-## Deploy your application
+```shell
+npm init docusaurus@latest my-website classic
+```
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+## Start your site
 
+Run the development server:
+
+```shell
+cd my-website
+
+npx docusaurus start
+```
+
+Your site starts at `http://localhost:3000`.
+
+Open `docs/intro.md` and edit some lines: the site **reloads automatically** and display your changes.
+
+some changes
