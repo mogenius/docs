@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'mogenius',
+  title: 'mogenius Documentation',
   tagline: 'Dinosaurs are cool',
   url: 'https://doc.mogenius.com',
   baseUrl: '/',
@@ -44,18 +44,23 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'mogenius',
+        title: 'Documentation',
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.svg',
         },
         items: [
+          
           {
-            type: 'doc',
-            docId: 'intro',
+          href: 'https://mogenius.com',
+            label: 'Home',
             position: 'left',
-            label: 'Documentation',
           },
+          {
+            href: 'https://studio.mogenius.com',
+              label: 'Sign in',
+              position: 'right',
+            }
         ],
       },
       footer: {
