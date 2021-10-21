@@ -44,17 +44,18 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'Documentation',
+        title: '',
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.svg',
+          href: 'https://mogenius.com'
         },
         items: [
           
           {
           href: 'https://mogenius.com',
             label: 'Home',
-            position: 'left',
+            position: 'right',
           },
           {
             href: 'https://studio.mogenius.com',
