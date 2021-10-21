@@ -5,34 +5,12 @@ slug: /
 
 # Welcome
 
-Let's discover **Docusaurus in less than 5 minutes**.
+mogenius is your autopilot for cloud infrastructure. You can easily deploy your applications to a hyper-scaling cloud and run all the back-end services you need, directly from mogenius studio. mogenius automatically handles it for you, including management of VM provisioning, Kubernetes, SSL certificates, stage creation and much more.
 
-## Getting Started
+## What you can expect here
 
-Get started by **creating a new site**.
+If you are new to mogenius we will walk you through the **[first steps](/introduction/create-a-cloudspace)**
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
 
-## Generate a new site
 
-Generate a new Docusaurus site using the **classic template**:
 
-```shell
-npm init docusaurus@latest my-website classic
-```
-
-## Start your site
-
-Run the development server:
-
-```shell
-cd my-website
-
-npx docusaurus start
-```
-
-Your site starts at `http://localhost:3000`.
-
-Open `docs/intro.md` and edit some lines: the site **reloads automatically** and display your changes.
-
-some changes
