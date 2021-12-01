@@ -42,4 +42,4 @@ At mogenius, our mission is to give you a platform at hand that makes building a
 
 ## How to contribute
 
-We embrace contribution 
+The mogenius documentation is open-source and based on Docusaurus. You can edit and create contents inside the documentation by sending a pull request with your suggested changes on [**Github**](https://github.com/mogenius/documentation).

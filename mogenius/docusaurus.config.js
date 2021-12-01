@@ -25,13 +25,12 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           routeBasePath: '/',
           // Please change this to your repo.
-          editUrl: 'https://github.com/mogeniuscom/documentation',
+          // editUrl: 'https://github.com/mogeniuscom/documentation',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
-          editUrl:
-            'https://github.com/mogeniuscom/documentation',
+          // editUrl:'https://github.com/mogeniuscom/documentation',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -107,5 +106,11 @@ const config = {
       },
     }),
 };
+
+module.exports = {
+  customFields: {
+    noIndex: true,
+  }
+},
 
 module.exports = config;

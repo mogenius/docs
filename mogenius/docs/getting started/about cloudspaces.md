@@ -14,5 +14,5 @@ The Cloudspace is your project where you will set up your application and servic
 - Set up Cloudflare
 
 Inside your Cloudspace you can add services to build your application by using a pre-configured template or by connecting your Dockerfile.
-- [About docker upload](www.mogenius.com)
-- [About services](www.mogenius.com)
+- [About docker upload](#)
+- [About services](#)
