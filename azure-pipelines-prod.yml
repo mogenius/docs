@@ -118,6 +118,7 @@ stages:
               action: deploy
               manifests: |
                 $(Pipeline.Workspace)/manifests/prod/ingress.yaml
+                $(Pipeline.Workspace)/manifests/prod/ingress-redirect.yaml
                 $(Pipeline.Workspace)/manifests/prod/secret.yaml
                 $(Pipeline.Workspace)/manifests/prod/deployment.yaml
                 $(Pipeline.Workspace)/manifests/prod/service.yaml
