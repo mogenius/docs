@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
 title: How to deploy NestJS
+slug: deploy-nestjs-to-the-cloud
 ---
 
 # Deploying NestJS Apps to the cloud in 60 seconds
@@ -38,16 +39,12 @@ If this is the first time you are deploying a service, we need to connect your c
 
 ![enter image description here](https://api.mogenius.com/file/id/88626d92-fa15-4d9e-8598-6a914daa633c)
 
-![enter image description here](https://api.mogenius.com/file/id/cff540e9-3e91-4ecf-b945-b1856dbc6e72)
-
 You will only need to do this once, your mogenius cloudspace is now connected to your GitHub account, and can access your repositories.
 Next, you can either use an existing empty repo or create a new one by clicking the “+” symbol. Select a name for the new repo and create it.
 
 Select the branch in your repo and stage in your cloudspace you want to use. You can optionally add environment variables and change the resources like CPU cores, memory and persistent storage. By default we have pre-configured these for optimum and efficient usage of your resources
 
 Now, simply click "Save". Your NestJS boilerplate template will be built, added to the specified Git repository, and deployed to your cloudspace at the same time so you can start using it almost immediately. Once the setup routines, build and deployment process are complete (usually a few minutes at most), you can start coding and access your NestJS at the specified URL. You can find all the details on your service's overview page, where you can also customize the resources and scale by adding additional instances for your service.
-
-![enter image description here](https://api.mogenius.com/file/id/cff540e9-3e91-4ecf-b945-b1856dbc6e72)
 
 ![enter image description here](https://api.mogenius.com/file/id/f410eab4-e6ea-4870-baa0-fb45c5454a45)
 
@@ -60,8 +57,6 @@ If you have already built your NestJS application, use an existing docker file o
 If this is the first time you are deploying a service, we need to connect your cloudspace to your repository. Click on “Connect Github” which will ask you to grant permission to access your Github repositories. You will only need to do this once, your mogenius cloudspace is now connected to your GitHub account, and can access your repositories.
 
 ![enter image description here](https://api.mogenius.com/file/id/88626d92-fa15-4d9e-8598-6a914daa633c)
-
-![enter image description here](https://api.mogenius.com/file/id/cff540e9-3e91-4ecf-b945-b1856dbc6e72)
 
 Now choose the repository with the Dockerfile in it from the dropdown menu.
 
