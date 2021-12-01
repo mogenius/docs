@@ -10,7 +10,7 @@ const config = {
   tagline: 'Dinosaurs are cool',
   url: 'https://doc.mogenius.com',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'mogeniuscom', // Usually your GitHub org/user name.
