@@ -11,7 +11,7 @@ metadata:
     nginx.ingress.kubernetes.io/gzip-types: "*"
 spec:
   rules:
-    - host: doc.mogenius.com
+    - host: docs.mogenius.com
       http:
         paths:
           - pathType: Prefix
