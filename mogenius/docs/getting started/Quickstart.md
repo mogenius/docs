@@ -3,19 +3,22 @@ sidebar_position: 1
 ---
 
 # Quickstart
-Deploying your application with mogenius studio is simple. We will walk you through the first steps to get you back to coding in no time.
+Deploying your application with mogenius is simple. We will walk you through the first steps to launch your first service to the cloud and get you back to coding in no time.
 
 ## **1. Sign up​**
-At first you will have to sign up - Enter your email address and set your password.
+At first you will have to [sign up](https://studio.mogenius.com/user/registration) - Enter your email address and set a password.
 
 Next, verification of your email and phone number is necessary to secure your mogenius account sufficiently.
 
-Done? Great! You are ready to create your first CloudSpace.
+Done? Great! You are ready to create your first Cloudspace.
 
-## **2. Create a CloudSpace**
+![enter image description here](https://api.mogenius.com/file/id/115e92a0-6daa-4b15-9420-438448351d89)
+
+## **2. Create a Cloudspace**
 
 Start your first project on mogenius by creating a Cloudspace. Set a name for your Cloudspace with a maximum length of 24 characters without spaces and special characters.
 
+![enter image description here](https://api.mogenius.com/file/id/a8c2aaca-fbe7-401a-bf63-0c99024e2c94)
 
 **2.1. Your hostname**
 
