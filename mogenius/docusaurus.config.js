@@ -7,13 +7,13 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'mogenius Documentation',
-  tagline: 'Dinosaurs are cool',
-  url: 'https://doc.mogenius.com',
+  tagline: 'smart cloud for developers',
+  url: 'https://docs.mogenius.com',
   baseUrl: '/',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'mogeniuscom', // Usually your GitHub org/user name.
+  organizationName: 'mogenius', // Usually your GitHub org/user name.
   projectName: 'documentation', // Usually your repo name.
 
   presets: [
@@ -25,12 +25,12 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           routeBasePath: '/',
           // Please change this to your repo.
-          // editUrl: 'https://github.com/mogeniuscom/documentation',
+          // editUrl: 'https://github.com/mogenius/documentation',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
-          // editUrl:'https://github.com/mogeniuscom/documentation',
+          // editUrl:'https://github.com/mogenius/documentation',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -45,9 +45,9 @@ const config = {
       navbar: {
         title: '',
         logo: {
-          alt: 'My Site Logo',
+          alt: 'mogenius logo',
           src: 'img/logo.svg',
-          href: 'https://mogenius.com'
+          href: 'https://docs.mogenius.com'
         },
         items: [
           
