@@ -12,4 +12,8 @@ When [creating a service](#) you will connect your Github account so that mogeni
 After launching your service mogenius will listen to the selected repository. Anytime your repository is updated, a new build of your service will automatically be triggered.
 This means, after creating a service you can work on your application and with `git push` everything is deployed to the cloud.
 
-Under the page [CI/CD monitor](#) you will have complete history of builds and can access detailed information to any currently running build.
+If you want to avoid an automated build you can use `[skip ci]`. mogenius will ignore changes to a repository whenever the string `[skip ci]` or `[ci skip]` is found inside a commit message.  
+
+**Example:** `git commit -m '[skip ci] fix 4711'`
+
+Under the page [CI/CD monitor](#) you will have complete history of builds and canaccess detailed information to any currently running build.
