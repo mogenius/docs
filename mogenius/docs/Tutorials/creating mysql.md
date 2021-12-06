@@ -1,6 +1,6 @@
 ---
-sidebar_position: 1
-title: How to set up MySQL & phpMyAdmin
+sidebar_position: 2
+title: Set up MySQL & phpMyAdmin
 slug: hosting-mysql-phpmyadmin
 ---
 
