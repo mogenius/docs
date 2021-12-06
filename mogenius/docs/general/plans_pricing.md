@@ -9,27 +9,13 @@ Our plans are easy to understand and affordable for every step in your developme
   
 Find out which plan suits best for your project:
 
+![mogenius plans](https://api.mogenius.com/file/id/77aaf3ff-2fec-4158-a2cf-1a85f850c31f)
+
 - **Free plan:** This is the best to run simple application for example with nginx …
 - **Starter plan:** The starter plan is the best to run a project with a simple database …
 - **Advanced plan:** The advanced plan is the best to run a project with …
 - **Professional plan:** The professional plan is the best to run a project with …
 
-**You already know which services you will need? Take a look at [Services](#) to see the resource requirements for any specific service at initial launch.**
+**If you want to plan your approximate resource requirements, take a look at [Services](#) to see the resource requirements for any specific service at initial launch.**
 
-## Plans in detail
-  
-| |Free|Starter|Advanced|Professional
-|--|--|--|--|--|
-|Persistant storage|4 GB SSD|8 GB SSD |32 GB SSD |128GB SSD |
-|CPU|0,1 |0,5 | 2 | 8 |
-|RAM|128MB|1GB|2GB |8GB (-128GB)
-|Bandwidth|10 GB|25 GB|100 GB|300 GB
-|Stages|1|1|unlimited|unlimited
-|Always on|yes|yes|yes|yes
-|SLA 99,5%*|		x|	x|	x|
-|Databases supported: MongoDB, Redis, SQLite, mySQL etc.	|x	|x	|x	|x
-|CMS|	Ausgewählte (abhängig von Database-Anforderungen)	|x	|x	|x
-|Git integration|	X|	X|	X|	x|
-|Managed mogenius apps|	X|	X|	X|	x
-|Kubernetes auto-configuration				
-|SSL certificate management				
+Compare plans in detail on our latest [pricing page](#).

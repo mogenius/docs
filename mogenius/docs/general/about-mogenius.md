@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 🚀 About mogenius
+# About mogenius
 
 ## All-in-one cloud & service provider
 
