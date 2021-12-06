@@ -4,4 +4,12 @@ sidebar_position: 2
 
 # CI/CD pipeline
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+mogenius comes with a built in CI/CD pipeline so that you can start working on your application and deploy any changes to the cloud immediately.
+When [creating a service](#) you will connect your Github account so that mogenius can push pre-configured services in an empty repository or to deploy an existing application via container file.
+
+![connect to github](https://api.mogenius.com/file/id/88626d92-fa15-4d9e-8598-6a914daa633c)
+
+After launching your service mogenius will listen to the selected repository. Anytime your repository is updated, a new build of your service will automatically be triggered.
+This means, after creating a service you can work on your application and with `git push` everything is deployed to the cloud.
+
+Under the page [CI/CD monitor](#) you will have complete history of builds and can access detailed information to any currently running build.
