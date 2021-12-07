@@ -46,7 +46,7 @@ Next, you can either use an existing empty repo or create a new one by clicking 
 Select the branch in your repo and stage in your cloudspace you want to use. You can optionally add environment variables and change the resources like CPU cores, memory and persistent storage. By default we have pre-configured these for optimum and efficient usage of your resources.
 ![enter image description here](https://api.mogenius.com/file/id/e99ae0ea-d2ab-4a86-857b-00430b9a5c40)
 
-Now, simply click "Save". Your Anguar boilerplate template will be built, added to the specified Git repository, and deployed to your cloudspace at the same time so you can start using it almost immediately. Once the setup routines, build and deployment process are complete (usually a few minutes at most), you can start coding and access your React app at the specified URL. You can find all the details on your service's overview page, where you can also customize the resources and scale by adding additional instances for your service.
+Now, simply click "Save". Your React boilerplate template will be built, added to the specified Git repository, and deployed to your cloudspace at the same time so you can start using it almost immediately. Once the setup routines, build and deployment process are complete (usually a few minutes at most), you can start coding and access your React app at the specified URL. You can find all the details on your service's overview page, where you can also customize the resources and scale by adding additional instances for your service.
 
 ![enter image description here](https://api.mogenius.com/file/id/3a8c6249-53d0-468e-a089-987cd7861547)
 

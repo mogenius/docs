@@ -52,7 +52,7 @@ IMAGE HERE
 
 Have a look at the page Stages & Services. It will give you an overview of resource consumption and health data or every service and stage. You can see that it is still empty, but we will change it quickly by launching your first service. There is two ways to do this, follow the button to see all available services.
 
-**1. Start from scratch with a template**
+### 1. Start from scratch with a template
 
 Choose the service you would like to deploy from the service library.
 
@@ -62,6 +62,6 @@ Now, give your a service a name (this will be used to create a hostname, followi
 
 For now, you can leave all other settings on default and create the service. For more information and advanced settings, read more about [managing services](#).
 
-**2. Use Docker to connect your application**
+### 2. Use Docker to connect your application**
 
 To launch an application you have already developed or which is currently in progress you can select Dockerfile from the service library. First you will have to connect Github to your mogenius account. Follow the instructions from Github and authorize mogenius to access your repositories. Once you have given access you will see a repository selector IMAGE HERE. 

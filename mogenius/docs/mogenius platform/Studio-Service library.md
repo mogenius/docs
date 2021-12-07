@@ -16,15 +16,17 @@ For more informations visit [Services & Instance](#)
 
  - [Docker or other container services](#)
 
-**Frontend Tools**
+**Frontend Frameworks**
 
  - [Angular](#)
  - [Vue](#)
  - [React](#)
  - [NextJS](#)
 
-**Webservices**
+**Webserver**
  - [nginx](#)
+
+**Backend Frameworks**
  - [NestJS](#)
 
 **Databases**
@@ -34,7 +36,7 @@ For more informations visit [Services & Instance](#)
  - [Mongo DB](#) 
  - [TIDB](#)
 
-**Other**
+**Web Apps**
 
 - [Mattermost](#)
 - [phpMyAdmin](#)
