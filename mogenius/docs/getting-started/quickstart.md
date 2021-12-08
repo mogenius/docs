@@ -12,13 +12,13 @@ Next, verification of your email and phone number is necessary to secure your mo
 
 Done? Great! You are ready to create your first Cloudspace.
 
-![enter image description here](https://api.mogenius.com/file/id/115e92a0-6daa-4b15-9420-438448351d89)
+![enter image description here](https://api.mogenius.com/file/id/c2d27ebb-a5a1-4407-b82a-e3b73d1f192d)
 
 ## **2. Create a Cloudspace**
 
 Start your first project on mogenius by creating a Cloudspace. Set a name for your Cloudspace with a maximum length of 24 characters without spaces and special characters.
 
-![enter image description here](https://api.mogenius.com/file/id/a8c2aaca-fbe7-401a-bf63-0c99024e2c94)
+![enter image description here](https://api.mogenius.com/file/id/e13f43d9-0a18-49ce-96b3-ca27a7de5fa7)
 
 **2.1. Your hostname**
 
@@ -46,13 +46,15 @@ Select a plan that fits to the needs of your project and create the cloudspace. 
 
 The first thing you will see inside your Cloudspace is the Dashboard. It contains all the information you need to keep track of your application in the cloud. You will see here, that a production stage has been created automatically. You can add further stages here, for example a dev stage. For more information on stages, read [here](#).
 
-IMAGE HERE
+![manage stages](https://api.mogenius.com/file/id/c0267b73-b52f-4378-ac61-6b2717e51147)
 
 ## **3.2. Add your first service**
 
 Have a look at the page Stages & Services. It will give you an overview of resource consumption and health data or every service and stage. You can see that it is still empty, but we will change it quickly by launching your first service. There is two ways to do this, follow the button to see all available services.
 
 ### 1. Start from scratch with a template
+
+![services](https://api.mogenius.com/file/id/653f94b7-b2de-444d-a387-90ac3352be98)
 
 Choose the service you would like to deploy from the service library.
 
@@ -62,6 +64,6 @@ Now, give your a service a name (this will be used to create a hostname, followi
 
 For now, you can leave all other settings on default and create the service. For more information and advanced settings, read more about [managing services](#).
 
-### 2. Use Docker to connect your application**
+### 2. Use Docker to connect your application
 
 To launch an application you have already developed or which is currently in progress you can select Dockerfile from the service library. First you will have to connect Github to your mogenius account. Follow the instructions from Github and authorize mogenius to access your repositories. Once you have given access you will see a repository selector IMAGE HERE. 
