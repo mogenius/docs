@@ -66,4 +66,5 @@ For now, you can leave all other settings on default and create the service. For
 
 ### 2. Use Docker to connect your application
 
-To launch an application you have already developed or which is currently in progress you can select Dockerfile from the service library. First you will have to connect Github to your mogenius account. Follow the instructions from Github and authorize mogenius to access your repositories. Once you have given access you will see a repository selector IMAGE HERE. 
+To launch an application you have already developed or which is currently in progress you can select Dockerfile from the service library. First you will have to connect Github to your mogenius account. Follow the instructions from Github and authorize mogenius to access your repositories. Once you have given access you will see a repository selector.
+![docker](https://api.mogenius.com/file/id/c6776718-d86a-48c1-9ca7-619f3482acd3)
