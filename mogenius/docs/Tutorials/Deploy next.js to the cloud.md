@@ -56,8 +56,8 @@ That’s it! You have created your Next.js service and it will be available to a
 ### 2 – Deploying an existing Next.js app as Dockerfile
 
 If you have already built your Next.js application, use an existing docker file or simply add a docker file to your repo. Select “Dockerfile” from the Service Library.
-![enter image description here](https://api.mogenius.com/file/id/69c15fc1-2763-4c64-93c7-0e068df8295f)
 
+![enter image description here](https://api.mogenius.com/file/id/94f14c52-ea95-4ae5-8ba1-caede0571c69)
 Now choose the repository with the Dockerfile in it from the dropdown menu.
 
 Select the branch in your repository and the stage in your cloudspace that you want to use. Determine the port as specicifed in the Dockerfile. You can optionally add environment variables and change resources such as CPU cores, memory, and persistent storage that are required for your app to run. 
@@ -68,4 +68,5 @@ Now just click "Save" and your Dockerfile will be deployed to your cloudspace an
 
 That’s it! You have created your Next.js service and it will be available to access by other services via the URL that has been assigned to your service, so you will have something like this: https://nextjsservice-prod-sundaysbest-qx6r52.dev.mogenius.io/
 
-![enter image description here](https://api.mogenius.com/file/id/717090a5-212f-43e6-b710-03a35ab4934f)
+![enter image description here](https://api.mogenius.com/file/id/f6a4b701-ff10-4952-9c47-11e2457f4952)
+
