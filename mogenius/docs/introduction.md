@@ -5,7 +5,7 @@ slug: /
 
 # Introduction
 
-:::caution
+:::info
 
 mogenius is currently pre-beta and some of the documented features might change.
 

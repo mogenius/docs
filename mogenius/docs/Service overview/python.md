@@ -1,12 +1,12 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 # Python
 
 ![python logo](https://api.dev.mogenius.com/file/id/fce6fc6e-a933-4ead-abf4-c835073c66be)
 
-**Links**  
+**Useful links**  
 **[Website](https://www.python.org/)**  
 **[Documentation](https://docs.python.org/)**  
 
@@ -23,6 +23,6 @@ Python is an interpreted high-level general-purpose programming language. Its de
 
 [Learn more about how to manage resources for services](#)
 
-**How to deploy Python**
+**How to deploy Python**  
 To initiate a Python project with mogenius you can add it as a service to your cloudspace. Select Python from the service library and follow the instructions.  
 We have written a detailed tutorial on [how to launch Python with mogenius](#).
