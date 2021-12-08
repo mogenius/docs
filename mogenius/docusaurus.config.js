@@ -47,7 +47,7 @@ const config = {
         logo: {
           alt: 'mogenius logo',
           src: 'img/logo.svg',
-          href: 'https://docs.mogenius.com'
+          href: '/'
         },
         items: [
           

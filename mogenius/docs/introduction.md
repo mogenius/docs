@@ -16,9 +16,9 @@ At mogenius, our mission is to give you a platform at hand that makes building a
 
 ## Table of contents
 - Introduction
-  - [About mogenius](#)
-  - [Plans & Pricing](#)
-  - [Help & Feedback](#)
+  - [About mogenius](./general/about-mogenius.md)
+  - [Plans & Pricing](./general/plans-pricing)
+  - [Help & Feedback](./general/help-feedback.md)
 - Getting started
   - [Quickstart](#)
   - [About Cloudspaces](#)

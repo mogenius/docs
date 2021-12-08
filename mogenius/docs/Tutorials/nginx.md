@@ -1,7 +1,7 @@
 ﻿---
 sidebar_position: 8
 title: Launching nginx in the cloud
-slug: deploy-nginx-to-the-cloud
+slug: deploy-nginx-in-the-cloud
 ---
 
 # Setting up nginx webserver in the cloud
