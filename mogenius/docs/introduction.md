@@ -5,6 +5,12 @@ slug: /
 
 # Introduction
 
+:::caution
+
+mogenius is currently pre-beta and some of the documented features might change.
+
+:::
+
 ## Welcome to mogenius documentation
 At mogenius, our mission is to give you a platform at hand that makes building and running any application in the cloud as easy as possible. We give our best to make mogenius a self-explanatory experience but some things might need some reference. Therefore we created this documentation in which we aim to answer the most questions around mogenius.
 
