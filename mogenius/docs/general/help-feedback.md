@@ -35,20 +35,20 @@ If problems arise or you need quick help, you can always contact us directly. Yo
 <details>
     <summary>How much does it cost?</summary>
     <div>
-        <div>You can always start with a free plan, no payment details will be needed. When creating a cloudspace select the free plan and simply start working on your project. If you need more resources and additional features upgrade to a higher plan at any time. Check out the <a href="mogenius.com/pricing">available plans here</a>.</div>
+        <div>You can start with a free plan, no payment details will be needed. You will select your desired plan when creating a cloudspace and a free plan is set per default. Our paid plans are designed to cover a specific stage in the development of your project each. Check out the <a href="mogenius.com/pricing">available plans here</a>. If you later need more resources or additional features you can upgrade to a higher plan at any time.</div>
     </div>
 </details>
 
 <details>
-    <summary>Toggle me!</summary>
+    <summary>Is mogenius secure?</summary>
     <div>
-        <div>This is the detailed content</div>
+        <div>We rely on best practices in managing cloud-native applications. Under the hood your cloudspace is a fully isolated namespace on Kubernetes that cannot be accessed externally. Furthermore, every cloudspace and service is delivered through Cloudflare and is protected by Cloudflare Enterprise-level features. Read more about <a href="#">security</a>.</div>
     </div>
 </details>
 
 <details>
-    <summary>Toggle me!</summary>
+    <summary>Where is my application hosted?</summary>
     <div>
-        <div>This is the detailed content</div>
+        <div>Our clusters are hosted in Frankfurt, Germany, by Microsoft Azure. We will offer additional locations soon.</div>
     </div>
 </details>
