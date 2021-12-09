@@ -6,19 +6,17 @@ sidebar_position: 1
 Deploying your application with mogenius is simple. We will walk you through the first steps to launch your first service to the cloud and get you back to coding in no time.
 
 ## **1. Sign up​**
-At first you will have to [sign up](https://studio.mogenius.com/user/registration) - Enter your email address and set a password.
-
-Next, verification of your email and phone number is necessary to secure your mogenius account sufficiently.
-
+At first you will have to [sign up](https://studio.mogenius.com/user/registration) - Enter your email address and set a password.  
+Next, verification of your email and phone number is necessary to secure your mogenius account sufficiently.  
 Done? Great! You are ready to create your first cloudspace.
 
-![enter image description here](https://api.mogenius.com/file/id/c2d27ebb-a5a1-4407-b82a-e3b73d1f192d)
+![Sign up](https://api.mogenius.com/file/id/4bd46108-a72f-4084-9739-0f564b65b31a)
 
 ## **2. Create a Cloudspace**
 
 Start your first project on mogenius by creating a cloudspace. Set a name for your cloudspace with a maximum length of 24 characters without spaces and special characters.
 
-![enter image description here](https://api.mogenius.com/file/id/e13f43d9-0a18-49ce-96b3-ca27a7de5fa7)
+![enter image description here](https://api.mogenius.com/file/id/7e0ca189-b42a-4de6-b2ba-d3b099a2f1a0)
 
 **2.1. Your hostname**
 
@@ -58,13 +56,13 @@ Have a look at the page Stages & Services. It will give you an overview of resou
 
 Choose the service you would like to deploy from the service library.
 
-First you will have to connect Github to your mogenius account. Follow the instructions from Github and authorize mogenius to access your repositories. Once you have given access you will see a repository selector IMAGE HERE. When creating a service we will push the config files of the specific service to an empty repository inside your Github account so can start working on the project immediately. Therefore, either select an empty repository from the dropdown menu with only a readme file inside, or create a new repo.
+First you will have to connect Github to your mogenius account. Follow the instructions from Github and authorize mogenius to access your repositories. Once you have given access you will see a repository selector. When creating a service we will push the config files of the specific service to an empty repository inside your Github account so can start working on the project immediately. Therefore, either select an empty repository from the dropdown menu with only a readme file inside, or create a new repo.
 
-Now, give your a service a name (this will be used to create a hostname, following the pattern service_name-stage-cloudspace_name-id.mogenius.io).
+Now, give your a service a name (this will be used to create a hostname, following the pattern `service_name-stage-cloudspace_name-id.mogenius.io`).
 
 For now, you can leave all other settings on default and create the service. For more information and advanced settings, read more about [managing services](#).
 
 ### 2. Use Docker to connect your application
 
 To launch an application you have already developed or which is currently in progress you can select Dockerfile from the service library. First you will have to connect Github to your mogenius account. Follow the instructions from Github and authorize mogenius to access your repositories. Once you have given access you will see a repository selector.
-![docker](https://api.mogenius.com/file/id/c6776718-d86a-48c1-9ca7-619f3482acd3)
+![docker](https://api.mogenius.com/file/id/9671d37e-882a-4542-bd4e-bc0dbbdfc720)

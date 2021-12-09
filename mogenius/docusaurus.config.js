@@ -15,6 +15,7 @@ const config = {
   favicon: 'img/favicon.ico',
   organizationName: 'mogenius', // Usually your GitHub org/user name.
   projectName: 'documentation', // Usually your repo name.
+  /**plugins: ['@docusaurus/plugin-ideal-image'],*/
 
   presets: [
     [

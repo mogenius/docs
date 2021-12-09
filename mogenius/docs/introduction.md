@@ -11,6 +11,8 @@ mogenius is currently pre-beta and some of the documented features might change.
 
 :::
 
+<img src="https://api.mogenius.com/file/id/c0a1e0e0-047f-4dc5-bdda-f26bf75b4095" width="480px"></img>
+
 ## Welcome to mogenius documentation
 At mogenius, our mission is to give you a platform at hand that makes building and running any application in the cloud as easy as possible. We give our best to make mogenius a self-explanatory experience but some things might need some reference. Therefore we created this documentation in which we aim to answer the most questions around mogenius.
 
