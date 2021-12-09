@@ -44,8 +44,41 @@ At mogenius, our mission is to give you a platform at hand that makes building a
   - [Service library](./mogenius-platform/service-library.md)
   - [Services](./mogenius-platform/services.md)
   - [Analytics](#)
-- Services overview
-  - 
+- Services
+  - [Service overview](./services/service-overview.md)
+  - [Docker](./services/docker.md)
+  - [NestJS](./services/nestjs.md)
+  - [Python](./services/python.md)
+  - [Angular](./services/angular.md)
+  - [React](./services/react.md)
+  - [Next.js](./services/nextjs.md)
+  - [nginx](./services/nginx.md)
+  - [MongoDB](./services/mongodb.md)
+  - [MySQL](./services/mysql.md)
+  - [TiDB](./services/tidb.md)
+  - [phpMyAdmin](./services/phpmyadmin.md)
+  - [Mattermost](./services/mattermost.md)
+  - [Docusaurus](./services/docusaurus.md)
+  - [DjangoCMS](./services/djangocms.md)
+  - [BitWarden](./services/bitwarden.md)
+  - [CouchDB](./services/couchdb.md)
+  - [MariaDB](./services/mariadb.md)
+  - [Vue.JS](./services/vuejs.md)
+- Tutorials
+  - [How to deploy NestJS](./tutorials/how%20to%20deploy%20nestjs.md)
+  - [Set up MySQL & phpMyAdmin](./tutorials/creating%20mysql.md)
+  - [Launching a TiDB database](./tutorials/launching%20TiDB.md)
+  - [Create an Angular web app](./tutorials/create%20angular.md)
+  - [How to quickstart React](./tutorials/quickstart%20react.md)
+  - [Set up MariaDB & phpMyAdmin](./tutorials/mariadb%20phpmyadmin.md)
+  - [Launching nginx in the cloud](./tutorials/nginx.md)
+  - [Deploy next.js in the cloud](./tutorials/Deploy%20next.js%20to%20the%20cloud.md)
+  - [Create a python app](./tutorials/deploy%20python.md)
+  - [Launch Docusaurus](./tutorials/docusaurus.md)
+  - [How to deploy VueJS](./tutorials/creating%20vuejs.md)
+  - [How to deploy a Docker app](./tutorials/deploy%20Docker.md)
+  - [Setting up CouchDB](./tutorials/set%20up%20couchDB.md)
+  - [Setting up MongoDB](./tutorials/Setting%20up%20mongoDB%20in%20the%20cloud.md)
 
 ## How to contribute
 

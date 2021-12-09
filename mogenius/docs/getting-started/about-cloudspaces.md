@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # About Cloudspaces
 
-The Cloudspace is your project where you will set up your application and services. After creation your Cloudspace is immediately online and accessible through the hostname.
+The cloudspace is your project where you will set up your application and services. After creation your cloudspace is immediately online and accessible through the hostname.
 
 **We handle the following steps in the background when you create a Cloudspace**
 
@@ -15,5 +15,5 @@ The Cloudspace is your project where you will set up your application and servic
 - Prepare the CI/CD pipeline
 
 Inside your Cloudspace you can add services to build your application by using a pre-configured template or by connecting your Dockerfile.
-- [About docker upload](#)
-- [About services](#)
+- [Rely on pre-configured services to start from scratch](./../mogenius-platform/services.md)
+- [Use Docker to launch an existing applications](./../services/docker.md)
