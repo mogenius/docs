@@ -18,7 +18,7 @@ Sign up for mogenius - it's free and you can get started right away. Once you're
 ![enter image description here](https://api.mogenius.com/file/id/115e92a0-6daa-4b15-9420-438448351d89)
 Choose a name for your cloudspace and select the free tier to get cloud resources at no charge, or you can also choose a subscription to upgrade your resources when you create the cloudspace or upgrade at a later stage.
 
-![enter image description here](https://api.mogenius.com/file/id/a8c2aaca-fbe7-401a-bf63-0c99024e2c94)
+![enter image description here](https://api.mogenius.com/file/id/7ec47c7f-4dc0-4f5b-8a2f-b8345a369ae8)
 ## Setting up and deploying Angular framework
 
 Now are ready you to deploy Angular! On the next overview page, you will see all your cloudspaces. Click on the name of the cloudspace where you want to deploy your Angular application. On the next page, click "Service Library" in the left menu:

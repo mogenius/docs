@@ -10,11 +10,11 @@ With mogenius you should always have full control and transparency over the use 
 
 First, it is important to understand how resources are distributed in your Cloudspace. The plan you choose when creating a Cloudspace determines your total available resources ([Check out the available plans](#)). You can then allocate resources to your services, which will set limits in maximum resource consumption for each service. This means, a service does not necessarily consume the full amount of allocated resources. You will see the summary of resource consumption over every stage and service on the dashboard of your Cloudspace.
 
-![mogenius dashboard](https://api.mogenius.com/file/id/4a13575a-65cb-4bfc-aeb5-f20d9cd15e80)
+![mogenius dashboard](https://api.mogenius.com/file/id/61e9457a-abde-4cac-95f8-1bf5d5d4c934)
 
 Inside mogenius studio, you will get an overview of resource consumption at every level of detail. On the page Stages & Services all the metrics from services will be summarized per stage. You can then monitor single services inside every stage.
 
-![stages and services](https://api.mogenius.com/file/id/30a2f5a4-4b50-4936-869b-7d627c94baec)
+![stages and services](https://api.mogenius.com/file/id/703866f3-d7ba-4e95-9fae-aed1e0f84f28)
 
 
 ## Allocating resources at service creation
@@ -22,7 +22,7 @@ Inside mogenius studio, you will get an overview of resource consumption at ever
 When creating a service you can set resource limits to control the maximum amount of resources your service can consume. If you use a pre-configured service template we will set recommendations for minimum resource requirements as the default settings. You can edit the default settings at service creation or later in your settings. 
 If you use a container file (e.g. Dockerfile) you will need to set own resource limits based on the specific application you are launching. You can use this [overview of service templates](#) as a reference but please keep in mind that your individual application might be more advanced than a boilerplate template.
 
-![mogenius resource allocation](https://api.mogenius.com/file/id/244fe123-8d30-4c1c-8679-1ee565b93c9d?size=xs)
+![mogenius resource allocation](https://api.mogenius.com/file/id/679ed62d-c653-4b64-b469-f7b78c1d334f)
 
 The available resources depend on your plan and on the services that you have already deployed. If your available resources are not sufficient to launch the service you will need to delete or scale down other services, or [upgrade your plan](#).
 

@@ -39,5 +39,5 @@ More: [Resourcemanagement](#)
 
 ## The service area
 
-[Image]
+![services](https://api.mogenius.com/file/id/2a76e055-1f0b-496c-88d8-12b6eb3bade6)  
 In this area, all installed services are displayed as widgets. For a quick overview, you can see the status and load of the services in each widget. If the service belongs to a group, this is shown at the bottom right of the tile. Service groups show which services work together and access the same secret and environment variables.

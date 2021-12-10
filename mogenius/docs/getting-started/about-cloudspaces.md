@@ -6,6 +6,8 @@ sidebar_position: 2
 
 The cloudspace is your project where you will set up your application and services. After creation your cloudspace is immediately online and accessible through the hostname.
 
+![cloudspace structure](https://api.mogenius.com/file/id/a89ae14f-8a37-4a05-999e-f6b80380a877)
+
 **We handle the following steps in the background when you create a Cloudspace**
 
 - Create and deploy a namespace inside a Kubernetes Cluster on Microsoft Azure

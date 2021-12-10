@@ -10,13 +10,13 @@ At first you will have to [sign up](https://studio.mogenius.com/user/registratio
 Next, verification of your email and phone number is necessary to secure your mogenius account sufficiently.  
 Done? Great! You are ready to create your first cloudspace.
 
-![Sign up](https://api.mogenius.com/file/id/4bd46108-a72f-4084-9739-0f564b65b31a)
+![Sign up](https://api.mogenius.com/file/id/7fbffa24-a76f-4ab4-9b67-671e841d089d)
 
 ## 2. Create a Cloudspace
 
 Start your first project on mogenius by creating a cloudspace. Set a name for your cloudspace with a maximum length of 24 characters without spaces and special characters.
 
-![enter image description here](https://api.mogenius.com/file/id/7e0ca189-b42a-4de6-b2ba-d3b099a2f1a0)
+![enter image description here](https://api.mogenius.com/file/id/7ec47c7f-4dc0-4f5b-8a2f-b8345a369ae8)
 
 ### Your hostname
 
@@ -24,13 +24,13 @@ The `hostname` will fill out automatically depending on your cloudspace name. Th
 
 You can choose from one of seven top-level domains.
 
-mogenius.io (default)
-mogenius.org
-mogenius.info
-mogenius.net
-mogenius.eu
-mogenius.de
-mogenius.app
+mogenius.io (default)  
+mogenius.org  
+mogenius.info  
+mogenius.net  
+mogenius.eu  
+mogenius.de  
+mogenius.app  
 
 ### Select a plan
 
@@ -52,7 +52,7 @@ Have a look at the page Stages & Services. It will give you an overview of resou
 
 ### 1. Start from scratch with a template
 
-![services](https://api.mogenius.com/file/id/653f94b7-b2de-444d-a387-90ac3352be98)
+![services](https://api.mogenius.com/file/id/1de8010c-b8fe-4fa7-9bf3-2b3790d3e8a9)
 
 Choose the service you would like to deploy from the service library.
 
@@ -74,7 +74,7 @@ This is it.
 **Connect Github**
 To launch an application you have already developed or which is currently in progress you can select Dockerfile from the service library. First you will have to connect Github to your mogenius account. Follow the instructions from Github and authorize mogenius to access your repositories. Once you have given access you will see a repository selector.
 
-![docker](https://api.mogenius.com/file/id/9671d37e-882a-4542-bd4e-bc0dbbdfc720)
+![docker](https://api.mogenius.com/file/id/0cc4af4e-3076-41a3-848f-8af961b15a12)
 
 Select your repository from the dropdown menu or search for it in the input field. Note that mogenius will look for a `Dockerfile` inside the given directory so make sure your repository contains one. When you have selected the repository with a Dockerfile inside, specify the branch that shall be used.
 

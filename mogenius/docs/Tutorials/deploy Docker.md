@@ -19,7 +19,7 @@ Sign up for mogenius - it's free and you can get started right away. Once you're
 
 Choose a name for your cloudspace and select the free tier to get cloud resources at no charge, or you can also choose a subscription to upgrade your resources when you create the cloudspace or upgrade at a later stage.
 
-![enter image description here](https://api.mogenius.com/file/id/a8c2aaca-fbe7-401a-bf63-0c99024e2c94)
+![enter image description here](https://api.mogenius.com/file/id/7ec47c7f-4dc0-4f5b-8a2f-b8345a369ae8)
 
 ## Building and deploying your Docker application
 
@@ -50,7 +50,7 @@ Select the branch in your repository and the stage in your cloudspace that you w
 
 ### Build and deploy
 
-Now click "Save" and your Dockerfile will be deployed to your cloudspace and ready to use almost immediately. Once the setup routines, build and deployment processes are completed (usually a few minutes at most), you can start using your Docker app at the URL provided. You can find all the details on your service overview page, where you can also customize and scale resources by adding additional instances for your service.
+Now click "Create Service" and your Dockerfile will be deployed to your cloudspace and ready to use almost immediately. Once the setup routines, build and deployment processes are completed (usually a few minutes at most), you can start using your Docker app at the URL provided. You can find all the details on your service overview page, where you can also customize and scale resources by adding additional instances for your service.
 
 That’s it! You have created a service running your Docker application and it will be available to access by other services via the URL that has been assigned to your service, so you will have something like this: `docker-prod-yourcloudspace-qx6r52.mogenius.io`
 

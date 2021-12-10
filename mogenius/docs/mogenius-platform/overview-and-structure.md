@@ -8,26 +8,18 @@ sidebar_position: 1
 **1. Home**  
 This is your overview to access one or more Cloudspaces.
 
-[Bild Home](#)
-
 **2. Service navigation**
    1. Documentation
    2. Community
    3. Feedback
    4. Support
 
-[Bild Service navigation](#)
-
 **3. Header navigation**
    1. Progress indicator
    2. Notifications
    3. Profile settings
 
-[Bild header navigation](#)
-
 ## Cloudspace navigation
-
-[Bild Cloudspace navigation](#)
 
 1. [Dashboard](dashboard.md)  
 The summary of your Cloudspace with access to all relevant features to manage your application.
