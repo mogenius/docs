@@ -44,7 +44,7 @@ Select a plan that fits to the needs of your project and create the cloudspace. 
 
 The first thing you will see inside your cloudspace is the Dashboard. It contains all the information you need to keep track of your application in the cloud. You will see here that a production stage has been created automatically. You can add further stages, for example a dev stage. For more information on stages, read [here](./../mogenius-platform/stages-and-services.md).
 
-![manage stages](https://api.mogenius.com/file/id/c0267b73-b52f-4378-ac61-6b2717e51147)
+![manage stages](https://api.mogenius.com/file/id/31024a53-d670-43f8-b6fc-221cdf3c4083)
 
 ## 4. Add your first service
 
