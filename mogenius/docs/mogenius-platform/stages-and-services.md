@@ -7,7 +7,7 @@ sidebar_position: 3
 This is your overview of stages and the associated services. 
 
 On this page you can:
-- Add, manage & delete stage
+- Add, manage & delete stages
 - Add Services
 
 [Bild header]
@@ -19,6 +19,7 @@ More: [About Domains](#)
 
 ## Resource widgets
 [Bild widgets]
+
 |Type|Unit  |Value|
 |--|--|--|
 | CPU | allocated |core|

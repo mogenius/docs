@@ -50,7 +50,7 @@ Now, simply click "Save". Your React boilerplate template will be built, added t
 
 ![enter image description here](https://api.mogenius.com/file/id/3a8c6249-53d0-468e-a089-987cd7861547)
 
-That’s it! You have created your React service and it will be available to access by other services via the URL that has been assigned to your service, in this instance https://react-prod-sundaysbest-qx6r52.dev.mogenius.io/
+That’s it! You have created your React service and it will be available to access by other services via the URL that has been assigned to your service, in this instance `react-prod-yourcloudspace-qx6r52.mogenius.io`
 
 ### 2 – Deploying an existing React app as Dockerfile
 
@@ -68,7 +68,7 @@ Select the branch in your repository and the stage in your cloudspace that you w
 
 Now just click "Save" and your Docker file will be deployed to your cloudspace and ready to use almost immediately. Once the setup routines, build and deployment processes are complete (usually a few minutes at most), you can start using your React app at the URL provided. You can find all the details on your service overview page, where you can also customize and scale resources by adding additional instances for your service.
 
-That’s it! You have created your React service and it will be available to access by other services via the URL that has been assigned to your service, so you will have something like this: https://reactapp-prod-sundaysbest-qx6r52.dev.mogenius.io/
+That’s it! You have created your React service and it will be available to access by other services via the URL that has been assigned to your service, so you will have something like this: `react-prod-yourcloudspace-qx6r52.mogenius.io`
 
 
 ![enter image description here](https://api.mogenius.com/file/id/bf6c5471-ffb7-42a5-9adf-922d832f3b98)

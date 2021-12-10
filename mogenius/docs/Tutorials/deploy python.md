@@ -51,7 +51,7 @@ Now, simply click "Save". Your Python boilerplate template will be built, added 
 
 ![enter image description here](https://api.mogenius.com/file/id/8244a6de-9e27-4495-8d5f-2fe006be02e3)
 
-That’s it! You have created your Python service and it will be available to access by other services via the URL that has been assigned to your service, in this instance https://python-prod-sundaysbest-qx6r52.dev.mogenius.io/
+That’s it! You have created your Python service and it will be available to access by other services via the URL that has been assigned to your service, in this instance `python-prod-yourcloudspace-qx6r52.mogenius.io`
 
 ### 2 – Deploying an existing Python app as Dockerfile
 
@@ -66,7 +66,7 @@ Select the branch in your repository and the stage in your cloudspace that you w
 
 Now just click "Save" and your Dockerfile will be deployed to your cloudspace and ready to use almost immediately. Once the setup routines, build and deployment processes are complete (usually a few minutes at most), you can start using your Python app at the URL provided. You can find all the details on your service overview page, where you can also customize and scale resources by adding additional instances for your service.
 
-That’s it! You have created your Python service and it will be available to access by other services via the URL that has been assigned to your service, so you will have something like this: https://python-app-prod-sundaysbest-qx6r52.dev.mogenius.io/
+That’s it! You have created your Python service and it will be available to access by other services via the URL that has been assigned to your service, so you will have something like this: `python-prod-yourcloudspace-qx6r52.mogenius.io`
 
 ![enter image description here](https://api.mogenius.com/file/id/d0684a45-d5e2-4225-898f-104848219aaf)
 

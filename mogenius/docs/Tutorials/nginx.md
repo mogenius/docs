@@ -49,6 +49,6 @@ Now, simply click "Save". Your nginx web server will be built, a dockerfile adde
 
 ![enter image description here](https://api.mogenius.com/file/id/5ad518f1-17cc-49ed-9dac-7a970ead458d)
 
-That’s it! You have created your nginx service and it will be available to access by other services via the URL that has been assigned to your service, in this instance https://nginxwebserver-prod-megawebapp-c6ck57.free.mogenius.io/
+That’s it! You have created your nginx service and it will be available to access by other services via the URL that has been assigned to your service, in this instance `nginx-prod-yourcloudspace-qx6r52.mogenius.io`
 
 

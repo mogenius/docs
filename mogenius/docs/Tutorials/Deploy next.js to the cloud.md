@@ -51,7 +51,7 @@ Now, simply click "Save". Your Next.js boilerplate template will be built, added
 
 ![enter image description here](https://api.mogenius.com/file/id/729ceb84-d1c9-42e2-ac10-f09dd1e19dfe)
 
-That’s it! You have created your Next.js service and it will be available to access by other services via the URL that has been assigned to your service, in this instance https://nextjs-prod-sundaysbest-qx6r52.dev.mogenius.io/
+That’s it! You have created your Next.js service and it will be available to access by other services via the URL that has been assigned to your service, in this instance `nextjs-prod-yourcloudspace-qx6r52.mogenius.io`
 
 ### 2 – Deploying an existing Next.js app as Dockerfile
 
@@ -66,7 +66,7 @@ Select the branch in your repository and the stage in your cloudspace that you w
 
 Now just click "Save" and your Dockerfile will be deployed to your cloudspace and ready to use almost immediately. Once the setup routines, build and deployment processes are complete (usually a few minutes at most), you can start using your Next.js app at the URL provided. You can find all the details on your service overview page, where you can also customize and scale resources by adding additional instances for your service.
 
-That’s it! You have created your Next.js service and it will be available to access by other services via the URL that has been assigned to your service, so you will have something like this: https://nextjsservice-prod-sundaysbest-qx6r52.dev.mogenius.io/
+That’s it! You have created your Next.js service and it will be available to access by other services via the URL that has been assigned to your service, so you will have something like this: `nextjs-prod-yourcloudspace-qx6r52.mogenius.io`
 
 ![enter image description here](https://api.mogenius.com/file/id/f6a4b701-ff10-4952-9c47-11e2457f4952)
 

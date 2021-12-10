@@ -49,5 +49,5 @@ Now, simply click "Save". Your Docusaurus boilerplate template will be built, ad
 
 ![enter image description here](https://api.mogenius.com/file/id/e7130247-7040-47aa-9a8f-8299dbaf5cf1)
 
-That’s it! You have created your Docusaurus service and it will be available to access via the URL that has been assigned to your service, in this instance https://docusaurus-dev-sundaysbest-qx6r52.dev.mogenius.io/
+That’s it! You have created your Docusaurus service and it will be available to access via the URL that has been assigned to your service, in this instance `docusaurus-prod-yourcloudspace-qx6r52.mogenius.io`
 

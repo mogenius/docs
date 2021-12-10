@@ -21,8 +21,8 @@ Nest (NestJS) is a framework for building efficient, scalable Node.js server-sid
 | Minimum | 0,3 |192| 100
 | Optimum | 0,2 |256| 1
 
-[Learn more about how to manage resources for services](#)
+[Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 
 **How to deploy NestJS**  
 To initiate a NestJS project with mogenius you can add it as a service to your cloudspace. Select NestJS from the service library and follow the instructions.  
-We have written a detailed tutorial on [how to launch NestJS with mogenius](#).
+We have written a detailed tutorial on [how to launch NestJS with mogenius](./../tutorials/how%20to%20deploy%20nestjs.md).

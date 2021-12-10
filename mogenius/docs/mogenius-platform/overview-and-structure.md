@@ -4,47 +4,49 @@ sidebar_position: 1
 
 # Studio Structure
 
-**Cloudspace Overview**
+
 1. **Home**
-This is the home of your cloudspace
+This is your overview to access one or more Cloudspaces.
 
-2. **Documentation**
-Here you can find a detailed documentation of our platform
-3. **Feedback**
-Link to our feedback page
+[Bild Home](#)
 
-*------- Header -------*
+1. **Service navigation**
+   1. Documentation
+   2. Community
+   3. Feedback
+   4. Support
 
-4. **Progress indicator**
-Indicator for all active processes
+[Bild Service navigation](#)
 
-5. **Notifications**
-Your personal message centre
-6. **Account informations**
-All account informations and settings
+2. **Header navigation**
+   1. Progress indicator
+   2. Notifications
+   3. Profile settings
 
-
+[Bild header navigation](#)
 
 --
 **Cloudspace navigation item**
 
-1. [Dashboard](#)
-Here you will find a quick overview of your cloudspace. 
+[Bild Cloudspace navigation](#)
 
-2. [Stages & Services](#)
-Overview of all stages set up and the services installed
+1. [Dashboard](dashboard.md)
+The summary of your Cloudspace with access to all relevant features to manage your application.
 
-3. [CI/CD monitor](#)
-Display of the complete Ci/CD pipeline of your cloudspace
+2. [Stages & Services](stages-and-services.md)
+Overview of all stages and the services installed.
 
-4. [Keyvault](#)
-here you can set and manage your secrets
+3. [CI/CD monitor](ci-cd-monitor.md)
+Display of the complete CI/CD pipeline of your cloudspace.
 
-5. [Analytics](#)
+4. [Keyvault](keyvault.md)
+Access and manage secrets for your applications.
+
+5. [Analytics](analytics.md)
 Viewing the usage of your cloudspace 
 
-6. [Service library](#)
+6. [Service library](service-library.md)
 Overview of all services you can add
 
-7. [Settings](#)
+7. [Settings](settings.md)
 Settings of your cloudspace

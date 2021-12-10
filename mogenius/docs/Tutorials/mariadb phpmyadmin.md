@@ -82,7 +82,7 @@ Now we need to set the environment variables, two of which are mandatory: Root p
 Now, simply click "Save". Your phpMyAdmin service will now be built, the dockerfile added to the specified Git repository, and deployed to your cloudspace at the same time so you can start using it almost immediately. Once the setup routines, build and deployment process are complete (usually a few minutes at most), you can start using your phpMyAdmin service at the specified URL. You can find all the details on your service's overview page, where you can also customize the resources and scale by adding additional instances for your service.
 ![enter image description here](https://api.mogenius.com/file/id/0a72be50-84aa-4f6e-ab4c-e205fdd4e2e9)
 
-You can now access this service shown at the URL, which will look something like this: https://phpmyadmin-service-prod-sundaysbest-qx6r52.dev.mogenius.io/
+You can now access this service shown at the URL, which will look something like this: `phpmyadmin-prod-yourcloudspace-qx6r52.mogenius.io`
 
 Click on the URL to access your phpMyAdmin user interface. You can now copy the password for the root user from your mogenius KeyVault and log in.
 

@@ -20,9 +20,9 @@ Vue (pronounced /vjuː/, like **view**) is a **progressive framework** for build
 | Minimum | 0,3 |32| 100 |
 | Optimum | 0,6 |64| 200 |
 
-[Learn more about how to manage resources for services](https://docs.mogenius.com/#)
+[Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 
 **How to deploy**
 To initiate a Vue.js project with mogenius you can add it as a service to your cloudspace. Select Vue.js from the service library and follow the instructions.  
-We have written a detailed tutorial on [how to launch Vue.js with mogenius](https://docs.mogenius.com/#).
+We have written a detailed tutorial on [how to launch Vue.js with mogenius](./../tutorials/creating%20vuejs.md).
 

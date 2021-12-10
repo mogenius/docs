@@ -23,9 +23,9 @@ CouchDB comes with a suite of features, such as on-the-fly document transformati
 | Minimum | 0,3 |128| 200 |
 | Optimum | 0,6 |256| 400 |
 
-[Learn more about how to manage resources for services](https://docs.mogenius.com/#)
+[Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 
 **How to deploy**
 To initiate a CouchDB project with mogenius you can add it as a service to your cloudspace. Select CouchDB from the service library and follow the instructions.  
-We have written a detailed tutorial on [how to launch CouchDB with mogenius](https://docs.mogenius.com/#).
+We have written a detailed tutorial on [how to launch CouchDB with mogenius](./../tutorials/set%20up%20couchDB.md).
 

@@ -52,7 +52,7 @@ Select the branch in your repository and the stage in your cloudspace that you w
 
 Now click "Save" and your Dockerfile will be deployed to your cloudspace and ready to use almost immediately. Once the setup routines, build and deployment processes are completed (usually a few minutes at most), you can start using your Docker app at the URL provided. You can find all the details on your service overview page, where you can also customize and scale resources by adding additional instances for your service.
 
-That’s it! You have created a service running your Docker application and it will be available to access by other services via the URL that has been assigned to your service, so you will have something like this: https://vuejsdocker-dev-sundaysbest-qx6r52.dev.mogenius.io/
+That’s it! You have created a service running your Docker application and it will be available to access by other services via the URL that has been assigned to your service, so you will have something like this: `docker-prod-yourcloudspace-qx6r52.mogenius.io`
 
 ![enter image description here](https://api.mogenius.com/file/id/b3bcd568-e7bb-45f1-a8e0-b5c07f63ba4f)
 

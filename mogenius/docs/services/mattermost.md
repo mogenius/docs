@@ -21,8 +21,8 @@ Finally, an open source platform for developer collaboration. Secure, flexible, 
 | Minimum | 0,5 |512| 500
 | Optimum | 0,2 |256| 1
 
-[Learn more about how to manage resources for services](#)
+[Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 
 **How to deploy Mattermost**  
-To install this service, go to the [service library](#). Select the service Mattermost and click on "Add service". Follow the instructions on the screen and finalise the create process by clicking on save.  
-We have written a detailed tutorial on [how to launch Mattermost with mogenius](#).
+To install this service, go to the [service library](./../mogenius-platform/service-library.md). Select the service Mattermost and click on "Add service". Follow the instructions on the screen and finalise the create process by clicking on save.  
+We have written a detailed tutorial on [how to launch Mattermost with mogenius](./../tutorials/launch-mattermost.md).

@@ -21,8 +21,8 @@ Docusaurus is a static-site generator. It builds a single-page application with 
 | Minimum | 0,2 |256| 100
 | Optimum | 0,2 |256| 1
 
-[Learn more about how to manage resources for services](#)
+[Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 
 **How to deploy Docusaurus**  
-To install this service, go to the [service library](#). Select the service Docusaurus and click on "Add service". Follow the instructions on the screen and finalise the create process by clicking on save.  
-We have written a detailed tutorial on [how to launch Docusaurus with mogenius](#).
+To install this service, go to the [service library](./../mogenius-platform/service-library.md). Select the service Docusaurus and click on "Add service". Follow the instructions on the screen and finalise the create process by clicking on save.  
+We have written a detailed tutorial on [how to launch Docusaurus with mogenius](./../tutorials/docusaurus.md).

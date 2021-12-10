@@ -20,9 +20,9 @@ You can install a alternative implementation of the Bitwarden server API written
 | Minimum | 0,2 |128| 200 |
 | Optimum | 0,4 |256| 400 |
 
-[Learn more about how to manage resources for services](https://docs.mogenius.com/#)
+[Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 
 **How to deploy**
 To initiate a BitWarden project with mogenius you can add it as a service to your cloudspace. Select BitWarden from the service library and follow the instructions.  
-We have written a detailed tutorial on [how to launch BitWarden with mogenius](https://docs.mogenius.com/#).
+We have written a detailed tutorial on [how to launch BitWarden with mogenius](./../tutorials/launch-bitwarden.md).
 

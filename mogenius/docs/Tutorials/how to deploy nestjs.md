@@ -49,7 +49,7 @@ Now, simply click "Save". Your NestJS boilerplate template will be built, added 
 
 ![enter image description here](https://api.mogenius.com/file/id/f410eab4-e6ea-4870-baa0-fb45c5454a45)
 
-That’s it! You have created your NestJS service and it will be available to access by other services via the URL that has been assigned to your service, in this instance new-nestjs-app-prod-megawebapp-c6ck57.free.mogenius.io. 
+That’s it! You have created your NestJS service and it will be available to access by other services via the URL that has been assigned to your service, in this instance `nestjs-prod-yourcloudspace-qx6r52.mogenius.io`
 
 ### 2 – Deploying an existing NestJS app as Dockerfile
 
@@ -67,6 +67,6 @@ Select the branch in your repository and the stage in your cloudspace that you w
 
 Now just click "Save" and your Dockerfile will be deployed to your cloudspace and ready to use almost immediately. Once the setup routines, build and deployment processes are completed (usually a few minutes at most), you can start using your NestJS app at the URL provided. You can find all the details on your service overview page, where you can also customize and scale resources by adding additional instances for your service.
 
-That’s it! You have created your NestJS service and it will be available to access by other services via the URL that has been assigned to your service, so you will have something like this: new-nestjs-app-prod-megawebapp-c6ck57.free.mogenius.io.
+That’s it! You have created your NestJS service and it will be available to access by other services via the URL that has been assigned to your service, so you will have something like this: `nestjs-prod-yourcloudspace-qx6r52.mogenius.io`
 
 ![enter image description here](https://api.mogenius.com/file/id/f410eab4-e6ea-4870-baa0-fb45c5454a45)

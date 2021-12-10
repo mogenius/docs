@@ -21,8 +21,8 @@ Next.js is an open-source development framework built on top of Node.js enabling
 | Minimum | 0,3 |64| 100
 | Optimum | 0,2 |256| 1
 
-[Learn more about how to manage resources for services](#)
+[Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 
 **How to deploy Next.js**  
-To install this service, go to the [service library](#). Select the service Next.js and click on "Add service". Follow the instructions on the screen and finalise the create process by clicking on save.  
-We have written a detailed tutorial on [how to launch Next.js with mogenius](#).
+To install this service, go to the [service library](./../mogenius-platform/service-library.md). Select the service Next.js and click on "Add service". Follow the instructions on the screen and finalise the create process by clicking on save.  
+We have written a detailed tutorial on [how to launch Next.js with mogenius](./../tutorials/Deploy%20next.js%20to%20the%20cloud.md).

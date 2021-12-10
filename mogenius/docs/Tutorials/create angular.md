@@ -50,7 +50,7 @@ Now, simply click "Save". Your Angular boilerplate template will be built, added
 ![enter image description here](https://api.mogenius.com/file/id/9ed38904-c1ce-4686-a2c0-f187f032a67e)
 
 
-That’s it! You have created your Angular service and it will be available to access by other services via the URL that has been assigned to your service, in this instance https://angular-framework-prod-sundaysbest-qx6r52.dev.mogenius.io/
+That’s it! You have created your Angular service and it will be available to access by other services via the URL that has been assigned to your service, in this instance `https://angular-prod-yourcloudspace-qx6r52.mogenius.io`
 
 ### 2 – Deploying an existing Angular app as Dockerfile
 
@@ -68,6 +68,6 @@ Select the branch in your repository and the stage in your cloudspace that you w
 
 Now just click "Save" and your Docker file will be deployed to your cloudspace and ready to use almost immediately. Once the setup routines, build and deployment processes are complete (usually a few minutes at most), you can start using your Angular app at the URL provided. You can find all the details on your service overview page, where you can also customize and scale resources by adding additional instances for your service.
 
-That’s it! You have created your Angular service and it will be available to access by other services via the URL that has been assigned to your service, so you will have something like this: [angular-app-prod-sundaysbest-qx6r52.dev.mogenius.io](https://angular-app-prod-sundaysbest-qx6r52.dev.mogenius.io/)
+That’s it! You have created your Angular service and it will be available to access by other services via the URL that has been assigned to your service, so you will have something like this: `angular-prod-cloudspacename-qx6r52.mogenius.io`
 
 ![enter image description here](https://api.mogenius.com/file/id/211c52da-e762-4fbe-a1f4-d7d6137ccb24)

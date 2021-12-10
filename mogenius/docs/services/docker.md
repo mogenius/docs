@@ -18,13 +18,13 @@ Docker is a widely used solution to deploy applications inside containers. You c
 
 :::info
 
-The minimum and optimum resource requirements depend on your specific application. It might be useful to check out [our recommendations](#) for other pre-configured services as a reference.
+The minimum and optimum resource requirements depend on your specific application. It might be useful to check out [our recommendations](./../cloud-management/resource-management.md) for other pre-configured services as a reference.
 
 :::
 
-[Learn more about how to manage resources for services](#)
+[Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 
 **How to deploy your application with Docker**  
 To launch your application with a Dockerfile select it from the service library. Connect a repository from your Github account that contains a Dockerfile. After creating your service the application will be built as configered in your Dockerfile. Note that `docker.compose` is not yet supported but will be covered soon. To connect multiple services inside your cloudspace with Docker, you need to configure the Dockerfile for each service accordingly.  
 
-[Read a detailed tutorial on how to create a service with Docker.](#)
+[Read a detailed tutorial on how to create a service with Docker.](./../tutorials/deploy%20Docker.md)

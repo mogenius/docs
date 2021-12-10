@@ -21,8 +21,8 @@ MySQL is the world's most popular open source database. With its proven performa
 | Minimum | 0,3 |300| 200
 | Optimum | 0,2 |256| 1
 
-[Learn more about how to manage resources for services](#)
+[Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 
 **How to deploy MySQL**  
-To install this service, go to the [service library](#). Select the service MySQL and click on "Add service". Follow the instructions on the screen and walk through the create process. You will have to set environment variables that will be stored in your Key Vault and that you can later access through other applications.  
-We have written a detailed tutorial on [how to launch MySQL with mogenius](#).
+To install this service, go to the [service library](./../mogenius-platform/service-library.md). Select the service MySQL and click on "Add service". Follow the instructions on the screen and walk through the create process. You will have to set environment variables that will be stored in your Key Vault and that you can later access through other applications.  
+We have written a detailed tutorial on [how to launch MySQL with mogenius](./../tutorials/creating%20mysql.md).

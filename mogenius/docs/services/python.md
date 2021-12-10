@@ -21,8 +21,8 @@ Python is an interpreted high-level general-purpose programming language. Its de
 | Minimum | 0,2 |64| 100
 | Optimum | 0,2 |256| 1
 
-[Learn more about how to manage resources for services](#)
+[Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 
 **How to deploy Python**  
 To initiate a Python project with mogenius you can add it as a service to your cloudspace. Select Python from the service library and follow the instructions.  
-We have written a detailed tutorial on [how to launch Python with mogenius](#).
+We have written a detailed tutorial on [how to launch Python with mogenius](./../tutorials/deploy%20python.md).
