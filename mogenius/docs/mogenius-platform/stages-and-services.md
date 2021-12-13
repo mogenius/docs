@@ -4,16 +4,16 @@ sidebar_position: 3
 
 # Stages & Services
 
-This is your overview of stages and the associated services. 
+Here you will find an overview of the stages and installed services. 
 
 On this page you can:
 - Add, manage & delete stages
 - Add Services
 
 [Bild header]
-By default you will have one production stage set up. If you want to add more stages, click on the settings icon and select "Manage services" Here you can add new ones or delete others. *Please note that at least one production stage must be activated. It is not possible to delete it.
+By default, you have set up one production stage. If you want to add more stages, click the settings icon and select Manage Services. Here you can add new stages or delete others. *Please note that at least one production stage must be enabled. It is not possible to delete it.
 
-Hostname: The production stage is automatically assigned a hostname. Other hostnames are generated on the basis of the stage name.
+Hostname: A hostname is automatically assigned to the production stage. Other hostnames are generated based on the stage name.
 
 More: [About Domains](#)
 
@@ -28,12 +28,12 @@ More: [About Domains](#)
 | Traffic | consumption |GB|
 | Temp. Storage | in use |GB|
 
-**Allocated** = the value that already installed services take up.
+**Allocated** = the value claimed by already installed services.
 **In use** = the value of resources already in use
 **Consumed** = the value that has already been consumed
 
-In the resource widget you can see the total utilisation of your allocated resources at a stage.  In the widget you will find a percentage list, the available value and the actually used value.
-We will inform you if you exceed certain values. If the utilisation exceeds 80%, we display a warning (orange). If the utilisation exceeds 90%, we display an error warning (red).
+In the resources widget you can see the total utilization of the resources assigned to you in a stage.  In the widget you will find a percentage listing, the available value and the actually used value.
+We will inform you if you exceed certain values. If the utilization exceeds 80%, a warning (orange) will be displayed. If the utilization exceeds 90%, an error warning (red) is displayed.
 
 More: [Resourcemanagement](#)
 

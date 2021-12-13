@@ -4,4 +4,4 @@ sidebar_position: 1
 
 # Hosting
 
-mogenius is your all-in-one solution to cover every step between your application and the cloud. This means, that cloud resources are included in your subscription and you will not need your own cloud account. Your cloudspace relies on a Kubernetes cluster on top of Microsoft Azure and is fully managed by mogenius. 
+mogenius is your all-in-one solution that covers every step between your application and the cloud. Cloud resources are included in your subscription, so you don't need a separate cloud account. Your cloudspace is based on a Kubernetes cluster on Microsoft Azure and is fully managed by mogenius. 

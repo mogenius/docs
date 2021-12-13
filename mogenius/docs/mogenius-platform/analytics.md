@@ -5,5 +5,5 @@ sidebar_position: 8
 # Analytics
 
 :::info
-This feature is coming soon.
+This feature will be available soon.
 :::

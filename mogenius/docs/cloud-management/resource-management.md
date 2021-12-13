@@ -4,52 +4,52 @@ sidebar_position: 2
 
 # Resource management
 
-With mogenius you should always have full control and transparency over the use of your cloud resources. There are several ways to do this and we will cover them here.
+With mogenius you always have full control and transparency of the usage of your cloud resources. There are several ways to do this, which we will cover in this section.
 
 ## Available resources in your plan
 
-First, it is important to understand how resources are distributed in your Cloudspace. The plan you choose when creating a Cloudspace determines your total available resources ([Check out the available plans](#)). You can then allocate resources to your services, which will set limits in maximum resource consumption for each service. This means, a service does not necessarily consume the full amount of allocated resources. You will see the summary of resource consumption over every stage and service on the dashboard of your Cloudspace.
+First, it is important to understand how the resources in your cloudspace will be distributed. The plan you choose when creating a cloudspace determines your total available resources ([Check out the available plans](#)). You can then allocate resources to your services, with limits on maximum resource consumption for each service. A service does not necessarily consume the entire amount of the allocated resources. You can see the summary of resource consumption for each stage and service on your cloudspace dashboard.
 
 ![mogenius dashboard](https://api.mogenius.com/file/id/61e9457a-abde-4cac-95f8-1bf5d5d4c934)
 
-Inside mogenius studio, you will get an overview of resource consumption at every level of detail. On the page Stages & Services all the metrics from services will be summarized per stage. You can then monitor single services inside every stage.
+In mogenius studio you get an overview of the resource consumption on a detailed level. On the Stages & Services page, all metrics of the services are summarized per stage. You can then monitor individual services within each stage.
 
 ![stages and services](https://api.mogenius.com/file/id/703866f3-d7ba-4e95-9fae-aed1e0f84f28)
 
 
-## Allocating resources at service creation
+## Allocating resources when you create a service
 
-When creating a service you can set resource limits to control the maximum amount of resources your service can consume. If you use a pre-configured service template we will set recommendations for minimum resource requirements as the default settings. You can edit the default settings at service creation or later in your settings. 
-If you use a container file (e.g. Dockerfile) you will need to set own resource limits based on the specific application you are launching. You can use this [overview of service templates](#) as a reference but please keep in mind that your individual application might be more advanced than a boilerplate template.
+When you create a service, you can set resource limits to control the maximum amount of resources your service can consume. If you use a preconfigured service template, recommendations for minimum resource requirements are set as default settings. You can edit the default settings when you create the service or later in your settings. 
+If you are using a container file (such as a Docker file), you must set your own resource limits based on the specific application you are launching. You can use this [overview of service templates](#) as a reference but please keep in mind that your individual application might be more advanced than a boilerplate template.
 
 ![mogenius resource allocation](https://api.mogenius.com/file/id/679ed62d-c653-4b64-b469-f7b78c1d334f)
 
-The available resources depend on your plan and on the services that you have already deployed. If your available resources are not sufficient to launch the service you will need to delete or scale down other services, or [upgrade your plan](#).
+The available resources depend on your plan and on the services you have already deployed. If the available resources are not enough to launch the service, you need to delete or scale down other services, or [upgrade your plan](#).
 
 ## Scaling a service
 
-If you receive warnings for your service regarding resource exhaustion or if your service is receiving more traffic than expected, this might be the time to scale your service. There are two ways to do this: By allocating more resources to your service, or by creating another instance.
+If you are receiving warnings for your service that it is running out of resources, or if your service is receiving more traffic than expected, it may be time to scale it. There are two ways to do this: By allocating more resources to your service, or by adding another instance.
 
 ### Allocate more resource
 
-You can allocate more resources to a service in the settings. When on the detail page of a service, click "Edit Service" on the gear icon.
+You can allocate more resources to a service in the settings. On the details page of a service, click the "Edit Service" gear icon.
 
 ![edit service](https://api.mogenius.com/file/id/c79e5641-2a3e-46a2-be37-4c965968cf87)
 
-Scroll down to Resource Limits. You can then allocate more resources depending on the available resources in your cloudspace.
+Scroll down to Resource Limits. There you can allocate more resources from the available resource pool in your cloudspace.
 
-Save your new settings and the service will scale instantly. This will be visible on the resource overview for your service and stage.
+Save your new settings and the service will be scaled instantly. This will be visible in the resource overview for your service and stage.
 
 ### Add an instance
 
-Creating another instance of your service, will result in a new Kubernetes pod that acts as a clone of your service to answer more requests at the same time. This means, that the resource allocation will be doubled for one additional instance. Two additional instances will result in tripled resource allocation.
+When you create another instance of your service, a new Kubernetes pod is created that acts as a clone of your service to answer more requests at the same time. Meaning, the resource allocation for an additional instance is doubled. Two additional instances result in a tripling of the resource allocation.
 
-Adding an instance can also be handled through the settings of your service. Click "Edit Service" on the gear icon inside the detail page of a service.
+Adding an instance can also be done through the settings of your service. Click the "Edit Service" gear icon on the details page of a service.
 
 ![edit service](https://api.mogenius.com/file/id/c79e5641-2a3e-46a2-be37-4c965968cf87)
 
-Above the resource limits you will see "Instances" and a plus icon to add an additional instance. The total available resources and the total resource allocation will adjust according to your settings.
+Above the resource limits, you will see "Instances" and a plus icon to add another instance. The total available resources and the total resource allocation are adjusted according to your settings.
 
-Once you save your changes the new settings will take effect immediately and another instance of your service will be deployed.
+Once you save your changes, the new settings will take effect immediately and another instance of your service will be deployed.
 
 ## Handling limit exhaustion

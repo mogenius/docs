@@ -4,11 +4,11 @@ sidebar_position: 4
 
 # Services in detail
 
-Services are the core of mogenius as they are the tool to launch your application in the cloud. We are going to cover how to create a service inside your cloudspace so that you can start working on your application right away.
+Services are the a core element of mogenius, as they are the tool to start your application in the cloud. We will show you how to create a service in your cloudspace so you can start working on your application right away.
 
 ## How to create a service
 
-There are several entry points in mogenius to create a new service. Either you open the service library through the main navigation, or you click "Add Service" inside one of your stages. You will then see a range of available services to choose from. 
+There are several entry points to create a new service. Either you open the service library via the main navigation or you click on "Add service" in one of your stages. You will then see a number of available services to choose from. 
 
 **There are now two ways to create a service**
 
