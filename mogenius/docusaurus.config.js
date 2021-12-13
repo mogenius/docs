@@ -71,12 +71,16 @@ const config = {
             title: 'More',
             items: [
               {
+                label: 'mogenius studio',
+                href: 'https://studio.mogenius.com',
+              },
+              {
                 label: 'Website',
                 href: 'https://mogenius.com',
               },
               {
-                label: 'mogenius studio',
-                href: 'https://studio.mogenius.com',
+                label: 'Feedback',
+                href: 'https://feedback.mogenius.com',
               },
               
             
@@ -86,14 +90,17 @@ const config = {
           {
             title: 'Community',
             items: [
-            
+              {
+                label: 'Community Portal',
+                href: 'https://community.mogenius.com',
+              },
               {
                 label: 'Twitter',
                 href: 'https://twitter.com/mogenius',
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/mogeniuscom',
+                href: 'https://github.com/mogenius',
               },
             ],
           },

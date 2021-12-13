@@ -16,4 +16,4 @@ If you want to avoid an automated build you can use `[skip ci]`. mogenius will
 
 **Example:** `git commit -m '[skip ci] fix 4711'`
 
-On the page [CI/CD monitor](#) you will have complete history of builds and canaccess detailed information to any currently running build.
+On the page [CI/CD monitor](./../mogenius-platform/ci-cd-monitor.md) you will have complete history of builds and canaccess detailed information to any currently running build.
