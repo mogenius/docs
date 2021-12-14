@@ -24,5 +24,5 @@ Angular is a TypeScript-based free and open-source web application framework led
 [Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 
 **How to deploy Angular**  
-To install this service, go to the [service library](./../mogenius-platform/service-library.md). Select the service Angular and click on "Add service". Follow the instructions on the screen and finalise the create process by clicking on save.  
-We have written a detailed tutorial on [how to launch Angular with mogenius](./../tutorials/create%20angular.md).
+To install this service, go to the [service library](./../mogenius-platform/service-library.md). Select the Angular service and click "Add Service". Follow the on-screen instructions and complete the creation process by clicking "Save".  
+There is a detailed tutorial available on [how to launch Angular with mogenius](./../tutorials/create%20angular.md).

@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# Nest JS
+# NestJS
 
 ![enter image description here](https://api.mogenius.com/file/id/6001fd0a-c626-4e64-9c19-e167b86b3a30)
 
@@ -24,5 +24,5 @@ Nest (NestJS) is a framework for building efficient, scalable Node.js server-sid
 [Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 
 **How to deploy NestJS**  
-To initiate a NestJS project with mogenius you can add it as a service to your cloudspace. Select NestJS from the service library and follow the instructions.  
-We have written a detailed tutorial on [how to launch NestJS with mogenius](./../tutorials/how%20to%20deploy%20nestjs.md).
+To initiate a NestJS project, add it as a service to your cloudspace. Select NestJS from the service library and follow the instructions.  
+There is a detailed tutorial available on [how to launch NestJS with mogenius](./../tutorials/how%20to%20deploy%20nestjs.md).

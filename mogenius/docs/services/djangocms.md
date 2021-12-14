@@ -24,6 +24,6 @@ django CMS is a free and open source content management system platform for publ
 [Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 
 **How to deploy DjangoCMS**  
-DjangoCMS is a service group, meaning that it bundles several services together and deploys them at once. When creating a DjangoCMS service, mogenius deploys the Django API, an nginx webserver and a MySQL database. They will be available as single services in your cloudspace but they are automatically connected to work together.
-To install this service, go to the [service library](./../mogenius-platform/service-library.md) and switch to Service Groups. Select the service DjangoCMS and click on "Add service". Follow the instructions on the screen and finalise the process by clicking on Create Service.  
-We have written a detailed tutorial on [how to launch DjangoCMS with mogenius](#).
+DjangoCMS is a service group, which means that it bundles multiple services and deploys them at once. When you create a DjangoCMS service, mogenius provides the Django API, an nginx web server, and a MySQL database. They will be available as individual services in your cloudspace, but are automatically connected to work together.
+To install this service, go to the [service library](./../mogenius-platform/service-library.md) and switch to Service Groups. Select the service DjangoCMS and click  "Add service". Follow the instructions and finalize the process by clicking "Create Service".  
+There is a detailed tutorial available on [how to launch DjangoCMS with mogenius](#).

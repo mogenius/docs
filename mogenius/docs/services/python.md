@@ -24,5 +24,5 @@ Python is an interpreted high-level general-purpose programming language. Its de
 [Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 
 **How to deploy Python**  
-To initiate a Python project with mogenius you can add it as a service to your cloudspace. Select Python from the service library and follow the instructions.  
-We have written a detailed tutorial on [how to launch Python with mogenius](./../tutorials/deploy%20python.md).
+To initiate a Python project, you can add it as a service to your cloudspace. Select Python from the service library and follow the instructions.  
+There is a detailed tutorial available on [how to launch Python with mogenius](./../tutorials/deploy%20python.md).

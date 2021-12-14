@@ -12,16 +12,15 @@ mogenius is currently pre-beta and some of the documented features might change.
 :::
 
 ## Welcome to mogenius documentation
-Our mission is to provide you with a platform that makes building and running any application in the cloud as easy as possible. Our aim is to make mogenius a self-explanatory experience, but some things might need a reference. That's why we created this documentation where we try to answer most of the questions around mogenius.
+At mogenius, our mission is to provide you with a platform that makes building and running applications in the cloud as easy as possible. We do our best to make mogenius a self-explanatory experience, but some things may need a reference. For that reason we created this documentation where we try to answer most of the questions around our service.
 
 ![intro image](https://api.mogenius.com/file/id/7d107d6e-241a-4ef4-a88b-68a7800e409d)
 
 ## Table of contents
-- General
+- Introduction
   - [About mogenius](./general/about-mogenius.md)
   - [Plans & Pricing](./general/plans-pricing)
   - [Help & Feedback](./general/help-feedback.md)
-  - [Known Issues](./general/known-issues.md)
 - Getting started
   - [Quickstart](./getting-started/quickstart.md)
   - [About Cloudspaces](./getting-started/about-cloudspaces.md)
@@ -77,8 +76,7 @@ Our mission is to provide you with a platform that makes building and running an
   - [How to deploy a Docker app](./tutorials/deploy%20Docker.md)
   - [Setting up CouchDB](./tutorials/set%20up%20couchDB.md)
   - [Setting up MongoDB](./tutorials/Setting%20up%20mongoDB%20in%20the%20cloud.md)
-  - [Setting up Redis](./tutorials/Setting%20up%20Redis%20as%20a%20microservice%20in%20the%20cloud.md)
 
 ## How to contribute
 
-The mogenius documentation is open-source and based on Docusaurus. You can edit and create contents inside the documentation by sending a pull request with your suggested changes on [**Github**](https://github.com/mogenius/documentation).
+The mogenius documentation is open-source and based on Docusaurus. You can edit and create content within the documentation by sending a pull request with your suggested changes to [**Github**](https://github.com/mogenius/documentation).

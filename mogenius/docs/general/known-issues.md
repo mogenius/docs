@@ -14,3 +14,4 @@ Since mogenius is still in the closed alpha phase, the number of users on the pl
 |---|---|
 |Pages| The CI/CD monitor page is still under development. However, you can already use the built in CI/CD features. For more information [read here](../development/cicd-pipeline.md).|
 |Services|Service states are not yet functional. If your service has an issue, you will be notified by the progress indicator in the top navigation bar. The service my still be displayed as "Running".|
+|||

@@ -24,5 +24,5 @@ Nginx is an open source reverse proxy server for HTTP, HTTPS, SMTP, POP3, and IM
 [Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 
 **How to deploy nginx**  
-To install this service, go to the [service library](./../mogenius-platform/service-library.md). Select the service nginx and click on "Add service". Follow the instructions on the screen and finalise the create process by clicking on save.  
-We have written a detailed tutorial on [how to launch nginx with mogenius](./../tutorials/nginx.md).
+To install this service, go to the [service library](./../mogenius-platform/service-library.md). Select the nginx service and click "Add service". Follow the instructions and finalize the create process by clicking "Save".  
+There is a detailed tutorial available on [how to launch nginx with mogenius](./../tutorials/nginx.md).
