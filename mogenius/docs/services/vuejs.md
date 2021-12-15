@@ -16,9 +16,8 @@ Vue (pronounced /vjuː/, like **view**) is a **progressive framework** for build
 **Resource Requirements**
 
 ||CPU (Core)|RAM (MB)  |Temp. storage (MB)|
-|--|--|--|--|--|--|
+|--|--|--|--|
 | Minimum | 0,3 |32| 100 |
-| Optimum | 0,6 |64| 200 |
 
 [Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 

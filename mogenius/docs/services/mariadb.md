@@ -18,9 +18,8 @@ It is built upon the values of performance, stability, and openness, and MariaDB
 **Resource Requirements**
 
 ||CPU (Core)|RAM (MB)  |Temp. storage (MB)|
-|--|--|--|--|--|--|
+|--|--|--|--|
 | Minimum | 0,2 |128| 100 |
-| Optimum | 0,4 |256| 200 |
 
 [Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 

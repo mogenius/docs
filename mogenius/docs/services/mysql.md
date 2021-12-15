@@ -19,7 +19,6 @@ MySQL is the world's most popular open source database. With its proven performa
 ||CPU (Core)|RAM (MB)  |Temp. Storage (MB)|
 |--|--|--|--|
 | Minimum | 0,3 |300| 200
-| Optimum | 0,2 |256| 1
 
 [Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 

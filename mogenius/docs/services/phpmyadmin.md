@@ -19,7 +19,6 @@ phpMyAdmin is a free and open source administration tool for MySQL and MariaDB. 
 ||CPU (Core)|RAM (MB)  |Temp. Storage (MB)|
 |--|--|--|--|
 | Minimum | 0,2 |96| 100
-| Optimum | 0,2 |256| 1
 
 [Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 

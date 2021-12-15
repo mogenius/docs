@@ -19,7 +19,6 @@ Finally, an open source platform for developer collaboration. Secure, flexible, 
 ||CPU (Core)|RAM (MB)  |Temp. Storage (MB)|
 |--|--|--|--|
 | Minimum | 0,5 |512| 500
-| Optimum | 0,2 |256| 1
 
 [Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 

@@ -19,7 +19,6 @@ Nest (NestJS) is a framework for building efficient, scalable Node.js server-sid
 ||CPU (Core)|RAM (MB)  |Temp. Storage (MB)|
 |--|--|--|--|
 | Minimum | 0,3 |192| 100
-| Optimum | 0,2 |256| 1
 
 [Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 

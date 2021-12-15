@@ -19,7 +19,6 @@ Nginx is an open source reverse proxy server for HTTP, HTTPS, SMTP, POP3, and IM
 ||CPU (Core)|RAM (MB)  |Temp. Storage (MB)|
 |--|--|--|--|
 | Minimum | 0,1 |16| 20
-| Optimum | 0,2 |256| 1
 
 [Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 

@@ -19,9 +19,8 @@ CouchDB comes with a suite of features, such as on-the-fly document transformati
 **Resource Requirements**
 
 ||CPU (Core)|RAM (MB)  |Temp. storage (MB)|
-|--|--|--|--|--|--|
+|--|--|--|--|
 | Minimum | 0,3 |128| 200 |
-| Optimum | 0,6 |256| 400 |
 
 [Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 

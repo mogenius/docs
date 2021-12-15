@@ -19,7 +19,6 @@ TiDB is an open-source NewSQL database that supports Hybrid Transactional and An
 ||CPU (Core)|RAM (MB)  |Temp. Storage (MB)|
 |--|--|--|--|
 | Minimum | 0,3 |128| 300
-| Optimum | 0,2 |256| 1
 
 [Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 

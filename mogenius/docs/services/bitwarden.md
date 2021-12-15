@@ -16,9 +16,8 @@ You can install a alternative implementation of the Bitwarden server API written
 **Resource Requirements**
 
 ||CPU (Core)|RAM (MB)  |Temp. storage (MB)|
-|--|--|--|--|--|--|
+|--|--|--|--|
 | Minimum | 0,2 |128| 200 |
-| Optimum | 0,4 |256| 400 |
 
 [Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 
