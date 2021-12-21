@@ -25,5 +25,5 @@ It is built upon the values of performance, stability, and openness, and MariaDB
 
 **How to deploy**
 To initiate a MariaDB project, you can add it as a service to your cloudspace. Select MariaDB from the service library and follow the instructions.  
-There is a detailed tutorial available on [how to launch MariaDB with mogenius](./../tutorials/mariadb%20phpmyadmin.md).
+There is a detailed tutorial available on [how to launch MariaDB with mogenius](./../tutorials/set-up-mariadb-and-phpmyadmin.md).
 

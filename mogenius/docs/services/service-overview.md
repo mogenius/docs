@@ -21,7 +21,6 @@ Below is an overview of all the services that are currently available through th
 |[phpMyAdmin](phpmyadmin.md)|Database administration.|
 |[Mattermost](mattermost.md)|open-source Slack alternative.|
 |[Docusaurus](docusaurus.md)|static site generator for documentations and more.|
-|[DjangoCMS](djangocms.md)|CMS based on Django.|
 |[BitWarden](bitwarden.md)|Powerful open-source password manager.|
 |[CouchDB](couchdb.md)|Document-oriented NoSQL database.|
 |[MariaDB](mariadb.md)|Relational database management system.|

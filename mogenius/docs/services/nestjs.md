@@ -24,4 +24,4 @@ Nest (NestJS) is a framework for building efficient, scalable Node.js server-sid
 
 **How to deploy NestJS**  
 To initiate a NestJS project, add it as a service to your cloudspace. Select NestJS from the service library and follow the instructions.  
-There is a detailed tutorial available on [how to launch NestJS with mogenius](./../tutorials/how%20to%20deploy%20nestjs.md).
+There is a detailed tutorial available on [how to launch NestJS with mogenius](./../tutorials/how-to-deploy-nestjs.md).

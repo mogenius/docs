@@ -23,5 +23,5 @@ Vue (pronounced /vjuː/, like **view**) is a **progressive framework** for build
 
 **How to deploy**
 To initiate a Vue.js project,  you can add it as a service to your cloudspace. Select Vue.js from the service library and follow the instructions.  
-There is a detailed tutorial available on [how to launch Vue.js with mogenius](./../tutorials/creating%20vuejs.md).
+There is a detailed tutorial available on [how to launch Vue.js with mogenius](./../tutorials/deploy-vuejs-in-the-cloud.md).
 

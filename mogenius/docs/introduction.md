@@ -58,7 +58,6 @@ Read our [quickstart guide](./getting-started/quickstart.md) to deploy your firs
   - [phpMyAdmin](./services/phpmyadmin.md)
   - [Mattermost](./services/mattermost.md)
   - [Docusaurus](./services/docusaurus.md)
-  - [DjangoCMS](./services/djangocms.md)
   - [BitWarden](./services/bitwarden.md)
   - [CouchDB](./services/couchdb.md)
   - [MariaDB](./services/mariadb.md)

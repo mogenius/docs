@@ -24,4 +24,4 @@ TiDB is an open-source NewSQL database that supports Hybrid Transactional and An
 
 **How to deploy TiDB**  
 To install this service, go to the [service library](./../mogenius-platform/service-library.md). Select the TiDB service and click "Add service". Follow the instructions and finalize the create process by clicking "Save".  
-There is a detailed tutorial available on [how to launch TiDB with mogenius](./../tutorials/launching%20TiDB.md).
+There is a detailed tutorial available on [how to launch TiDB with mogenius](./../tutorials/deploy-tidb-database.md).
