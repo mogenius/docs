@@ -21,8 +21,8 @@ Read our [quickstart guide](./getting-started/quickstart.md) to deploy your firs
 ## Table of contents
 - Introduction
   - [About mogenius](./general/about-mogenius.md)
-  - [Plans & Pricing](./general/plans-pricing)
   - [Help & Feedback](./general/help-feedback.md)
+  - [Known issues](./general/known-issues.md)
 - Getting started
   - [Quickstart](./getting-started/quickstart.md)
   - [About Cloudspaces](./getting-started/about-cloudspaces.md)
