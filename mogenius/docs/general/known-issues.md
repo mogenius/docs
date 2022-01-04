@@ -12,6 +12,7 @@ Since mogenius is still in the closed alpha phase, the number of users on the pl
 
 |Area|Description|
 |---|---|
-|Pages| The CI/CD monitor page is still under development. However, you can already use the built in CI/CD features. For more information [read here](../development/cicd-pipeline.md).|
-|Services|Service states are not yet functional. If your service has an issue, you will be notified by the progress indicator in the top navigation bar. The service my still be displayed as "Running".|
+|Main navigation| The CI/CD monitor page is still under development. However, you can already use the built in CI/CD features. For more information [read here](../development/cicd-pipeline.md).|
+|Services|When creating a service the state will switch to "Running" once the build process is finished. When opening the service URL immediately you might still receive an error that the page is not available. After a few seconds you can refresh the page and should see the mogenius logo.|
+|Stages & Services|An active service will indicate his resource consumption on the page Stages & Services. The colors may indicate that a service is reaching his resource limit (orange, red). This is not functional yet, instead focus on the consumption in percentage for every resource.|
 |||
