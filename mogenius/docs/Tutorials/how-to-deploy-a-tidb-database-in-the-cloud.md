@@ -1,7 +1,6 @@
 ﻿---
 sidebar_position: 3
 title: Launching a TiDB database
-slug: deploy-tidb-database-in-the-cloud
 ---
 
 # Launching TiDB database in the cloud with a few clicks

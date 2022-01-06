@@ -1,7 +1,6 @@
 ---
 sidebar_position: 2
 title: Set up MySQL & phpMyAdmin
-slug: hosting-mysql-phpmyadmin
 ---
 
 # Creating a MySQL database + phpMyAdmin securely on Microsoft Azure

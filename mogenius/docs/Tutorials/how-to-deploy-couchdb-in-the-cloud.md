@@ -1,7 +1,6 @@
 ﻿---
 sidebar_position: 14
 title: Setting up CouchDB
-slug: deploy-couchdb-in-the-cloud
 ---
 
 # Setting up CouchDB as a microservice in the cloud

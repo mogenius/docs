@@ -1,7 +1,6 @@
 ﻿---
 sidebar_position: 16
 title: Launching BitWarden
-slug: deploy-bitwarden-in-the-cloud
 ---
 
 # How to deploy Bitwarden password manager in the cloud without hassle

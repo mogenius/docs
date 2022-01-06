@@ -1,7 +1,6 @@
 ﻿---
 sidebar_position: 15
 title: Setting up MongoDB
-slug: deploy-mongodb-in-the-cloud
 ---
 
 # Setting up mongoDB in the cloud

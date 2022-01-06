@@ -1,7 +1,6 @@
 ﻿---
 sidebar_position: 11
 title: Launch Docusaurus
-slug: launch-docusaurus-in-the-cloud
 ---
 
 # Create a static site or single-page application with Docusaurus

@@ -1,7 +1,6 @@
 ﻿---
 sidebar_position: 18
 title: Launching Java Spring
-slug: deploy-java-spring-in-the-cloud
 ---
 
 # Creating and deploying Java Spring apps in the cloud within minutes

@@ -1,7 +1,6 @@
 ---
 sidebar_position: 1
 title: How to deploy NestJS
-slug: deploy-nestjs-to-the-cloud
 ---
 
 # Deploying NestJS Apps to the cloud in 60 seconds

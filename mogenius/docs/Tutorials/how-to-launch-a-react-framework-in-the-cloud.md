@@ -1,7 +1,6 @@
 ﻿---
 sidebar_position: 6
 title: How to quickstart React
-slug: launch-react-framework-in-the-cloud
 ---
 
 # How to quickstart a React application framework in the cloud

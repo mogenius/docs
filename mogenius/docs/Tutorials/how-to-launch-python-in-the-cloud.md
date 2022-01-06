@@ -1,7 +1,6 @@
 ﻿---
 sidebar_position: 10
 title: Create a python app
-slug: launch-python-in-the-cloud
 ---
 
 # How to deploy your Python app to the cloud in no time

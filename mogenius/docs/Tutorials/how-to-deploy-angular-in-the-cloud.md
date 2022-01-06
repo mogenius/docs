@@ -1,7 +1,6 @@
 ﻿---
 sidebar_position: 5
 title: Create an Angular web app
-slug: deploy-angular-in-the-cloud
 ---
 
 # How to quickstart Angular web application framework in the cloud

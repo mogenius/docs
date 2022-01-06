@@ -1,7 +1,6 @@
 ﻿---
 sidebar_position: 13
 title: How to deploy a Docker app
-slug: deploy-docker-in-the-cloud
 ---
 
 # Hosting, building and deploying your Docker application in the cloud

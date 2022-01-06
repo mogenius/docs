@@ -1,7 +1,6 @@
 ﻿---
 sidebar_position: 7
 title: Set up MariaDB & phpMyAdmin
-slug: hosting-mariadb-and-phpmyadmin
 ---
 
 # Setting up MariaDB database + phpMyAdmin securely in the cloud in less than 1 minute

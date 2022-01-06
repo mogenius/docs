@@ -1,7 +1,6 @@
 ﻿---
 sidebar_position: 16
 title: Setting up Redis
-slug: deploy-redis-in-the-cloud
 ---
 
 # Setting up Redis as a microservice in the cloud

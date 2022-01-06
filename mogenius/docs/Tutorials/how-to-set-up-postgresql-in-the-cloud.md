@@ -1,7 +1,6 @@
 ﻿---
 sidebar_position: 17
 title: Setting up PostgreSQL
-slug: deploy-postgresql-in-the-cloud
 ---
 
 # Setting up PostgreSQL as a microservice in the cloud

@@ -1,7 +1,6 @@
 ﻿---
 sidebar_position: 17
 title: Launching Mattermost
-slug: deploy-mattermost-in-the-cloud
 ---
 
 # How to deploy Mattermost collaboration platform in the cloud in one minute
