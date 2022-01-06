@@ -1,6 +1,5 @@
 ﻿---
 sidebar_position: 3
-title: Launching a TiDB database
 ---
 
 # Launching TiDB database in the cloud with a few clicks
