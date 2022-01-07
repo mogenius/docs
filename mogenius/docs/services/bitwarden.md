@@ -23,5 +23,5 @@ You can install a alternative implementation of the Bitwarden server API written
 
 **How to deploy**
 To initiate a BitWarden project, you can add it as a service to your cloudspace. Select BitWarden from the service library and follow the instructions.  
-There is a detailed tutorial available on [how to launch BitWarden with mogenius](./../tutorials/deploy-bitwarden-in-the-cloud.md).
+There is a detailed tutorial available on [how to launch BitWarden with mogenius](./../tutorials/how-to-deploy-bitwarden-in-the-cloud.md).
 
