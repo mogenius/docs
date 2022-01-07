@@ -42,8 +42,8 @@ const config = {
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
-      navbar: {
+    ({     
+       navbar: {
         title: '',
         logo: {
           alt: 'mogenius logo',
