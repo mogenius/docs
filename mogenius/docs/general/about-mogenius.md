@@ -20,7 +20,7 @@ Instant deployment of changes to your specific development stage in the cloud.
 
 **Dockerfile**  
 Instantly deploy your application by connecting your repository with a Dockerfile inside.  
-[About Docker upload](./../tutorials/deploy%20Docker.md)
+[About Docker upload](./../tutorials/how-to-deploy-docker-in-the-cloud.md)
 
 **SSL management**   
 SSL certificates are automatically created and managed for each domain.  

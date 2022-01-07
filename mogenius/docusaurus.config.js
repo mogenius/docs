@@ -115,10 +115,4 @@ const config = {
     }),
 };
 
-module.exports = {
-  customFields: {
-    noIndex: true,
-  }
-},
-
 module.exports = config;

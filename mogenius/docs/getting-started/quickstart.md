@@ -34,9 +34,7 @@ mogenius.app
 
 ### Select a plan
 
-Choose a plan that fits your project's needs and create the cloudspace. You can always start with a free plan and upgrade later if needed.
-
-[Find the right plan](./../general/plans-pricing.md)
+You can always start with a free plan to take first steps and test around as long as you like. We will introduce subscriptions for plans with more resources and capabilities soon.
 
 **🥳 Congrats on creating your first cloudspace on mogenius**
 
