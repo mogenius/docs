@@ -15,6 +15,7 @@ const config = {
   favicon: 'img/favicon.ico',
   organizationName: 'mogenius', // Usually your GitHub org/user name.
   projectName: 'documentation', // Usually your repo name.
+  // blog: 'false',
   /**plugins: ['@docusaurus/plugin-ideal-image'],*/
 
   presets: [
@@ -26,13 +27,14 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           routeBasePath: '/',
           // Please change this to your repo.
-          // editUrl: 'https://github.com/mogenius/documentation',
+          // editUrl: 'https://github.com/mogenius/docs',
         },
-        blog: {
-          showReadingTime: true,
+       blog: false,
+          //{
+          // showReadingTime: true,
           // Please change this to your repo.
-          // editUrl:'https://github.com/mogenius/documentation',
-        },
+          // editUrl:'https://github.com/mogenius/docs',
+          //  },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
