@@ -60,3 +60,5 @@ Now, simply click "Save". PostgreSQL will now be built, the dockerfile added to 
 
 That’s it! You have created your first PostgreSQL service and it will be available to access by other services in your cloudspace.
 
+Next, you can deploy pgAdmin as a tool to access your PostgreSQL database through a web interface (just like phpMyAdmin for MySQL).On the stage where you have deployed PostgreSQL click "Add service", select pgAdmin from the service library and follow the steps of creating a service.
+
