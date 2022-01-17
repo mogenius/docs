@@ -5,8 +5,16 @@
  */
 
 /* You can override the default Infima variables here. */
+@font-face {
+  font-family: "Cairo";
+  src: url('https://mogenius.com/cairo-v10-latin-regular.d3bac703ab71d722cebd.woff2') format('woff');
+}
+
 :root {
-  --ifm-color-primary: #005f79;
+--ifm-font-family-monospace: "Cairo";
+--ifm-font-family-base: "Cairo";
+--ifm-heading-font-family: "Cairo";
+--ifm-color-primary: #005f79;
 --ifm-color-primary-dark: #00556d;
 --ifm-color-primary-darker: #005167;
 --ifm-color-primary-darkest: #004255;
@@ -14,6 +22,10 @@
 --ifm-color-primary-lighter: #006d8b;
 --ifm-color-primary-lightest: #007b9d;
   --ifm-code-font-size: 95%;
+}
+
+li::marker {
+  font-family: Arial;
 }
 
 .docusaurus-highlight-code-line {

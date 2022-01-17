@@ -5,11 +5,11 @@ sidebar_position: 3
 # Help & Feedback
 
 ## Community
-We are very happy to receive contributions from our community. You can use our community site to ask questions or read about current issues. As a registered user you can reach the community via the main navigation in mogenius studio.
+We are very happy to receive contributions from our community. You can use our community site to ask questions or read about current issues. As a registered user you can reach the community via the main navigation in mogenius studio.  
 🏠 **[Community](https://community.mogenius.com)**
 
 ## Feedback
-Your feedback is incredibly valuable in helping us deliver a product that best meets your needs. If you have suggestions and ideas, please use our feedback tool. Here you have the opportunity to submit ideas, vote on other ideas and follow our roadmap.
+Your feedback is incredibly valuable in helping us deliver a product that best meets your needs. If you have suggestions and ideas, please use our feedback tool. Here you have the opportunity to submit ideas, vote on other ideas and follow our roadmap.  
 💡 **[Feedback](https://feedback.mogenius.com)**
 
 ## Support
