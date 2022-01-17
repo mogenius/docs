@@ -106,7 +106,19 @@ const config = {
               },
             ],
           },
-          
+          {
+            title: 'Legal',
+            items: [
+              {
+                label: 'Imprint',
+                href: 'https://mogenius.com/en/imprint',
+              },
+              {
+                label: 'Privacy',
+                href: 'https://mogenius.com/en/privacy',
+              },
+            ],
+          },
         ],
         copyright: `Copyright © ${new Date().getFullYear()} mogenius. Built with Docusaurus.`,
       },
