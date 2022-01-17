@@ -6,7 +6,7 @@
 
 /* You can override the default Infima variables here. */
 @font-face {
-  font-family: "Cairo";
+  font-family: "Cairo", Arial, sans-serif;
   src: url('https://mogenius.com/cairo-v10-latin-regular.d3bac703ab71d722cebd.woff2') format('woff');
 }
 
