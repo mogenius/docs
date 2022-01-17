@@ -85,4 +85,4 @@ Read our [quickstart guide](./getting-started/quickstart.md) to deploy your firs
 
 ## How to contribute
 
-The mogenius documentation is open-source and based on Docusaurus. You can edit and create content within the documentation by sending a pull request with your suggested changes to [**Github**](https://github.com/mogenius/documentation).
+The mogenius documentation is open-source and based on Docusaurus. You can edit and create content within the documentation by sending a pull request with your suggested changes to [**Github**](https://github.com/mogenius/docs).
