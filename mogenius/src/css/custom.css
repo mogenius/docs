@@ -6,14 +6,13 @@
 
 /* You can override the default Infima variables here. */
 @font-face {
-  font-family: "Cairo", Arial, sans-serif;
-  src: url('https://mogenius.com/cairo-v10-latin-regular.d3bac703ab71d722cebd.woff2') format('woff');
+  font-family: 'Cairo';
+  src: url('https://mogenius.com/cairo-v10-latin-regular.d3bac703ab71d722cebd.woff2') format(woff);
 }
 
 :root {
---ifm-font-family-monospace: "Cairo";
---ifm-font-family-base: "Cairo";
---ifm-heading-font-family: "Cairo";
+--ifm-font-family-monospace: 'Cairo', Arial, sans-serif;
+--ifm-font-family-base: 'Cairo', Arial, sans-serif;
 --ifm-color-primary: #005f79;
 --ifm-color-primary-dark: #00556d;
 --ifm-color-primary-darker: #005167;
