@@ -7,7 +7,30 @@
 /* You can override the default Infima variables here. */
 @font-face {
   font-family: 'Cairo';
-  src: url('https://mogenius.com/cairo-v10-latin-regular.d3bac703ab71d722cebd.woff2') format(woff);
+  font-weight: 300;
+  font-style: normal;
+  src: url('https://mogenius.com/cairo-v10-latin-regular.d3bac703ab71d722cebd.woff2') format(woff2), url(https://mogenius.com/cairo-v10-latin-300.160fb32b4827184d72d3.woff) format(woff);
+}
+
+@font-face {
+  font-family: 'Cairo';
+  font-weight: 400;
+  font-style: normal;
+  src: url('https://mogenius.com/cairo-v10-latin-regular.d3bac703ab71d722cebd.woff2') format(woff2), url(https://mogenius.com/cairo-v10-latin-regular.bc26e7629ed692ebf52a.woff) format(woff);
+}
+
+@font-face {
+  font-family: 'Cairo';
+  font-weight: 600;
+  font-style: normal;
+  src: url('https://mogenius.com/cairo-v10-latin-600.4fad0b5b4a085838e8a2.woff2') format(woff2), url(https://mogenius.com/cairo-v10-latin-600.60684562c80a33193e7f.woff) format(woff);
+}
+
+@font-face {
+  font-family: 'Cairo';
+  font-weight: 700;
+  font-style: normal;
+  src: url('https://mogenius.com/cairo-v10-latin-700.5b3fcfd17f7a5282c5c6.woff2') format(woff2), url(https://mogenius.com/cairo-v10-latin-700.b963de0a8408fe98ae4a.woff) format(woff);
 }
 
 :root {
