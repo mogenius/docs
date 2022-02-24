@@ -18,7 +18,7 @@ Python is an interpreted high-level general-purpose programming language. Its de
 
 ||CPU (Core)|RAM (MB)  |Temp. Storage (MB)|
 |--|--|--|--|
-| Minimum | 0,2 |64| 100
+| Minimum | 0,2 | 64 | 100 |
 
 [Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 

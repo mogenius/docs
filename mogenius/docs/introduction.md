@@ -56,7 +56,6 @@ Read our [quickstart guide](./getting-started/quickstart.md) to deploy your firs
   - [MySQL](./services/mysql.md)
   - [TiDB](./services/tidb.md)
   - [phpMyAdmin](./services/phpmyadmin.md)
-  - [Mattermost](./services/mattermost.md)
   - [Docusaurus](./services/docusaurus.md)
   - [BitWarden](./services/bitwarden.md)
   - [CouchDB](./services/couchdb.md)
@@ -79,7 +78,6 @@ Read our [quickstart guide](./getting-started/quickstart.md) to deploy your firs
   - [Setting up MongoDB](./tutorials/how-to-set-up-mongodb-in-the-cloud.md)
   - [Running your own password vault with BitWarden](./tutorials/how-to-deploy-bitwarden-in-the-cloud.md)
   - [How to deploy Redis in the cloud](./tutorials/how-to-set-up-redis-in-the-cloud.md)
-  - [Run your own open-source Slack with Mattermost](./tutorials/how-to-launch-mattermost-in-the-cloud.md)
   - [Set up PostgreSQL in the cloud](tutorials/how-to-set-up-postgresql-in-the-cloud.md)
   - [How to deploy Java Spring](tutorials/how-to-deploy-java-spring-to-the-cloud.md)
 

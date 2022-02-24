@@ -19,7 +19,6 @@ Below is an overview of all the services that are currently available through th
 |[MySQL](mysql.md)|Relational database management system.|
 |[TiDB](tidb.md)|A newSQL database.|
 |[phpMyAdmin](phpmyadmin.md)|Database administration.|
-|[Mattermost](mattermost.md)|open-source Slack alternative.|
 |[Docusaurus](docusaurus.md)|static site generator for documentations and more.|
 |[BitWarden](bitwarden.md)|Powerful open-source password manager.|
 |[CouchDB](couchdb.md)|Document-oriented NoSQL database.|

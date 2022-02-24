@@ -57,5 +57,5 @@ Now, simply click "Save". Redis will now be built, the dockerfile added to the s
 
 ![enter image description here](https://api.mogenius.com/file/id/cee4437e-a3cc-41aa-af1d-553a52df5b06)
 
-That’s it! You have created your first Redis  service and it will be available to access by other services in your cloudspace.
+That’s it! You have created your first Redis service and it will be available to access by other services in your cloudspace.
 
