@@ -24,3 +24,4 @@ Below is an overview of all the services that are currently available through th
 |[CouchDB](couchdb.md)|Document-oriented NoSQL database.|
 |[MariaDB](mariadb.md)|Relational database management system.|
 |[Vue.JS](vuejs.md)|The progressive JavaScript framework.|
+|[Java Spring](java-spring.md)|Java framework often used for building web apps.|
