@@ -4,7 +4,7 @@ sidebar_position: 5
 
 # Angular
 
-![angular logo](https://api.dev.mogenius.com/file/id/94a6b5f7-3d7a-44b0-8ebf-2b3243bf0ccc)
+![angular logo](https://api.mogenius.com/file/id/2cfaa078-4fbe-4344-98cc-2d898008ec52)
 
 **Useful links**  
 **[Website](https://angular.io/)**  

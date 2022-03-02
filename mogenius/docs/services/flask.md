@@ -4,7 +4,7 @@ sidebar_position: 22
 
 # Flask
 
-![enter image description here](https://api.dev.mogenius.com/file/id/0ebce799-f6b1-499a-862a-026e0c3a93bd)
+![Flask logo](https://api.mogenius.com/file/id/e9dbe5e3-ee43-4682-8da1-250e17f4f509)
 
 **[Documentation](https://flask.palletsprojects.com/)**  
 

@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Docker
 
-![enter image description here](https://api.dev.mogenius.com/file/id/86c76f4c-cb4d-4a1b-a88b-2258d3fda84e)
+![enter image description here](https://api.mogenius.com/file/id/806b2ee7-da69-493f-9c11-3a10c20b866e)
 
 **Useful links**  
 **[Website](https://www.docker.com/)**  

@@ -4,7 +4,7 @@ sidebar_position: 4
 
 # Python
 
-![python logo](https://api.dev.mogenius.com/file/id/fce6fc6e-a933-4ead-abf4-c835073c66be)
+![python logo](https://api.mogenius.com/file/id/0ae14b59-d7cb-4cc9-961c-19c648852546)
 
 **Useful links**  
 **[Website](https://www.python.org/)**  

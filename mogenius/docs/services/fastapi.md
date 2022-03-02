@@ -4,7 +4,7 @@ sidebar_position: 21
 
 # FastAPI
 
-![enter image description here](https://api.dev.mogenius.com/file/id/643de24a-7993-4b16-847a-f528e59e6e20)
+![FastAPI logo](https://api.mogenius.com/file/id/f7382e8b-be9a-4b6e-be70-cba7c3c664f2)
 
 **[Documentation](https://fastapi.tiangolo.com/)**  
 

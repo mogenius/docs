@@ -4,7 +4,7 @@ sidebar_position: 7
 
 # Next.js
 
-![react logo](https://api.dev.mogenius.com/file/id/9edf4a14-2572-454b-ac29-29a031cb2b23)
+![nextjs logo](https://api.mogenius.com/file/id/78b0239a-5d0e-44a8-bd78-a7d030ea06aa)
 
 **Useful links**  
 **[Website](https://nextjs.org/)**  

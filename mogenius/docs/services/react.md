@@ -4,7 +4,7 @@ sidebar_position: 6
 
 # React
 
-![react logo](https://api.dev.mogenius.com/file/id/def2a455-54ad-45ff-9a21-67bb98498501)
+![react logo](https://api.mogenius.com/file/id/1c23208c-dbc7-47ec-91ca-ccc1b7659e4d)
 
 **Useful links**  
 **[Website](https://reactjs.org/)**  
