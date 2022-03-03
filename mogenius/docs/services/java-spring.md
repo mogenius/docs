@@ -4,7 +4,7 @@ sidebar_position: 20
 
 # Java Spring
 
-![enter image description here](https://api.mogenius.com/file/id/c7dd72b7-77a7-42c7-b320-742c4d04d526)
+![Java Spring logo](https://api.mogenius.com/file/id/bb80c7d4-3830-4d0a-95bb-fc92007b0940)
 
 **[Website](https://spring.io/)**
 [**Documentation**](https://spring.io/guides)

@@ -14,7 +14,7 @@ Below is an overview of all the services that are currently available through th
 |[Angular](angular.md)|Angular web application framework.|
 |[React](react.md)|A JavaScript library for building user interfaces.|
 |[Next.js](nextjs.md)|React framework for static websites and more.|
-|[nginx](nextjs.md)|web server, reverse proxy, load balancer and more.|
+|[nginx](nginx.md)|web server, reverse proxy, load balancer and more.|
 |[MongoDB](mongodb.md)|MongoDB NoSQL Database.|
 |[MySQL](mysql.md)|Relational database management system.|
 |[TiDB](tidb.md)|A newSQL database.|

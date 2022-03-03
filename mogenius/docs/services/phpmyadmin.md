@@ -4,7 +4,7 @@ sidebar_position: 12
 
 # phpMyAdmin
 
-![phpmyadmin logo](https://api.mogenius.com/file/id/f11edbd1-f729-4f8e-840f-5414ebf9e663)
+![phpmyadmin logo](https://api.mogenius.com/file/id/3de89361-500a-43c1-8f92-1d46f09229dc)
 
 **Useful links**  
 **[Website](https://www.phpmyadmin.net/)**  
