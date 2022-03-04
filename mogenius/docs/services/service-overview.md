@@ -20,7 +20,7 @@ Below is an overview of all the services that are currently available through th
 |[TiDB](tidb.md)|A newSQL database.|
 |[phpMyAdmin](phpmyadmin.md)|Database administration.|
 |[Docusaurus](docusaurus.md)|static site generator for documentations and more.|
-|[BitWarden](bitwarden.md)|Powerful open-source password manager.|
+|[Vaultwarden](vaultwarden.md)|Powerful open-source password manager.|
 |[CouchDB](couchdb.md)|Document-oriented NoSQL database.|
 |[MariaDB](mariadb.md)|Relational database management system.|
 |[Vue.JS](vuejs.md)|The progressive JavaScript framework.|
