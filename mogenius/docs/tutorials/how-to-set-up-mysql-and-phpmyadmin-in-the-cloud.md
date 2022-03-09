@@ -8,7 +8,7 @@ title: Set up MySQL & phpMyAdmin
 
 ## In short
 
-For most applications you will need to store data, and one of the most popular services to use for that is MySQL. In this article we'll be looking at how you easily create and set up a database in the cloud (Microsoft Azure) without having to take care of any configurations, security measures and more. Also, we’ll be adding a phpMyAdmin service to access and administrate your newly MySQL database.
+For most applications you will need to store data, and one of the most popular services to use for that is MySQL. In this article we'll be looking at how you easily create and set up a database in the cloud (Microsoft Azure) without having the hassle of lengthy server, network and security setup and managing a Kubernetes cluster. Also, we’ll be adding a phpMyAdmin service to access and administrate your newly MySQL database.
 
 ## Getting started
 
@@ -20,11 +20,11 @@ Sign up for mogenius - it's free and you can get started right away. Once you've
 
 Choose a name for your cloudspace and select the free tier to get cloud resources at no charge, or you can also choose a subscription to upgrade your resources when you create the cloudspace or upgrade at a later stage.
 
-![enter image description here](https://api.mogenius.com/file/id/7ec47c7f-4dc0-4f5b-8a2f-b8345a369ae8)
+![enter image description here](https://api.mogenius.com/file/id/a8c2aaca-fbe7-401a-bf63-0c99024e2c94)
 
 ## Creating a new MYSQL database
 
-Now are ready you to set up a MySQL database! On the next overview page, you will see all your cloudspaces. Click on the name of the cloudspace where you want to set up your MySQL database. On the next page, click "Service Library" in the left menu:
+<![endif]--> Now are ready you to set up a MySQL database! On the next overview page, you will see all your cloudspaces. Click on the name of the cloudspace where you want to set up your MySQL database. On the next page, click "Service Library" in the left menu:
 
 ![enter image description here](https://api.mogenius.com/file/id/a12d10f1-4b9b-4adb-95ec-db193e1db440)
 
@@ -57,7 +57,7 @@ Now, simply click "Save". Your MySQL database will now be built, the dockerfile 
 
 ![enter image description here](https://api.mogenius.com/file/id/5a0e3dfe-11d4-49a9-a5fd-f01f4397fe61)
 
-That’s it! You have created your first MySQL database service and it will be available to access by other services via the URL that has been assigned to your service, in this instance `mysql-prod-cloudspacename-c6ck57.mogenius.io`
+That’s it! You have created your first MySQL database service and it will be available to access by other services via the URL that has been assigned to your service, in this instance https://myfirstmysql-prod-megawebapp-c6ck57.dev.mogenius.io/
 
 ## Adding phpMyadmin for database administration
 
@@ -77,8 +77,8 @@ Now we need to set the environment variables, two of which are mandatory: Root p
 
 Now, simply click "Save". Your phpMyAdmin service will now be built, the dockerfile added to the specified Git repository, and deployed to your cloudspace at the same time so you can start using it almost immediately. Once the setup routines, build and deployment process are complete (usually a few minutes at most), you can start using your phpMyAdmin service at the specified URL. You can find all the details on your service's overview page, where you can also customize the resources and scale by adding additional instances for your service.
 	
-You can how access this service shown at the URL, which will look something like this: `mysql-prod-cloudspacename-c6ck57.mogenius.io`
+You can how access this service shown at the URL, which will look something like this: https://myfirstphpmyadmin-prod-megawebapp-c6ck57.dev.mogenius.io/
 
-Click on the URL to access your phpMyAdmin user interface. You can now copy the password for the root user from your mogenius KeyVault and log in.
+Click on the URL to access your phpMyAdmin user interface. **Please note: The admin user name is "root"**. You can now copy the password for the root user from your mogenius KeyVault and log in.  
 
 ![enter image description here](https://api.mogenius.com/file/id/16b1e40b-daeb-4bc6-bf16-161b6777468a)

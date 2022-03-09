@@ -24,7 +24,7 @@ Choose a name for your cloudspace and select the free tier to get cloud resource
 
 ## Adding pgAdmin to your cloudspace
 
-Now are ready you to set up a MariaDB database! On the next overview page, you will see all your cloudspaces. Click on the name of the cloudspace where you want to set up pgAdmin. On the next page, click "Service Library" in the left menu:
+Now are ready you to set up pgAdmin! On the next overview page, you will see all your cloudspaces. Click on the name of the cloudspace where you want to set up pgAdmin. On the next page, click "Service Library" in the left menu:
 
 ![enter image description here](https://api.mogenius.com/file/id/a12d10f1-4b9b-4adb-95ec-db193e1db440)
 
@@ -45,7 +45,7 @@ Next, you can either use an existing empty repo or create a new one by clicking 
 
 Specify a name for this service, select the branch in your repo and stage in your cloudspace you want to use.
 
-Now we need to set the environment variables: Email and password, which will be your user credentials to log into pgAdmin later on, Select each value either from the secrets dropdown list or create a new one with the "+" button.
+Now we need to set the environment variables: Email and password, which will be your user credentials to log into pgAdmin later on. Select each value either from the secrets dropdown list or create a new one with the "+" button.
 
 ![enter image description here](https://api.mogenius.com/file/id/ef0fa7df-79d0-4585-a3e3-97a9b1e8ac57)
 
@@ -55,6 +55,8 @@ Now, simply click "Save". Your pgAdmin service will now be built, the dockerfile
 
 You can now access this service shown at the URL, which will look something like this: [pgadmin-prod-yourcloudspace-0516lh.mo1.mogenius.io](https://pgadmin-prod-yourcloudspace-0516lh.mo1.mogenius.io/)
 
-Click on the URL to access your pgAdmin user interface. You can now copy the e-mail/user name and password from your mogenius KeyVault, or enter them manually and log in.
+Click on the URL to access your pgAdmin user interface. You can now copy the e-mail/user name and password from your mogenius key vault, or enter them manually and log in.
 
 ![enter image description here](https://api.mogenius.com/file/id/b980ea97-8bb4-4cee-a98c-8b32eb7ef78c)
+
+To connect to a PostgreSQL database select "Add new server". In the section Connection set the host to the internal hostname of your service - you'll find it on the detail page of your service (serviceName-ID). Then copy the username of your database user from the service settings of PostgreSQL. The password for this user is stored in your key vault. You can leave all other fields on default and save to start the connection. You're done and should be able to access your PostgreSQL database through pgAdmin.
