@@ -46,7 +46,7 @@ Specify a name for the database service, select the branch in your repo and stag
 
 Now we need to set the environment variables. Most of them are pre-filled for you, and you can adjust them optionally.
 
-![enter image description here](https://api.mogenius.com/file/id/876a954a-455e-4e47-ad8f-2dc46ab2c34d)
+![enter image description here](https://api.mogenius.com/file/id/b40fbb60-7dd9-4320-a4db-0975920431b0)
 
 There are four mandatory environment variables, two of which you need to fill in: 1) POSTGRES_DB - simply type in a name - and 2) POSTGRES_PASSWORD, with that other services can access PostgreSQL as a service. You can choose your password from your list of secrets, create a new one or simply have one generated for you. If you create a new secret, they will be stored in your mogenius KeyVault for easy access later on. To have a new secret generated automatically, click the wizard-button:
  
@@ -58,7 +58,4 @@ Now, simply click "Save". PostgreSQL will now be built, the dockerfile added to 
 
 ![enter image description here](https://api.mogenius.com/file/id/b8827312-5dcd-4f0b-8cf0-279a53f757f0)
 
-That’s it! You have created your first PostgreSQL service and it will be available to access by other services in your cloudspace.
-
-Next, you can deploy pgAdmin as a tool to access your PostgreSQL database through a web interface (just like phpMyAdmin for MySQL). On the stage where you have deployed PostgreSQL click "Add service", select pgAdmin from the service library and follow the steps of creating a service.
-
+That’s it! You have created your first PostgreSQL service and it will be available to access by other services in your cloudspace. **Please note:** the user name for PostgreSQL is not stored in your key vault, it is stored in the service settings.

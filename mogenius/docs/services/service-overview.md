@@ -34,3 +34,4 @@ Below is an overview of all the services that are currently available through th
 |[Minecraft server](minecraft-server.md)|Launch a Minecraft Multiplayer server.|
 |[Ruby on Rails](ruby-on-rails.md)|Full-stack Ruby framework.|
 |[Gatsby](gatsby.md)|React-based high performance web framework.|
+|[Grafana](grafana.md)|Multi-platform data visualization tool.|

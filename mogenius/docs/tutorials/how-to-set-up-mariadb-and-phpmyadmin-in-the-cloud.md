@@ -8,7 +8,7 @@ title: Set up MariaDB & phpMyAdmin
 
 ## In short
 
-For most applications you will need to store data, and a popular service to use for that is MariaDB. In this article we'll be looking at how you easily create and set up a database in the cloud (Microsoft Azure) without having to take care of any configurations, security measures and more. Also, we’ll be adding a phpMyAdmin service to access and administrate your newly created MariaDB database.
+For most applications you will need to store data, and a popular service to use for that is MariaDB. In this article we'll be looking at how you easily create and set up a database in the cloud (Microsoft Azure) without having the hassle of lengthy server, network and security setup and managing a Kubernetes cluster. Also, we’ll be adding a phpMyAdmin service to access and administrate your newly MariaDB database.
 
 ## Getting started
 
@@ -20,7 +20,7 @@ Sign up for mogenius - it's free and you can get started right away. Once you've
 
 Choose a name for your cloudspace and select the free tier to get cloud resources at no charge, or you can also choose a subscription to upgrade your resources when you create the cloudspace or upgrade at a later stage.
 
-![enter image description here](https://api.mogenius.com/file/id/7ec47c7f-4dc0-4f5b-8a2f-b8345a369ae8)
+![enter image description here](https://api.mogenius.com/file/id/a8c2aaca-fbe7-401a-bf63-0c99024e2c94)
 
 ## Adding MariaDB to your cloudspace
 
@@ -28,7 +28,7 @@ Now are ready you to set up a MariaDB database! On the next overview page, you w
 
 ![enter image description here](https://api.mogenius.com/file/id/a12d10f1-4b9b-4adb-95ec-db193e1db440)
 
-mogenius will automatically create and setup MariaDB for you and add a dockerfile in one of your Git repositories. Click on “Add Service” underneath the MariaDB logo on the next page.
+mogenius will automatically create and setup MaruaDB for you and add a dockerfile in one of your Git repositories. Click on “Add Service” underneath the MariaDB logo on the next page.
 
 ![enter image description here](https://api.mogenius.com/file/id/7ae36d65-1b9f-45c8-bdd4-6f3ab2b7d8f7)
 
@@ -44,11 +44,11 @@ Next, you can either use an existing empty repo or create a new one by clicking 
 
 Specifiy a name for the database service, select the branch in your repo and stage in your cloudspace you want to use.
 
-Now we need to set the environment variables:
+Now we need to set the environment variables. Most of them are pre-filled for you, and you can adjust them optionally.
 
 ![enter image description here](https://api.mogenius.com/file/id/1ce6c94f-b849-44c9-b316-eef6d71f1391)
 
-Three fields are mandatory: MariaDB_User, MariaDB_Password and MariaDB_ROOT_Password, with that other services can access MariaDB  database. You can choose your passwords from your list of secrets, create a new one or simply have one generated for you. If you create a new secret, they will be stored in your mogenius KeyVault for easy access later on. To have a new secret generated automatically, click the wizard-button:
+Three fields are mandatory: MariaDB_User, MariaDB_Password and MariaDB_ROOT_Password, with that other services can access MariaDB  database. You can choose your passwords from your list of secrets, create a new one or simply have one generated for you. If you create a new secrent, they will be stored in your mogenius KeyVault for easy a ccess later on. To have a new secret generated automatically, click the wizard-button:
  
 ![enter image description here](https://api.mogenius.com/file/id/9ce82a26-eb36-4229-a5b7-daba90f6e8cb)
 
@@ -72,7 +72,7 @@ There, select phpMyAdmin from the list of services.
 
 Next, you can either use an existing empty repo or create a new one by clicking the “+” symbol. Select a name for the new repo and create it.
 
-Specify a name for this service, select the branch in your repo and stage in your cloudspace you want to use.
+Specifiy a name for this service, select the branch in your repo and stage in your cloudspace you want to use.
 
 Now we need to set the environment variables, two of which are mandatory: Root password and Hostname, which is the MariaDB service you just set up. Select the right secret for MYSQL_Root_PASSWORD from the dropdown menu (the one you just created named MariaDB_ROOT_Password) and the MariaDB service you just set up from the dropdown menu for host name.
 
@@ -81,8 +81,8 @@ Now we need to set the environment variables, two of which are mandatory: Root p
 Now, simply click "Save". Your phpMyAdmin service will now be built, the dockerfile added to the specified Git repository, and deployed to your cloudspace at the same time so you can start using it almost immediately. Once the setup routines, build and deployment process are complete (usually a few minutes at most), you can start using your phpMyAdmin service at the specified URL. You can find all the details on your service's overview page, where you can also customize the resources and scale by adding additional instances for your service.
 ![enter image description here](https://api.mogenius.com/file/id/0a72be50-84aa-4f6e-ab4c-e205fdd4e2e9)
 
-You can now access this service shown at the URL, which will look something like this: `phpmyadmin-prod-yourcloudspace-qx6r52.mogenius.io`
+You can how access this service shown at the URL, which will look something like this: https://phpmyadmin-service-prod-sundaysbest-qx6r52.dev.mogenius.io/
 
-Click on the URL to access your phpMyAdmin user interface. You can now copy the password for the root user from your mogenius KeyVault and log in.
+Click on the URL to access your phpMyAdmin user interface. **Please note: The admin user name is "root"**. You can now copy the password for the root user from your mogenius KeyVault and log in. You can now copy the password for the root user from your mogenius KeyVault and log in.
 
 ![enter image description here](https://api.mogenius.com/file/id/16b1e40b-daeb-4bc6-bf16-161b6777468a)

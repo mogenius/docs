@@ -8,7 +8,7 @@ title: Setting up CouchDB
 
 ## In short
 
-For most applications you will need to store data, and a popular service to use for that is CouchDB. In this article we'll be looking at how you easily create and set up a database in the cloud (Microsoft Azure) without having to take care of any configurations, security measures and more.
+For most applications you will need to store data, and a popular service to use for that is CouchDB. In this article we'll be looking at how you easily create and set up a database in the cloud (Microsoft Azure) without having the hassle of lengthy server, network and security setup and managing a Kubernetes cluster. 
 
 ## Getting started
 
@@ -20,7 +20,7 @@ Sign up for mogenius - it's free and you can get started right away. Once you've
 
 Choose a name for your cloudspace and select the free tier to get cloud resources at no charge, or you can also choose a subscription to upgrade your resources when you create the cloudspace or upgrade at a later stage.
 
-![enter image description here](https://api.mogenius.com/file/id/7ec47c7f-4dc0-4f5b-8a2f-b8345a369ae8)
+![enter image description here](https://api.mogenius.com/file/id/a8c2aaca-fbe7-401a-bf63-0c99024e2c94)
 
 ## Adding CouchDB to your cloudspace
 
@@ -46,7 +46,8 @@ Specifiy a name for the database service, select the branch in your repo and sta
 
 Now we need to set the environment variables. Most of them are pre-filled for you, and you can adjust them optionally.
 
-![enter image description here](https://api.mogenius.com/file/id/c091dcea-61d4-42ac-a86f-b7d8e7a86a2d)
+![enter image description here](https://api.mogenius.com/file/id/285394b5-bb77-4a39-9c6e-a14636a4f1b3)
+
 Three fields are mandatory: CouchDB_User and CouchDB_Passwor , with that other services can access CouchDB database. You can choose your passwords from your list of secrets, create a new one or simply have one generated for you. If you create a new secrent, they will be stored in your mogenius KeyVault for easy a ccess later on. To have a new secret generated automatically, click the wizard-button:
  
 ![enter image description here](https://api.mogenius.com/file/id/9ce82a26-eb36-4229-a5b7-daba90f6e8cb)
@@ -58,4 +59,5 @@ Now, simply click "Save". Your CouchDB  database will now be built, the dockerfi
 ![enter image description here](https://api.mogenius.com/file/id/53f48633-6f83-489f-9e12-a527ef249204)
 
 That’s it! You have created your first CouchDB database service and it will be available to access by other services in your cloudspace.
+**Please note:** In order to access the admin UI, add "/_utils/" at  the end of the service URL, e.g.  couchdb-dev-sundaysbest-qx6r52.dev.mogenius.io/_utils/.
 
