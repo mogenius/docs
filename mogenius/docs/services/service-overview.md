@@ -35,3 +35,4 @@ Below is an overview of all the services that are currently available through th
 |[Ruby on Rails](ruby-on-rails.md)|Full-stack Ruby framework.|
 |[Gatsby](gatsby.md)|React-based high performance web framework.|
 |[Grafana](grafana.md)|Multi-platform data visualization tool.|
+|[Grafana Loki](grafana-loki.md)|Like Prometheus, but for logs.|
