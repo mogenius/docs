@@ -1,12 +1,19 @@
 ---
 sidebar_position: 1
+slug: /
 ---
 
-# About mogenius
+# Introduction
 
-## All-in-one cloud & service provider
+## Welcome to mogenius docs
 
-Launch and run cloud-native applications in seconds and let our autopilot handle the entire DevOps workflow for you. Easily deploy anything, from simple static sites and cron jobs to databases and dockerized apps. Rely on a fully managed workflow for deploying your code, so you can focus on what you love – building great apps.
+![intro image](https://api.mogenius.com/file/id/7d107d6e-241a-4ef4-a88b-68a7800e409d)
+
+At mogenius, our mission is to make building and running applications in the cloud as easy as possible. Launch and run cloud-native applications in seconds and let our autopilot handle the entire DevOps workflow for you. Easily deploy anything, from simple static sites and cron jobs to databases and dockerized apps. Rely on a fully managed workflow for deploying your code, so you can focus on what you love – **building great apps.**
+
+:::tip
+**Read our [quickstart guide](./getting-started/quickstart.md) to deploy your first service in minutes.**
+:::
 
 ## mogenius offers the entire tool chain to run any application
 
@@ -34,3 +41,6 @@ Pre-configured databases: MySQL, Postgres, Redis, CouchDB and many more.
 We continuously expand our service library with pre-configured backend tools, frameworks and microservices.  
 [About Services](./../mogenius-platform/services.md)
 
+## How to contribute
+
+The mogenius documentation is open-source and based on Docusaurus. You can edit and create content within the documentation by sending a pull request with your suggested changes to [**Github**](https://github.com/mogenius/docs).

@@ -20,29 +20,17 @@ Start your first project on mogenius by creating a cloudspace. Set a name for yo
 
 ### Your hostname
 
-The Hostname is automatically filled in, depending on your cloudspace name. This hostname is the personal domain of your cloudspace and points to the root level within your production stage (don't worry about stages  for now). You get a hostname for each service and stage in your cloudspace, and depending on the design of your application, you can choose which hostname to use with [your own domain](./domains.md).
-
-You can choose from one of seven top-level domains.
-
-mogenius.io (default)  
-mogenius.org  
-mogenius.info  
-mogenius.net  
-mogenius.eu  
-mogenius.de  
-mogenius.app  
+The hostname is automatically filled in, depending on your cloudspace name. This hostname is the personal domain of your cloudspace and points to the root level within your production stage. You get a hostname for each service and stage in your cloudspace, and depending on the design of your application, you can choose which hostname to use with [your own domain](./domains.md).
 
 ### Select a plan
 
-You can always start with a free plan to take first steps and test around as long as you like. We will introduce subscriptions for plans with more resources and capabilities soon.
+You can always start with a free plan to take first steps and test around as long as you like. You can always upgrade to a higher plan with more capabilities later. Click "Create now" and your cloudspace will be created on the free plan.
 
 **🥳 Congrats on creating your first cloudspace on mogenius**
 
 ## 3. Manage and add stages
 
 The first thing you will see in your cloudspace is the dashboard. It contains all the information you need to keep track of your application in the cloud. You will see here that a production stage has been automatically created. You can add more stages, for example, a development stage. For more information about stages, see [here](./../mogenius-platform/stages-and-services.md).
-
-![manage stages](https://api.mogenius.com/file/id/31024a53-d670-43f8-b6fc-221cdf3c4083)
 
 ## 4. Add your first service
 
@@ -69,10 +57,13 @@ That's it!
 
 ### 2. Use Docker to connect your application
 
-**Connect Github**
-To launch an application that you have already developed or that is in progress, you can select Dockerfile from the service library. First, you need to connect Github to your mogenius account. Follow the instructions from Github and authorize mogenius to access your repositories. Once you have granted access, you will see a repository selector.
+To launch an application that you have already developed or that is in progress, you can select Dockerfile from the service library. Now you have two options to connect a repository: via GitHub or through a public repository.
 
-![docker](https://api.mogenius.com/file/id/0cc4af4e-3076-41a3-848f-8af961b15a12)
+**Connect Github**  
+ You need to connect Github to your mogenius account. Follow the instructions from Github and authorize mogenius to access your repositories. Once you have granted access, you will see a repository selector.
+
+**Use a public repository**
+Set the repository toggle to "Public". Now paste the HTTPS url of a public repository into the corresponding field. 
 
 Select your repository from the dropdown menu or search for it in the input field. Note that mogenius will look for a `Dockerfile` inside the given directory so make sure your repository contains one. When you have selected the repository with a Dockerfile inside, specify the branch that you want to use.
 

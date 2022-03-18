@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 ---
 
 # Help & Feedback
@@ -13,7 +13,7 @@ Your feedback is incredibly valuable in helping us deliver a product that best m
 💡 **[Feedback](https://feedback.mogenius.com)**
 
 ## Support
-If you encounter any problems or need quick help, you can always contact us directly. You can find all contact information on our support page.  
+If you encounter any problems or need quick help, you can always contact us directly.  
 ❗️ **[Support](mailto:support@mogenius.com)**
 
 ## FAQ

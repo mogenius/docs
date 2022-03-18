@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# Services & Instances
+# Services and instances
 
 ## Services
 Our design of services is based on the concept of containers. Therefore, a service can serve a specific purpose, such as a microservice or database, or it can consist of a fully functional web application. You will use services to build your application based on a cloudspace. Multiple services within a cloudspace can communicate with each other without ever being exposed to the outside world, which means you can form a set of services to build a secure microservice architecture.

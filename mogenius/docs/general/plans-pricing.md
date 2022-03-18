@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Plans & Pricing
@@ -8,7 +8,7 @@ Our pricing plans are designed to be easy to understand and affordable for every
 
 Find out which plan is best for your project:
 
-![mogenius plans](https://api.mogenius.com/file/id/77aaf3ff-2fec-4158-a2cf-1a85f850c31f)
+![mogenius plans](https://api.mogenius.com/file/id/042ecea5-694c-4cd9-85f1-1eccb8b4306e)
 
 :::tip 
 Each subscription plan includes the core features of mogenius with a fully automated DevOps workflow: cloud hosting on hyper-scaling infrastructure, automated Kubernetes setup, CDN from Cloudflare, and CI/CD pipeline with Github connectivity. The subscription plans are designed for different phases of your project, each plan including different cloud resources and additional features to support you in later stages of development.

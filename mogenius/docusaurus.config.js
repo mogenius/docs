@@ -93,7 +93,7 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Community Portal',
+                label: 'Discord',
                 href: 'https://community.mogenius.com',
               },
               {
