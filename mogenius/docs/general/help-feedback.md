@@ -42,7 +42,7 @@ If you encounter any problems or need quick help, you can always contact us dire
 <details>
     <summary>Is mogenius secure?</summary>
     <div>
-        <div>We rely on best practices for managing cloud-native applications. Under the hood, your cloudspace is a fully isolated namespace on Kubernetes that cannot be accessed from the outside. In addition, every cloudspace and service is delivered through Cloudflare and is protected by Cloudflare Enterprise-level features. Read more about <a href="#">security</a>.</div>
+        <div>We rely on best practices for managing cloud-native applications. Under the hood, your cloudspace is a fully isolated namespace on Kubernetes that cannot be accessed from the outside. In addition, every cloudspace and service is delivered through Cloudflare and is protected by Cloudflare Enterprise-level features.</div>
     </div>
 </details>
 
