@@ -19,5 +19,5 @@ Minecraft is a sandbox video game where players explore wide 3D worlds to craft 
 
 **How to deploy**  
 To set up a Minecraft server, you can add it as a service to your cloudspace. Select Minecraft server from the service library and follow the instructions.  
-There is a detailed tutorial available on [how to launch a Minecraft server with mogenius](./../tutorials/how-to-launch-a-minecraft-server-in-the-cloud%20copy.md).
+There is a detailed tutorial available on [how to launch a Minecraft server with mogenius](./../tutorials/how-to-launch-a-minecraft-server-in-the-cloud.md).
 

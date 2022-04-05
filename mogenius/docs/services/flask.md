@@ -18,5 +18,5 @@ Flask is a lightweight WSGI web application framework. It is designed to make ge
 
 **How to deploy**  
 To initiate a Flask project, you can add it as a service to your cloudspace. Select Flask from the service library and follow the instructions.  
-There is a detailed tutorial available on [how to launch Flask with mogenius](./../tutorials/how-to-deploy-python-fastapi-in-the-cloud.md).
+There is a detailed tutorial available on [how to launch Flask with mogenius](./../tutorials/how-to-deploy-flask-in-the-cloud.md).
 

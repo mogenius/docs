@@ -20,4 +20,3 @@ Eclipse Mosquitto is a leightweight open source message broker that implements t
 **How to deploy**  
 To set up Mosquitto, you can add it as a service to your cloudspace. Select Mosquitto from the service library and follow the instructions.  
 There is a detailed tutorial available on [how to launch Mosquitto with mogenius](./../tutorials/how-to-deploy-mosquitto-in-the-cloud.md).
-
