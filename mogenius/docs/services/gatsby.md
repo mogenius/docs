@@ -1,8 +1,4 @@
-﻿---
-sidebar_position: 28
----
-
-# Gatsby
+﻿# Gatsby
 
 ![Gatsbylogo](https://api.mogenius.com/file/id/e2325d3d-9be6-4e90-8704-834de844baab)
 

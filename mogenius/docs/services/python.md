@@ -1,7 +1,3 @@
----
-sidebar_position: 4
----
-
 # Python
 
 ![python logo](https://api.mogenius.com/file/id/0ae14b59-d7cb-4cc9-961c-19c648852546)

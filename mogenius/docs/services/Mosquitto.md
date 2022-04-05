@@ -1,8 +1,4 @@
-﻿---
-sidebar_position: 25
----
-
-# Mosquitto
+﻿# Mosquitto
 
 ![Mosquitto logo](https://api.mogenius.com/file/id/6f35382b-d700-431e-a2b0-7872c0e31da1)
 

@@ -1,8 +1,4 @@
-﻿---
-sidebar_position: 26
----
-
-# Minecraft server
+﻿# Minecraft server
 
 ![Minecraft logo](https://api.mogenius.com/file/id/4ece1309-352b-4c00-9921-ceeb642e058b)
 

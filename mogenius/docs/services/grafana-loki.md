@@ -1,8 +1,4 @@
-﻿---
-sidebar_position: 32
----
-
-# Grafana Loki
+﻿# Grafana Loki
 
 ![Grafana Loki logo](https://api.mogenius.com/file/id/d4812e06-7e0c-4431-ad25-374294c9730e)
 

@@ -1,7 +1,3 @@
----
-sidebar_position: 10
----
-
 # MySQL
 
 ![mysql logo](https://api.mogenius.com/file/id/fba7f010-3962-4b92-b624-b790402ef31c)

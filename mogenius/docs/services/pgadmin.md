@@ -1,8 +1,4 @@
-﻿---
-sidebar_position: 23
----
-
-# pgAdmin
+﻿# pgAdmin
 
 ![enter image description here](https://api.mogenius.com/file/id/9b0934ab-599b-4ab7-8e65-02895f84a98c)
 

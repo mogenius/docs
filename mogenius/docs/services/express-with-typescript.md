@@ -1,8 +1,4 @@
-﻿---
-sidebar_position: 23
----
-
-# Express with Typescript
+﻿# Express with Typescript
 
 ![enter image description here](https://api.mogenius.com/file/id/2675ee2a-ff3d-4541-a568-33f7cbdf9c7a)
 

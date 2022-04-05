@@ -1,7 +1,3 @@
----
-sidebar_position: 5
----
-
 # Angular
 
 ![angular logo](https://api.mogenius.com/file/id/2cfaa078-4fbe-4344-98cc-2d898008ec52)

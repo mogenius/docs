@@ -1,8 +1,4 @@
-﻿---
-sidebar_position: 16
----
-
-# Vaultwarden
+﻿# Vaultwarden
 
 ![enter image description here](https://api.mogenius.com/file/id/39757c21-beee-4f59-8886-8db5bb27539d)
 

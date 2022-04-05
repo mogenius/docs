@@ -1,7 +1,3 @@
----
-sidebar_position: 9
----
-
 # MongoDB
 
 ![mongoDB logo](https://api.mogenius.com/file/id/1f8982c8-422a-40ff-af4b-17a24df002f6)

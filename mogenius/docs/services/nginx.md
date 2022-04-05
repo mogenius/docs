@@ -1,7 +1,3 @@
----
-sidebar_position: 8
----
-
 # nginx
 
 ![nginx logo](https://api.mogenius.com/file/id/dbf498e1-9c7c-4bb1-9e7b-f092867031ee)

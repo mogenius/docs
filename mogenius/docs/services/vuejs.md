@@ -1,8 +1,4 @@
-﻿---
-sidebar_position: 19
----
-
-# Vue.JS
+﻿# Vue.JS
 
 ![enter image description here](https://api.mogenius.com/file/id/c7dd72b7-77a7-42c7-b320-742c4d04d526)
 

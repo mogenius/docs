@@ -1,7 +1,3 @@
----
-sidebar_position: 2
----
-
 # Docker
 
 ![enter image description here](https://api.mogenius.com/file/id/806b2ee7-da69-493f-9c11-3a10c20b866e)

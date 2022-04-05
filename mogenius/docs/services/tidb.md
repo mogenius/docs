@@ -1,7 +1,3 @@
----
-sidebar_position: 11
----
-
 # TiDB
 
 ![tidb logo](https://api.mogenius.com/file/id/3e070f62-001b-475a-889c-b4c8e56af3b2)

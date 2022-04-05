@@ -1,8 +1,4 @@
-﻿---
-sidebar_position: 21
----
-
-# FastAPI
+﻿# FastAPI
 
 ![FastAPI logo](https://api.mogenius.com/file/id/f7382e8b-be9a-4b6e-be70-cba7c3c664f2)
 

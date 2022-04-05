@@ -1,8 +1,4 @@
-﻿---
-sidebar_position: 30
----
-
-# Redis Commander
+﻿# Redis Commander
 
 ![Redis commander logo](https://api.mogenius.com/file/id/b4b8746b-8ec2-4c64-b80c-00d41a0c985e)
 

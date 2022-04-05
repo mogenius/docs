@@ -1,8 +1,4 @@
-﻿---
-sidebar_position: 27
----
-
-# Ruby on Rails
+﻿# Ruby on Rails
 
 ![Ruby on Rails logo](https://api.mogenius.com/file/id/4b9a3e1b-611c-4592-b629-69c7360373aa)
 

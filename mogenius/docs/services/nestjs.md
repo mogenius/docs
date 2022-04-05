@@ -1,7 +1,3 @@
----
-sidebar_position: 3
----
-
 # NestJS
 
 ![enter image description here](https://api.mogenius.com/file/id/6001fd0a-c626-4e64-9c19-e167b86b3a30)

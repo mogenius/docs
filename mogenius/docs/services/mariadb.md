@@ -1,8 +1,4 @@
-﻿---
-sidebar_position: 18
----
-
-# MariaDB
+﻿# MariaDB
 
 ![Mariadb_logo](https://api.mogenius.com/file/id/73b8a303-30b6-42c8-9797-054eea5a50d7)
 

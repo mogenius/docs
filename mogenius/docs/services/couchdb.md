@@ -1,8 +1,4 @@
-﻿---
-sidebar_position: 17
----
-
-# CouchDB
+﻿# CouchDB
 
 ![CouchDB_Logo](https://api.mogenius.com/file/id/8f674d13-31b2-4839-9db7-27c0ec6b09f3)
 

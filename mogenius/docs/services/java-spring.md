@@ -1,8 +1,4 @@
-﻿---
-sidebar_position: 20
----
-
-# Java Spring
+﻿# Java Spring
 
 ![Java Spring logo](https://api.mogenius.com/file/id/bb80c7d4-3830-4d0a-95bb-fc92007b0940)
 

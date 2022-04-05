@@ -1,8 +1,4 @@
-﻿---
-sidebar_position: 29
----
-
-# Redis
+﻿# Redis
 
 ![Redis logo](https://api.mogenius.com/file/id/c82c6465-1a83-4c7c-a874-ab84daa9aaa7)
 

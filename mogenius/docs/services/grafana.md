@@ -1,8 +1,4 @@
-﻿---
-sidebar_position: 31
----
-
-# Grafana
+﻿# Grafana
 
 ![Grafana logo](https://api.mogenius.com/file/id/6e65ab41-714f-4382-a843-eab853b99278)
 

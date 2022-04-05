@@ -1,7 +1,3 @@
----
-sidebar_position: 12
----
-
 # phpMyAdmin
 
 ![phpmyadmin logo](https://api.mogenius.com/file/id/3de89361-500a-43c1-8f92-1d46f09229dc)

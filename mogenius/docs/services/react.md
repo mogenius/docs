@@ -1,7 +1,3 @@
----
-sidebar_position: 6
----
-
 # React
 
 ![react logo](https://api.mogenius.com/file/id/1c23208c-dbc7-47ec-91ca-ccc1b7659e4d)

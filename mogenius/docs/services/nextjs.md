@@ -1,7 +1,3 @@
----
-sidebar_position: 7
----
-
 # Next.js
 
 ![nextjs logo](https://api.mogenius.com/file/id/78b0239a-5d0e-44a8-bd78-a7d030ea06aa)

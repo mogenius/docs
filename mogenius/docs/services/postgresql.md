@@ -1,8 +1,4 @@
-﻿---
-sidebar_position: 24
----
-
-# PostgreSQL
+﻿# PostgreSQL
 
 ![PostgreSQL logo](https://api.mogenius.com/file/id/75dcca16-d36a-434b-a3ad-15dc08b0267d)
 

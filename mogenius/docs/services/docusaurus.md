@@ -1,7 +1,3 @@
----
-sidebar_position: 14
----
-
 # Docusaurus
 
 ![docusaurus logo](https://api.mogenius.com/file/id/61804b94-bb6d-4183-80e5-672d33783ecb)
