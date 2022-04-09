@@ -18,6 +18,6 @@ React makes it painless to create interactive UIs. Design simple views for each 
 
 [Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 
-**How to deploy React**
+**How to deploy React**  
 To install this service, go to the [service library](./../mogenius-platform/service-library.md). Select the React service and click "Add service". Follow the on-screen instructions and finalize the create process by clicking "Save".  
 THere is a detailed tutorial available on [how to launch React with mogenius](./../tutorials/how-to-launch-a-react-framework-in-the-cloud.md).

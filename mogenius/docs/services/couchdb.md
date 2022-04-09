@@ -20,7 +20,7 @@ CouchDB comes with a suite of features, such as on-the-fly document transformati
 
 [Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 
-**How to deploy**
+**How to deploy**  
 To initiate a CouchDB project, you can add it as a service to your cloudspace. Select CouchDB from the service library and follow the instructions.  
 There is a detailed tutorial available on [how to launch CouchDB with mogenius](./../tutorials/how-to-deploy-couchdb-in-the-cloud.md).
 

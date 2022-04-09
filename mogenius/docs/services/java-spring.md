@@ -17,7 +17,7 @@ Spring is a popular Java Framework. With principles like dependancy injection an
 
 [Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 
-**How to deploy**
+**How to deploy**  
 To initiate a Spring project, you can add it as a service to your cloudspace. Select Java Spring from the service library and follow the instructions.  
 There is a detailed tutorial available on [how to launch Java Spring with mogenius](./../tutorials/how-to-deploy-java-spring-to-the-cloud.md).
 
