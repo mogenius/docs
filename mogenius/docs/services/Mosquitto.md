@@ -18,5 +18,9 @@ Eclipse Mosquitto is a leightweight open source message broker that implements t
 [Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
 
 **How to deploy**  
-To set up Mosquitto, you can add it as a service to your cloudspace. Select Mosquitto from the service library and follow the instructions.  
-There is a detailed tutorial available on [how to launch Mosquitto with mogenius](./../tutorials/how-to-deploy-mosquitto-in-the-cloud.md).
+To set up Mosquitto, you can add it as a service to your cloudspace. Select Mosquitto from the service library and follow the instructions. You will be asked to create a repository for this service. This will contain a Dockerfile that holds major configuration details. Therefore you should set the repository visibility to "private".  
+
+To connect to your Mosquitto service use the external hostname. Per default the authentication is set to username 'mogenius' and password 'mogenius'. You should change this immediately in the Dockerfile.
+
+There is also a detailed tutorial available on [how to launch Mosquitto with mogenius](./../tutorials/how-to-deploy-mosquitto-in-the-cloud.md).
+
