@@ -1,4 +1,4 @@
-﻿# InfluxBD
+﻿# InfluxDB
 
 ![InfluxDB logo](https://api.mogenius.com/file/id/59c11ad7-e40b-4608-a1b9-1d3b7e8e7759)
 
