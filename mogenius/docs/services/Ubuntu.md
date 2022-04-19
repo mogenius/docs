@@ -25,7 +25,7 @@ We are working on an update to fix this.
 To set up Ubuntu, you can add it as a service to your cloudspace. Select Ubuntu from the service library and follow the instructions. You will be asked to create a repository for this service. This will contain a Dockerfile that holds major configuration details. Therefore you should set the repository visibility to "private".  
 
 Once the service is running, using your external hostname and port, you can connect to the server:  
-`ssh root@tcp-mo2.mogenius.io -p 53144`  
+`ssh root@tcp-mo2.mogenius.io -p [your port]`  
 
 
-The default password is `test1234`, please change it immediately through the Dockerfile.
+The default password is `mogenius`, please change it immediately through the Dockerfile.
