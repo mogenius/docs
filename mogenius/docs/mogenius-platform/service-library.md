@@ -1,8 +1,4 @@
-﻿---
-sidebar_position: 5
----
-
-# Service library
+﻿# Service library
 
 **The service library is our overview of all available services.**
 

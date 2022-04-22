@@ -1,8 +1,4 @@
-﻿---
-sidebar_position: 9
----
-
-# Settings
+﻿# Settings
 
 ## General cloudspace settings
 

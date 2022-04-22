@@ -1,8 +1,4 @@
-﻿---
-sidebar_position: 3
----
-
-# Stages & Services
+﻿# Stages & Services
 
 Here you will find an overview of the stages and installed services. 
 

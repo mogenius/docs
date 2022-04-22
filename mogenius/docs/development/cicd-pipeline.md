@@ -1,7 +1,3 @@
----
-sidebar_position: 1
----
-
 # CI/CD pipeline
 
 mogenius comes with a built in CI/CD pipeline, so that you can start working on your application and deploy any changes to the cloud immediately.
@@ -19,5 +15,5 @@ If you want to avoid an automated build, you can use `[skip ci]`. mogenius will 
 On the page [CI/CD monitor](#) you have a complete history of builds and can access detailed information about each build in progress.
 
 :::info
-CI/CD does not work with services that you have created from a public repository. To keep your services up to date as your code evolves, you must select "Rebuild service" on your service's detail page to deploy the latest state of your repository.
+CI/CD does not work with services that you have created from a public repository. To keep those services up to date as your code evolves, you must select "Rebuild service" on your service's detail page to deploy the latest state of your repository.
 :::

@@ -1,8 +1,4 @@
-﻿---
-sidebar_position: 2
----
-
-# Dashboard
+﻿# Dashboard
 
 **Description**
 The Dashboard is your control center, where you can find all relevant information about your cloudspace at a glance.

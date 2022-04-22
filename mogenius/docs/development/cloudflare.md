@@ -1,7 +1,3 @@
----
-sidebar_position: 3
----
-
 # Cloudflare
 
 Every cloudspace on mogenius is automatically secured by Cloudflare. This means that your services benefit from these enterprise-level features.
