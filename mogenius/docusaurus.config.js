@@ -77,6 +77,10 @@ const config = {
                 href: 'https://studio.mogenius.com',
               },
               {
+                label: 'API reference',
+                href: 'https://api-docs.mogenius.com',
+              },
+              {
                 label: 'Website',
                 href: 'https://mogenius.com',
               },
