@@ -12,7 +12,7 @@ slug: /
 At mogenius, our mission is to make building and running applications in the cloud as easy as possible. Launch and run cloud-native applications in seconds and let our autopilot handle the entire DevOps workflow for you. Easily deploy anything, from simple static sites and cron jobs to databases and dockerized apps. Rely on a fully managed workflow for deploying your code, so you can focus on what you love – **building great apps.**
 
 :::tip
-**Read our [quickstart guide](./getting-started/quickstart.md) to deploy your first service in minutes.**
+**Read our [quickstart guide](./../getting-started/quickstart.md) to deploy your first service in minutes.**
 :::
 
 ## mogenius offers the entire tool chain to run any application
@@ -39,7 +39,7 @@ Pre-configured databases: MySQL, Postgres, Redis, CouchDB and many more.
 
 **Pre-configured services**  
 We continuously expand our service library with pre-configured backend tools, frameworks and microservices.  
-[About Services](./../mogenius-platform/services.md)
+[About Services](./../mogenius-platform/stages-and-services.md)
 
 ## How to contribute
 
