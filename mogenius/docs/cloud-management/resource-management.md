@@ -8,7 +8,7 @@ With mogenius you always have full control and transparency of the usage of your
 
 ## Available resources in your plan
 
-First, it is important to understand how the resources in your cloudspace will be distributed. The plan you choose when creating a cloudspace determines your total available resources ([Check out the available plans](#)). You can then allocate resources to your services, with limits on maximum resource consumption for each service. A service does not necessarily consume the entire amount of the allocated resources. You can see the summary of resource consumption for each stage and service on your cloudspace dashboard.
+First, it is important to understand how the resources in your cloudspace will be distributed. The plan you choose when creating a cloudspace determines your total available resources ([Check out the available plans](./../general/plans-pricing.md). You can then allocate resources to your services, with limits on maximum resource consumption for each service. A service does not necessarily consume the entire amount of the allocated resources. You can see the summary of resource consumption for each stage and service on your cloudspace dashboard.
 
 ![mogenius dashboard](https://api.mogenius.com/file/id/61e9457a-abde-4cac-95f8-1bf5d5d4c934)
 
@@ -20,11 +20,11 @@ In mogenius studio you get an overview of the resource consumption on a detailed
 ## Allocating resources when you create a service
 
 When you create a service, you can set resource limits to control the maximum amount of resources your service can consume. If you use a preconfigured service template, recommendations for minimum resource requirements are set as default settings. You can edit the default settings when you create the service or later in your settings. 
-If you are using a container file (such as a Docker file), you must set your own resource limits based on the specific application you are launching. You can use this [overview of service templates](#) as a reference but please keep in mind that your individual application might be more advanced than a boilerplate template.
+If you are using a container file (such as a Docker file), you must set your own resource limits based on the specific application you are launching. You can use our [service templates](./../services/index.md) as a reference but please keep in mind that your individual application might be more advanced than a boilerplate template.
 
 ![mogenius resource allocation](https://api.mogenius.com/file/id/679ed62d-c653-4b64-b469-f7b78c1d334f)
 
-The available resources depend on your plan and on the services you have already deployed. If the available resources are not enough to launch the service, you need to delete or scale down other services, or [upgrade your plan](#).
+The available resources depend on your plan and on the services you have already deployed. If the available resources are not enough to launch the service, you need to delete or scale down other services, or upgrade your plan.
 
 ## Scaling a service
 
