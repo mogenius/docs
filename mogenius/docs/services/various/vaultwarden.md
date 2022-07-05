@@ -13,9 +13,9 @@ Vaultwarden is an unofficial Bitwarden compatible server written in Rust. It is 
 |--|--|--|--|
 | Minimum | 0,2 |128| 200 |
 
-[Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../cloud-management/resource-management.md)
 
 **How to deploy**  
 To initiate a Vaultwarden instance, you can add it as a service to your cloudspace. Select Vaultwarden from the service library and follow the instructions.  
-There is a detailed tutorial available on [how to launch Vaultwarden with mogenius](../tutorials/how-to-deploy-vaultwarden-in-the-cloud.md).
+There is a detailed tutorial available on [how to launch Vaultwarden with mogenius](./../../tutorials/how-to-deploy-vaultwarden-in-the-cloud.md).
 

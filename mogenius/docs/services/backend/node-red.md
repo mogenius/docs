@@ -16,7 +16,7 @@ It provides a browser-based editor that makes it easy to wire together flows usi
 |--|--|--|--|
 | Minimum | 0,4 | 128 | 100 |
 
-[Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../cloud-management/resource-management.md)
 
 **How to deploy**  
 To set up Node-RED, you can add it as a service to your cloudspace. Select Node-RED from the service library and follow the instructions. 

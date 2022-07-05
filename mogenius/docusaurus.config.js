@@ -66,6 +66,26 @@ const config = {
             }
         ],
       },
+      algolia: {
+        // The application ID provided by Algolia
+        appId: 'VV92UBZKRV',
+
+        // Public API key: it is safe to commit it
+        apiKey: 'ad3eaf5f78bccb6b6d24365364cc48cc',
+
+        indexName: 'docs-dev',
+
+        // Optional: see doc section below
+        contextualSearch: true,
+        
+        // Optional: Algolia search parameters
+        searchParameters: {},
+
+        // Optional: path for search page that enabled by default (`false` to disable it)
+        searchPagePath: 'search',
+
+        //... other Algolia params
+      },
       footer: {
         style: 'dark',
         links: [

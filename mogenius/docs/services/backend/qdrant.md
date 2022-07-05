@@ -15,7 +15,7 @@ Qdrant is an open source neural search engine. It deploys as an API service with
 |--|--|--|--|
 | Minimum | 0,2 | 128 | 128 |
 
-[Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../cloud-management/resource-management.md)
 
 **How to deploy**  
 To set up Qdrant, you can add it as a service to your cloudspace. Select Qdrant from the service library and follow the instructions. The service mounts to the cloudspace's storage volume automatically so that all created data is persisted.
