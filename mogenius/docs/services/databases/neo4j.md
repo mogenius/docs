@@ -18,7 +18,7 @@ A graph database stores nodes and relationships instead of tables, or documents.
 |--|--|--|--|
 | Minimum | 0,1 |768| 300
 
-[Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../cloud-management/resource-management.md)
 
 **How to deploy Neo4j**  
 To initiate a Neo4j project, you can add it as a service to your cloudspace. Select Neo4j from the service library and follow the instructions.  

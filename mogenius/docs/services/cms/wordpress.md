@@ -15,7 +15,7 @@ Wordpress is one of the most used content management systems. mogenius supports 
 |--|--|--|--|
 | Minimum | 0,7 | 256 | 300 |
 
-[Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../cloud-management/resource-management.md)
 
 **How to deploy**  
 To set up Wordpress, you can add it as a service to your cloudspace. Select Wordpress from the service library and follow the instructions. Wordpress requires a database and we recommend you to launch [MySQL](mysql.md) as a service before setting up Wordpress. This way, you can connect to the database directly at creation of the Wordpress service.

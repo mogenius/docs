@@ -19,7 +19,7 @@ We are working on an update to fix this.
 |--|--|--|--|
 | Minimum | 0,1 | 16 | 10 |
 
-[Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../cloud-management/resource-management.md)
 
 **How to deploy**  
 To set up Alpine, you can add it as a service to your cloudspace. Select Alpine from the service library and follow the instructions. You will be asked to create a repository for this service. This will contain a Dockerfile that holds major configuration details. Therefore you should set the repository visibility to "private".  

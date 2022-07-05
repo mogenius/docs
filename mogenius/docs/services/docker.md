@@ -28,4 +28,4 @@ The minimum and optimum resource requirements depend on your specific applicatio
 **How to deploy your application with Docker**  
 To launch your application with a Dockerfile select it from the service library. Connect a repository from your Github account that contains a Dockerfile. After creating your service the application will be built as configered in your Dockerfile. Note that `docker.compose` is not yet supported but will be covered soon. To connect multiple services in your cloudspace with Docker, you need to configure the Dockerfile for each service individually.  
 
-[Read a detailed tutorial on how to create a service with Docker.](./../tutorials/how-to-deploy-docker-in-the-cloud.md)
+[Read a detailed tutorial on how to create a service with Docker](./../tutorials/how-to-deploy-docker-in-the-cloud.md).

@@ -15,8 +15,8 @@ Redis is an open source (BSD licensed), in-memory data structure store, used as 
 |--|--|--|--|
 | Minimum | 0,2 | 32 | 100 |
 
-[Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../cloud-management/resource-management.md)
 
 **How to deploy**  
 To set up Redis, you can add it as a service to your cloudspace. Select Redis from the service library and follow the instructions.  
-There is a detailed tutorial available on [how to launch Redis with mogenius](./../tutorials/how-to-set-up-redis-in-the-cloud.md).
+There is a detailed tutorial available on [how to launch Redis with mogenius](./../../tutorials/how-to-set-up-redis-in-the-cloud.md).
