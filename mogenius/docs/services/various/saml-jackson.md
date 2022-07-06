@@ -20,7 +20,11 @@ SAML Jackson is an open-source service provided by [BoxyHQ](https://boxyhq.com/)
 **Database**  
 SAML Jackson requires a database to start, so make sure you have a running database before starting SAML Jackson. In our service template we rely on [Postgres](../databases/postgresql.md), which you can also easily deploy from the mogenius service library. Once you have a database, select SAML Jackson from the service library and follow the instructions.
 
+<<<<<<< HEAD
 :::info
+=======
+:::info:::
+>>>>>>> caf448eb79541e8c3bbf2a8ad8859b6294240922
 Make sure to fill the placeholders in the environment variable `DB_URL` with your Postgres data.
 :::
 

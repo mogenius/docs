@@ -15,7 +15,7 @@ Svelte is a framework for building web applications with an approach different f
 |--|--|--|--|
 | Minimum | 0,3 | 64 | 100 |
 
-[Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../cloud-management/resource-management.md)
 
 **How to deploy**  
 To start a Svelte project, you can deploy it as a service to your cloudspace. Select Svelte from the service library and follow the instructions.  

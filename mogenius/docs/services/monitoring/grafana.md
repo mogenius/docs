@@ -15,8 +15,8 @@ Grafana is a multi-platform open source analytics and interactive visualization 
 |--|--|--|--|
 | Minimum | 0,4 | 128 | 200 |
 
-[Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../cloud-management/resource-management.md)
 
 **How to deploy**  
 To set up Grafana, you can add it as a service to your cloudspace. Select Grafana from the service library and follow the instructions.  
-There is a detailed tutorial available on [how to launch Grafana with mogenius](./../tutorials/how-to-deploy-grafana-in-the-cloud.md).
+There is a detailed tutorial available on [how to launch Grafana with mogenius](./../../tutorials/how-to-deploy-grafana-in-the-cloud.md).

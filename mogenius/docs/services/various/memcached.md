@@ -20,7 +20,7 @@ Memcached is an in-memory key-value store for small chunks of arbitrary data (st
 |--|--|--|--|
 | Minimum | 0,1 |64| 100
 
-[Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../cloud-management/resource-management.md)
 
 **How to deploy Memcached**  
 To initiate a Memcached project, you can add it as a service to your cloudspace. Select Memcached from the service library and follow the instructions.  
