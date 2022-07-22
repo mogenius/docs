@@ -39,9 +39,14 @@ When using a domain with mogenius for the first time, you need to verify it. Aft
 
 Here's an example for `dev.mogeniustest.com` which we entered as a custom domain to our service.  
 
-After saving, the setting prompt two sets of information for the expected TXT records:
-1. The first TXT record should contain the content under `mogeniustest.com`.
-2. The second TXT record should hold the content under the subdomain `cf_hostname.mogeniustest.com`.  
+After saving, the settings prompt two sets of information for the expected TXT records:
+1. The first TXT record should hold the content under the subdomain `_cf-custom-hostname.mogeniustest.com`.  
+   
+   ![hostname validation](https://api.mogenius.com/file/id/d1df894d-a0ed-4fb5-ba5a-b55dbad91c50)
+2. The second TXT record should contain the content under `mogeniustest.com`.
+   
+   ![certificate validation](https://api.mogenius.com/file/id/b98bcec9-4831-42df-94b3-be3f01c09bbe)
+
 
 Once the TXT records are active in your DNS settings, refresh the service page and both certificate validation and hostname validation should be in an active state. Depending on your DNS provider this can take a few minutes.  
 
