@@ -15,11 +15,11 @@ mogenius offers you a large number of pre-configured services. We offer services
  - Web applications, e.g. static site generators
  - Databases
 
-For a detailed list of all services [visit our service overview](./../services/service-overview.md)
+For a detailed list of all services [visit our service overview](./../services/index.md)
 
 With our pre-configured services, you can start from scratch with a default template that we create in an empty repository of your choice. With container files, you can connect any existing application to launch it in your cloudspace.
 
-[How to setup a service](./../mogenius-platform/services.md)
+[How to setup a service](./../development/deploying-services.md)
 
 ## Instances
 *Instances*, also known as *Pods*, are the smallest deployable compute units you can create and manage in Kubernetes.  
