@@ -32,3 +32,22 @@ To use a custom domain, you must change your domain's DNS records and set up a C
 2. Add a record to your DNS settings with the type CNAME.
 3. Fill in the entry according to the documentation of your domain host so that the CNAME destination is set to your mogenius hostname (e.g. `mysql-prod-mycloudspace-a1b2c3.mo1.mogenius.io`)
 4. Save your entry. Note that it may take up to 72 hours for the changes to take effect.
+
+## Verify your domain with TXT records
+
+When using a domain with mogenius for the first time, you need to verify it. After entering your custom domain in the service settings, you'll be asked to set two TXT records in your DNS settings (just like you do it with the CNAME record).  
+
+Here's an example for `dev.mogeniustest.com` which we entered as a custom domain to our service.  
+
+After saving, the settings prompt two sets of information for the expected TXT records:
+1. The first TXT record should hold the content under the subdomain `_cf-custom-hostname.mogeniustest.com`.  
+   
+   ![hostname validation](https://api.mogenius.com/file/id/d1df894d-a0ed-4fb5-ba5a-b55dbad91c50)
+2. The second TXT record should contain the content under `mogeniustest.com`.
+   
+   ![certificate validation](https://api.mogenius.com/file/id/b98bcec9-4831-42df-94b3-be3f01c09bbe)
+
+
+Once the TXT records are active in your DNS settings, refresh the service page and both certificate validation and hostname validation should be in an active state. Depending on your DNS provider this can take a few minutes.  
+
+The TXT validation has wildcard capability for one level of subdomains, meaning you can use several custom domains across multiple mogenius cloudspaces under the same domain, without validating the domain each time.
