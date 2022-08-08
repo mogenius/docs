@@ -77,16 +77,16 @@ You can use existing container images to deploy a service on mogenius. This way,
 **How to deploy**  
 When adding a service, select "Container image".  
 On the following page set the container image you want to deploy. Here's how the form field works:
-- Per default, we use the Docker registry. Just enter the image name and the desired tag, e.g. nginx:latest.
+- By default, we use the Docker registry. Just enter the image name and the tag you want to use, e.g. nginx:latest.
 - To use a different registry, specify the full path to the image (e.g. ghcr.io/nginx:latest).
-- In the dropdown menu you can select container images in mogenius, based on previous builds. Whenever a build is finished in the CI/CD pipeline of a cloudspace that you have access to, this container image can be selected in the dropdown. This is useful, if you work with the same service across multiple cloudspaces, to deploy much faster and more efficiently.
+- In the drop-down menu, you can select container images in mogenius that are based on previous builds. Whenever a build is completed in the CI/CD pipeline of any cloudspace you have access to, that container image can be selected from the dropdown menu. This is useful when working with the same service across multiple cloudspaces for faster and more efficient deployment.
 
-After defining the container image, there are several optional settings.
-- Enter a container **image command** that will be executed at deployment.
-- Create a **repository secret**, if the targeted container registry requires a secret.
-- Define **command arguments** that will be executed in your container.
+After you define the container image, there are several optional settings.
+- Enter a container **image command** that will be executed during deployment.
+- Create a **repository secret** if the targeted container registry requires a secret.
+- Define **command arguments** to be executed in your container.
 
 Next, it is necessary to define the [resource limits](../cloud-management/resource-management.md#allocating-resources-when-you-create-a-service) of your service as well as the port. Optionally, you can add [environment variables](environment-variables-and-secrets.md) to your service.  
 
-Once you entered the settings, hit "Create service" and your service will be deployed from the container image.
+Once you have made the settings, click "Create service" and your service will be deployed from the container image.
 
