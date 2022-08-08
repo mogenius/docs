@@ -33,9 +33,9 @@ Now, simply click "Create Service". Your service template will be built, added t
 
 That’s it! You have created your first service and it will be available to access by other services via the hostname that has been assigned to your service. Note that mogenius comes with a [built in CI/CD pipeline](#) so you can start working with the repository right away.
 
-### Deploy your own code using Docker
+### Deploy from an existing repository
 
-Using the service "Docker" from the service library allows you to deploy any existing repository that contains a Dockerfile.
+Using the service type "Bring your own code" allows you to deploy any existing repository that contains a Dockerfile.
 
 ![docker](https://api.mogenius.com/file/id/0cc4af4e-3076-41a3-848f-8af961b15a12)
 
@@ -69,3 +69,24 @@ Every service is available through a mogenius.io domain automatically. You can u
 Now just click "Create Service" and your repository will be deployed as service to your cloudspace. Once the setup routines, build and deployment processes are complete (usually a few minutes at most), you can start using your service.
 
 That’s it! You have created your own service and it will be available to access by other services via the hostname that has been assigned to your service. The built in CI/CD pipeline of mogenius will now listen to any changes of the connected repository and deploy them directly in your cloudspace. Read more about this [here](./../development/cicd-pipeline.md). 
+
+### Deploy a container image
+
+You can use existing container images to deploy a service on mogenius. This way, the service is deployed directly from a container registry, instead of the mogenius CI/CD pipeline.
+
+**How to deploy**  
+When adding a service, select "Container image".  
+On the following page set the container image you want to deploy. Here's how the form field works:
+- Per default, we use the Docker registry. Just enter the image name and the desired tag, e.g. nginx:latest.
+- To use a different registry, specify the full path to the image (e.g. ghcr.io/nginx:latest).
+- In the dropdown menu you can select container images in mogenius, based on previous builds. Whenever a build is finished in the CI/CD pipeline of a cloudspace that you have access to, this container image can be selected in the dropdown. This is useful, if you work with the same service across multiple cloudspaces, to deploy much faster and more efficiently.
+
+After defining the container image, there are several optional settings.
+- Enter a container **image command** that will be executed at deployment.
+- Create a **repository secret**, if the targeted container registry requires a secret.
+- Define **command arguments** that will be executed in your container.
+
+Next, it is necessary to define the [resource limits](../cloud-management/resource-management.md#allocating-resources-when-you-create-a-service) of your service as well as the port. Optionally, you can add [environment variables](environment-variables-and-secrets.md) to your service.  
+
+Once you entered the settings, hit "Create service" and your service will be deployed from the container image.
+
