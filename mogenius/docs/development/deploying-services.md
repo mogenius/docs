@@ -90,3 +90,28 @@ Next, it is necessary to define the [resource limits](../cloud-management/resour
 
 Once you have made the settings, click "Create service" and your service will be deployed from the container image.
 
+**Deploying a private container image**
+
+If your container image requires authorization you can pass the connection details with a repository secret, so that mogenius can access the private repository and deploy the image.
+
+When creating a container image, click "Create new secret". This will create a new secret in your [key vault](../mogenius-platform/key-vault.md). Enter a name for your secret and pass the following string as value:
+
+```
+{"auths":{"your.private.registry.example.com":{"username":"janedoe","password":"xxxxxxxxxxx","email":"jdoe@example.com","auth":"c3R...zE2"}}}
+```
+
+The placeholders must be replaced by the access credentials of your private image repository. You can retrieve your auth key with two steps:
+- In a terminal perform a `docker login` on your repository
+- Execute `cat ~/.docker/config.json`
+
+You will get a result similar to this.
+```jsx title="cat ~/.docker/config.json"
+{
+    "auths": {
+        "https://index.docker.io/v1/": {
+            "auth": "c3R...zE2"
+        }
+    }
+```
+
+Now you can fill in the authorization key in the connection string and create the secret. After you fill in the remaining service settings, click "Create service" and mogenius will build the private container image.
