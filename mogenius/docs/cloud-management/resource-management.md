@@ -51,5 +51,3 @@ Adding an instance can also be done through the settings of your service. Click 
 Above the resource limits, you will see "Instances" and a plus icon to add another instance. The total available resources and the total resource allocation are adjusted according to your settings.
 
 Once you save your changes, the new settings will take effect immediately and another instance of your service will be deployed.
-
-## Handling limit exhaustion
