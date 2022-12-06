@@ -31,7 +31,7 @@ Now, simply click "Create Service". Your service template will be built, added t
 
 ![enter image description here](https://api.mogenius.com/file/id/3a8c6249-53d0-468e-a089-987cd7861547)
 
-That’s it! You have created your first service and it will be available to access by other services via the hostname that has been assigned to your service. Note that mogenius comes with a [built in CI/CD pipeline](#) so you can start working with the repository right away.
+That’s it! You have created your first service and it will be available to access by other services via the hostname that has been assigned to your service. Note that mogenius comes with a [built in CI/CD pipeline](./cicd-pipeline.md) so you can start working with the repository right away.
 
 ### Deploy from an existing repository
 
@@ -94,7 +94,7 @@ Once you have made the settings, click "Create service" and your service will be
 
 If your container image requires authorization you can pass the connection details with a repository secret, so that mogenius can access the private repository and deploy the image.
 
-When creating a container image, click "Create new secret". This will create a new secret in your [key vault](../mogenius-platform/key-vault.md). Enter a name for your secret and pass the following string as value:
+When creating a container image, click "Create new secret". This will create a new secret in your key vault. Enter a name for your secret and pass the following string as value:
 
 ```
 {"auths":{"your.private.registry.example.com":{"username":"janedoe","password":"xxxxxxxxxxx","email":"jdoe@example.com","auth":"c3R...zE2"}}}

@@ -12,7 +12,7 @@ If you want to avoid an automated build, you can use `[skip ci]`. mogenius will 
 
 **Example:** `git commit -m '[skip ci] fix 4711'`
 
-On the page [CI/CD monitor](./../mogenius-platform/ci-cd-monitor.md) you have a complete history of builds and can access detailed information about each build in progress.
+On the CI/CD monitor in your main navigation you have a complete history of builds and can access detailed information about each build in progress.
 
 :::info
 CI/CD does not work with services that you have created from a public repository. To keep those services up to date as your code evolves, you must select "Rebuild service" on your service's detail page to deploy the latest state of your repository.

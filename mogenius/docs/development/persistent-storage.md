@@ -10,4 +10,4 @@ Create the volume mount as an environment variable and define the path where you
 Additionally, you always need to change the owner to a non-root user by defining an `CHANGE_OWNER` environment variable. For security reasons it is not possible to access storage of a service as the root user (See also the [instructions at creating a service](./deploying-services.md#deploy-your-own-code-using-docker)). The `CHANGE_OWNER`variable should look something like this.
 ![change owner](https://api.mogenius.com/file/id/a3024485-38e4-4d47-9a8e-0485aab46260)
 
-You can also manage paths and files inside your storage with your [File Browser](./../mogenius-platform/file-browser.md).
+You can also manage paths and files inside your storage with your file browser.
