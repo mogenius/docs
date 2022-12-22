@@ -4,9 +4,7 @@ sidebar_position: 2
 
 # Community plan
 
-Running and scaling applications in the cloud should be simple and efficient. With mogenius this is possible for teams and organizations of any size with our Virtual DevOps platform. But we think that this power should be available to everyone who wants to build great things or just play around a little.
-
-That is why we offer the Community plan as a free service on the mogenius platform with some core features and a few cloud resources. It should be just enough for any hobby project or testing activities.
+We offer the Community plan as a free service on the mogenius platform with some core features and a few cloud resources. It should be just enough for any hobby project or testing activities.
 
 ## What’s included in the Community plan?
 
