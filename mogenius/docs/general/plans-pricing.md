@@ -7,7 +7,9 @@ sidebar_position: 4
 You can get started with the Community Plan, which is free of charge, to begin deploying your application right away.. - [**Sign up here**](https://www.mogenius.com/en/contact/register-for-beta)  
 
 
-In addition to the Community Plan we offer two more advanced subscription options: 
+We offer a number of subscription plans you can choose from: 
+
+- **Community** For developers to try out our self service platform, and host smaller and hobby projects free of charge. The plan includes a starter budget with cloud resources.
 
 - **Professional** Designed for a development team, this plan provides unlimited access to all features of mogenius, with one cloudspace that can be used for one project or team. This cloudspace is hosted on a shared cluster and you can reserve unlimited cloud resources in addition to that. You will also receive Premium support to assist you with onboarding, deployments, scaling, or other technical issues.
 
