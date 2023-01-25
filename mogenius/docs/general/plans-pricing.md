@@ -1,22 +1,20 @@
----
+﻿---
 sidebar_position: 4
 ---
 
 # Plans & Pricing
 
-Our pricing plans are designed to be easy to understand and affordable for every step in your development journey. As your project grows, you can easily update your plan at any time. Start with a free plan to begin deploying your application right away. - [**Sign up here**](https://www.mogenius.com/en/contact/register-for-beta)  
+You can get started with the Community Plan, which is free of charge, to begin deploying your application right away.. - [**Sign up here**](https://www.mogenius.com/en/contact/register-for-beta)  
 
-Find out which plan is best for your project [here](https://mogenius.com/pricing).
 
-:::tip 
-Each subscription plan includes the core features of mogenius with a fully automated DevOps workflow: cloud hosting on hyper-scaling infrastructure, automated Kubernetes setup, CDN from Cloudflare, and CI/CD pipeline with Github connectivity. The subscription plans are designed for different phases of your project, each plan including different cloud resources and additional features to support you in later stages of development.
-:::
+We offer a number of subscription plans you can choose from: 
 
-- **Community:** If you choose this plan no credit card details are required. You can test the platform for as long as you like and deploy services to run smaller projects and prototypes.  
-- **Starter:** With the Starter plan you can start any service within mogenius. It contains enough resources to cover multiple services and for example a MySQL database.  
-- **Advanced:** This plan is best for running a production site and projects with a growing user base, and a great starting point for scaling your application.  
-- **Professional:** The Professional plan is designed for larger projects, demanding applications, and a high number of users of your application.  
+- **Community** For developers to try out our self service platform, and host smaller and hobby projects free of charge. The plan includes a starter budget with cloud resources.
 
-**If you want to plan your approximate resource requirements, take a look at [Services](./../services/index.md) to see the resource requirements for any specific service at initial launch.**
+- **Professional** Designed for a development team, this plan provides unlimited access to all features of mogenius, with one cloudspace that can be used for one project or team. This cloudspace is hosted on a shared cluster and you can reserve unlimited cloud resources in addition to that. You will also receive Premium support to assist you with onboarding, deployments, scaling, or other technical issues.
+
+- **Enterprise:** Designed for development teams with multiple projects and more complex project architectures and environments. In addition to the features of the Professional Plan, the Enterprise Plan allows you to create and run self-service cloud environments for several projects or teams. Up to 10 cloudspaces will be hosted on a dedicated cluster and you can choose to run them on any cloud provider, regions, or zones, and even plug in your own cloud provider account to utilize your existing contracts. You will also receive Enterprise-level support, as well as hands-on DevOps support from mogenius specialists.
+
+To request pricing or receive a custom quote, please [contact us here](https://mogenius.com/contact).
 
 Compare plans in detail on our latest [pricing page](https://mogenius.com/pricing).
