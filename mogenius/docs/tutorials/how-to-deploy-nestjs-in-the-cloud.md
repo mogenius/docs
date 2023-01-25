@@ -38,7 +38,8 @@ Each environment or stage is a Kubernetes namespace, so strictly isolated. In yo
  -  You can leave all settings at default for now, you can change these at any point later when the service is up and running.
  - Now, simply click "Create Service". Your NestJS boilerplate template will be built, added to the specified Git repository, and deployed to your cloudspace at the same time, so you can start using it almost immediately. Once the setup routines, build and deployment process are complete (usually a few minutes at most), you can start coding in your repository and access your NestJS at the specified hostname. Every time you commit any changes to your repository it will trigger a new build deploy process automatically (CI/CD). 
  - You can find all the details on your service's overview page, view metrics, access service logs, add resources and add additional instances for your service (Kubernetes pods).
-  
+
+
   That’s it! You have created your NestJS service and it will be available to access by other services via the internal hostname that has been assigned to your service, e.g. nestjs-template-8b4tp5:3000. If you choose to expose this service, you will also have an external hostname that can be accessed from outside your cloudspace, it looks like this: nestjs-template-prod-myaccount-afooyl.mo2.mogenius.io:80
 
 ## 2 - Deploy an existing NestJS app from your repository with a Dockerfile
