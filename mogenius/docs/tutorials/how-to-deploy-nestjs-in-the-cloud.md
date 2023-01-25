@@ -61,7 +61,7 @@ That's it! You have created your NestJS service, and it will be available to acc
 -   Optionally, add environment variables.
 -   Adjust resources such as CPU cores, memory, and temporary storage to meet the requirements of your application.
 -   Select a protocol and enter the port for the application as defined in your Dockerfile.
--   Now, just click "Create Service," and the Dockerfile will be deployed to your cloudspace and ready to use almost immediately. Once the setup routines, build, and deployment processes are completed (usually only a few minutes), you can start using your NestJS app at the hostname provided. You can find all the details on your service overview page, where you can also customize and scale resources by adding additional instances for your service.
+-   Now, just click "Create Service," and the Dockerfile will be deployed to your cloudspace and ready to use almost immediately. Once the setup routines, build, and deployment processes are completed (usually only a few minutes), you can start using your NestJS app at the hostname provided. 
 -   You can find all the details on your service's overview page, view metrics, access service logs, add resources, and add additional instances for your service (Kubernetes pods).
 
 That's it! You have created your NestJS service, and it will be available to access by other services via the internal hostname that has been assigned to your service, e.g. nestjs-template-8b4tp5:3000. If you choose to expose this service, you will also have an external hostname that can be accessed from outside your cloudspace, it looks like this: nestjs-template-prod-myaccount-afooyl.mo2.mogenius.io:80
@@ -81,7 +81,7 @@ That's it! You have created your NestJS service, and it will be available to acc
 -   Enter image commands and command arguments if needed, otherwise leave them blank.
 -   Adjust resources such as CPU cores, memory, and temporary storage to meet the requirements of your application.
 -   Select a protocol and enter the port for the application as defined in your container image.
--   Now, just click "Create Service," and the container image will be deployed to your cloudspace and ready to use almost immediately. Once the setup routines and deployment processes are completed (usually only a few minutes), you can start using your NestJS app at the hostname provided. You can find all the details on your service overview page, where you can also customize and scale resources by adding additional instances for your service.
+-   Now, just click "Create Service," and the container image will be deployed to your cloudspace and ready to use almost immediately. Once the setup routines and deployment processes are completed (usually only a few minutes), you can start using your NestJS app at the hostname provided. 
 -   You can find all the details on your service's overview page, view metrics, access service logs, add resources, and add additional instances for your service (Kubernetes pods).
 
 That's it! You have created your NestJS service, and it will be available to access by other services via the internal hostname that has been assigned to your service, e.g. nestjs-template-8b4tp5:3000. If you choose to expose this service, you will also have an external hostname that can be accessed from outside your cloudspace, it looks like this: nestjs-template-prod-myaccount-afooyl.mo2.mogenius.io:80
