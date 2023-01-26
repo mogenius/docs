@@ -75,7 +75,7 @@ Read more about [Environment variables and secrets](../development/environment-v
 
 Please review these settings before you start your service, as the default settings may not be sufficient for your application. The specific resources required for deployment depend on the design and usage of your specific service. For orientation you can view the mogenius preconfigured services and their resource settings for reference.
 
-[Read more about resource management](./cloud-management/resource-management.md).
+[Read more about resource management](./../cloud-management/resource-management.md).
 
 ### 3. Deploy a repository with a Dockerfile
 To launch an application for which you have already created a container, select the third option, 'Launch a container image from any registry'.
@@ -113,7 +113,7 @@ Once all settings are complete, click "Create service" to start your service. Be
 
 ## 3. Manage and add stages
 
-In your cloudspace dashboard you'll notice that a production stage has been automatically created. You can add additional stages, such as a development stage. For more information about stages, refer to [Stages & services](./../mogenius-platform/stages-and-services.md).
+In your cloudspace dashboard you'll notice that a production stage has been automatically created. You can add additional stages, such as a development stage.
 
 **What's next?**
 -ou can now start coding! Check out the repository that you have connected to mogenius. With `git push` your new code will automatically be built in your cloudspace. Read more about the [CI/CD pipeline](../development/cicd-pipeline.md).
