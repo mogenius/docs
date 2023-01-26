@@ -1,84 +1,70 @@
----
+﻿---
 sidebar_position: 1
 ---
 
 # Quickstart
-Deploying your application with mogenius is easy. We'll walk you through the first steps to get your service up and running in the cloud, and you can get back to coding in no time.
+Deploying your application with mogenius is easy. We'll guide you through the initial steps to launch your services in the cloud, so you can quickly get back to coding.
 
 ## 1. Sign up​
-First you will have to [sign up](https://studio.mogenius.com/user/registration) - Enter your email address and choose a password.  
-Next, verification of your email address and phone number is required to sufficiently secure your mogenius account.  
-Done? Great! You are now ready to create your first cloudspace.
+First, [sign up](https://studio.mogenius.com/user/registration) by entering your email address and choosing a password. Next, verify your email address and phone number to secure your mogenius account. Once completed, you are ready to create your first cloudspace.
 
-![Sign up](https://api.mogenius.com/file/id/7fbffa24-a76f-4ab4-9b67-671e841d089d)
-
+![enter image description here](https://api.mogenius.com/file/id/48f657d6-2032-4b79-95f5-2f15f02e7e4e)
 ## 2. Create a Cloudspace
 
-Start your first project on mogenius by creating a cloudspace. Set a name for your cloudspace with a maximum length of 24 characters without spaces and special characters.
+Start your first project on mogenius by creating a cloudspace. Give it a name with a maximum of 24 characters, no spaces, or special characters. Click "Create now" and your cloudspace will be created using the mogenius Community Plan. 
 
-![enter image description here](https://api.mogenius.com/file/id/7ec47c7f-4dc0-4f5b-8a2f-b8345a369ae8)
+![enter image description here](https://api.mogenius.com/file/id/d9210359-7406-42f4-8d8f-854205294ce8)
 
-### Your hostname
 
-The hostname is automatically filled in, depending on your cloudspace name. This hostname is the personal domain of your cloudspace and points to the root level within your production stage. You get a hostname for each service and stage in your cloudspace, and depending on the design of your application, you can choose which hostname to use with [your own domain](./domains.md).
+**🥳 Congratulations on creating your first cloudspace on mogenius!**
 
-### Select a plan
 
-You can always start with a free plan to take first steps and test around as long as you like. You can always upgrade to a higher plan with more capabilities later. Click "Create now" and your cloudspace will be created on the free plan.
+## 3. Add your first service
 
-**🥳 Congrats on creating your first cloudspace on mogenius**
+One of the initial tasks is to add services to your cloudspace (e.g. application, database). When you first start, you'll see a pop-up window below. Alternatively, you can add services from your cloudspace dashboard, where you'll also see the available resources in your cloudspace. There are three ways to add services to your cloudspace:
 
-## 3. Manage and add stages
+![enter image description here](https://api.mogenius.com/file/id/1d25d25c-2715-4a3e-8201-ec8ceac94cef)
 
-The first thing you will see in your cloudspace is the dashboard. It contains all the information you need to keep track of your application in the cloud. You will see here that a production stage has been automatically created. You can add more stages, for example, a development stage. For more information about stages, see [here](./../mogenius-platform/stages-and-services.md).
+### 1. Start from scratch with a pre-configured template
 
-## 4. Add your first service
+Choose the second option from the list and select the service you want to deploy from the service library.
 
-Take a look at the Stages & Services page. It gives you an overview of the resource consumption and state of each service and stage. As you can see, it is still empty, but we will quickly change that by starting your first service. There are two ways to do this.
-
-### 1. Start from scratch with a template
-
-![services](https://api.mogenius.com/file/id/1de8010c-b8fe-4fa7-9bf3-2b3790d3e8a9)
-
-Choose the service you would like to deploy from the service library.
+![enter image description here](https://api.mogenius.com/file/id/d5662765-de9b-4164-8f55-73e11d424be4)
 
 **Connect Github**
 
-First, you need to connect Github to your mogenius account. Follow the instructions from Github and authorize mogenius to access your repositories. Once you have granted access, you will see a repository selector. When you create a service, the config files for that service are moved to an empty repository in your Github account, so you can start working on the project immediately. Therefore, either select an empty repository from the drop-down menu that contains only a readme file, or create a new repository.
+First, connect Github to your mogenius account by following the instructions from Github and authorizing mogenius to access your repositories. Once access is granted, you'll see a repository selector. When creating a service, the config files for that service are moved to a new, empty repository in your Github account, allowing you to begin working on the project immediately. Therefore, as the next step, create a new repository by clicking "+ Add repository."
 
 **General settings**
-
-Now give your a service a name (this is used to create a hostname, following the pattern `service_name-stage-cloudspace_name-id.mogenius.io`).
 
 For now, you can leave all other settings at default and create the service. For more information and advanced settings, read more about [resource management](./../cloud-management/resource-management.md).
 
 That's it!
+
 **⬇️ [Jump to deploying your service](#deploy-your-service)**
 
-### 2. Use Docker to connect your application
-
-To launch an application that you have already developed or that is in progress, you can select Dockerfile from the service library. Now you have two options to connect a repository: via GitHub or through a public repository.
+### 2. Deploy a repository with a Dockerfile
+To launch an application that you have already developed or that is in progress, select the first option 'Deploy a repository with a Dockerfile'. Now, you have two options to connect a repository: via GitHub or through a public repository.
 
 **Connect Github**  
- You need to connect Github to your mogenius account. Follow the instructions from Github and authorize mogenius to access your repositories. Once you have granted access, you will see a repository selector.
+ You need to connect Github to your mogenius account. Follow the instructions provided by Github and authorize mogenius to access your repositories. Once access is granted, you will see a repository selector.
 
 **Use a public repository**
-Set the repository toggle to "Public". Now paste the HTTPS url of a public repository into the corresponding field. 
+Set the repository toggle to "Public." Now, paste the HTTPS URL of a public repository into the corresponding field.
 
-Select your repository from the dropdown menu or search for it in the input field. Note that mogenius will look for a `Dockerfile` inside the given directory so make sure your repository contains one. When you have selected the repository with a Dockerfile inside, specify the branch that you want to use.
+Select your repository from the dropdown menu or search for it in the input field. Note that mogenius will look for a `Dockerfile` within the specified directory, so ensure that your repository contains one. Once you have selected the repository with a Dockerfile, specify the branch you want to use.
 
 **General service settings**
 
-The form fields can be filled in as described below:  
+The form fields, some of which are optional, should be filled in as described below:  
 
 | Input field | Comment |
 |---|---|
 |Name|The name of your service. This will be used to display the service in your cloudspace and the hostname of the service. |
-|Dockerfile name| This setting has no effect at the moment. You can leave it as is.|
-|Internal Port| The port that your application provides as defined in the Docker file in your repository. |
-|Expose| This setting has no effect at the moment. You can leave it as is. |
+|Ports| The ports that your application exposes, as defined in the Dockerfile in your repository or container image, can include HTTPS, TCP, and UDP, and you can define multiple ports.|
+|Expose| De-select this setting if you do not want to expose the service to the Internet (optional). |
 |Stage| The stage you want your service to be deployed in. |
-|Deployment strategy| **Recreate:** Your service is recreated once you deploy a new version (see [CI/CD pipeline](./../development/cicd-pipeline.md)) with a short downtime while the deployment is running.<br />**Rolling:** The service is deployed without interruption. [Check out plans](./../general/plans-pricing.md) for the availability of rolling deployments.|
+|Deployment strategy| **Recreate:** Your service will be recreated when deploying a new version (as part of the [CI/CD pipeline](./../development/cicd-pipeline.md)), resulting in a brief downtime while the deployment is in progress. <br />**Rolling:**  The service will be deployed without interruption.
 
 **Environment variables**
 
@@ -91,17 +77,51 @@ Please review these settings before you start your service, as the default setti
 
 [Read more about resource management](./cloud-management/resource-management.md).
 
+### 3. Deploy a repository with a Dockerfile
+To launch an application for which you have already created a container, select the third option, 'Launch a container image from any registry'.
+
+**Specify path to container image**
+Enter the name of the container image and the version you want to pull from the registry, for example, nginx:latest. By default, we will search on DockerHub, but you can also specify a different registry by entering the full path.
+
+Provide container image commands and command arguments (if any).
+
+If you wish to deploy from a private registry, enter the repository secret.
+
+**General service settings**
+
+The form fields, some of which are optional, should be filled in as described below:  
+
+| Input field | Comment |
+|---|---|
+|Name|The name of your service. This will be used to display the service in your cloudspace and the hostname of the service. |
+|Ports| The ports that your application exposes, as defined in the Dockerfile in your repository or container image, can include HTTPS, TCP, and UDP, and you can define multiple ports.|
+|Expose| De-select this setting if you do not want to expose the service to the Internet (optional). |
+|Stage| The stage you want your service to be deployed in. |
+|Deployment strategy| **Recreate:** Your service will be recreated when deploying a new version (as part of the [CI/CD pipeline](./../development/cicd-pipeline.md)), resulting in a brief downtime while the deployment is in progress. <br />**Rolling:**  The service will be deployed without interruption.
+
+**Environment variables**
+
+If your application requires environment variables, you can set them here. They will be stored in your Key Vault. Read more about [Environment variables and secrets](../development/environment-variables-and-secrets.md).
+
+**Resource limits**
+
+Please review these settings before starting your service, as the default settings may not be appropriate for your application. The resources required for deployment will vary based on the design and usage of your specific service. For guidance, you can refer to the preconfigured services and their resource settings provided by mogenius.
+
 ## Deploy your service
 
-When all settings are done, you can click "Create service" and your service will be started. In the background, your service will be created and deployed with the allocated resources in a Kubernetes cluster and the Cloudflare CDN including SSL will be set up. Your service will be up and running in less than 5 minutes and you can start working with it immediately.
+Once all settings are complete, click "Create service" to start your service. Behind the scenes, your service will be created and deployed within a Kubernetes cluster, with the allocated resources and configured network and security settings, including SSL. Your service will be up and running in less than 5 minutes, and you can begin working with it immediately
+
+## 3. Manage and add stages
+
+In your cloudspace dashboard you'll notice that a production stage has been automatically created. You can add additional stages, such as a development stage. For more information about stages, refer to [Stages & services](./../mogenius-platform/stages-and-services.md).
 
 **What's next?**
-- You can now start coding! Check out the repository that you connected with mogenius. With `git push` your new code will be built automatically in your cloudspace. Read more about the [CI/CD pipeline](../development/cicd-pipeline.md).
-- [Connect your own domain](domains.md) to make your service easily memorable for users.
+-ou can now start coding! Check out the repository that you have connected to mogenius. With `git push` your new code will automatically be built in your cloudspace. Read more about the [CI/CD pipeline](../development/cicd-pipeline.md).
+-  You can also [Connect your own domain](domains.md) for each of your services you to communicate externally.
 
-**We are proud to see you launching your first service on mogenius, great job!**
+**We are proud to see you launching your first service on mogenius. Great job!**
 
 :::info
-If you need help, please take a look at our [Help & Feedback page](../general/help-feedback.md). You can connect with the mogenius community or contact us diretly if you encounter any problems.
+If you need help, please take a look at our [Help & Feedback page](../general/help-feedback.md). You can connect with the mogenius community or contact us directly if you run into any problems.
 :::
 
