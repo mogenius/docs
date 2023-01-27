@@ -23,4 +23,7 @@ To set up ArangoDB, you can add it as a service to your cloudspace. Select Arang
 To access the ArangoDB user interface, use your service's external hostname. 
 The ArangoDB default user is 'root'. The password is stored in your Key Vault, as defined when creating the service.
 
+:::info
+The database will be deployed in a container on a Kubernetes cluster, which is usually considered bad practice for production workloads. The service template is suitable for testing and development but we recommend to rely on a managed database service for production workloads. We'll support managed databases on mogenius soon - until then, we're happy to give recommendations for an appropriate solution.
+:::
 
