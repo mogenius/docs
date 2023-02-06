@@ -21,3 +21,8 @@ MySQL is the world's most popular open source database. With its proven performa
 **How to deploy MySQL**  
 To install this service, go to the service library. Select the MySQL service and click "Add service". Follow the instructions and walk through the create process. You need to set environment variables that will be stored in your Key Vault and that you can access later through other applications.    
 There is a detailed tutorial available on [how to launch MySQL with mogenius](./../../tutorials/how-to-set-up-mysql-and-phpmyadmin-in-the-cloud.md).
+
+
+:::info
+The database will be deployed in a container on a Kubernetes cluster, which is usually considered bad practice for production workloads. The service template is suitable for testing and development but we recommend to rely on a managed database service for production workloads. We'll support managed databases on mogenius soon - until then, we're happy to give recommendations for an appropriate solution.
+:::
