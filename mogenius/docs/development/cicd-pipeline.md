@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # CI/CD pipeline
 
 mogenius comes with a built in CI/CD pipeline, so that you can start working on your application and deploy any changes to the cloud immediately.

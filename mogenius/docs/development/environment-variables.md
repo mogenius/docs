@@ -1,4 +1,8 @@
-# Environment variables & secrets
+---
+sidebar_position: 5
+---
+
+# Environment variables
 
 A typical use case for environment variables is an application that relies on a database. You  want the application to access the database in a robust and secure way. We took this into account with built in features to help you work with environment variables.
 

@@ -2,5 +2,5 @@
 sidebar_position: 3
 ---
 
-# Managed Kubernetes
+# Deploy a template
 

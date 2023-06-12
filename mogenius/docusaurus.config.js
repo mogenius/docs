@@ -134,12 +134,12 @@ const config = {
             title: 'Legal',
             items: [
               {
-                label: 'Imprint',
-                href: 'https://mogenius.com/en/imprint',
+                label: 'Legal',
+                href: 'https://mogenius.com/legal-info',
               },
               {
                 label: 'Privacy',
-                href: 'https://mogenius.com/en/privacy',
+                href: 'https://mogenius.com/privacy',
               },
             ],
           },

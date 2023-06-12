@@ -1,4 +1,8 @@
-# Working with persistent storage
+---
+sidebar_position: 3
+---
+
+# Storage
 
 Each cloudspace has access to managed persistent NFS storage. On the dashboard, you can see how much storage is available in your plan and how much of it you have already used. In the Free plan, for example, this is 4GB of storage.
 
