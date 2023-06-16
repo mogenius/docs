@@ -4,14 +4,15 @@ sidebar_position: 3
 
 # Storage
 
-Each cloudspace has access to managed persistent NFS storage. On the dashboard, you can see how much storage is available in your plan and how much of it you have already used. In the Free plan, for example, this is 4GB of storage.
+mogenius has a built-in storage solution based on NFS storage. This allows you to persist applications and to store assets and data from your applications. The solution is designed to achieve persistency for your services without the overhead of managing a storage solution. This setup is not recommended for heavy workloads, or large production setups. In this case we recommend to implement your own storage solution depending on your requirements.
 
-Every service in your cloudspace can access the storage by creating a `volume mount` in the service settings. Here is an example of what this looks like for a MySQL database.
+To use mogenius storage it must be activated in the settings of your cluster. Go to general settings and click "Enable storage" to provision NFS storage on your Kubernetes cluster. This can take a few minutes.
 
-Create the volume mount as an environment variable and define the path where your service's data is stored.
+Once the installation is completed you can open the section "Storage" in your project and create a volume. Now that you've created a volume you can start using storage with your applications. On your service page go to env vars and create a new environment variable with the type "Volume mount." Define or create a folder inside your volume and enter the path in your container that should be mounted.
+
 ![volume mount](https://api.mogenius.com/file/id/baf99668-2cab-4a41-ac60-a90fbe5a311e)
 
-Additionally, you always need to change the owner to a non-root user by defining an `CHANGE_OWNER` environment variable. For security reasons it is not possible to access storage of a service as the root user (See also the [instructions at creating a service](./deploying-services.md#deploy-your-own-code-using-docker)). The `CHANGE_OWNER`variable should look something like this.
+Additionally, you always need to change the owner to a non-root user by defining an `CHANGE_OWNER` environment variable. For security reasons it is not possible to access storage of a service as the root user. The `CHANGE_OWNER` variable should look something like this.
 ![change owner](https://api.mogenius.com/file/id/a3024485-38e4-4d47-9a8e-0485aab46260)
 
-You can also manage paths and files inside your storage with your file browser.
+In your storage browser you can then see and manage all the application data that was stored.
