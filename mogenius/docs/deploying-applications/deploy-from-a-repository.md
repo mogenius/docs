@@ -32,7 +32,7 @@ For security reasons we don't allow running a Docker image as root user. You wil
 Determine the ports that your application uses. mogenius supports HTTPS, TCP and UDP. Use the setting "Expose" to make your application available outside of your project through the specific port.
 
 ### Environment variables
-This is an optional setting which depends on the application you want to deploy. Read more about [environment variables](#environment-variables).
+This is an optional setting which depends on the application you want to deploy. You can set plain text variables, secrets, or volume mounts.
 
 ### Resource limits
 Next you can set the resource limits for your service. By default we set some minimum recommendations but you will probably need to adjust them to the specific requirements of your application. Note that you can always change these settings later.
