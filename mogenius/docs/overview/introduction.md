@@ -21,7 +21,7 @@ mogenius empowers you to establish platform engineering and an Internal Develope
 
 ## The mogenius documentation
 
-This documentation hub serves as a comprehensive resource for getting started, utilizing the platform's features, and exploring tutorials covering entire workflows.
+This documentation hub serves as a resource for getting started, utilizing the platform's features, and exploring tutorials covering entire workflows.
 
 ## mogenius for DevOps and Developers
 
