@@ -117,10 +117,6 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Discord',
-                href: 'https://community.mogenius.com',
-              },
-              {
                 label: 'Twitter',
                 href: 'https://twitter.com/mogenius',
               },
