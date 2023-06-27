@@ -117,10 +117,6 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Discord',
-                href: 'https://community.mogenius.com',
-              },
-              {
                 label: 'Twitter',
                 href: 'https://twitter.com/mogenius',
               },
@@ -134,12 +130,12 @@ const config = {
             title: 'Legal',
             items: [
               {
-                label: 'Imprint',
-                href: 'https://mogenius.com/en/imprint',
+                label: 'Legal info',
+                href: 'https://mogenius.com/legal-info',
               },
               {
                 label: 'Privacy',
-                href: 'https://mogenius.com/en/privacy',
+                href: 'https://mogenius.com/privacy',
               },
             ],
           },
