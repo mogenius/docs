@@ -4,10 +4,6 @@ slug: /help-and-feedback
 
 # Help & Feedback
 
-## Community
-We are very happy to receive contributions from our community. You can use our community site to ask questions or read about current issues. As a registered user you can reach the community via the main navigation in mogenius studio.  
-🏠 **[Community](https://community.mogenius.com)**
-
 ## Feedback
 Your feedback is incredibly valuable in helping us deliver a product that best meets your needs. If you have suggestions and ideas, please use our feedback tool. Here you have the opportunity to submit ideas, vote on other ideas and follow our roadmap.  
 💡 **[Feedback](https://feedback.mogenius.com)**
@@ -21,34 +17,27 @@ If you encounter any problems or need quick help, you can always contact us dire
 <details>
     <summary>What can I use mogenius for?</summary>
     <div>
-        <div>mogenius is the single layer between your application and the cloud. You can deploy and run any application with mogenius and get it up and running in no time on a hyper-scalable and automated cloud infrastructure. Most application types and services are are supported, like web applications, databases, background workers and of course static websites. Read more about <a href="../services/service-overview">supported services here</a>.</div>
+        <div>mogenius is an internal developer platform that makes running and managing containerized applications on Kubernetes simple and efficient. It is designed to help DevOps reduce support overhead from development teams and to help them focus on core infrastructure tasks. For developers, mogenius enables them to work independantly and to focus on shipping great code.</div>
     </div>
 </details>
 
 <details>
     <summary>What do I need to get started?</summary>
     <div>
-        <div>All you need is an account for mogenius (<a href="https://studio.dev.mogenius.com/user/registration">sign up here</a>) and your Github account.</div>
+        <div>All you need is a Kubernetes cluster where you can install the mogenius operator. Check out the <a href="https://docs.mogenius.com/overview/quickstart">quickstart</a> for detailed first steps. If you want to use mogenius but you don't want to run your own Kubernetes cluster, refer to <a href="https://docs.mogenius.com/cluster-management/managed-clusters">managed clusters</a>.</div>
     </div>
 </details>
 
 <details>
     <summary>How much does it cost?</summary>
     <div>
-        <div>You can start with a free plan, no payment details are required. You select the plan you want when you create a cloudspace, and a free plan is set by default. Our paid plans are designed to cover a specific phase in the development of your project at a time. Check out the <a href="https://mogenius.com/pricing">available plans here</a>. If you need more resources or additional features later you can upgrade to a higher plan at any time.</div>
+        <div>mogenius works with simple and fixed monthly subscriptions. The pricing depens on the number of clusters and projects, and additional services that you might require. Check out the <a href="https://mogenius.com/pricing">available plans here</a>.</div>
     </div>
 </details>
 
 <details>
-    <summary>Is mogenius secure?</summary>
+    <summary>What if I decide to move away from mogenius later?</summary>
     <div>
-        <div>We rely on best practices for managing cloud-native applications. Under the hood, your cloudspace is a fully isolated namespace on Kubernetes that cannot be accessed from the outside. In addition, every cloudspace and service is delivered through Cloudflare and is protected by Cloudflare Enterprise-level features.</div>
-    </div>
-</details>
-
-<details>
-    <summary>Where is my application hosted?</summary>
-    <div>
-        <div>Our clusters are hosted in Frankfurt, Germany, by Microsoft Azure. We will soon offer additional locations.</div>
+        <div>Everything that you configure on mogenius can be exported as YAML if you decide to leave mogenius. We want to avoid vendor lock-in and if you feel that mogenius is not adding value anymore you won't be forced to stay.</div>
     </div>
 </details>
