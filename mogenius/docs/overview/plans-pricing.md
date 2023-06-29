@@ -4,13 +4,13 @@ sidebar_position: 5
 
 # Plans & Pricing
 
-mogenius plans are simple and fixed SaaS subscriptions, that are created from three major components:
-- The number of clusters you are managing
-- The total number of projects in your organization
-- Additional services like SLAs or DevOps support
+mogenius plans are simple and fixed SaaS subscriptions that consist of three major components:
+- The number of clusters you are managing.
+- The total number of projects in your organization.
+- Additional services like SLAs or DevOps support.
 
 :::info
-mogenius does not interfere with your cloud account, so you are charged for resource costs separately by your cloud provider. An exception are managed clusters by mogenius, where cloud resources are included in your subscription. Read more about [managed clusters](./../cluster-management/managed-clusters.md).
+mogenius does not interfere with your cloud account, so you are charged for resource costs separately by your cloud provider. An exception applies to managed clusters by mogenius, where cloud resources are included in your subscription. Read more about [managed clusters](./../cluster-management/managed-clusters.md).
 :::
 
 We offer three tiers of plans:  
