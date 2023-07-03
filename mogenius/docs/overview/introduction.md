@@ -16,7 +16,7 @@ mogenius empowers you to establish platform engineering and an Internal Develope
 :::tip
 **Read our [quickstart guide](./../overview/quickstart.md) to set up mogenius and get started.**
 
-****Or dive into** [how mogenius works](./../overview/How%20mogenius%20works.md) **for a comprehensive overview.****
+**Or dive into [how mogenius works](../overview/how-mogenius-works.md) for a comprehensive overview.**
 :::
 
 ## The mogenius documentation

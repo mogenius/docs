@@ -6,7 +6,7 @@ sidebar_position: 3
 
 The mogenius platform comprises multiple organizational levels tailored to various workflows and use cases for DevOps, developers, and teams. Here's a summary of the account hierarchy in mogenius:
 
-![cloudspace structure](https://api.mogenius.com/file/id/a89ae14f-8a37-4a05-999e-f6b80380a877)
+![cloudspace structure](https://api.mogenius.com/file/id/6cd333e6-1b0b-42eb-b083-4005dd6a27a3)
 
 ## Organizations
 Organizations are the highest level in the mogenius platform. Each organization has its own member list, billing, and settings. Clusters, projects, and other resources can be shared within an organization but not across different organizations. Organizations are useful for representing isolated groups of people. You can create multiple organizations to accommodate large, independent departments, subsidiaries, or clients who should not have access to each other's resources.
