@@ -130,7 +130,7 @@ const config = {
             title: 'Legal',
             items: [
               {
-                label: 'Legal',
+                label: 'Legal info',
                 href: 'https://mogenius.com/legal-info',
               },
               {
