@@ -1,3 +1,7 @@
+---
+sidebar_position: 5
+---
+
 # mogenius API
 
 The mogenius REST API allows you to manage your services and cloudspaces from the command line. Once you retrieved your access token you can use all the core features of mogenius studio through the API.
