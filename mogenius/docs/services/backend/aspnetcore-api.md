@@ -14,7 +14,7 @@ This service is a minimalistic sample web API for ASP.NET Core 6.0.
 |--|--|--|--|
 | Minimum | 0,4 |128| 100
 
-[Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../development/resources.md)
 
 **How to deploy ASP.NET Core API**  
 To create your own ASP.NET Core API, you can add ASP.NET Core 6.0 API as a service to your cloudspace. Select it from the service library and follow the instructions. You will be asked to create a repository for this service where all the necessary setup files will be stored. Once the service is created, clone this repository and start working on your project. With every commit a new version of your service will be deployed automatically to mogenius.  

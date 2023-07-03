@@ -15,7 +15,7 @@ Ghost is a light-weight headless CMS based on a modern Node.js tech stack. It's 
 |--|--|--|--|
 | Minimum | 0,4 | 512 | 512 |
 
-[Learn more about how to manage resources for services](./../../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../development/resources.md)
 
 **How to deploy**  
 To start a new Ghost project, you can deploy it as a service to your cloudspace. Select Ghost from the service library and follow the instructions.  

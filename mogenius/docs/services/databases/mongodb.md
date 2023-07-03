@@ -16,7 +16,7 @@ MongoDB is a source-available cross-platform document-oriented database program.
 |--|--|--|--|
 | Minimum | 0,3 |128| 100
 
-[Learn more about how to manage resources for services](./../../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../development/resources.md)
 
 **How to deploy MongoDB**  
 To install this service, go to the service library. Select the MongoDB service and click "Add service". Follow the instructions and walk through the create process. You need to set environment variables that will be stored in your Key Vault and that you can access later through other applications.

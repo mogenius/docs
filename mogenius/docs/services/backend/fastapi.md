@@ -14,7 +14,7 @@ FastAPI is a modern web framework for building APIs with Python 3.6+. It aims to
 |--|--|--|--|
 | Minimum | 0,2 |64| 100 |
 
-[Learn more about how to manage resources for services](./../../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../development/resources.md)
 
 **How to deploy**  
 To initiate a FastAPI project, you can add it as a service to your cloudspace. Select FastAPI from the service library and follow the instructions.  

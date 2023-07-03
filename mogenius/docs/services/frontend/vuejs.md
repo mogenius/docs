@@ -15,7 +15,7 @@ Vue (pronounced /vjuː/, like **view**) is a **progressive framework** for build
 |--|--|--|--|
 | Minimum | 0,3 |32| 100 |
 
-[Learn more about how to manage resources for services](./../../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../development/resources.md)
 
 **How to deploy**  
 To initiate a Vue.js project,  you can add it as a service to your cloudspace. Select Vue.js from the service library and follow the instructions.  

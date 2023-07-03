@@ -14,7 +14,7 @@ ASP.NET Core MVC is a framework for building web apps and APIs using the Model-V
 |--|--|--|--|
 | Minimum | 0,5 |128| 100
 
-[Learn more about how to manage resources for services](./../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../development/resources.md)
 
 **How to deploy ASP.NET Core MVC**  
 To create your own ASP.NET Core application from scratch, you can add ASP.NET Core 6.0 MVC as a service to your cloudspace. Select it from the service library and follow the instructions. You will be asked to create a repository for this service where all the project files will be stored. Once the service is created, clone this repository and start working on your project. With every commit a new version of your service will be deployed automatically to mogenius.  

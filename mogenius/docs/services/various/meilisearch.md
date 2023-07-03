@@ -15,7 +15,7 @@ An open-source, lightning-fast, and hyper-relevant search engine that fits effor
 |--|--|--|--|
 | Minimum | 0,3 | 256 | 256 |
 
-[Learn more about how to manage resources for services](./../../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../development/resources.md)
 
 **How to deploy**  
 To set up Meilisearch, you can add it as a service to your cloudspace. Select Meilisearch from the service library and follow the instructions. The service currently uses v0.27.0 of the [official Meilisearch Docker image](https://hub.docker.com/r/getmeili/meilisearch). If you want to use a different version, edit the Dockerfile in the repository that mogenius creates in your GitHub account when deploying Meilisearch. After changing the Dockerfile, run `Rebuild` from the service detail page to let the changes take effect.
