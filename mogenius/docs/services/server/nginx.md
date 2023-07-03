@@ -16,7 +16,7 @@ Nginx is an open source reverse proxy server for HTTP, HTTPS, SMTP, POP3, and IM
 |--|--|--|--|
 | Minimum | 0,1 |16| 20
 
-[Learn more about how to manage resources for services](./../../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../development/resources.md)
 
 **How to deploy nginx**  
 To install this service, go to the service library. Select the nginx service and click "Add service". Follow the instructions and finalize the create process by clicking "Save".  

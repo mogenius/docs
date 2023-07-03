@@ -15,7 +15,7 @@ Gatsby is a React-based open-source framework for creating websites and apps. Ga
 |--|--|--|--|
 | Minimum | 0,3 | 64 | 100 |
 
-[Learn more about how to manage resources for services](./../../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../development/resources.md)
 
 **How to deploy**  
 To set up Gatsby, you can add it as a service to your cloudspace. Select Gatsby from the service library and follow the instructions.  

@@ -16,7 +16,7 @@ Docusaurus is a static-site generator. It builds a single-page application with 
 |--|--|--|--|
 | Minimum | 0,2 |256| 100
 
-[Learn more about how to manage resources for services](./../../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../development/resources.md)
 
 **How to deploy Docusaurus**  
 To install this service, go to the service library. Select the Docusaurus service and click "Add service". Follow the on-screen instructions and complete the creation process by clicking "Save".  

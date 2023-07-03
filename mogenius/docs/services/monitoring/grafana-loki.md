@@ -15,7 +15,7 @@ Grafana Loki is a set of components that can be composed into a fully featured l
 |--|--|--|--|
 | Minimum | 0,5 | 128 | 200 |
 
-[Learn more about how to manage resources for services](./../../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../development/resources.md)
 
 **How to deploy**  
 To set up Grafana Loki, you can add it as a service to your cloudspace. Select Grafana Loki from the service library and follow the instructions.  

@@ -16,7 +16,7 @@ phpMyAdmin is a free and open source administration tool for MySQL and MariaDB. 
 |--|--|--|--|
 | Minimum | 0,2 |96| 100
 
-[Learn more about how to manage resources for services](./../../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../development/resources.md)
 
 **How to deploy phpMyAdmin**  
 To install this service, go to the service library. Select the phpMyAdmin service and click "Add service". We recommend that you create a database (e.g. [MySQL](mysql.md) or [MariaDB](mariadb.md)) in your cloudspace before launching phpMyAdmin. Follow the instructions and walk through the create process. Connect phpMyAdmin by specifying the hostname of your database and the root password from your Key Vault in the Environment Variables section. Click "Create Service" and phpMyAdmin will begin to build. You will then be able to access the database you have connected.   

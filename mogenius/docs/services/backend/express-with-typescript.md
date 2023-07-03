@@ -15,7 +15,7 @@ Express is a web framework on top of Node.js. This template creates a boilerplat
 |--|--|--|--|
 | Minimum | 0,2 |64| 100 |
 
-[Learn more about how to manage resources for services](./../../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../development/resources.md)
 
 **How to deploy**  
 To initiate an Express project, you can add it as a service to your cloudspace. Select Express with Typescript from the service library and follow the instructions.  

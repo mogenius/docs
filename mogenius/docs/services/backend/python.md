@@ -16,7 +16,7 @@ Python is an interpreted high-level general-purpose programming language. Its de
 |--|--|--|--|
 | Minimum | 0,2 | 64 | 100 |
 
-[Learn more about how to manage resources for services](./../../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../development/resources.md)
 
 **How to deploy Python**  
 To initiate a Python project, you can add it as a service to your cloudspace. Select Python from the service library and follow the instructions.  

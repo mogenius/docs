@@ -14,7 +14,7 @@ SAML Jackson is an open-source service provided by [BoxyHQ](https://boxyhq.com/)
 |--|--|--|--|
 | Minimum | 0,3 | 128 | 128 |
 
-[Learn more about how to manage resources for services](./../../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../development/resources.md)
 
 ## How to deploy  
 **Database**  

@@ -15,7 +15,7 @@ Spring is a popular Java Framework. With principles like dependancy injection an
 |--|--|--|--|
 | Minimum | 0,3 |128| 200 |
 
-[Learn more about how to manage resources for services](./../../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../development/resources.md)
 
 **How to deploy**  
 To initiate a Spring project, you can add it as a service to your cloudspace. Select Java Spring from the service library and follow the instructions.  

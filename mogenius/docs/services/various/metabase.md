@@ -15,7 +15,7 @@ Metabase is a powerful tool to explore databases and create reports and dashboar
 |--|--|--|--|
 | Minimum | 0,7 | 756 | 756 |
 
-[Learn more about how to manage resources for services](./../../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../development/resources.md)
 
 **How to deploy**  
 To set up Metabase, you can add it as a service to your cloudspace. Select Metabase from the service library and follow the instructions. The data created by Metabase will be stored in your cloudspace's storage.  

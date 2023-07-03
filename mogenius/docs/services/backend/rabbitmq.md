@@ -15,7 +15,7 @@ RabbitMQ is a message broker written in Erlang, being widely used in organisatio
 |--|--|--|--|
 | Minimum | 0,4 | 256 | 200 |
 
-[Learn more about how to manage resources for services](./../../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../development/resources.md)
 
 **How to deploy**  
 To start a new RabbitMQ application, you can deploy it as a service to your cloudspace. Select RabbitMQ from the service library and follow the instructions.  

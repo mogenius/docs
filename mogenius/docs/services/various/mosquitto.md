@@ -15,7 +15,7 @@ Eclipse Mosquitto is a leightweight open source message broker that implements t
 |--|--|--|--|
 | Minimum | 0,2 | 64 | 100 |
 
-[Learn more about how to manage resources for services](./../../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../development/resources.md)
 
 **How to deploy**  
 To set up Mosquitto, you can add it as a service to your cloudspace. Select Mosquitto from the service library and follow the instructions. You will be asked to create a repository for this service. This will contain a Dockerfile that holds major configuration details. Therefore you should set the repository visibility to "private".  

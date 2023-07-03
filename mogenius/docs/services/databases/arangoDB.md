@@ -15,7 +15,7 @@ ArangoDB is an open-source multi-model database system, supporting key/value, do
 |--|--|--|--|
 | Minimum | 0,5 | 368 | 200 |
 
-[Learn more about how to manage resources for services](./../../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../development/resources.md)
 
 **How to deploy**  
 To set up ArangoDB, you can add it as a service to your cloudspace. Select ArangoDB from the service library and follow the instructions. You will be asked to create a repository for this service. This will contain a Dockerfile that holds major configuration details. Therefore you should set the repository visibility to "private".  

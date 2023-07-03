@@ -16,7 +16,7 @@ Uptime Kuma is a simple monitoring tool for your own environment and many more. 
 |--|--|--|--|
 | Minimum | 0,1 |128| 200
 
-[Learn more about how to manage resources for services](./../../cloud-management/resource-management.md)
+[Learn more about how to manage resources for services](./../../development/resources.md)
 
 **How to deploy Uptime Kuma**  
 To deploy Uptime Kuma, you can add it as a service to your cloudspace. Select Uptime Kuma from the service library and follow the instructions. After creating the service you can access your dashboard with the external hostname and set up your Uptime Kuma.  
