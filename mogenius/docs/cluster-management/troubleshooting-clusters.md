@@ -1,5 +1,6 @@
 ﻿---
 sidebar_position: 7
+description: Here's a list of common issues with clusters on mogenius and how to fix them.
 ---
 
 # Troubleshooting clusters

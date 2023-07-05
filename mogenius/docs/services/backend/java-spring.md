@@ -1,4 +1,8 @@
-﻿# Java Spring
+﻿---
+description: Spring is a Java framework often used for web applications. Use this template to create a new Spring project from scratch.
+---
+
+# Java Spring
 
 ![Java Spring logo](https://api.mogenius.com/file/id/bb80c7d4-3830-4d0a-95bb-fc92007b0940)
 
