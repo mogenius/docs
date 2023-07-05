@@ -1,4 +1,8 @@
-﻿# FastAPI
+﻿---
+description: FastAPI is a modern web framework for building APIs with Python 3.6+. It aims to increase development speed and reduce errors at the same time.
+---
+
+# FastAPI
 
 ![FastAPI logo](https://api.mogenius.com/file/id/f7382e8b-be9a-4b6e-be70-cba7c3c664f2)
 

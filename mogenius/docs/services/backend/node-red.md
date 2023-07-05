@@ -1,4 +1,8 @@
-﻿# Node-RED
+﻿---
+description: Node-RED is a browser-based programming tool for connecting hardware devices, APIs and online services.
+---
+
+# Node-RED
 
 ![Node-RED logo](https://api.mogenius.com/file/id/95435c43-c7df-4e34-8f7e-4a0298fd081e)
 

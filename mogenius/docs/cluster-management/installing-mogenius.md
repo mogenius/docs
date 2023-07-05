@@ -1,5 +1,6 @@
 ﻿---
 sidebar_position: 2
+description: Connect your own Kubernetes cluster by installing the mogenius operator on the cluster.
 ---
 
 # Installing mogenius

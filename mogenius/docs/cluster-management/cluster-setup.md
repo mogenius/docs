@@ -1,5 +1,6 @@
 ﻿---
 sidebar_position: 1
+description: Prepare a cluster in mogenius to connect with your own Kubernetes cluster.
 ---
 
 # Cluster setup

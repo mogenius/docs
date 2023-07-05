@@ -1,5 +1,6 @@
 ﻿---
 sidebar_position: 5
+description: Manage the mogenius operator, run updates and delete it from your cluster.
 ---
 
 # Update and uninstall
