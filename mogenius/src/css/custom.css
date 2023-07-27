@@ -6,36 +6,36 @@
 
 /* You can override the default Infima variables here. */
 @font-face {
-  font-family: 'Cairo';
+  font-family: 'robotoSlab';
   font-weight: 300;
   font-style: normal;
-  src: url('https://mogenius.com/cairo-v10-latin-regular.d3bac703ab71d722cebd.woff2') format(woff2), url(https://mogenius.com/cairo-v10-latin-300.160fb32b4827184d72d3.woff) format(woff);
+  src: url('https://mogenius.com/assets/fonts/robotoSlab/RobotoSlab-Light.woff2') format(woff2), url(https://mogenius.com/assets/fonts/robotoSlab/RobotoSlab-Light.woff) format(woff);
 }
 
 @font-face {
-  font-family: 'Cairo';
-  font-weight: 400;
+  font-family: 'robotoSlab';
+  font-weight: 500;
   font-style: normal;
-  src: url('https://mogenius.com/cairo-v10-latin-regular.d3bac703ab71d722cebd.woff2') format(woff2), url(https://mogenius.com/cairo-v10-latin-regular.bc26e7629ed692ebf52a.woff) format(woff);
+  src: url('https://mogenius.com/assets/fonts/robotoSlab/RobotoSlab-Regular.woff2') format(woff2), url(https://mogenius.com/assets/fonts/robotoSlab/RobotoSlab-Regular.woff) format(woff);
 }
 
 @font-face {
-  font-family: 'Cairo';
+  font-family: 'robotoSlab';
   font-weight: 600;
   font-style: normal;
-  src: url('https://mogenius.com/cairo-v10-latin-600.4fad0b5b4a085838e8a2.woff2') format(woff2), url(https://mogenius.com/cairo-v10-latin-600.60684562c80a33193e7f.woff) format(woff);
+  src: url('https://mogenius.com/assets/fonts/robotoSlab/RobotoSlab-SemiBold.woff2') format(woff2), url(https://mogenius.com/assets/fonts/robotoSlab/RobotoSlab-SemiBold.woff) format(woff);
 }
 
 @font-face {
-  font-family: 'Cairo';
+  font-family: 'robotoSlab';
   font-weight: 700;
   font-style: normal;
-  src: url('https://mogenius.com/cairo-v10-latin-700.5b3fcfd17f7a5282c5c6.woff2') format(woff2), url(https://mogenius.com/cairo-v10-latin-700.b963de0a8408fe98ae4a.woff) format(woff);
+  src: url('https://mogenius.com/assets/fonts/robotoSlab/RobotoSlab-Bold.woff2') format(woff2), url(https://mogenius.com/assets/fonts/robotoSlab/RobotoSlab-Bold.woff) format(woff);
 }
 
 :root {
---ifm-font-family-monospace: 'Cairo', Arial, sans-serif;
---ifm-font-family-base: 'Cairo', Arial, sans-serif;
+--ifm-font-family-monospace: 'robotoSlab', Arial, sans-serif;
+--ifm-font-family-base: 'robotoSlab', Arial, sans-serif;
 --ifm-color-primary: #005f79;
 --ifm-color-primary-dark: #00556d;
 --ifm-color-primary-darker: #005167;

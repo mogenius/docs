@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'mogenius Documentation',
-  tagline: 'smart cloud for developers',
+  title: 'mogenius Docs',
+  tagline: 'Empowering Platform Engineering',
   url: 'https://docs.mogenius.com',
   baseUrl: '/',
   onBrokenLinks: 'warn',
