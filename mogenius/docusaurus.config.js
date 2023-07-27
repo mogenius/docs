@@ -44,12 +44,17 @@ const config = {
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({     
+    ({ 
+      colorMode: {
+        defaultMode: 'dark',
+        disableSwitch: false,
+      },    
        navbar: {
         title: '',
         logo: {
           alt: 'mogenius logo',
           src: 'img/logo.svg',
+          srcDark: 'img/logo_dark.svg',
           href: '/'
         },
         items: [
