@@ -33,17 +33,27 @@
   src: url('https://mogenius.com/assets/fonts/robotoSlab/RobotoSlab-Bold.woff2') format(woff2), url(https://mogenius.com/assets/fonts/robotoSlab/RobotoSlab-Bold.woff) format(woff);
 }
 
-:root {
+:root 
+[data-theme='light']{
 --ifm-font-family-monospace: 'robotoSlab', Arial, sans-serif;
 --ifm-font-family-base: 'robotoSlab', Arial, sans-serif;
---ifm-color-primary: #005f79;
---ifm-color-primary-dark: #00556d;
---ifm-color-primary-darker: #005167;
---ifm-color-primary-darkest: #004255;
---ifm-color-primary-light: #006885;
---ifm-color-primary-lighter: #006d8b;
---ifm-color-primary-lightest: #007b9d;
+--ifm-color-primary: #009bc5;
+--ifm-color-primary-dark: #008bb1;
+--ifm-color-primary-darker: #0084a7;
+--ifm-color-primary-darkest: #006c8a;
+--ifm-color-primary-light: #00aad9;
+--ifm-color-primary-lighter: #00b2e3;
+--ifm-color-primary-lightest: #009BC5;
   --ifm-code-font-size: 95%;
+}
+[data-theme='dark']{
+--ifm-color-primary: #00c4fa;
+--ifm-color-primary-dark: #00b0e1;
+--ifm-color-primary-darker: #00a7d4;
+--ifm-color-primary-darkest: #0089af;
+--ifm-color-primary-light: #14ccff;
+--ifm-color-primary-lighter: #21cfff;
+--ifm-color-primary-lightest: #46d7ff;
 }
 
 li::marker {
