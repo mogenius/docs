@@ -45,6 +45,7 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({ 
+      Image: 'img/meta-image.jpg',
       colorMode: {
         defaultMode: 'dark',
         disableSwitch: false,
