@@ -5,7 +5,7 @@ description: Connect your own Kubernetes cluster by installing the mogenius oper
 
 # Installing mogenius
 
-mogenius allows you to connect with Kubernetes clusters by installing the mogenius operator on a cluster. Once installed, you can start deploying projects and manage Kubernetes workloads through the mogenius platform. To start with the installation, you'll have to create a cluster in mogenius first.
+mogenius allows you to connect with Kubernetes clusters by installing the mogenius operator on a cluster. Once installed, you can start deploying projects and manage Kubernetes workloads through the mogenius platform. To begin the installation process, you'll first need to create a cluster in mogenius.
 
 ## Prerequisites
 To successfully complete the next steps, you will need the following:
@@ -32,7 +32,7 @@ This will create a management pane for a Kubernetes cluster in mogenius. It will
 
 ## Retrieve the Helm chart
 
-In your mogenius cluster, open the tab "Connect". This is where you can manage your Helm installation for the mogenius operator. You can copy the commands to install, upgrade and delete the Helm chart from your Kubernetes cluster. The Helm chart can be modified depending on your individual setup. Under cluster options, set the services that should be installed together with the mogenius operator. If your cluster already has one or more of these services, deactivate them.
+In your mogenius cluster, open the tab "Connect." This is where you can manage your Helm installation for the mogenius operator. You can copy the commands to install, upgrade, and delete the Helm chart from your Kubernetes cluster. The Helm chart can be modified depending on your individual setup. Under cluster options, set the services that should be installed together with the mogenius operator. If your cluster already has one or more of these services, deactivate them.
 
 The install command will look like this.
 
@@ -66,7 +66,7 @@ helm install mogenius-issuer mogenius/mogenius-cluster-issuer --set global.clust
 
 ## Install the operator on Kubernetes
 
-Copy the install command to your clipboard. Switch to a console and connect with your Kubernetes cluster. Paste the install command to the command line and hit Enter. The installation will begin and after a few seconds the mogenius operator and all accompanying services will be running.
+Copy the install command to your clipboard. Switch to a console and connect with your Kubernetes cluster. Paste the install command to the command line and hit Enter. The installation will begin, and after a few seconds, the mogenius operator and all accompanying services will be running.
 
 You can monitor the installation in mogenius. Once the installation was successful, your cluster will switch to the state `Connected`. As long as no connection to the operator could be established the state will be `Disconnected`.
 
