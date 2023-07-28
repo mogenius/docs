@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'mogenius Documentation',
-  tagline: 'smart cloud for developers',
+  title: 'mogenius Docs',
+  tagline: 'Empowering Platform Engineering',
   url: 'https://docs.mogenius.com',
   baseUrl: '/',
   onBrokenLinks: 'warn',
@@ -44,12 +44,17 @@ const config = {
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({     
+    ({ 
+      colorMode: {
+        defaultMode: 'dark',
+        disableSwitch: false,
+      },    
        navbar: {
         title: '',
         logo: {
           alt: 'mogenius logo',
           src: 'img/logo.svg',
+          srcDark: 'img/logo_dark.svg',
           href: '/'
         },
         items: [

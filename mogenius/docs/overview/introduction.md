@@ -3,7 +3,7 @@ sidebar_position: 1
 slug: /
 ---
 
-# Welcome!
+# Welcome
 
 Welcome to the mogenius documentation hub, your comprehensive resource for setting up and utilizing mogenius as your Internal Developer Platform.
 

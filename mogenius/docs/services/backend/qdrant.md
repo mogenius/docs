@@ -1,4 +1,8 @@
-﻿# Qdrant
+﻿---
+description: A Python boilerplate project that you can use to deploy a blank Python project to a Kubernetes cluster.
+---
+
+# Qdrant
 
 ![Qdrant logo](https://api.mogenius.com/file/id/6e4ee805-db28-4881-b380-2ffeaa0e556c)
 
