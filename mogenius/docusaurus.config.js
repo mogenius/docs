@@ -45,6 +45,11 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({ 
+      Image: 'img/meta-image.jpeg',
+      metadata: [
+        {name: 'twitter:card', content: 'img/meta-image.jpeg'},
+        {name: 'og:image', content: 'img/meta-image.jpeg'},
+      ],
       colorMode: {
         defaultMode: 'dark',
         disableSwitch: false,
