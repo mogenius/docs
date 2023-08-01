@@ -4,10 +4,6 @@ slug: /help-and-feedback
 
 # Help & Feedback
 
-## Feedback
-Your feedback is incredibly valuable in helping us deliver a product that best meets your needs. If you have suggestions and ideas, please use our feedback tool. Here you have the opportunity to submit ideas, vote on other ideas and follow our roadmap.  
-💡 **[Feedback](https://feedback.mogenius.com)**
-
 ## Support
 If you encounter any problems or need quick help, you can always contact us directly.  
 ❗️ **[Support](mailto:support@mogenius.com)**
