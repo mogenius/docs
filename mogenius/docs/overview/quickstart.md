@@ -27,10 +27,6 @@ To successfully complete this step, you will need the following:
 If any of these poses challenges for you, or if you don't want to run mogenius with your own Kubernetes cluster, check out our section [Managed clusters](./../cluster-management/managed-clusters.md).
 :::
 
-:::caution
-Cluster self-service is currently in private beta. Until this feature is released, the mogenius team will assist you with setting up your cluster. [Reach out to us](https://mogenius.com/contact/get-in-touch) if you would like to learn more.
-:::
-
 First, set up a cluster in mogenius. In your organization, navigate to Clusters. Select "Create cluster" and enter details for the required settings:
 
 | Input field | Comment |
