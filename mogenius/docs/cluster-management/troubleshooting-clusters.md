@@ -5,6 +5,11 @@ description: Here's a list of common issues with clusters on mogenius and how to
 
 # Troubleshooting clusters
 
-:::caution
-Cluster self-service and the related platform features are currently in private Beta. Until this feature is released the mogenius team will assist you with setting up your cluster. [Reach out to us](https://mogenius.com/contact/get-in-touch) if you would like to learn more.
+Here's a list of common issues that can occur when connecting clusters with mogenius. If your problem is not on the page, please contact [support](mailto:support@mogenius.com).
+
+## Installation failed: clusterroles.rbac.authorization.k8s.io
+If installing the mogenius operator fails with an error message related to cluster roles and permissions, it is likely that your current user doesn't have sufficient permissions to perform the installation. Per default, the installation requires the clusterAdmin role.
+
+:::info
+If you can't get access to this role by company policies please contact our [support](mailto:support@mogenius.com). Depending on your infrastructure setup the operator can be customized with less permissions required.
 :::
