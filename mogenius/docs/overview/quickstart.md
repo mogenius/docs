@@ -27,6 +27,10 @@ To successfully complete this step, you will need the following:
 If any of these poses challenges for you, or if you don't want to run mogenius with your own Kubernetes cluster, check out our section [Managed clusters](./../cluster-management/managed-clusters.md).
 :::
 
+<div style={{ position: 'relative', paddingBottom: 'calc(56.25782227784731% + 41px)', height: 0 }}>
+      <iframe src="https://app.supademo.com/embed/6BiG3CpMa0b0Nyn1LZ64-" frameBorder="0" loading="lazy" webkitAllowFullScreen mozAllowFullScreen allowFullScreen style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
+    </div>
+
 First, set up a cluster in mogenius. In your organization, navigate to Clusters. Select "Create cluster" and enter details for the required settings:
 
 | Input field | Comment |
