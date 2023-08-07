@@ -48,7 +48,7 @@ const config = {
         redirects: [
           {
           to: '/',
-          from: '/tutorials',
+          from: ['/tutorials/*']
           }
         ],
         // createRedirects(existingPath) {
