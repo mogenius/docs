@@ -6,37 +6,37 @@
 
 /* You can override the default Infima variables here. */
 @font-face {
-  font-family: 'robotoSlab';
+  font-family: 'roboto';
   font-weight: 300;
   font-style: normal;
-  src: url('https://mogenius.com/assets/fonts/robotoSlab/RobotoSlab-Light.woff2') format(woff2), url(https://mogenius.com/assets/fonts/robotoSlab/RobotoSlab-Light.woff) format(woff);
+  src: url('/static/fonts/roboto/Roboto-Light.ttf') format(ttf);
 }
 
 @font-face {
-  font-family: 'robotoSlab';
+  font-family: 'roboto';
   font-weight: 500;
   font-style: normal;
-  src: url('https://mogenius.com/assets/fonts/robotoSlab/RobotoSlab-Regular.woff2') format(woff2), url(https://mogenius.com/assets/fonts/robotoSlab/RobotoSlab-Regular.woff) format(woff);
+  src: url('/static/fonts/roboto/Roboto-Regular.ttf') format(ttf);
 }
 
 @font-face {
-  font-family: 'robotoSlab';
+  font-family: 'roboto';
   font-weight: 600;
   font-style: normal;
-  src: url('https://mogenius.com/assets/fonts/robotoSlab/RobotoSlab-SemiBold.woff2') format(woff2), url(https://mogenius.com/assets/fonts/robotoSlab/RobotoSlab-SemiBold.woff) format(woff);
+  src: url('/static/fonts/roboto/Roboto-Bold.ttf') format(ttf);
 }
 
 @font-face {
-  font-family: 'robotoSlab';
+  font-family: 'roboto';
   font-weight: 700;
   font-style: normal;
-  src: url('https://mogenius.com/assets/fonts/robotoSlab/RobotoSlab-Bold.woff2') format(woff2), url(https://mogenius.com/assets/fonts/robotoSlab/RobotoSlab-Bold.woff) format(woff);
+  src: url('/static/fonts/roboto/Roboto-Bold.ttf') format(ttf);
 }
 
 :root 
 [data-theme='light']{
---ifm-font-family-monospace: 'robotoSlab', Arial, sans-serif;
---ifm-font-family-base: 'robotoSlab', Arial, sans-serif;
+--ifm-font-family-monospace: 'roboto', Arial, sans-serif;
+--ifm-font-family-base: 'roboto', Arial, sans-serif;
 --ifm-color-primary: #009bc5;
 --ifm-color-primary-dark: #008bb1;
 --ifm-color-primary-darker: #0084a7;
