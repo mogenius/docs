@@ -22,7 +22,7 @@ brew tab mogenius/mocli
 brew install mocli
 ```
 
-> Be aware that on Linux with a headless machine, `mocli` would unfortunately not work as it currently requires a browser to lo gin to our platform.
+> Be aware that on Linux with a headless machine, `mocli` would unfortunately not work as it currently requires a browser to log in to our platform.
 
 ### Windows
 
