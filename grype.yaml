@@ -1,7 +1,2 @@
 ignore:
-  #- vulnerability: CVE-2022-37434
-  #- vulnerability: CVE-2022-35255
-  #- vulnerability: CVE-2023-32002
-  #- vulnerability: GHSA-2jcg-qqmg-46q6
-  #- vulnerability: CVE-2023-23914
-  #- vulnerability: CVE-2022-32221
+  - vulnerability: GHSA-2jcg-qqmg-46q6
