@@ -15,10 +15,8 @@ To successfully complete the next steps, you will need the following:
 - A working installation of `Helm`.
 - Kubernetes cluster admin permissions
 
-<!---
 ## Resource requirements
-The mogenius operator consists of several pods that will be deployed to your Kubernetes cluster. It will require CPU and GB RAM.
--->
+The mogenius operator consists of several pods that will be deployed to your Kubernetes cluster. It will require at least 0.5 vCPU and 128 MB RAM.
 
 ## Create a cluster in mogenius
 
