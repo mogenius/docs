@@ -26,8 +26,9 @@ brew install mocli
 
 ### Windows
 
-```jsx
---- coming soon ---
+```jsx title="Install mocli"
+scoop bucket add mocli https://github.com/mogenius/homebrew-mocli
+scoop install mocli
 ```
 
 ## Getting Started
