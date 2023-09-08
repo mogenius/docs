@@ -23,7 +23,7 @@ You can read more about deploying from a git repository [here](deploy-from-a-rep
 ### Cron settings
 Configure your CronJob with a schedule and some guardrails:
 - Cron expression: Your CronJob will be triggered according to this schedule. The syntax follows standardized cron expressions and you can use tools like crontab.guru to easily create your cron expression.
-- Number of allowed restarts: If your CronJob fails, this setting determines the number of restarts after which the job is considered unsuccessful. The job will be stopped and executed again according to the schedule.
+- Number of allowed restarts: If the job fails the pod will be restarted automatically. This setting determines the number of restarts after which the job is considered unsuccessful. The pod will be killed and and the job is executed again according to the schedule.
 - Maximum duration in seconds: This sets the limit of seconds that each job is allowed to run. If the job reaches this limit it will be stopped as unsuccessful.
 
 ### Resource limits
