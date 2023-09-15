@@ -20,7 +20,6 @@ MongoDB is a source-available cross-platform document-oriented database program.
 
 **How to deploy MongoDB**  
 To install this service, go to the service library. Select the MongoDB service and click "Add service". Follow the instructions and walk through the create process. You need to set environment variables that will be stored in your Key Vault and that you can access later through other applications.
-THere is a detailed tutorial available on [how to launch MongoDB with mogenius](./../../tutorials/how-to-set-up-mongodb-in-the-cloud.md).
 
 
 :::info

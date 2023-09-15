@@ -23,5 +23,4 @@ Express is a web framework on top of Node.js. This template creates a boilerplat
 
 **How to deploy**  
 To initiate an Express project, you can add it as a service to your cloudspace. Select Express with Typescript from the service library and follow the instructions.  
-There is a detailed tutorial available on [how to launch Express with Typescript with mogenius](./../../tutorials/how-to-deploy-express-in-the-cloud.md).
 

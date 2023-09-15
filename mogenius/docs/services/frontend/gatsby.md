@@ -19,4 +19,3 @@ Gatsby is a React-based open-source framework for creating websites and apps. Ga
 
 **How to deploy**  
 To set up Gatsby, you can add it as a service to your cloudspace. Select Gatsby from the service library and follow the instructions.  
-There is a detailed tutorial available on [how to launch Gatsby with mogenius](./../../tutorials/how-to-deploy-gatsby-in-the-cloud.md).

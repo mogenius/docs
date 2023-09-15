@@ -20,7 +20,6 @@ Nginx is an open source reverse proxy server for HTTP, HTTPS, SMTP, POP3, and IM
 
 **How to deploy nginx**  
 To install this service, go to the service library. Select the nginx service and click "Add service". Follow the instructions and finalize the create process by clicking "Save".  
-There is a detailed tutorial available on [how to launch nginx with mogenius](./../../tutorials/how-to-deploy-nginx-in-the-cloud.md).
 
 :::info
 Note that the mogenius service library also holds a template for an nginx reverse-proxy configuration.
