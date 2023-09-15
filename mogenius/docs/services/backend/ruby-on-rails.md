@@ -19,4 +19,3 @@ Ruby on Rails is a full-stack framework based on the programming language Ruby, 
 
 **How to deploy**  
 To set up Ruby on Rails, you can add it as a service to your cloudspace. Select Ruby on Rails from the service library and follow the instructions.  
-There is a detailed tutorial available on [how to launch Ruby on Rails with mogenius](./../../tutorials/how-to-deploy-ruby-on-rails-in-the-cloud.md).

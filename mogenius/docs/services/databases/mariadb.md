@@ -21,7 +21,6 @@ It is built upon the values of performance, stability, and openness, and MariaDB
 
 **How to deploy**  
 To initiate a MariaDB project, you can add it as a service to your cloudspace. Select MariaDB from the service library and follow the instructions.  
-There is a detailed tutorial available on [how to launch MariaDB with mogenius](./../../tutorials/how-to-set-up-mariadb-and-phpmyadmin-in-the-cloud.md).
 
 :::info
 The database will be deployed in a container on a Kubernetes cluster, which is usually considered bad practice for production workloads. The service template is suitable for testing and development but we recommend to rely on a managed database service for production workloads. We'll support managed databases on mogenius soon - until then, we're happy to give recommendations for an appropriate solution.

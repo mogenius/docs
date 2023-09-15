@@ -19,4 +19,3 @@ Grafana Loki is a set of components that can be composed into a fully featured l
 
 **How to deploy**  
 To set up Grafana Loki, you can add it as a service to your cloudspace. Select Grafana Loki from the service library and follow the instructions.  
-There is a detailed tutorial available on [how to launch Grafana Loki with mogenius](./../../tutorials/how-to-deploy-grafana-loki-in-the-cloud.md).

@@ -18,4 +18,3 @@ Redis Commander is a node.js web application used to view, edit, and manage a Re
 
 **How to deploy**  
 To set up Redis Commander, you can add it as a service to your cloudspace. Select Redis Commander from the service library and follow the instructions.  
-There is a detailed tutorial available on [how to launch Redis Commander with mogenius](./../../tutorials/how-to-set-up-redis-commander-in-the-cloud.md).

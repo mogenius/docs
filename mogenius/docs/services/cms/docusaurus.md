@@ -20,4 +20,4 @@ Docusaurus is a static-site generator. It builds a single-page application with 
 
 **How to deploy Docusaurus**  
 To install this service, go to the service library. Select the Docusaurus service and click "Add service". Follow the on-screen instructions and complete the creation process by clicking "Save".  
-There is a detailed tutorial available on [how to launch Docusaurus with mogenius](./../../tutorials/how-to-launch-docusaurus-in-the-cloud.md).
+
