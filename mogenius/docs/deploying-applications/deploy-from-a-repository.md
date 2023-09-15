@@ -28,14 +28,14 @@ Check the fields "Dockerfile name" and "Docker context". Per default they are se
 For security reasons we don't allow running a Docker image as root user. You will always need to set a user in your Dockerfile, otherwise the service will not be deployed. In most cases the standard unix users will work, see our example for the Svelte template as a reference.
 :::
 
-### Ports
-Determine the ports that your application uses. mogenius supports HTTPS, TCP and UDP. Use the setting "Expose" to make your application available outside of your project through the specific port.
+### Resource limits
+Next you can set the resource limits for your service. By default we set some minimum recommendations but you will probably need to adjust them to the specific requirements of your application. Note that you can always change these settings later.
 
 ### Environment variables
 This is an optional setting which depends on the application you want to deploy. You can set plain text variables, secrets, or volume mounts.
 
-### Resource limits
-Next you can set the resource limits for your service. By default we set some minimum recommendations but you will probably need to adjust them to the specific requirements of your application. Note that you can always change these settings later.
+### Ports
+Determine the ports that your application uses. mogenius supports HTTPS, TCP and UDP. Use the setting "Expose" to make your application available outside of your project through the specific port.
 
 ### Create and deploy
 Now just click "Create Service" and your repository will be built and deployed as a service to your project. Once the setup routines, build and deployment processes are complete (usually a few minutes at most), you can start using your service by accessing it via it's hostnames. You will find the internal and external hostnames on your service page.
