@@ -17,3 +17,9 @@ If you're seeing the [mogenius default backend](https://mo1.mogenius.com/) when 
 The error CrashLoopBackoff in your deployment logs means that the pod crashed on the cluster and is restarting. This can have several reasons:
 - The service has not enough resources. You might want to check the resource limits in your service settings.
 - Configuration errors in your application can cause the container to crash. Check your service logs for errors in the logs.
+
+## Insufficient ephemeral storage
+```jsx title="Example in deployment logs"
+0/2 nodes are available: Insufficient ephemeral storage.
+```
+This issue results in failing deployments due to insufficient ephemeral storage on the Kubernetes cluster. It usually means that your service ran out of ephemeral storage on the node. This can be solved by reducing the temp. storage of other services on the cluster. In the service settings, go to Resources and decrease the temp. storage limit in order to free more ephemeral storage for the service that is facing the deployment issues. If you don't have enough ephemeral storage overall you might want to increase the resources on the Node pool. 
