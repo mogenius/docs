@@ -18,6 +18,12 @@ The error CrashLoopBackoff in your deployment logs means that the pod crashed on
 - The service has not enough resources. You might want to check the resource limits in your service settings.
 - Configuration errors in your application can cause the container to crash. Check your service logs for errors in the logs.
 
+## Ephemeral local storage usage exceeds the total limit of containers
+```jsx title="Example in deployment logs"
+[Evicted]  Pod ephemeral local storage usage exceeds the total limit of containers 500Mi.
+```
+If your application is crashing and restarting with the message above prompted in the Deployment logs it indicates that the limit of ephemeral storage is set too low. Try increasing it in the resource settings of your service, by adjusting the limit for "Temp. storage" incrementally. After saving your settings the service will restart. Wait until the new instance of your service is ready and then check if the error still occurs.
+
 ## Insufficient ephemeral storage
 ```jsx title="Example in deployment logs"
 0/2 nodes are available: Insufficient ephemeral storage.
