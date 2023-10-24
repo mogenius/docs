@@ -15,6 +15,10 @@ Fill in the form fields to connect your cluster with a domain:
 - Loadbalancer IPs: Enter the external load balancer IP address of your cluster. This is only available if an ingress controller is installed on your cluster. If you don't have one already, you can install an ingress controller together with the mogenius operator (see [installing mogenius](./installing-mogenius.md)).
 - Loadbalancer Host: Enter a hostname for your cluster. Each service on the cluster will be created under a subdomain of this hostname by default. Later, you can set individual domains in the settings of each service.
 
+:::tip
+Working on a local cluster? Just type in `127.0.0.1` as the IP and `localhost` for the loadbalancer host.
+:::
+
 ### Connecting your domain
 In your DNS settings, create two records of type A:
 
