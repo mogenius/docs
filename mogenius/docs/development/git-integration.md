@@ -42,7 +42,6 @@ Once you retrieved the token, go back to mogenius integrations and select the op
 With Gitlab there are several scopes in your account where you can create an access token: User, Group, or Project. Depending on your desired scope of permissions, go to the respective settings and open the section "Access Tokens."
 
 **The minimum required permissions are**
-- The user has the role `maintainer` or more
 - api
 - read_repository
 - write_repository
