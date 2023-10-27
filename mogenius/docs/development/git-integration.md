@@ -47,7 +47,7 @@ With Gitlab there are several scopes in your account where you can create an acc
 - write_repository
 
 :::info
-Note that the role `Maintainer` or higher is required for the connected user.
+Note that for each Gitlab project that you deploy via mogenius, the role `Maintainer` or higher is required for the Gitlab user that owns the token.
 :::
 
 **Finish setup**  
