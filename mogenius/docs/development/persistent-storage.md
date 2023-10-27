@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# Storage
+# NFS Storage
 
 mogenius has a built-in storage solution based on NFS storage. This allows you to persist applications and to store assets and data from your applications. The solution is designed to achieve persistency for your services without the overhead of managing a storage solution. This setup is not recommended for heavy workloads, or large production setups. In this case we recommend to implement your own storage solution depending on your requirements.
 
