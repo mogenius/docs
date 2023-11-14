@@ -1,5 +1,5 @@
 ---
-slug: /services
+slug: /templates-and-services
 ---
 
 # Templates and services
