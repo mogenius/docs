@@ -4,7 +4,12 @@ sidebar_position: 6
 
 # Release notes
 
-## v.1.19.0 - 20.09.2023
+## v1.6.8 (mocli) - 14.11.2023
+- Added service management commands to `start`, `stop`, `restart`, `rebuild`, and `delete` services.
+- Added a shell feature to log into each container inside a project.
+- Check out the [CLI documentation](../development/mogenius-cli.md) for further details.
+
+## v1.19.0 - 20.09.2023
 
 - **New service type: CronJobs**. Now you can deploy CronJobs to your Kubernetes cluster with mogenius. Read more about CronJobs on [this page](../deploying-applications/cronjobs.md).
 - The service type "Bring your own Code" was renamed. It is now called "Repository" to better reflect the fact that this service is created from Github or Gitlab repositories.
