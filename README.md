@@ -3,7 +3,7 @@ mogenius empowers you to establish platform engineering and an Internal Develope
 
 Read our [quickstart guide](https://docs.mogenius.com/overview/quickstart) to deploy services to any Kubernetes cluster in minutes.
 
-![intro image](https://api.mogenius.com/file/id/7d107d6e-241a-4ef4-a88b-68a7800e409d)
+![intro image](https://imagedelivery.net/T7YEW5IAgZJ0dY4-LDTpyQ/93a77f3d-c1bc-4ac4-1c0d-739700d78400/public)
 
 # Contribute
 The mogenius documentation is open-source and based on Docusaurus. You can edit and create content within the documentation by sending a pull request with your suggested changes.
