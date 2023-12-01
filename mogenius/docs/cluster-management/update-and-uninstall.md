@@ -1,5 +1,5 @@
 ﻿---
-sidebar_position: 5
+sidebar_position: 6
 description: Manage the mogenius operator, run updates and delete it from your cluster.
 ---
 

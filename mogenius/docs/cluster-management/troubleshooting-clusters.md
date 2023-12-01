@@ -1,5 +1,5 @@
 ﻿---
-sidebar_position: 7
+sidebar_position: 8
 description: Here's a list of common issues with clusters on mogenius and how to fix them.
 ---
 
