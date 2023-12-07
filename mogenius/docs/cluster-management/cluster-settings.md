@@ -1,5 +1,5 @@
 ﻿---
-sidebar_position: 2
+sidebar_position: 3
 description: Prepare a cluster in mogenius to connect with your own Kubernetes cluster.
 ---
 
