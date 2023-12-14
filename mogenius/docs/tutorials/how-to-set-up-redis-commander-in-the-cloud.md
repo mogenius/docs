@@ -8,7 +8,7 @@ title: How to set up redis commander
 
 ## In short
 
-redis commander is a redis web management tool written in node.jspg. In this article we'll be looking at how you easily create and set up redis commander as a microservice in the cloud (Microsoft Azure) without the hassle of time-consuming setup and Kubernetes management.
+redis commander is a redis web management tool written in node.js. In this article we'll be looking at how you easily create and set up redis commander as a microservice in the cloud (Microsoft Azure) without the hassle of time-consuming setup and Kubernetes management.
 
 ## Getting started
 
