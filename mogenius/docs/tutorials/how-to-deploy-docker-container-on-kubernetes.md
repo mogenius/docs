@@ -44,28 +44,17 @@ The mogenius operator consists of several pods that will be deployed to your Kub
       <iframe src="https://app.supademo.com/embed/6BiG3CpMa0b0Nyn1LZ64-" frameBorder="0" loading="lazy" webkitAllowFullScreen mozAllowFullScreen allowFullScreen style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
     </div>
 
-In your organization open "Clusters" and select "Create cluster." Fill in the form fields:
-
--   Display name: It will only be used to display your cluster in mogenius.
--   Cluster name: The actual name of the Kubernetes cluster that you would like to connect. This must match your k8s cluster name.
--   Cluster type: Select from the dropdown which type of Kubernetes cluster you're using.
--   Hit "Create now".
+In your organization open "Clusters" and select "Add cluster." Enter a display name for your cluster and confirm.
 
 ***Please note: This will create a management pane for a Kubernetes cluster in mogenius. It will not create an actual Kubernetes cluster.***
 
-### Retrieve the Helm chart
-
-In your mogenius cluster, open the tab "Connect." This is where you can manage your Helm installation for the mogenius operator. You can copy the commands to install, upgrade, and delete the Helm chart from your Kubernetes cluster. The Helm chart can be modified depending on your individual setup. Under cluster options, set the services that should be installed together with the mogenius operator. If your cluster already has one or more of these services, deactivate them.
-
-The install command will look like this:
-
-![enter image description here](https://api.mogenius.com/file/id/23b93136-f75d-421b-a2f5-3ddd74c5980f)
-
 ### Install the operator on Kubernetes
 
-Copy the install command to your clipboard. Switch to a console and connect with your Kubernetes cluster. Paste the install command to the command line and hit Enter. The installation will begin, and after a few seconds, the mogenius operator and all accompanying services will be running.
+To connect mogenius with Kubernetes you'll need to install our operator on Kubernetes. On the next screen you'll see two options, either via CLI command or by installing a Helm chart. Choose your option and copy the command to a terminal. Make sure to execute it in the proper kubecontext. The operator will now be installed on your cluster.
 
 You can monitor the installation in mogenius. Once the installation was successful, your cluster will switch to the state  `Connected`. As long as no connection to the operator could be established the state will be  `Disconnected`.
+
+You'll now be asked if you want to install additional services on the cluster, such as an IngressController or metrics-server. The services are optional but they ensure that you'll be able to deploy services successfully using mogenius.
 
 If you're encountering issues with installing the operator, check out common problems in the section  [Troubleshooting clusters](https://docs.mogenius.com/cluster-management/troubleshooting-clusters).
 
@@ -88,12 +77,16 @@ Fill in the form fields to connect your cluster with a domain:
 
 -   Loadbalancer IPs: Enter the external load balancer IP address of your cluster. This is only available if an ingress controller is installed on your cluster. If you don't have one already, you can install an ingress controller together with the mogenius operator (see  [installing mogenius](https://docs.mogenius.com/cluster-management/installing-mogenius)).
 -   Loadbalancer Host: Enter a hostname for your cluster. Each service on the cluster will be created under a subdomain of this hostname by default. Later, you can set individual domains in the settings of each service.
+-   Note that these settings are filled out automatically if possible.
 
 ### Connecting your domain
 
 In your DNS settings, create two records of type A:
 
-![enter image description here](https://api.mogenius.com/file/id/a2f9dfd0-9d72-46e9-bc8b-29140285c993)
+|Type|Name (example)|Target|
+|---|---|---|
+|A|yourdomain.com|LOADBALANCER_IP|
+|A|*.yourdomain.com|LOADBALANCER_IP|
 
 ### Container registry
 
@@ -123,10 +116,6 @@ Next, you'll see the "Add a service" page. If your account or project is not alr
 ## 5. Configure your Docker file settings and resource limits
 
 Select the branch in your repository and the environment in your project space that you want to use. Determine the port as specified in the Dockerfile. You can optionally add environment variables and change resource limits such as CPU cores, memory, and temporary storage required for your application to run, or the number of instances you want to deploy (Kubernetes pods).
-
-Here's an overview of all the service settings:
-
-![enter image description here](https://api.mogenius.com/file/id/ded7d23f-4200-4cdd-a43d-001405ebde72)
 
 ## 6. Build and deploy
 
