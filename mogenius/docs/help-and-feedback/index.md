@@ -8,6 +8,10 @@ slug: /help-and-feedback
 If you encounter any problems or need quick help, you can always contact us directly.  
 ❗️ **[Support](mailto:support@mogenius.com)**
 
+## Feedback
+You can see what we're building next, submit your feedback, and vote on ideas on our public roadmap.  
+💡 **[Roadmap](https://feedback.mogenius.com/)**
+
 ## FAQ
 
 <details>
