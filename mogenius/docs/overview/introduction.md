@@ -9,7 +9,7 @@ Welcome to the mogenius documentation hub, your comprehensive resource for setti
 
 ## What is mogenius?
 
-![enter image description here](https://api.mogenius.com/file/id/95e16880-56d3-4603-b0d1-664cb257c132)
+![enter image description here](https://imagedelivery.net/T7YEW5IAgZJ0dY4-LDTpyQ/93a77f3d-c1bc-4ac4-1c0d-739700d78400/public)
 
 mogenius empowers you to establish platform engineering and an Internal Developer Platform, offering intuitive self-service environments for development teams to deploy, monitor, and log their applications in Kubernetes clusters on any infrastructure. To learn more about mogenius, please visit our [website](https://mogenius.com).
 

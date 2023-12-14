@@ -10,7 +10,7 @@ mogenius acts as a layer on top of Kubernetes, integrating seamlessly with your 
 
 The following graphic provides a high-level visualization of how mogenius integrates with your infrastructure:
 
-![mogenius platform](https://api.mogenius.com/file/id/0ad44b42-eacc-465a-824f-f494261fe0b2)
+![mogenius platform](https://imagedelivery.net/T7YEW5IAgZJ0dY4-LDTpyQ/8acd32ec-56e3-4c7e-daca-b80ab7357200/jpeg)
 
 ## The mogenius operator
 mogenius integrates with Kubernetes clusters through our operator, which is installed on the cluster using `helm`. During the installation, a new `mogenius` namespace is created to house all the services. You can configure the services that should be installed in your mogenius cluster administration. Once the installation is complete, the operator establishes a TCP connection to communicate with the platform.

@@ -7,7 +7,7 @@ sidebar_position: 1
 mogenius comes with a built in CI/CD pipeline, so that you can start working on your application and deploy any changes to the cloud immediately.
 When creating a service you will connect your Github or Gitlab account to deploy repositories with a Dockerfile.
 
-![connect to github](https://api.mogenius.com/file/id/88626d92-fa15-4d9e-8598-6a914daa633c)
+![connect to github](https://imagedelivery.net/T7YEW5IAgZJ0dY4-LDTpyQ/a1fdf4eb-0e83-4720-f68f-777778127f00/jpeg)
 
 After starting your service, mogenius monitors the selected branch in your repository via webhooks. Each time your branch is updated, a new build of your service is triggered automatically.
 This means that after creating a service you can work on your application and with `git push` everything is deployed on your Kubernetes cluster.
