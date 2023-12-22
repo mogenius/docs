@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Local cluster
 
-You can connect mogenius with any Kubernetes installation, which means you can also run local setups. The platform comes with dedicated infrastructure for local Kubernetes setups that allow you to create a production-like environment for testing and debugging on local machines.
+You can connect mogenius with any Kubernetes installation, which means you can also run local setups. The platform comes with dedicated infrastructure for local Kubernetes setups that allows you to create a production-like environment for testing and debugging on local machines.
 
 The local environment allows you to easily deploy any application on Kubernetes on your own and with unseen speed. If you want to avoid waiting time, long feedback loops and potential mismatches between your local setup and cloud-based Kubernetes environment, the local mogenius setup is just for you. 
 
@@ -44,7 +44,7 @@ mogenius (optionally) installs a local container registry on your Kubernetes. Th
 One of the optional cluster services that are installed during cluster setup is MetalLB. Together with the cert-manager it provides your services with external hostnames and even SSL certificates to allow proper testing under production-like conditions.
 
 ### ImagePullPolicy
-One feature in your service setting is the image pull policy. In a local environment you can use it to bring your deployments to real speed. Set it to "Always" in order to automatically pull an image that is already available locally.
+One feature in your service setting is the image pull policy. In a local environment you can use it to bring your deployments to real speed. Set it to "Never" in order to automatically pull an image that is already available locally.
 
 ## Check out our recorded session about local environments
 <iframe width="100%" height="400" src="https://www.youtube.com/embed/VRkZnrwdyvw?si=k6WdDkYDj47SiI28" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
