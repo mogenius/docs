@@ -18,7 +18,7 @@ The mogenius CLI is in Beta, with a limited feature set. Follow our release note
 Use [homebrew](https://brew.sh) to install the `mocli` on your Mac or Linux machines with the following commands:
 
 ```jsx title="Install mocli"
-brew tab mogenius/mocli
+brew tap mogenius/mocli
 brew install mocli
 ```
 
