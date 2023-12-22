@@ -11,65 +11,67 @@ mogenius allows you to connect with Kubernetes clusters by installing the mogeni
 To successfully complete the next steps, you will need the following:
 - A domain you own, to which you can add a DNS record.
 - A Kubernetes cluster. We recommend a managed Kubernetes service, like EKS (Amazon AWS), AKS (Microsoft Azure) or GKE (Google Cloud Platform), but any cluster with Kubernetes version 1.24 or higher will work.
-- A working installation of `kubectl`.
-- A working installation of `Helm`.
+- A working installation of `Helm` and `kubectl`
+- OR optionally the [mogenius CLI](../development/mogenius-cli.md)
 - Kubernetes cluster admin permissions
 
 ## Resource requirements
 The mogenius operator consists of several pods that will be deployed to your Kubernetes cluster. It will require at least 0.5 vCPU and 128 MB RAM.
 
-## Create a cluster in mogenius
+## Add a cluster in mogenius
 
-In your organization open "Clusters" and select "Create cluster." Fill in the form fields:
-- Display name: It will only be used to display your cluster in mogenius.
-- Cluster name: The actual name of the Kubernetes cluster that you would like to connect. This must match your k8s cluster name.
-- Cluster type: Select from the dropdown which type of Kubernetes cluster you're using.
-- Hit "Create now".
+In your organization open "Clusters" and select "Add cluster." Enter a display name for your cluster and confirm.
 
 :::info
 This will create a management pane for a Kubernetes cluster in mogenius. It will not create an actual Kubernetes cluster.
 :::
 
-## Retrieve the Helm chart
+## Install the operator
 
-In your mogenius cluster, open the tab "Connect." This is where you can manage your Helm installation for the mogenius operator. You can copy the commands to install, upgrade, and delete the Helm chart from your Kubernetes cluster. The Helm chart can be modified depending on your individual setup. Under cluster options, set the services that should be installed together with the mogenius operator. If your cluster already has one or more of these services, deactivate them.
+mogenius connects to your Kubernetes cluster via an operator that you'll need to deploy on Kubernetes. In the next step you will have two options to do this: using the mogenius CLI, or by using Helm.
 
-The install command will look like this.
+### mogenius CLI
+Install the mogenius CLI, on your terminal perform a `mocli login` and then run the following command.
 
-```jsx title="mogenius operator Helm install"
-kubectl create namespace mogenius
-helm repo add mogenius https://helm.mogenius.com/public
-helm repo update
-helm install mogenius mogenius/mogenius-platform -n mogenius \
---set namespace="mogenius" \
---set global.cluster_name="YOUR_CLUSTER_NAME" \
---set global.api_key="YOUR_MOGENIUS_API_KEY" \
---set global.namespace="mogenius" \
---set global.cluster_provider="YOUR_CLUSTER_TYPE" \
---set k8smanager.enabled=true \
---set metrics.enabled=true \
---set traffic-collector.enabled=true \
---set pod-stats-collector.enabled=true \
---set ingress-nginx.enabled=true \
---set ingress-nginx.defaultBackend.image.registry=ghcr.io/mogenius \
---set ingress-nginx.defaultBackend.image.image=mo-default-backend \
---set ingress-nginx.defaultBackend.image.tag=latest \
---set ingress-nginx.defaultBackend.enabled=true \
---set certmanager.enabled=true \
---set cert-manager.startupapicheck.enabled=false \
---set certmanager.namespace="mogenius" \
---set cert-manager.namespace="mogenius" \
---set cert-manager.installCRDs=true
-echo "Wait 120 sec ... until all services have been started ..." ; sleep 120
-helm install mogenius-issuer mogenius/mogenius-cluster-issuer --set global.clusterissuermail="YOUR_EMAIL_ADDRESS"
+```jsx" title="Installation via mogenius CLI"
+mocli cluster connect
 ```
 
-## Install the operator on Kubernetes
+You'll be asked to confirm the organization, the cluster that you want to connect, and your current kubecontext before the operator is being deployed.
 
-Copy the install command to your clipboard. Switch to a console and connect with your Kubernetes cluster. Paste the install command to the command line and hit Enter. The installation will begin, and after a few seconds, the mogenius operator and all accompanying services will be running.
+### Helm install
 
-You can monitor the installation in mogenius. Once the installation was successful, your cluster will switch to the state `Connected`. As long as no connection to the operator could be established the state will be `Disconnected`.
+Retrieve the Helm install command from the user interface and run it on a terminal. Make sure that your kubecontext is set to the right Kubernetes cluster. The command will look something like this.
 
+```jsx title="mogenius operator Helm install"
+helm repo add mogenius https://helm.mogenius.com/public
+helm repo update
+helm install mogenius-operator mogenius/mogenius-k8s-manager -n mogenius --create-namespace --wait \
+--set global.cluster_name="DISPLAY_NAME" \
+--set global.api_key="API_KEY" \
+--set global.namespace="mogenius"
+```
+
+## Complete your cluster setup
+
+After executing one of the install commands above, return back to the mogenius user interface and click "I ran the command." The UI will confirm once the operator has established a connection with the mogenius controlplane. To finish your setup you'll now see a list of services that you can install to get your cluster deployment-ready.
+
+The operator scans your cluster and automatically offers a subset of services from the following list, depending on your cluster type and any existing services.
+
+|Service|Description|
+|---|---|
+|Ingress Controller|Installs a traefik ingress controller to handle traffic from outside the cluster and more.|
+|Metrics server|Maintained by Kubernetes-SIGs, handles metrics for built-in autoscaling pipelines.|
+|cert-manager|Install the cert-manager to automatically issue Let's Encrypt certificates to your services.|
+|Clusterissuer|Responsible for signing certificates.|
+|mogenius-traffic-collector|Collects and exposes detailed traffic data for your mogenius services for better monitoring.|
+|mogenius-pod-stats-collector|Collects and exposes status events of pods for services in mogenius.|
+|Internal container registry|A Docker-based container registry inside Kubernetes.|
+|MetalLB loadbalancer|A load balancer for local clusters (e.g. Docker Desktop, k3s, minikube, etc.).|
+
+Select the services that you want to install on your cluster and confirm. You'll be taken to the settings page of your cluster while the services are installed.
+
+## Troubleshooting
 If you're encountering issues with installing the operator, check out common problems in the section [Troubleshooting clusters](./troubleshooting-clusters.md).
 
 ## Next steps
