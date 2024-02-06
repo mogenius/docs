@@ -4,6 +4,22 @@ sidebar_position: 6
 
 # Release notes
 
+## v2.1.0 - 06.02.2024
+- **Renaming instances:** On the service level, we changed the wording from "Instance" to "Pods." This aligns with the common Kubernetes terminology and helps avoid confusion when reading logs, public documentation, or articles.
+- **New service status:** We've introduced a new service status system that provides a transparent view of each step in the pipeline: build, deployment, and pods. This change allows for more precise identification of the source of any issues. Errors in these steps are now detailed in the respective logs on the service page.
+- **Shell:** After implementing it in `mocli` we've also added the shell to the user interface. You will find it in the header bar on each service page. The shell allows you to directly interact with the container of each pod.
+- **Streamed build logs:** Our build logs have been enhanced with real-time streaming, allowing you to monitor the build process as it happens. This feature is available when using the in-cluster build pipeline introduced in v2.0.0. Feel free to contact us if you'd like to switch your cluster to the new pipeline.
+- **Custom Kubernetes Deployment Templates:** It's now possible to customize the default configurations for creating deployments on your Kubernetes cluster. You can achieve this by adding a template to your cluster. More information and an example template will be provided shortly.
+- **Organisation admins in projects:** Organization admins now appear in the members section of a project by default. This change makes it easier to identify admins for assistance or to request changes.
+- **Bugfixes:**
+    - The deployment strategy "Rolling" couldn't be selected when creating a new service.
+    - In some cases services were displayed in the wrong stage.
+    - Using `npm install` in the Dockerfile could lead to a timeout with registry.npmjs.org.
+
+## v2.0.1 - 19.12.2023
+- **Multi-domain services:** You can now add multiple domains to a single service. In your service settings open “Ports & Domain.” You’ll find a plus icon next to the domain section where you can add more domains. They will be added to the ingress of your service in Kubernetes and your service will listen to all hostnames. Make sure to set a DNS record to the newly added hostnames.
+- **Resource settings:** The resource setting when creating or updating a service received a new UI. We replaced the sliders to adjust resource limits with simple input fields and a table-like layout for better overview.
+
 ## v2.0.0 - 07.12.2023
 We've been working on this update for quite some time and it includes major improvements in all areas of the mogenius platform. We will describe each feature of this update in dedicated posts and docs articles during the upcoming days. Here's a summary of what's new:
 
