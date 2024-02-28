@@ -35,11 +35,11 @@ Mogenius has a pre-configured internal CI/CD pipeline. To use the pipeline, you'
 - PAT: Enter a personal access token from your registry for authentication.
 
 :::info
-Alternatively, mogenius comes with a local container registry on your Kubernetes. You can install it from the service list below. The registry will be used automatically for each build of a service on the cluster.
+Alternatively, mogenius comes with a local container registry on your Kubernetes. You can install it from the service list below. The registry will be used automatically for each build of a service on the cluster. In this case, leave the form fields for the container registry empty.
 :::
 
 ## Cluster services
-Delivering Kubernetes infrastructure to development teams requires setting up several additional services after deploying your cluster. mogenius offers a set of pre-configured cluster services that you can install in the cluster settings.
+Delivering Kubernetes infrastructure to development teams requires setting up several additional services after deploying your cluster. mogenius offers a set of pre-configured cluster services that you can install in the cluster settings. You can manage these services from the settings page. For each service a Helm chart will be used to install it on your cluster.
 
 |Service|Description|
 |---|---|

@@ -10,7 +10,7 @@ mogenius allows you to connect with Kubernetes clusters by installing the mogeni
 ## Prerequisites
 To successfully complete the next steps, you will need the following:
 - A domain you own, to which you can add a DNS record.
-- A Kubernetes cluster. We recommend a managed Kubernetes service, like EKS (Amazon AWS), AKS (Microsoft Azure) or GKE (Google Cloud Platform), but any cluster with Kubernetes version 1.24 or higher will work.
+- A Kubernetes cluster. We recommend a managed Kubernetes service, like EKS (Amazon AWS), AKS (Microsoft Azure) or GKE (Google Cloud Platform), but any cluster with Kubernetes version 1.24 or higher will work. To get started, a [local Kubernetes](./local-cluster.md) like Docker Desktop, k3s, or minikube is also a great option.
 - A working installation of `Helm` and `kubectl`
 - OR optionally the [mogenius CLI](../development/mogenius-cli.md)
 - Kubernetes cluster admin permissions
@@ -19,6 +19,10 @@ To successfully complete the next steps, you will need the following:
 The mogenius operator consists of several pods that will be deployed to your Kubernetes cluster. It will require at least 0.5 vCPU and 128 MB RAM.
 
 ## Add a cluster in mogenius
+
+<div style={{ position: 'relative', paddingBottom: 'calc(56.25782227784731% + 41px)', height: 0 }}>
+      <iframe src="https://app.supademo.com/embed/iy17UxSmsVTaPPiLgHhlQ" frameBorder="0" loading="lazy" webkitAllowFullScreen mozAllowFullScreen allowFullScreen style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
+    </div>
 
 In your organization open "Clusters" and select "Add cluster." Enter a display name for your cluster and confirm.
 
@@ -76,4 +80,4 @@ If you're encountering issues with installing the operator, check out common pro
 
 ## Next steps
 Congrats, your cluster is now connected with mogenius 🎉  
-To complete the setup, continue with the section [Cluster settings](./cluster-settings.md).
+To complete the setup, make sure that hostname and container registry are set up in the [cluster settings](./cluster-settings.md).
