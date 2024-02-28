@@ -20,24 +20,27 @@ You need an account for mogenius to retrieve your access token and start using t
 Make sure to replace `YOUR_EMAIL`and `YOUR_PASSWORD` with your own. 
 
 ```jsx title="cURL login"
-curl --location --request POST 'http://api.mogenius.com/auth/login' \
---header 'Authorization: Basic RFItTkY0TFI1clkyd0V3TlFZV1BfOkVXTE9lY0lmT0U1aFFOQV9hM04xRg==' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'email=YOUR_EMAIL' \
---data-urlencode 'password=YOUR_PASSOWRD' \
---data-urlencode 'grant_type=password' \
---data-urlencode 'Device=mogenius_api'
+curl --request POST \
+     --url https://platform-user.mogenius.com/auth/login \
+     --header 'accept: application/json' \
+     --header 'content-type: application/json' \
+     --data '
+{
+  "email": "your@email.com",
+  "password": "yourpassword"
+}
+'
 ```
-This is the response you can expect. Take the `accessToken` to authorize every of your following requests against the mogenius API.
+This is the response you can expect. Take the `ACCESS_TOKEN` to authorize every of your following requests against the mogenius API.
 
-```jsx title="login response JSON"
-curl --location --request POST 'http://api.mogenius.com/auth/login' \
---header 'Authorization: Basic RFItTkY0TFI1clkyd0V3TlFZV1BfOkVXTE9lY0lmT0U1aFFOQV9hM04xRg==' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'email=YOUR_EMAIL' \
---data-urlencode 'password=YOUR_PASSOWRD' \
---data-urlencode 'grant_type=password' \
---data-urlencode 'Device=mogenius_api'
+```jsx title="login response"
+{"_lastVerifyToken":null,
+"user":{"id":"USER_ID"},
+"accessToken":"ACCESS_TOKEN",
+"accessTokenExpiresAt":"TIMESTAMP",
+"refreshToken":"REFRESH_TOKEN",
+"refreshTokenExpiresAt":"TIMESTAMP",
+"verifyTokenTimer":1}
 ```
 
 You'll find a detailed overview of every endpoint that's currently available in our [API reference](https://api-docs.mogenius.com/).
