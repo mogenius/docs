@@ -4,7 +4,7 @@ sidebar_position: 6
 
 # Release notes
 
-## v2.2.4 - 24.05.2024
+## v2.2.4 - 24.05.2024 
 - **Redesign:** With this release, we're introducing the new design of the mogenius platform. We're providing an  enhanced dark theme as the default and a distinctively improved light mode. The new themes now cater towards the specific use cases of dark and light mode even better. But most importantly, we find they just look great and we hope you feel the same. It's not just a fresh design for the platform; it also marks the starting point for our new design language, `modux`, which we will introduce in the coming weeks — stay tuned!
 - **Performance improvements:** We’ve executed a significant overhaul of both the frontend and backend systems, optimizing data retrieval, application architecture, and all frontend components. This results in faster loading speeds, smoother navigation, and more efficient resource utilization.
 - **Breadcrumb navigation:** To enhance navigation through projects and services, we've introduced a global breadcrumb system that allows you to quickly move through all organizational levels within the platform.
