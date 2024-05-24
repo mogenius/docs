@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # CI/CD pipeline
 
-mogenius comes with a built in CI/CD pipeline, so that you can start working on your application and deploy any changes to the cloud immediately.
+mogenius comes with a built in CI/CD pipeline, so that you can start working on your application and deploy any changes to your cluster immediately.
 When creating a service you will connect your Github or Gitlab account to deploy repositories with a Dockerfile.
 
 ![connect to github](https://imagedelivery.net/T7YEW5IAgZJ0dY4-LDTpyQ/a1fdf4eb-0e83-4720-f68f-777778127f00/jpeg)
@@ -25,3 +25,16 @@ CI/CD does not work with services that you have created from a public repository
 ## Workflow and Container Registry
 
 The mogenius build pipeline uses dedicated build servers that run on our infrastructure. The platform handles queues and build agents automatically so that you don't have to configure anything. After a build is completed the Docker image will be pushed to the container registry that was connected with your cluster during setup.
+
+## Environment variables
+
+During `Docker build` default environment variables are available that you can call as `ARG` variables:
+
+|Environment Variable|Description|
+|---|---|
+|MO_BUILD_ID|Incremented with each build in the pipeline for the specific cluster. This ID is not unique.|
+|MO_GIT_TAG|The tag as defined with the `tag` command in Git.|
+|MO_GIT_COMMIT_HASH|SHA-1 commit hash.|
+|MO_GIT_COMMIT_AUTHOR|The author of the commit.|
+|MO_GIT_COMMIT_MESSAGE|The commit message defined with `-m`.|
+|MO_GIT_BRANCH|The Git branch of the commit.|
