@@ -12,7 +12,7 @@ To successfully complete the next steps, you will need the following:
 - A domain you own, to which you can add a DNS record.
 - A Kubernetes cluster. We recommend a managed Kubernetes service, like EKS (Amazon AWS), AKS (Microsoft Azure) or GKE (Google Cloud Platform), but any cluster with Kubernetes version 1.24 or higher will work. To get started, a [local Kubernetes](./local-cluster.md) like Docker Desktop, k3s, or minikube is also a great option.
 - A working installation of `Helm` and `kubectl`
-- OR optionally the [mogenius CLI](../development/mogenius-cli.md)
+- OR optionally the [mogenius CLI](../development/mogenius-CLI.md)
 - Kubernetes cluster admin permissions
 
 ## Resource requirements
