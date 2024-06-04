@@ -4,6 +4,11 @@ sidebar_position: 6
 
 # Release notes
 
+## v1.8.0 (mocli) - 28.05.2024
+- Fixed an issue where opening the shell of a service wasn't possible.
+- We added a new layout for index pages in the terminal UI with more meta data, resource info, and service stats.
+- Improved loading behaviour for better performance when navigating through the TUI.
+
 ## v2.2.4 - 24.05.2024 
 - **Redesign:** With this release, we're introducing the new design of the mogenius platform. We're providing an  enhanced dark theme as the default and a distinctively improved light mode. The new themes now cater towards the specific use cases of dark and light mode even better. But most importantly, we find they just look great and we hope you feel the same. It's not just a fresh design for the platform; it also marks the starting point for our new design language, `modux`, which we will introduce in the coming weeks — stay tuned!
 - **Performance improvements:** We’ve executed a significant overhaul of both the frontend and backend systems, optimizing data retrieval, application architecture, and all frontend components. This results in faster loading speeds, smoother navigation, and more efficient resource utilization.
@@ -66,7 +71,7 @@ We've been working on this update for quite some time and it includes major impr
 ## v1.6.8 (mocli) - 14.11.2023
 - Added service management commands to `start`, `stop`, `restart`, `rebuild`, and `delete` services.
 - Added a shell feature to log into each container inside a project.
-- Check out the [CLI documentation](../development/mogenius-cli.md) for further details.
+- Check out the [CLI documentation](../development/mogenius-CLI.md) for further details.
 
 ## v1.19.0 - 20.09.2023
 
