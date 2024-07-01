@@ -4,6 +4,17 @@ sidebar_position: 6
 
 # Release notes
 
+## v2.2.8 - 01.07.2024
+- Several bugfixes, including:
+  - Quotes and single quotes in commit messages and secrets caused build errors.
+  - Container image secrets being overruled by cluster secrets.
+
+## v2.2.6 - 13.06.2024
+- Added a counter on the jobs sidebar to get notified about errors during the latest jobs.
+- Added a button to create an environment from the index page without entering the environment settings.
+- If changes on a service affect the connected repository (e.g. changing the git branch) a rebuild is triggered automatically.
+- Several bugfixes affecting template search, handling team members in projects, URL validation, access tokens, and more.
+
 ## v1.8.0 (mocli) - 28.05.2024
 - Fixed an issue where opening the shell of a service wasn't possible.
 - We added a new layout for index pages in the terminal UI with more meta data, resource info, and service stats.
