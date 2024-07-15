@@ -16,7 +16,7 @@ To successfully complete the next steps, you will need the following:
 - Kubernetes cluster admin permissions
 
 ## Resource requirements
-The mogenius operator consists of several pods that will be deployed to your Kubernetes cluster. It will require at least 0.5 vCPU and 128 MB RAM.
+The mogenius operator is deployed to your Kubernetes cluster using Helm. It will require at least 0.5 vCPU and 128 MB RAM.
 
 ## Add a cluster in mogenius
 
@@ -58,7 +58,7 @@ helm install mogenius-operator mogenius/mogenius-k8s-manager -n mogenius --creat
 
 ## Complete your cluster setup
 
-After executing one of the install commands above, return back to the mogenius user interface and click "I ran the command." The UI will confirm once the operator has established a connection with the mogenius controlplane. To finish your setup you'll now see a list of services that you can install to get your cluster deployment-ready.
+After executing one of the install commands above, return back to the mogenius user interface and click "I ran the command." The UI will confirm once the operator has established a connection with the mogenius controlplane. Once the operator is connected, proceed with installing Helm charts to finish your Kubernetes setup. Some services from the list are required to support the mogenius feature-set, like pod stats and traffic collector. Additionally, you can select recommended Helm charts from the list, like an ingress controller or cert manager.
 
 The operator scans your cluster and automatically offers a subset of services from the following list, depending on your cluster type and any existing services.
 
@@ -72,12 +72,33 @@ The operator scans your cluster and automatically offers a subset of services fr
 |mogenius-pod-stats-collector|Collects and exposes status events of pods for services in mogenius.|
 |Internal container registry|A Docker-based container registry inside Kubernetes.|
 |MetalLB loadbalancer|A load balancer for local clusters (e.g. Docker Desktop, k3s, minikube, etc.).|
+|External secrets operator|Required to use the Hashicorp Vault integration in a project.|
 
-Select the services that you want to install on your cluster and confirm. You'll be taken to the settings page of your cluster while the services are installed.
+Once you made your selection, confirm with "Install" and the Helm charts will be deployed to your cluster. Since some of them depend on each other, the installation can take a moment.
+
+## CI/CD setup
+
+Each mogenius project comes with a built-in pipeline to build and deploy container images automatically. The pipeline builds images based on Dockerfiles and pushes them to a container registry. In this step, you can provide credentials to your registry to use the pipeline. If you previously installed the internal registry Helm chart, you can skip this step. The external registry is also optional, if you don't want to use the internal build pipeline and deploy images directly from an external registry instead.
+
+## Hostname & IP address
+
+Finally, set up a domain for services deployed on your cluster:
+Loadbalancer IP: If an IngressController is running on your cluster, the external loadbalancer IP address of your cluster will usually be filled out automatically. If the IP address is not set automatically, you can enter it manually.
+- Loadbalancer Host: Enter a hostname for your cluster. Each service on the cluster that is exposed to the internet will be created under a subdomain of this hostname by default. Later, you can set individual domains in the settings of each service.
+
+Now, create two records of type A in the DNS settings at your domain provider:
+
+|Type|Name (example)|Target|
+|---|---|---|
+|A|yourdomain.com|LOADBALANCER_IP|
+|A|*.yourdomain.com|LOADBALANCER_IP|
+
+:::tip
+Working on a local Kubernetes? The host will be set to `local.mogenius.io` if possible. This way, services deployed on your local Kubernetes will receive SSL certificates.
+:::
 
 ## Troubleshooting
 If you're encountering issues with installing the operator, check out common problems in the section [Troubleshooting clusters](./troubleshooting-clusters.md).
 
 ## Next steps
-Congrats, your cluster is now connected with mogenius 🎉  
-To complete the setup, make sure that hostname and container registry are set up in the [cluster settings](./cluster-settings.md).
+Congrats, your cluster is now connected with mogenius 🎉 Go ahead and create a project to deploy some services to your cluster.

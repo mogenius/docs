@@ -5,6 +5,6 @@ description: Manage your Kubernetes cluster with workloads and logs. An alternat
 
 # Workload manager
 
-Once the mogenius operator is [installed](./installing-mogenius.md) on your Kubernetes you'll be able to access a workload manager through the platform. This allows you to view each Kubernetes resource, use the `Describe` command, edit YAML, view logs, and open a shell for containers that support this feature.
+Once the mogenius operator is [installed](./installing-mogenius.md) on Kubernetes you'll be able to access a workload manager through the platform. This allows you to view each Kubernetes resource, use the `Describe` command, edit YAML, view logs, and open a shell for containers that support this feature.
 
 To access the workload manager, open a cluster in mogenius and navigate to the tab "Workloads".

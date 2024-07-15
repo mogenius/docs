@@ -5,15 +5,15 @@ sidebar_position: 4
 # How mogenius works
 mogenius acts as a layer on top of Kubernetes, integrating seamlessly with your infrastructure and existing development tools. The platform serves teams in three core functions:
 - Creating self-service environments for developers
-- Implementing pre-configured guardrails, such as namespace provisioning and resource limits.
-- Managing Kubernetes clusters across multiple cloud environments
+- Implementing pre-configured guardrails, such as namespace provisioning, resource limits, and policies.
+- Automating deployments and workload configuration.
 
 The following graphic provides a high-level visualization of how mogenius integrates with your infrastructure:
 
 ![mogenius platform](https://imagedelivery.net/T7YEW5IAgZJ0dY4-LDTpyQ/8acd32ec-56e3-4c7e-daca-b80ab7357200/jpeg)
 
 ## The mogenius operator
-mogenius integrates with Kubernetes clusters through our operator, which is installed on the cluster using `helm`. During the installation, a new `mogenius` namespace is created to house all the services. You can configure the services that should be installed in your mogenius cluster administration. Once the installation is complete, the operator establishes a TCP connection to communicate with the platform.
+mogenius integrates with Kubernetes clusters through our operator, which is installed on the cluster using `helm`. It establishes an outbound TCP connection to the mogenius platform. Once connected, the operator also allows you to install baseline components on your cluster, like ingress controller, cert manager, and more. 
 
 ## The mogenius platform
 The mogenius platform orchestrates multiple clusters and enables you to manage Kubernetes resources, workloads, and deployments through its user interface (UI) and API. Serving as a management layer, the platform facilitates the creation of projects for development teams within your organization. It streamlines the entire workflow for creating, managing, scaling, and monitoring container applications on Kubernetes in an automated and developer-friendly manner.

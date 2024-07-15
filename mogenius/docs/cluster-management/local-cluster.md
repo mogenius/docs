@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Local cluster
+# Local Kubernetes
 
 You can connect mogenius with any Kubernetes installation, which means you can also run local setups. The platform comes with dedicated infrastructure for local Kubernetes setups that allows you to create a production-like environment for testing and debugging on local machines.
 

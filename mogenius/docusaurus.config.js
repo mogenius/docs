@@ -92,7 +92,7 @@ const config = {
             position: 'right',
           },
           {
-            href: 'https://studio.mogenius.com',
+            href: 'https://app.mogenius.com',
               label: 'Sign in',
               position: 'right',
             }
@@ -125,8 +125,12 @@ const config = {
             title: 'More',
             items: [
               {
-                label: 'mogenius studio',
-                href: 'https://studio.mogenius.com',
+                label: 'mogenius platform',
+                href: 'https://app.mogenius.com',
+              },
+              {
+                label: 'mogenius status',
+                href: 'https://status.mogenius.com',
               },
               {
                 label: 'API reference',
@@ -136,12 +140,6 @@ const config = {
                 label: 'Website',
                 href: 'https://mogenius.com',
               },
-              {
-                label: 'Feedback',
-                href: 'https://feedback.mogenius.com',
-              },
-              
-            
             ],
           },
           
@@ -155,6 +153,10 @@ const config = {
               {
                 label: 'GitHub',
                 href: 'https://github.com/mogenius',
+              },
+              {
+                label: 'Feedback',
+                href: 'https://feedback.mogenius.com',
               },
             ],
           },

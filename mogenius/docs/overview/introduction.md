@@ -25,25 +25,25 @@ This documentation hub serves as a resource for getting started, utilizing the p
 
 ## mogenius for DevOps and Developers
 
-mogenius provides significant benefits for DevOps teams and developers, enabling them to automate daily tasks and collaborate throughout the entire application lifecycle. By eliminating siloed operations, reducing support workload, and accelerating deployments and error-tracing, mogenius brings transparency and efficiency to your development processes.
+With mogenius, developers can work easily and safely with Kubernetes, without constant DevOps support. The platform provides developers with workspaces that abstract complexity, implement policies and guardrails, and automate deployments. mogenius therefore helps DevOps to reduce support overhead, ensure safe Kubernetes operations, and improve developer adoption.
 
-**Cloud-agnostic cluster management**  
-mogenius seamlessly integrates with Kubernetes clusters on any cloud infrastructure, including on-premise environments. Installation is simplified using Helm.
+**Cloud-agnostic operator**  
+mogenius seamlessly integrates with Kubernetes clusters on any infrastructure, including cloud providers, on-premise, or local environments. The implementation is simple by installing the mogenius operator on Kubernetes using Helm. [Read more](../cluster-management/installing-mogenius.md)
 
 **Instant developer self-service**  
 Once connected to a cluster, mogenius offers developers an intuitive environment for deploying their projects via a user-friendly UI or API. Dedicated resources, namespaces, integrated CI/CD, and a service catalog of reusable components ensure smooth operations on your infrastructure.
 
+**Guardrails and limits**  
+Each project in mogenius has built-in guardrails to maintain safe operations. Environments are isolated via namespaces and network policies. Additionally, DevOps can enforce best practices like resource limits, security contexts, and more.
+
 **Automated pipelines on Kubernetes clusters**  
-With mogenius, deploying applications on any Kubernetes cluster takes just minutes. Developers can easily connect their repositories (e.g., GitHub, GitLab, or container registries), and our platform takes care of the rest. Existing pipelines can also be seamlessly integrated.
+With mogenius, deploying applications on any Kubernetes cluster takes just minutes. Developers can easily connect their repositories (e.g., GitHub, GitLab, or container registries), and the pre-configured pipeline takes care of the rest. If you prefer using your own pipeline instead, you can easily integrate it.
 
-**Service catalogs**  
-The service catalog provided by mogenius offers a collection of pre-tested configurations that work flawlessly on your infrastructure. It includes frameworks, tools, databases, and more. Additionally, you can expand the catalog with services specific to your organization for reuse across different projects.
-
-**Assign budgets and limits**  
-Effortlessly set and allocate resource budgets for projects, allowing teams to dynamically utilize them. By defining limits and receiving alerts, you maintain complete control over your cloud resource expenditures.
+**Templates**  
+With the template library teams can pre-define services to reduce pitfalls of service configurations, to promote best practices, and to set standards across teams. You can create templates with boilerplate repositories, public, or private container images.
 
 **Monitoring and logging**  
-mogenius offers aggregated monitoring of all service and resource metrics, traffic analytics, and consolidated build, deployment, and application runtime logs. Gain valuable insights into the performance and behavior of your applications.
+mogenius offers aggregated monitoring of all service and resource metrics, traffic analytics, and consolidated build, deployment, and application runtime logs. Developers can independently troubleshoot applications with real-time pod logs, Kubernetes events, and metrics, all without direct access to Kubernetes.
 
 **Invite team members and assign roles**  
 Invite team members to collaborate on projects or organizations, granting them specific access rights such as viewing, editing, or admin roles. Control user permissions to ensure efficient collaboration.
