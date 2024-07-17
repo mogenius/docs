@@ -13,7 +13,7 @@ The following graphic provides a high-level visualization of how mogenius integr
 ![mogenius platform](https://imagedelivery.net/T7YEW5IAgZJ0dY4-LDTpyQ/8acd32ec-56e3-4c7e-daca-b80ab7357200/jpeg)
 
 ## The mogenius operator
-mogenius integrates with Kubernetes clusters through our operator, which is installed on the cluster using `helm`. It establishes an outbound TCP connection to the mogenius platform. Once connected, the operator also allows you to install baseline components on your cluster, like ingress controller, cert manager, and more. 
+mogenius connects to Kubernetes clusters through our operator, which is installed on the cluster using `helm`. It establishes an outbound TCP connection to the mogenius platform. Once connected, the operator also allows you to install baseline components on your cluster, like ingress controller, cert manager, and more.
 
 ## The mogenius platform
 The mogenius platform orchestrates multiple clusters and enables you to manage Kubernetes resources, workloads, and deployments through its user interface (UI) and API. Serving as a management layer, the platform facilitates the creation of projects for development teams within your organization. It streamlines the entire workflow for creating, managing, scaling, and monitoring container applications on Kubernetes in an automated and developer-friendly manner.

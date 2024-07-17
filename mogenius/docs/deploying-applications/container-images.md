@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Container images
 
-You can deploy container images with mogenius from any public or private container registry. To get started, click "+ Add" on your dashboard or inside a stage to create a new service with the type "Container image."
+You can deploy container images with mogenius from any public or private container registry. To get started, click "+ Create" on your dashboard or inside an environment to create a new service with the type "Container image."
 
 On the following page set the container image you want to deploy. Here's how the form field works:
 
@@ -14,12 +14,21 @@ On the following page set the container image you want to deploy. Here's how the
 
 After you define the container image, there are several optional settings.
 
-- Name, stage, and deployment strategy that you want to use
+- Name, and environment that you want to use.
 - Enter a container image command that will be executed during deployment.
 - Create a repository secret if the targeted container registry requires authentication.
 - Define command arguments to be executed in your container.
 
-Next, it is necessary to define the resource limits of your service as well as the port. Optionally, you can add environment variables to your service.
+Once you confirm, the service will be created in stopped state. You can now review and add your service settings before deploying it.
+
+The following settings are available to your service. You'll find additional information on the respective pages.
+- [Resource limits](../development/resources.md): Define the maximum resources your service can consume on the cluster.
+- [Variables](../development/environment-variables.md): Set environment variables, secrets, volume mounts, and connect services via internal hostnames.
+- Ports & Domains: Manage ports of your container and define external hostnames.
+- [Health Check](../development/health-checks.md): Enable Kubernetes health checks for improved monitoring.
+- Replicas: Manually set the number of pods that should start for your container.
+- Autoscaling: Enable horizontal pod autoscaling based on CPU or memory load.
+- Deployment strategy: Set up zero-downtime deployments.
 
 Once you have made the settings, click "Create service" and your service will be deployed from the container image.
 
