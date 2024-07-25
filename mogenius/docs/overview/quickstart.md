@@ -18,7 +18,7 @@ Now, let's move on to the exciting part: connecting to a Kubernetes cluster. Onc
 
 ### Prerequisites
 To successfully complete the next steps, you will need the following:
-- A Kubernetes cluster. We recommend a managed Kubernetes service, like EKS (Amazon AWS), AKS (Microsoft Azure) or GKE (Google Cloud Platform), but any cluster with Kubernetes version 1.24 or higher will work. To get started, a [local Kubernetes](./local-cluster.md) like Docker Desktop, k3s, or minikube is also a great option.
+- A Kubernetes cluster. We recommend a managed Kubernetes service, like EKS (Amazon AWS), AKS (Microsoft Azure) or GKE (Google Cloud Platform), but any cluster with Kubernetes version 1.24 or higher will work. To get started, a [local Kubernetes](../cluster-management/local-cluster.md) like Docker Desktop, k3s, or minikube is also a great option.
 - A domain you own, to which you can add a DNS record.
 - A working installation of `Helm` and `kubectl`
 - OR optionally the [mogenius CLI](../development/mogenius-CLI.md)

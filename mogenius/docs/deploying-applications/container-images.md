@@ -21,13 +21,15 @@ After you define the container image, there are several optional settings.
 
 Once you confirm, the service will be created in stopped state. You can now review and add your service settings before deploying it.
 
+## Review and deploy
+
 The following settings are available to your service. You'll find additional information on the respective pages.
 - [Resource limits](../development/resources.md): Define the maximum resources your service can consume on the cluster.
 - [Variables](../development/environment-variables.md): Set environment variables, secrets, volume mounts, and connect services via internal hostnames.
 - Ports & Domains: Manage ports of your container and define external hostnames.
 - [Health Check](../development/health-checks.md): Enable Kubernetes health checks for improved monitoring.
 - Replicas: Manually set the number of pods that should start for your container.
-- Autoscaling: Enable horizontal pod autoscaling based on CPU or memory load.
+- [Autoscaling](../development/autoscaling.md): Enable horizontal pod autoscaling based on CPU or memory load.
 - Deployment strategy: Set up zero-downtime deployments.
 
 Once you have made the settings, click "Create service" and your service will be deployed from the container image.

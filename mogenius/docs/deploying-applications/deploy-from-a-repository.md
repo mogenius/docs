@@ -4,41 +4,35 @@ sidebar_position: 1
 
 # Deploy from a repository
 
-mogenius has an integrated CI/CD pipeline which you can use to build and deploy applications right from Github or Gitlab. mogenius will also keep your service up to date, automatically deploying updates of your application with each commit that you perform.
+mogenius has an integrated build pipeline which you can use to build and deploy applications right from Github, Gitlab, or Bitbucket. mogenius will also keep your service up to date, automatically deploying updates of your application with each commit that you perform on the selected git branch.
 
 **Prerequisites for deploying from a repository**
-- An account at [Github](https://github.com) or [Gitlab](https://gitlab.com)
+- An account at [Github](https://github.com), [Gitlab](https://gitlab.com), or [Bitbucket](https://bitbucket.com)
 - A git repository
 - A `Dockerfile` in your git repository
 
 ## Create a service
-In a project click "+ Add" on your dashboard or inside a stage. From the dropdown select "Bring your own code" and on the next page fill in the required fields.
+In a project click "+ Create" on your dashboard or inside an environment. From the dropdown select "Repository" and fill in the form fields on the following view. First, enter a name for your service and select the environment where your service should be deployed.
 
 ### Repository
-On the service creation page you can choose which type of repository you want to deploy. You can deploy a public repository by setting the repository toggle to "public". Paste a repository URL (.git) and select the desired branch. This works with Github, Gitlab, or Bitbucket.
+Select the git integration that you want to set up. You can connect to Github or Gitlab using your account from the respective platform. Alternitively, connect via access token from Github, Gitlab, or Bitbucket. You can read more about the integrations and required permissions in the section [Git integration](../development/git-integration.md).
 
-If you want to deploy a private repository, you need to connect your Github or Gitlab account. You can also use an access token for each of the platforms. This method also allows you to connect to a self-hosted Gitlab instance.
-Select the integration method and authorize the connection. Once you've completed this step, the user interface will refresh and you will see several options to connect with a repository from your git host account.
+Once your integration is set up, select the repository that you want to use for your service. Then, fill out the additional settings:
+- Git branch: Select the branch that should be connected with your service. Whenever a new commit is pushed to this branch, a new version of your service will be built and deployed automatically.
+- Dockerfile path: This field defines where the pipeline should expect the Dockerfile in the repository. Per default this is set to a file with the name "Dockerfile" at root level.
+- Docker context: The context of your Dockerfile during `Docker build`.
 
-Now choose the repository from the dropdown menu that you want to deploy. Select the branch in your repository and the stage in your project that you want to use.
+Once you confirm, the service will be created in stopped state. You can now review and modify your service settings before deploying it.
 
-Check the fields "Dockerfile name" and "Docker context". Per default they are set to "Dockerfile" and " . " which means that mogenius expects the Dockerfile in the repository to be named as such and to sit at root level. "Dockerfile name" defines the path where the Dockerfile is located in the repo. For example, if your Dockerfile is located in the folder 'frontend' you should enter 'frontend/Dockerfile'.
+## Review and deploy
 
-:::caution
-For security reasons we don't allow running a Docker image as root user. You will always need to set a user in your Dockerfile, otherwise the service will not be deployed. In most cases the standard unix users will work, see our example for the Svelte template as a reference.
-:::
+The following settings are available to your service. You'll find additional information on the respective pages.
+- [Resource limits](../development/resources.md): Define the maximum resources your service can consume on the cluster.
+- [Variables](../development/environment-variables.md): Set environment variables, secrets, volume mounts, and connect services via internal hostnames.
+- Ports & Domains: Manage ports of your container and define external hostnames.
+- [Health Check](../development/health-checks.md): Enable Kubernetes health checks for improved monitoring.
+- Replicas: Manually set the number of pods that should start for your container.
+- [Autoscaling](../development/autoscaling.md): Enable horizontal pod autoscaling based on CPU or memory load.
+- Deployment strategy: Set up zero-downtime deployments.
 
-### Resource limits
-Next you can set the resource limits for your service. By default we set some minimum recommendations but you will probably need to adjust them to the specific requirements of your application. Note that you can always change these settings later.
-
-### Environment variables
-This is an optional setting which depends on the application you want to deploy. You can set plain text variables, secrets, or volume mounts.
-
-### Ports
-Determine the ports that your application uses. mogenius supports HTTPS, TCP and UDP. Use the setting "Expose" to make your application available outside of your project through the specific port.
-
-### Create and deploy
-Now just click "Create Service" and your repository will be built and deployed as a service to your project. Once the setup routines, build and deployment processes are complete (usually a few minutes at most), you can start using your service by accessing it via it's hostnames. You will find the internal and external hostnames on your service page.
-
-
-
+Once you have made the settings, click "Start" and the pipeline will build the Docker image based on the Dockerfile in your repository. It will be pushed to the container registry that was specified in your cluster settings and then deployed to your Kubernetes cluster. You can monitor each step of the pipeline in the logs tab on your service page.
