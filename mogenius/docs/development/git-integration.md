@@ -50,5 +50,10 @@ With Gitlab there are several scopes in your account where you can create an acc
 Note that for each Gitlab project that you deploy via mogenius, the role `Maintainer` or higher is required for the Gitlab user that owns the token.
 :::
 
+### Bitbucket
+The Bitbucket integration via access token supports two types of authentication: Via [app password](https://support.atlassian.com/bitbucket-cloud/docs/app-passwords/), or [workspace access token](https://support.atlassian.com/bitbucket-cloud/docs/workspace-access-tokens/).
+
+Create the desired token in your Bitbucket account and store it in a safe location (e.g. a key vault).
+
 **Finish setup**  
 Once you retrieved the token, go back to mogenius integrations and select the option "Access token." Make sure you set the toggle to "Gitlab." If you're connecting to a cloud-hosted Gitlab instance, set the domain to `https://gitlab.com`. For a self-hosted Gitlab instance, enter the domain of your Gitlab, e.g. `https://gitlab.yourcompany.com`. Next, enter your access token and confirm.
