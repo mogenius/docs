@@ -2,3 +2,4 @@ ignore:
   - vulnerability: GHSA-2jcg-qqmg-46q6
   - vulnerability: CVE-2023-45853
   - vulnerability: CVE-2023-39332
+  - vulnerability: CVE-2024-5535
