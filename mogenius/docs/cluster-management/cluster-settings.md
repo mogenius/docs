@@ -38,7 +38,7 @@ Mogenius has a pre-configured internal CI/CD pipeline. To use the pipeline, you'
 Alternatively, mogenius comes with a local container registry on your Kubernetes. You can install it from the service list below. The registry will be used automatically for each build of a service on the cluster. In this case, leave the form fields for the container registry empty.
 :::
 
-## Cluster services
+## Helm charts
 Delivering Kubernetes infrastructure to development teams requires setting up several additional services after deploying your cluster. mogenius offers a set of pre-configured cluster services that you can install in the cluster settings. You can manage these services from the settings page. For each service a Helm chart will be used to install it on your cluster.
 
 |Service|Description|
@@ -51,6 +51,8 @@ Delivering Kubernetes infrastructure to development teams requires setting up se
 |mogenius-pod-stats-collector|Collects and exposes status events of pods for services in mogenius.|
 |Internal container registry|A Docker-based container registry inside Kubernetes.|
 |MetalLB loadbalancer|A load balancer for local clusters (e.g. Docker Desktop, k3s, minikube, etc.).|
+|External secrets operator|Required to use the Hashicorp Vault integration in a project.|
+
 
 ## Reset cluster MFA-ID
 Use this option to reset the connection with your Kubernetes cluster. This is necessary if you're re-installing the operator on a Kubernetes cluster, as each connection between the mogenius platform and an operator is kept unique.

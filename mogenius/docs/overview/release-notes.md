@@ -1,8 +1,17 @@
 ﻿---
-sidebar_position: 6
+sidebar_position: 7
 ---
 
 # Release notes
+
+## v2.2.10 - 19.08.2024
+- **Demo environment**: Every user now has access to a public demo organization to explore mogenius and experiment with the platform. You can even create your own projects on the demo cluster and deploy services for testing. Every 30 minutes, the entire organization is reset, and all services are deleted. Read more about the demo organization [here](demo-organization.md).
+- **New onboarding workflow**: We have revamped the workflow from creating an organization to connecting your first Kubernetes cluster, streamlining the entire process. You’ll now find a step-by-step guide with detailed documentation for each step, making it as simple as possible to connect mogenius with your Kubernetes.
+- **Autoscaling**: Mogenius now supports HorizontalPodAutoscalers. In your service settings, you’ll find a new toggle to activate autoscaling for your service. If enabled, Kubernetes will automatically scale the number of pods for your service up and down to meet the desired average resource usage. Check out the documentation on [Autoscaling](../development/autoscaling.md) for more details.
+- **Metrics**: We’ve added a metrics tab for each service that allows for comprehensive resource monitoring. View CPU, RAM, and traffic consumption by pod, and filter the charts granularly by hours and days.
+- **Cronjob log history**: To improve the monitoring of CronJobs, you can now view logs and status from previous runs. In the service settings, you’ll find additional fields for `succeededHistory` and `failedHistory`. Use them to control the number of succeeded and failed jobs that should be retained on your CronJob’s logs page.
+- **Uptime and restarts**: Along with an improved user interface for service logs, we’ve added uptime in seconds and the number of container restarts. This helps you understand the health of each pod in greater detail.
+- **Bitbucket integration**: In addition to GitHub and GitLab, you can now connect your project with Bitbucket and deploy repositories directly from your Bitbucket account.
 
 ## v2.2.8 - 01.07.2024
 - Several bugfixes, including:

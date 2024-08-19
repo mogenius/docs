@@ -26,6 +26,10 @@ CI/CD does not work with services that you have created from a public repository
 
 The mogenius build pipeline uses dedicated build servers that run on our infrastructure. The platform handles queues and build agents automatically so that you don't have to configure anything. After a build is completed the Docker image will be pushed to the container registry that was connected with your cluster during setup.
 
+## Queue
+
+Each build is scheduled in the pipeline and executed by the operator on the cluster that your project is running on. To avoid resource bottlenecks builds are queued. The next build will start only after the previous build on the cluster is completed.
+
 ## Environment variables
 
 During `Docker build` default environment variables are available that you can call as `ARG` variables:

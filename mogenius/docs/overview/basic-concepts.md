@@ -1,5 +1,5 @@
 ﻿---
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 # Basic concepts
@@ -17,8 +17,8 @@ Clusters in mogenius serve as control planes for Kubernetes clusters. They provi
 ## Projects
 Projects organize all your environments and services. Each project has its own set of members and roles, dedicated resources on a cluster, and isolated namespaces for each stage. Projects are ideal for organizing applications specific to a team, software project, or any other use case that requires an isolated environment. You can have multiple projects on a single cluster, and members of an organization can be invited to participate in multiple projects.
 
-## Stages
-Stages in mogenius correspond to Kubernetes namespaces, and they are automatically configured when you add a stage to a project. You can use stages to mirror your Git flow in mogenius, so that services are automatically deployed with each commit to a branch.
+## Environments
+Environments in mogenius correspond to Kubernetes namespaces, and they are automatically configured when you add them to a project. You can use environments to mirror your Git flow in mogenius, so that services are automatically deployed with each commit to a branch.
 
 ## Services
-Services in mogenius encompass deploying, monitoring, and scaling your applications. You can create services from Git repositories, container images, templates, Docker Compose, Helm charts, and other sources (coming soon!). From a Kubernetes perspective, a service abstracts multiple resources on a cluster, allowing developers to focus on deploying their applications without extensive knowledge of Kubernetes internals. mogenius automatically handles workload management for services, such as pods, deployments, containers, ingress, and more.
+Services in mogenius encompass deploying, monitoring, and scaling your applications. You can create services from Git repositories, container images, templates, Docker Compose, Helm charts, and other sources (coming soon!). From a Kubernetes perspective, a service abstracts multiple resources on a cluster, allowing developers to focus on deploying their applications without extensive knowledge of Kubernetes internals. mogenius automatically handles workload management for services, such as deployments, ingress, and more.
