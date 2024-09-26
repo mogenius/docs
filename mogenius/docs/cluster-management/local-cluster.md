@@ -23,7 +23,7 @@ To connect your local Kubernetes with mogenius refer to the steps explained on t
 
 Once all services are installed you can enable your local setup to create an external IP address. This way, your services also receive SSL certificates.
 
-Use the [mogenius CLI](../development/mogenius-cli.md) to run the following command:
+Use the [mogenius CLI](../development/mogenius-CLI.md) to run the following command:
 ```jsx
 mocli cluster local-dev-setup
 ```
