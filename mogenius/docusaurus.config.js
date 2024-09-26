@@ -158,6 +158,14 @@ const config = {
                 label: 'Feedback',
                 href: 'https://feedback.mogenius.com',
               },
+              {
+                label: 'Blog',
+                href: 'https://mogenius.com/blog',
+              },
+              {
+                label: 'Newsletter',
+                href: 'https://mogenius.com/newsletter',
+              },
             ],
           },
           {

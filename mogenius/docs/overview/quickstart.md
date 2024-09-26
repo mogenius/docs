@@ -65,7 +65,7 @@ The operator scans your cluster and automatically offers a subset of services fr
 Once you made your selection, confirm with "Install" and the Helm charts will be deployed to your cluster. Since some of them depend on each other, the installation can take a moment.
 
 :::info
-Using a local Kubernetes? Make sure to run `mocli cluster local-dev-setup` to create a bridge interface. This will provide your services with an external hostname and SSL. [Read more >](./local-cluster.md)
+Using a local Kubernetes? Make sure to run `mocli cluster local-dev-setup` to create a bridge interface. This will provide your services with an external hostname and SSL. [Read more >](../cluster-management/local-cluster.md)
 :::
 
 ## 6. CI/CD setup
