@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Key Vault
+# Internal Key Vault
 
 Each project has it's own key vault where you can store and manage secrets with full encryption. There are two ways to work with your Key Vault:
 1. Create environment variables when creating a service. They are automatically stored in your Key Vault.
