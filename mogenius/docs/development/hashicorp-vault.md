@@ -83,10 +83,10 @@ Next, add an integration to a project. Open a project in your mogenius account o
 
 You’ll need to provide the following information:
 
-	•	**Name of the integration**: An internal name to identify the integration in your project.
-	•	**Role**: The role you specified earlier.
-	•	**Vault Server URL**: The default is http://vault.vault.svc.cluster.local:8200, but yours may differ.
-	•	**Secret Path**: The path in your Vault where the keys are stored. Only keys within this path will be available for services in this project. Other mogenius projects won’t have access.
+- **Name of the integration**: An internal name to identify the integration in your project.
+- **Role**: The role you specified earlier.
+- **Vault Server URL**: The default is http://vault.vault.svc.cluster.local:8200, but yours may differ.
+- **Secret Path**: The path in your Vault where the keys are stored. Only keys within this path will be available for services in this project. Other mogenius projects won’t have access.
 
 After saving the integration settings, mogenius will test the connection to your Vault. Once you see a **Connected** status, the connection is successfully established.
 
