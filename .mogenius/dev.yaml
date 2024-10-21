@@ -1,0 +1,29 @@
+serviceType: Deployment
+displayName: Docs-Dev
+dockerfileName: Dockerfile
+dockerContext: .
+k8sSettings:
+  limitCpuCores: 0.5
+  limitMemoryMB: 521
+  ephemeralStorageMB: 274
+  replicaCount: 1
+  deploymentStrategy: recreate
+  imagePullPolicy: Always
+envVars:
+  - id: 51c1c776-9cb4-4a1c-a5a7-de30029526c1
+    name: API_KEY
+    data:
+      type: KEY_VAULT
+      value: 5c3590ec-daac-470d-8564-056b34924943
+      vaultType: MOGENIUS_VAULT
+    value: 5c01a74337280d9b5b4df6309ad85730
+    type: KEY_VAULT
+  - id: a4e103d6-6a42-469b-be29-e346abb73139
+    name: APPLICATION_ID
+    data:
+      type: PLAINTEXT
+      value: VV92UBZKRV
+    value: VV92UBZKRV
+    type: PLAINTEXT
+ports: []
+
