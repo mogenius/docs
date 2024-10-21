@@ -4,6 +4,14 @@ sidebar_position: 7
 
 # Release notes
 
+## v2.3.0 - 15.10.2024
+- **Helm charts**: You can now manage Helm charts on your clusters easily using the mogenius UI. In the cluster settings we added a new tab where you can add and update Helm repositories, as well as installing and updating releases. This is the first version of the Helm feature in mogenius and we're looking forward to your feedback. The next iterations will also cover managing Helm charts on project level for all teams.
+- **Email notifications**: Email notifications are now available in each project for a pre-configured list of events. Those include warnings about failing pods, deployments, resource usage, and more. Notifications are sent to each member of a project and you can enable and disable each event in the project settings.
+- **HashiCorp Vault integration**: We're introducing a new integration for projects that allows you to connect with your HashiCorp Vault instance. This way, your keys stored in Vault can be used in your mogenius services as secrets. Check out the [documentation](../development/hashicorp-vault.md) to set up the integration on your cluster.
+- **Code view for environment variables**: Managing multiple environment variables in a service is now easier with a new editing mode that you can toggle in your service settings. Switch between the default UI and a code mode that uses the .env format.
+- **Image upload for organizations**: We added an image upload to the organization settings that supports uploading an image for your mogenius organization.
+- **Updates service settings**: The service settings received an updated structure, moving Ports & Domains to the first navigation level in your service settings, making them better accessible.
+
 ## v2.2.10 - 19.08.2024
 - **Demo environment**: Every user now has access to a public demo organization to explore mogenius and experiment with the platform. You can even create your own projects on the demo cluster and deploy services for testing. Every 30 minutes, the entire organization is reset, and all services are deleted. Read more about the demo organization [here](demo-organization.md).
 - **New onboarding workflow**: We have revamped the workflow from creating an organization to connecting your first Kubernetes cluster, streamlining the entire process. You’ll now find a step-by-step guide with detailed documentation for each step, making it as simple as possible to connect mogenius with your Kubernetes.
