@@ -24,7 +24,7 @@ CI/CD does not work with services that you have created from a public repository
 
 ## Workflow and Container Registry
 
-The mogenius build pipeline uses dedicated build servers that run on our infrastructure. The platform handles queues and build agents automatically so that you don't have to configure anything. After a build is completed the Docker image will be pushed to the container registry that was connected with your cluster during setup.
+The mogenius build pipeline uses executes a `Docker build` on the Kubernetes cluster that you selected when creating a project. After a build is completed the Docker image will be pushed to the container registry that was connected with your cluster during setup. The pipeline then creates all the necessary Kubernetes resources on your cluster, or updates them with the new image.
 
 ## Queue
 
