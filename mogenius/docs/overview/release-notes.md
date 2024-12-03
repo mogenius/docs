@@ -4,6 +4,11 @@ sidebar_position: 7
 
 # Release notes
 
+## v2.4.0 - 26.11.2024
+- **Network Policies**: Introducing the mogenius network policy manager, a feature that offers a streamlined interface for managing network policies on Kubernetes clusters. It includes sensible defaults, templates, and best practices to simplify configuration and ensure your teams maximize the benefits of network policies. [Read more](../cluster-management/network-policies.md)
+- **Social login**: We now support Google, GitHub, GitLab, and Microsoft accounts for signing up and logging in to mogenius. If you previously had a mogenius account, you can continue using it with the traditional email and password login.
+- **Improved Workload Manager**: Managing resources and workloads on your cluster is now even easier with the enhanced workload manager. We've introduced the ability to create new Kubernetes resources, improved status handling, added shell access, and more.
+
 ## v2.3.0 - 15.10.2024
 - **Helm charts**: You can now manage Helm charts on your clusters easily using the mogenius UI. In the cluster settings we added a new tab where you can add and update Helm repositories, as well as installing and updating releases. This is the first version of the Helm feature in mogenius and we're looking forward to your feedback. The next iterations will also cover managing Helm charts on project level for all teams.
 - **Email notifications**: Email notifications are now available in each project for a pre-configured list of events. Those include warnings about failing pods, deployments, resource usage, and more. Notifications are sent to each member of a project and you can enable and disable each event in the project settings.
