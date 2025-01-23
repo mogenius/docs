@@ -3,7 +3,7 @@ sidebar_position: 3
 title: Create a TiDB database
 ---
 
-# Launching TiDB database in the cloud with a few clicks
+# Launching TiDB database in the cloud with a few clicks    
 
 
 ## In short
