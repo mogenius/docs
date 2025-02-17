@@ -36,28 +36,56 @@ Once you have made the settings, click "Create service" and your service will be
 
 ## Deploying from a private registry
 
-If your container image requires authentication you can pass the connection details with a repository secret, so that mogenius can access the private repository and deploy the image.
+If your container registry requires authentication you can pass the connection details with a `Docker config.json` stored in a secret. This allows mogenius to access the private repository and deploy the image.
 
-When creating a container image, click "Create new secret". This will create a new secret in your key vault. Enter a name for your secret and pass the following string as value:
+**Setting up the secret in mogenius**
+1. In your project, open the Key Vault and add a new secret.
+2. Enter a name and paste the content of your `Docker config.json` as the value.
+3. Save your secret.
+4. When deploying a new service from a container image, select the secret from the dropdown **Container Repository Secret**.
 
-```
-{"auths":{"your.private.registry.example.com":{"username":"janedoe","password":"xxxxxxxxxxx","email":"jdoe@example.com","auth":"c3R...zE2"}}}
-```
+Below, you'll find different methods for retrieving your `config.json`.
 
-The placeholders must be replaced by the access credentials of your private image repository. You can retrieve your auth key with two steps:
+### Defining the config.json manually 
+In general, the `config.json` uses the following structure. Depending on your registry's authentication method, the necessary parameters must be provided.
 
-- In a terminal perform a `docker login` on your repository
-- Execute `cat ~/.docker/config.json`
-
-You will get a result similar to this.
-
-```jsx title="cat ~/.docker/config.json"
+```json
 {
     "auths": {
-        "https://index.docker.io/v1/": {
-            "auth": "c3R...zE2"
+        "<your-registry-url>": {
+            "username": "<username>",
+            "password": "<password>",
+            "email": "<email>",
+            "auth": "<auth>"
         }
     }
+}
 ```
 
-Now you can fill in the authorization key in the connection string and create the secret. After you fill in the remaining service settings, click "Create service" and mogenius will deploy the private container image.
+### Retrieving the config.json via Docker login
+If you can authenticate with the registry locally, you can copy the `config.json` from your local login instead of defining it manually.
+1. In a terminal, perform a `Docker login` on your registry.
+2. Execute `cat ~/.docker/config.json`.
+3. Copy the output - this is the value you need to store in mogenius as a secret.
+
+### Authenticating with Google Cloud Artifact Registry via Service Account
+
+If you're using GCP Artifact Registry, you can authenticate using a service account. The credentials for your GCP service account can be downloaded as a JSON key file. First, set up your service account and retrieve the JSON key file following the [official GCP documentation](https://cloud.google.com/artifact-registry/docs/docker/authentication#json-key).
+
+Then, set up your `config.json` with the following steps:
+1. Encode the content of your JSON key file in base64.
+2. The registry expects credentials via config.json in the format `"auth":"username:password"`, encoded in base64. As a username you'll use `_json_key_base64`. Now, encode `_json_key_base64:<your base64-encoded json key file>` in base64.
+3. This is the `auth` value that you can use to define the config.json in the following format.
+
+```json
+{
+    "auths": {
+        "<YOUR-GCP-REGION>-docker.pkg.dev": {
+            "auth": "<auth>"
+        }
+    }
+}
+```
+
+Now you can store the `config.json` in a secret in mogenius and deploy the container image from your Artifact Registry.
+
