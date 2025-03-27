@@ -9,16 +9,37 @@ The mogenius platform comprises multiple organizational levels tailored to vario
 ![cloudspace structure](https://imagedelivery.net/T7YEW5IAgZJ0dY4-LDTpyQ/a81bf0d1-b997-4c43-0059-b17935267400/jpeg)
 
 ## Organizations
-Organizations are the highest level in the mogenius platform. Each organization has its own member list, billing, and settings. Clusters, projects, and other resources can be shared within an organization but not across different organizations. Organizations are useful for representing isolated groups of people. You can create multiple organizations to accommodate large, independent departments, subsidiaries, or clients who should not have access to each other's resources.
+Organizations are the highest level in the mogenius platform. Each organization has its own member list, billing, and settings. Clusters, workspaces, and other resources can be shared within an organization but not across different organizations. Organizations are useful for representing isolated groups of people. You can create multiple organizations to accommodate large, independent departments, subsidiaries, or clients who should not have access to each other's resources.
 
 ## Clusters
-Clusters in mogenius serve as control planes for Kubernetes clusters. They provide various settings to manage the Helm installation of mogenius on Kubernetes, define policies and controls for projects, and monitor resources and projects on the cluster.
+Clusters in mogenius serve as control planes for Kubernetes clusters. They provide various settings to manage the Helm installation of mogenius on Kubernetes, define policies and controls for workspaces, and monitor resources on the cluster.
 
-## Projects
-Projects organize all your environments and services. Each project has its own set of members and roles, dedicated resources on a cluster, and isolated namespaces for each stage. Projects are ideal for organizing applications specific to a team, software project, or any other use case that requires an isolated environment. You can have multiple projects on a single cluster, and members of an organization can be invited to participate in multiple projects.
+## Workspaces
+Workspaces are an extension to Kubernetes that allow you to group resources for a dedicated set of users, based on namespaces, Helm releases, or labels. Each workspace comes with a comprehensive dashboard for monitoring services and to navigate resources on the cluster in an abstracted and safe way for the team. You can create multiple workspaces to manage access and permissions granularly. Workspaces also come with built-in deployment tools, to either connect your existing build pipelines, or to create pipeline starters like Github Actions templates.
 
-## Environments
-Environments in mogenius correspond to Kubernetes namespaces, and they are automatically configured when you add them to a project. You can use environments to mirror your Git flow in mogenius, so that services are automatically deployed with each commit to a branch.
+mogenius introduces a Custom Resource Definition (CRD) for workspaces on Kubernetes. This allows you to create and update workspaces in your mogenius account as Kubernetes resources. This can be useful for automating the creation of workspaces, or for integrating it with third-party tooling.
 
-## Services
-Services in mogenius encompass deploying, monitoring, and scaling your applications. You can create services from Git repositories, container images, templates, Docker Compose, Helm charts, and other sources (coming soon!). From a Kubernetes perspective, a service abstracts multiple resources on a cluster, allowing developers to focus on deploying their applications without extensive knowledge of Kubernetes internals. mogenius automatically handles workload management for services, such as deployments, ingress, and more.
+Here's an example of a YAML that defines a workspace with two namespaces and a Helm release:
+
+```
+apiVersion: mogenius.com/v1alpha1
+kind: Workspace
+metadata:
+  creationTimestamp: '2025-03-27T21:06:24Z'
+  generation: 2
+  name: exampleworkspace
+  namespace: mogenius
+  resourceVersion: '4362774'
+  uid: b400fefe-7678-4548-bd21-14c8e1781b73
+spec:
+  resources:
+    - id: gitea
+      type: namespace
+    - id: opensearch
+      type: namespace
+    - id: discourse
+      namespace: discourse
+      type: helm
+status: {}
+```
+
