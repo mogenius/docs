@@ -9,7 +9,7 @@ mogenius allows you to connect with Kubernetes clusters by installing the mogeni
 
 ## Prerequisites
 To successfully complete the next steps, you will need the following:
-- A Kubernetes cluster. We recommend a managed Kubernetes service, like EKS (Amazon AWS), AKS (Microsoft Azure) or GKE (Google Cloud Platform), but any cluster with Kubernetes version 1.24 or higher will work. To get started, a [local Kubernetes](./local-cluster.md) like Docker Desktop, k3s, or minikube is also a great option.
+- A Kubernetes cluster. We recommend a managed Kubernetes service, like EKS (Amazon AWS), AKS (Microsoft Azure) or GKE (Google Cloud Platform), but any cluster with Kubernetes version 1.24 or higher will work. To get started, a local Kubernetes like Docker Desktop, k3s, or minikube is also a great option.
 - A working installation of `Helm` and `kubectl`
 - OR optionally the [mogenius CLI](../development/mogenius-CLI.md)
 - Kubernetes cluster admin permissions
@@ -62,6 +62,3 @@ Once the operator is installed, it will check if a [metrics server](https://gith
 
 ## Troubleshooting
 If you're encountering issues with installing the operator, check out common problems in the section [Troubleshooting clusters](./troubleshooting-clusters.md).
-
-## Next steps
-Congrats, your cluster is now connected with mogenius 🎉 Go ahead and create a project to deploy some services to your cluster.
