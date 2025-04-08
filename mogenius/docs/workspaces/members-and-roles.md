@@ -1,35 +1,33 @@
 ---
-sidebar_position: 7
+sidebar_position: 5
 ---
 
 # Members & Roles
 
-There's two levels of access management in mogenius: Organization and project level. On each level there's a simple set of pre-configured rules that you can use to control permissions within your teams.
+There's two levels of access management in mogenius: Organization and workspace level. On each level there's a simple set of pre-configured roles that you can use to control permissions within your teams.
 
 ## Organization
-People joining your organization can have either admin or viewer role. You can invite members to join your organization from the page Members by clicking "+" in the top right corner of the page.
-
-| Permissions | Admin | Viewer |
-|---|---|---|
-|Organization| Create, Edit, Delete | View |
-|Clusters|Create, Edit, Delete| View |
-|Projects|View|View (by invite)|
-|Settings|Edit|View|
-|Billing|Edit| - |
-|Members|Edit|View|
-
-## Project
-After creating a project you can invite and manage project members through the project settings. Move to Settings and switch to the tab Team. You can invite people to join the project by clicking "+ Add Member."
+People joining your organization can have either admin, editor, or viewer role. You can invite members to join your organization from the Members page in your organization.
 
 | Permissions | Admin | Editor | Viewer |
 |---|---|---|---|
-|Projects|Create, Edit, Delete|Edit|View|
-|Stages|Create, Edit, Delete|View|View|
-|Services|Create, Edit, Delete|Create, Edit, Delete|View|
-|Service settings & actions|Edit|Edit|View|
-|Integrations|Create, Edit, Delete|View|View|
-|Team members|Create, Edit, Delete|View|-|
-|Storage|Create, Edit, Delete|Edit|View|
-|CI/CD Monitor|View|View|View|
-|Key Vault|Create, Edit, Delete|Create, Edit, Delete|-|
+|Organization| Create, Edit, Delete | View | View|
+|Clusters|Add, Edit, Delete| - | - |
+|Workspaces|View all workspaces|View by invite|View by invite|
+|Templates|Create, Edit, Delete| Create, Edit, Delete | View |
+|Members|Add, Edit, Delete|View|View|
+|Settings|Edit|View|View|
 
+## Workspace
+In a workspace you can invite users to provide them with access to Kubernetes resources. Workspaces rely on Kubernetes RBAC which means that the users and groups you define in the mogenius platform are created and updated on the Kubernetes cluster. You can invite and manage members on the **Team** tab in your workspace settings. There's three pre-defined groups that you can use.
+
+| Permissions | Admin | Editor | Viewer |
+|---|---|---|---|
+|Workspace|Edit, Delete|View|View|
+|Resources|Create, Edit, Delete|Create, Edit, Delete|View|
+|Start/stop/restart workloads|✅|✅|-|
+|Pipeline tools|✅|✅|-|
+|Shell|✅|✅|-|
+|Volumes|Create, Edit, Delete|Create, Edit, Delete|View|
+|Integrations|Create, Edit, Delete|Create, Edit, Delete|View|
+|Team members|Add, Edit, Delete|Add, Edit, Delete|View|

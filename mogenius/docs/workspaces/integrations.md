@@ -1,8 +1,8 @@
 ---
-sidebar_position: 9
+sidebar_position: 6
 ---
 
-# Integration
+# Integrations
 
 You can connect mogenius with Git hosts to deploy services directly from your repositories. There's two options to set up a Git integration:
 1. In your mogenius profile, go to Integrations
