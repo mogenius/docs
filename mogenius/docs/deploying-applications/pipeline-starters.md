@@ -1,8 +1,8 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
-# Deploy from a repository
+# Pipeline starters
 
 mogenius has an integrated build pipeline which you can use to build and deploy applications right from Github, Gitlab, or Bitbucket. mogenius will also keep your service up to date, automatically deploying updates of your application with each commit that you perform on the selected git branch.
 

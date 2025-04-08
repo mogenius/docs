@@ -4,8 +4,7 @@ sidebar_position: 9
 
 # mogenius CLI
 
-With `mocli`, you can observe your mogenius clusters, projects, services, and more with style right from your command line environment.
-
+With `mocli`, you can observe your mogenius clusters, workspaces, resources, and more with style right from your command line environment.
 
 :::info
 The mogenius CLI is in Beta, with a limited feature set. Follow our release notes to keep track of new features.
@@ -41,7 +40,7 @@ Once you created your account, on your command line run the following command to
 mocli
 ```
 
-You will initially be taken to your default browser to log in to your Mogenius account. After a successful login, you can return back to your CLI and `mocli` TUI (terminal UI) will take its shape.
+You will initially be taken to your default browser to log in to your mogenius account. After a successful login, you can return back to your CLI and `mocli` TUI (terminal UI) will take its shape.
 
 ## Navigation and service management
 

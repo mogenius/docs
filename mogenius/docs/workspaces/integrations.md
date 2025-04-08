@@ -4,56 +4,26 @@ sidebar_position: 6
 
 # Integrations
 
-You can connect mogenius with Git hosts to deploy services directly from your repositories. There's two options to set up a Git integration:
-1. In your mogenius profile, go to Integrations
-2. When creating a service that relies on a repository you'll be asked to select the integration that you want to use
+You can enrich the capabilities of your workspace with integrations that connect your Kubernetes resources with data from external tools. This way, mogenius provides a streamlined interface for monitoring and troubleshooting Kubernetes applications.
+
+## Github 
+
+Use the Github integration to add logs and status information from Github actions to your Kubernetes deployments. This will populate the **Build log** on your application's detail page as well as adding a **Build status**.
+
+Here's how to set up the integration:
+1. Go to the **Integrations** tab in your workspace settings.
+2. Click **Connect** to authorize Github with your workspace.
+3. On the following screens you can sign in with your Github account, set the Github organization and the integration's permission.
+4. Once your integration is set up, go to the **General settings** of your workload. Set the repository that you want to connect with your application. If it has a Github actions workflow, the status and logs of your workflows are now available in the mogenius UI.
+
+## Gitlab
 
 :::info
-If you're running a self-hosted Gitlab instance, you can connect via [Access Token](#access-tokens).
+Coming soon 🚧
 :::
 
-## Connect by login
-Select one of the buttons "Connect with Gitlab" or "Connect with Github" to set up the integration using your login credentials from Github or Gitlab. You'll be directed to a page where you login at you Git host. Next, you'll set the scope of the integration and decide if mogenius will have full access to all repositories, or limited access for selected repositories. Once you confirm you'll be redirected back to mogenius and you can continue creating services.   Read more about this [here](../deploying-applications/deploy-from-a-repository.md).
-
-## Access Tokens
-Select "Access Token" if you want to connect with Github or Gitlab using a personal access token. Requirements for the token depend on the Git host you're using:
-
-### Github
-First, create an access token in your Github account. To do that, go to your settings and in the section "Developer settings" open "Personal access tokens."
-
-Github has two options for creating access tokens. The required permissons depend on the type you select:
-
-**Fine-grained personal access token**
-- Either for all repositories, or for selected repositories
-- Repository permissions
-  - Administration (read/write)
-  - Commit statuses (read/write)
-  - Contents (read/write)
-  - Webhooks (read/write)
-
-**Tokens (classic**)
-- repo (Full control of private repositories)
-- admin:repo_hook (Full control of repository hooks)
-
-**Finish setup**  
-Once you retrieved the token, go back to mogenius integrations and select the option "Access token." Make sure you set the toggle to "Github", enter your access token and confirm.
-
-### Gitlab
-With Gitlab there are several scopes in your account where you can create an access token: User, Group, or Project. Depending on your desired scope of permissions, go to the respective settings and open the section "Access Tokens."
-
-**The minimum required permissions are**
-- api
-- read_repository
-- write_repository
+## ArgoCD
 
 :::info
-Note that for each Gitlab project that you deploy via mogenius, the role `Maintainer` or higher is required for the Gitlab user that owns the token.
+Coming soon 🚧
 :::
-
-### Bitbucket
-The Bitbucket integration via access token supports two types of authentication: Via [app password](https://support.atlassian.com/bitbucket-cloud/docs/app-passwords/), or [workspace access token](https://support.atlassian.com/bitbucket-cloud/docs/workspace-access-tokens/).
-
-Create the desired token in your Bitbucket account and store it in a safe location (e.g. a key vault).
-
-**Finish setup**  
-Once you retrieved the token, go back to mogenius integrations and select the option "Access token." Make sure you set the toggle to "Gitlab." If you're connecting to a cloud-hosted Gitlab instance, set the domain to `https://gitlab.com`. For a self-hosted Gitlab instance, enter the domain of your Gitlab, e.g. `https://gitlab.yourcompany.com`. Next, enter your access token and confirm.
