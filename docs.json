@@ -11,7 +11,7 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Documentation",
         "groups": [
           {
             "group": "Get Started",
@@ -22,7 +22,7 @@
             ]
           },
           {
-            "group": "Essentials",
+            "group": "Clusters",
             "pages": [
               "essentials/markdown",
               "essentials/code",
@@ -31,7 +31,13 @@
               "essentials/navigation",
               "essentials/reusable-snippets"
             ]
-          }
+          },
+          {
+            "group": "Workspaces",
+          },
+          {
+            "group": "Deploying applications",
+          },
         ]
       },
       {
