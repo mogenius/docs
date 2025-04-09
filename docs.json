@@ -4,8 +4,8 @@
   "name": "mogenius Documentation",
   "colors": {
     "primary": "#009bc5",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "light": "#009BC5",
+    "dark": "#00B6E8"
   },
   "favicon": "/favicon.ico",
   "navigation": {
