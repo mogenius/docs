@@ -1,13 +1,13 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "mogenius Documentation",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
     "dark": "#15803D"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon.ico",
   "navigation": {
     "tabs": [
       {
@@ -17,45 +17,50 @@
             "group": "Get Started",
             "pages": [
               "introduction",
-              "quickstart",
-              "development"
+              "documentation/overview/quickstart",
+              "documentation/overview/demo-organization",
+              "documentation/overview/basic-concepts",
+              "documentation/overview/how-mogenius-works",
+              "documentation/overview/plans-pricing",
+              "documentation/overview/help-and-feedback",
+              "documentation/overview/release-notes"
             ]
           },
           {
             "group": "Clusters",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
+              "documentation/cluster-management/installing-mogenius",
+              "documentation/cluster-management/cluster-settings",
+              "documentation/cluster-management/workload-manager",
+              "documentation/cluster-management/network-policies",
+              "documentation/cluster-management/active-cluster-sync",
+              "documentation/cluster-management/update-and-uninstall",
+              "documentation/cluster-management/troubleshooting-clusters",
+              "documentation/cluster-management/managed-clusters"
             ]
           },
           {
             "group": "Workspaces",
-          },
-          {
-            "group": "Deploying applications",
-          },
-        ]
-      },
-      {
-        "tab": "API Reference",
-        "groups": [
-          {
-            "group": "API Documentation",
             "pages": [
-              "api-reference/introduction"
+              "documentation/workspaces/creating-workspaces",
+              "documentation/workspaces/workspace-dashboard",
+              "documentation/workspaces/resources",
+              "documentation/workspaces/service-status-and-errors",
+              "documentation/workspaces/members-and-roles",
+              "documentation/workspaces/integrations",
+              "documentation/workspaces/storage",
+              "documentation/workspaces/mogenius-API",
+              "documentation/workspaces/mogenius-CLI"
             ]
           },
           {
-            "group": "Endpoint Examples",
+            "group": "Deploying applications",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "documentation/deploying-applications/overview",
+              "documentation/deploying-applications/container-images",
+              "documentation/deploying-applications/pipeline-starters",
+              "documentation/deploying-applications/helm-charts",
+              "documentation/deploying-applications/kubernetes-manifests"
             ]
           }
         ]
@@ -64,45 +69,36 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
-        },
-        {
           "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
+          "href": "https://mogenius.com/blog",
           "icon": "newspaper"
         }
       ]
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/logo.svg",
+    "dark": "/logo/logo_dark.svg"
   },
   "navbar": {
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:support@mogenius.com"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "mogenius Platform",
+      "href": "https://app.mogenius.com"
     }
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "github": "https://github.com/mogenius",
+      "linkedin": "https://www.linkedin.com/company/mogenius",
+      "x": "https://x.com/mogenius"
+      
     }
   }
 }
