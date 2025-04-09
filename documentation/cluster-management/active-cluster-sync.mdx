@@ -1,11 +1,11 @@
-﻿---
-sidebar_position: 8
-description: Use Active Cluster Sync to synchronize Kubernetes workloads with Git.
+---
+sidebar_position: "8"
+description: "Use Active Cluster Sync to synchronize Kubernetes workloads with Git."
 ---
 
-:::info
-This feature is currently in closed beta. [Contact us](mailto:support@mogenius.com) if you're interested in Active Cluster Sync.
-:::
+<Note>
+  This feature is currently in closed beta. [Contact us](mailto:support@mogenius.com) if you're interested in Active Cluster Sync.
+</Note>
 
 With Active Cluster Sync, you can use the mogenius operator to synchronize a Kubernetes cluster with a Git repository. Once activated, all Kubernetes workloads will be stored and updated in the repository as YAML files. The sync strategy setting allows you to synchronize workloads across multiple Kubernetes clusters. This feature is highly useful for several scenarios:
 
@@ -36,4 +36,4 @@ The sync strategy setting determines the synchronization behavior of the operato
 - **Pull**: This strategy pulls workloads from the repository and applies them to your Kubernetes cluster. Any changes on the cluster that differ from the YAML files stored in Git will be overwritten.
 - **Push & Pull**: This setting combines both strategies, enabling bi-directional synchronization. Changes on Kubernetes will be pushed to the repository, and changes in Git will be pulled to the cluster. This excludes changes applied by the sync workflow itself to avoid infinite loops.
 
-The operator will monitor changes and apply the configured sync strategy every 10 seconds. All sync activities are logged by the operator's pod. To view the log, navigate to Workloads > Pods in your cluster and open the pod named mogenius-k8s-manager.
+The operator will monitor changes and apply the configured sync strategy every 10 seconds. All sync activities are logged by the operator's pod. To view the log, navigate to Workloads \> Pods in your cluster and open the pod named mogenius-k8s-manager.

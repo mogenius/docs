@@ -1,12 +1,12 @@
 ---
-sidebar_position: 9
+sidebar_position: "9"
 ---
 
 With `mocli`, you can observe your mogenius clusters, workspaces, resources, and more with style right from your command line environment.
 
-:::info
-The mogenius CLI is in Beta, with a limited feature set. Follow our release notes to keep track of new features.
-:::
+<Note>
+  The mogenius CLI is in Beta, with a limited feature set. Follow our release notes to keep track of new features.
+</Note>
 
 ## Installation
 
@@ -41,4 +41,15 @@ mocli login
 ## Connecting a cluster
 
 You can use the CLI to install the mogenius operator on your Kubernetes cluster. Follow the steps to connect your cluster:
-1. In the mogenius UI, add a new cluster
+
+1. In the mogenius UI, add a new cluster.
+2. Go back to your terminal and run
+
+   ```
+   mocli cluster connect
+   ```
+3. The available clusters of your organization will be shown. Select the cluster that you want to connect with your current kube context.
+4. Verify that your local kube context is set to the cluster where you want to install the mogenius operator.
+5. To deploy the operator, hit **Enter.**
+
+The operator will now be deployed to your cluster. You can verify if the connection between operator and platform was established via `mocli clusters list` or through the mogenius UI.
