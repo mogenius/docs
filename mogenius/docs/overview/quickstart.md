@@ -5,6 +5,8 @@ sidebar_position: 2
 # Quickstart
 Getting started with mogenius is easy. Here's a walkthrough of the most important steps for connecting your cluster and creating a workspace.
 
+<iframe width="100%" height="400" src="https://www.youtube.com/embed/_9Ex-lnEATI?si=2XWUGm4lg5O46dZg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 ## 1. Sign up​
 First, [sign up](https://app.mogenius.com/user/registration) for a mogenius account. You can use a social login (Github, Gitlab, Google, Microsoft), or your email address.
 
@@ -26,10 +28,6 @@ To successfully complete the next steps, you will need the following:
 :::info
 If you want to explore mogenius before connecting it with your cluster, check out the demo organization in your account. If you don't want to run mogenius with your own Kubernetes cluster, check out our section [Managed clusters](./../cluster-management/managed-clusters.md).
 :::
-
-<div style={{ position: 'relative', paddingBottom: 'calc(56.25782227784731% + 41px)', height: 0 }}>
-      <iframe src="https://app.supademo.com/embed/iy17UxSmsVTaPPiLgHhlQ" frameBorder="0" loading="lazy" webkitAllowFullScreen mozAllowFullScreen allowFullScreen style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
-    </div>
 
 After creating your organization, add a new cluster. Enter a name (this will only be used to display the cluster in mogenius) and proceed to install the operator.
 
