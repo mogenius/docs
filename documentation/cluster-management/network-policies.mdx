@@ -1,0 +1,68 @@
+---
+sidebar_position: "3"
+---
+
+The integrated network policy manager allows you to create and manage network policies on your cluster. With a built-in strategy for implementing network policies provided by mogenius, you can easily get started while enabling developers to leverage these capabilities in their services.
+
+## How do managed network policies work?
+
+Managing network policies is complex and requires a consistent strategy to maintain control over network traffic within your clusters. The managed network policies feature in mogenius provides a ready-to-use, opinionated concept to address this challenge. The approach is based on the following main ideas:
+
+- Default Namespace Policies: Before configuring specific network policies, a namespace receives two default policies. The first is a `deny-all-ingress` policy that blocks all incoming traffic to the namespace. The second is an `allow-namespace-communication` policy that allows communication between pods within the namespace.
+- Granular Whitelisting: With this setup, policies are created for each deployment (or controller in a broader sense) to define specific communication that should be allowed.
+- Templates and Labels: All cluster-wide policies are stored as templates in a global ConfigMap. A policy can be applied to a controller by setting a label in the deployment.
+
+This framework aims to streamline policy management on your cluster, providing high visibility over the policies applied to each namespace and controller.
+
+## Prerequisites
+
+To support network policies, a Container Network Interface (CNI) is required on your cluster. [Calico](https://www.tigera.io/project-calico/) or [Cilium](https://cilium.io/) are popular CNIs and most managed Kubernetes solutions (Amazon EKS, Azure AKS, Google Cloud GKE) offer options to enable a CNI during cluster creation.
+If you're uncertain if a CNI is available on your Kubernetes cluster or encountering setup issues, feel free to contact our [support](mailto:support@mogenius.com).
+
+## Enabling Network Policy Management
+
+To enable network policy management:
+
+1. Navigate to your cluster in mogenius and open the **Network Policies** tab.
+2. A button is available for each namespace to enable network policy management. The interface will also indicate if unmanaged network policies (i.e., those not created through mogenius) are active in the namespace.
+3. After enabling the feature, the `deny-all-ingress` and `allow-namespace-communication` policies are automatically added to the namespace.
+
+<Warning>
+  When enabling network policy management, all previously created network policies in the namespace will be deleted. This ensures consistency and predictable results for policies created using mogenius. Be sure to back up any existing policies before proceeding.
+</Warning>
+
+## Deploying a Network Policy from the Network Policies Page
+
+Once network policy management is enabled, the interface displays all controllers within the namespace. To deploy a network policy for a controller:
+
+1. Click on **\+Add** next to the controller.
+2. Select the desired policy template from the list.
+3. Confirm your choice.
+
+To modify the templates available in the selection, refer to [Managing Network Policy Templates](#managing-network-policy-templates).
+
+## Deploying a Network Policy from Inside a Project
+
+After enabling network policy management for a namespace, developers can also utilize it within their mogenius projects. This enables them to securely and independently apply network policy templates within their projects.
+
+To deploy a network policy for a service inside a project:
+
+1. Open the service page.
+2. Navigate to the **Network Policies** tab.
+3. Select and apply policies from the available list of templates.
+
+Because policy templates are managed globally and network policy management is enabled only by admins for each namespace, the scope of network policies remains confined to the specific namespace assigned to a developer or team.
+
+## Managing Network Policy Templates
+
+When applying a network policy to a controller, a global ConfigMap is utilized to store all available policies as templates.
+
+- Upon first connecting your cluster to mogenius, a default set of templates is created.
+- You can use the mogenius UI to add custom templates, update existing ones, or delete outdated templates.
+
+To manage these templates:
+
+1. Go to **Network Policies** in your cluster settings.
+2. Click **Manage Policies** in the top-right corner of the page.
+
+Changes made to the global list of templates do not affect existing controllers but will apply to any new network policies deployed to a controller thereafter.

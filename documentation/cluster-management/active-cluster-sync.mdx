@@ -1,0 +1,39 @@
+---
+sidebar_position: "8"
+description: "Use Active Cluster Sync to synchronize Kubernetes workloads with Git."
+---
+
+<Note>
+  This feature is currently in closed beta. [Contact us](mailto:support@mogenius.com) if you're interested in Active Cluster Sync.
+</Note>
+
+With Active Cluster Sync, you can use the mogenius operator to synchronize a Kubernetes cluster with a Git repository. Once activated, all Kubernetes workloads will be stored and updated in the repository as YAML files. The sync strategy setting allows you to synchronize workloads across multiple Kubernetes clusters. This feature is highly useful for several scenarios:
+
+- **Backup and Failover:** Create a hot backup of a Kubernetes cluster that always mirrors the exact state of your production cluster. If there is an incident with your primary cluster, you can fail over to the backup to minimize downtime.
+- **Kubernetes Migration:** When you need to migrate a Kubernetes cluster from one provider or data center to another, you can quickly create a clone of your current cluster. This allows you to test all workloads in the new environment before fully transitioning your workflows to the new infrastructure.
+- **Bridging Location Limitations:** If regulations or data privacy laws require your organization to serve customers from specific locations where your current cloud provider does not have a data center, managing multiple providers can be costly and prone to errors. Active Cluster Sync provides a solution by maintaining a streamlined workflow for deploying and updating applications on your main infrastructure, while serving edge locations with replicas of your main setup.
+
+The following diagram describes a typical setup for these scenarios: The main cluster is configured with the push sync strategy, so it's synchronizing its workloads to a Git repository. The backup clusters apply the pull sync strategy, only pulling changes from Git. Manually overwriting workloads on the backup clusters isn't possible, so you'll make sure that the state in Git is the single source of truth for all backup clusters.
+
+![active cluster sync diagram](/img/active-cluster-sync-diagram.png)
+
+## Configuration
+
+In your organization, navigate to the settings of your cluster and scroll down to the "Active Cluster Sync" section. Fill in the form fields as follows:
+
+- **Git repository URL**: Enter the URL of the repository to be used for synchronization (e.g., https://github.com/yourorganization/syncrepo.git).
+- **Git branch**: Specify the branch that should be targeted for the sync.
+- **PAT**: Enter a Personal Access Token that has access to the defined repository. The token must have permissions to add and change the contents of the repository.
+- **Sync strategy**: More details below.
+- **Ignored namespaces**: List the namespaces that won’t be synchronized by the operator.
+
+## Sync strategy
+
+The sync strategy setting determines the synchronization behavior of the operator on your Kubernetes cluster:
+
+- **None**: This is the default setting where no synchronization is enabled. Use this setting if you have previously applied a sync strategy and wish to stop the synchronization.
+- **Push**: This strategy pushes all workloads to the repository and updates them if changes on the cluster are detected. Manual changes to the YAML files stored in the repository will be overwritten. For the initial synchronization, an empty repository is required; otherwise, the initial sync will be canceled.
+- **Pull**: This strategy pulls workloads from the repository and applies them to your Kubernetes cluster. Any changes on the cluster that differ from the YAML files stored in Git will be overwritten.
+- **Push & Pull**: This setting combines both strategies, enabling bi-directional synchronization. Changes on Kubernetes will be pushed to the repository, and changes in Git will be pulled to the cluster. This excludes changes applied by the sync workflow itself to avoid infinite loops.
+
+The operator will monitor changes and apply the configured sync strategy every 10 seconds. All sync activities are logged by the operator's pod. To view the log, navigate to Workloads \> Pods in your cluster and open the pod named mogenius-k8s-manager.

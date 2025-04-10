@@ -1,0 +1,63 @@
+---
+sidebar_position: "1"
+description: "Connect your own Kubernetes cluster by installing the mogenius operator on the cluster."
+---
+
+mogenius allows you to connect with Kubernetes clusters by installing the mogenius operator on a cluster. Once installed, you can start creating workspaces and manage Kubernetes workloads through the mogenius platform. To begin the installation process, you'll first need to add a cluster in mogenius.
+
+## Prerequisites
+
+To successfully complete the next steps, you will need the following:
+
+- A Kubernetes cluster. We recommend a managed Kubernetes service, like EKS (Amazon AWS), AKS (Microsoft Azure) or GKE (Google Cloud Platform), but any cluster with Kubernetes version 1.24 or higher will work. To get started, a local Kubernetes like Docker Desktop, k3s, or minikube is also a great option.
+- A working installation of `Helm` and `kubectl`
+- OR optionally the [mogenius CLI](../development/mogenius-CLI.md)
+- Kubernetes cluster admin permissions
+
+## Resource requirements
+
+The mogenius operator is deployed to your Kubernetes cluster using Helm. It will require at least 0.5 vCPU and 128 MB RAM.
+
+## Add a cluster in mogenius
+
+In your organization open "Clusters" and select "Add cluster." Enter a display name for your cluster and confirm.
+
+<Note>
+  This will create a management pane for a Kubernetes cluster in mogenius. It will not create an actual Kubernetes cluster.
+</Note>
+
+## Install the operator
+
+mogenius connects to your Kubernetes cluster via an operator that you'll need to deploy on Kubernetes. In the next step you will have two options to do this: using Helm, or the mogenius CLI.
+
+### Helm install
+
+Retrieve the Helm install command from the user interface and run it on a terminal. Make sure that your kubecontext is set to the right Kubernetes cluster. The command will look something like this.
+
+```jsx title="mogenius operator Helm install"
+helm repo add mogenius https://helm.mogenius.com/public
+helm repo update mogenius
+helm upgrade --install mogenius-operator mogenius/mogenius-k8s-manager -n mogenius --create-namespace --wait \
+--set global.cluster_name="NAME" \
+--set global.api_key="API_KEY"
+```
+
+### mogenius CLI
+
+Install the mogenius CLI, on your terminal perform a `mocli login` and then run the following command.
+
+```jsx" title="Installation via mogenius CLI"
+mocli cluster connect
+```
+
+You'll be asked to confirm the organization, the cluster that you want to connect, and your current kubecontext before the operator is being deployed.
+
+## Metrics server
+
+Once the operator is installed, it will check if a [metrics server](https://github.com/kubernetes-sigs/metrics-server) is present on the cluster. If not, it will be automatically installed.
+
+**That's it - your cluster is connected and you can now create workspaces\!**
+
+## Troubleshooting
+
+If you're encountering issues with installing the operator, check out common problems in the section [Troubleshooting clusters](./troubleshooting-clusters.md).

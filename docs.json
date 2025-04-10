@@ -1,0 +1,104 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "mogenius Documentation",
+  "colors": {
+    "primary": "#009bc5",
+    "light": "#009BC5",
+    "dark": "#00B6E8"
+  },
+  "favicon": "/favicon.ico",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "documentation/overview/quickstart",
+              "documentation/overview/demo-organization",
+              "documentation/overview/basic-concepts",
+              "documentation/overview/how-mogenius-works",
+              "documentation/overview/plans-pricing",
+              "documentation/overview/help-and-feedback",
+              "documentation/overview/release-notes"
+            ]
+          },
+          {
+            "group": "Clusters",
+            "pages": [
+              "documentation/cluster-management/installing-mogenius",
+              "documentation/cluster-management/cluster-settings",
+              "documentation/cluster-management/workload-manager",
+              "documentation/cluster-management/network-policies",
+              "documentation/cluster-management/active-cluster-sync",
+              "documentation/cluster-management/update-and-uninstall",
+              "documentation/cluster-management/troubleshooting-clusters",
+              "documentation/cluster-management/managed-clusters"
+            ]
+          },
+          {
+            "group": "Workspaces",
+            "pages": [
+              "documentation/workspaces/creating-workspaces",
+              "documentation/workspaces/workspace-dashboard",
+              "documentation/workspaces/resources",
+              "documentation/workspaces/service-status-and-errors",
+              "documentation/workspaces/members-and-roles",
+              "documentation/workspaces/integrations",
+              "documentation/workspaces/storage",
+              "documentation/workspaces/mogenius-API",
+              "documentation/workspaces/mogenius-CLI"
+            ]
+          },
+          {
+            "group": "Deploying applications",
+            "pages": [
+              "documentation/deploying-applications/overview",
+              "documentation/deploying-applications/container-images",
+              "documentation/deploying-applications/pipeline-starters",
+              "documentation/deploying-applications/helm-charts",
+              "documentation/deploying-applications/kubernetes-manifests"
+            ]
+          }
+        ]
+      }
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Blog",
+          "href": "https://mogenius.com/blog",
+          "icon": "newspaper"
+        }
+      ]
+    }
+  },
+  "logo": {
+    "light": "/logo/logo.svg",
+    "dark": "/logo/logo_dark.svg"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Support",
+        "href": "mailto:support@mogenius.com"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "mogenius Platform",
+      "href": "https://app.mogenius.com"
+    }
+  },
+  "footer": {
+    "socials": {
+      "github": "https://github.com/mogenius",
+      "linkedin": "https://www.linkedin.com/company/mogenius",
+      "x": "https://x.com/mogenius"
+      
+    }
+  }
+}
