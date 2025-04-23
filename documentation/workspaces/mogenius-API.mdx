@@ -30,7 +30,7 @@ curl --location 'https://platform-api.mogenius.com/workspace/workload/set-image'
 
 ## Helm Upgrade
 
-You can use the API to perform a `Helm upgrade` on a Helm release via the mogenius operator. For this to work, the Helm repository must be installed on the cluster first.
+You can use the API to perform a `Helm upgrade` on a Helm release via the mogenius operator. For this to work, the Helm repository must be installed on the cluster first. The variable `REPO_NAME` in the request below refers to this Helm repository.
 
 The Helm upgrade can be performed with an API key on workspace level, or cluster level.
 
