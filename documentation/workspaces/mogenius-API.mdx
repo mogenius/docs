@@ -36,7 +36,7 @@ The Helm upgrade can be performed with an API key on workspace level, or cluster
 
 <CodeGroup>
 
-``` Workspace level
+```Workspace Workspace
 curl --location --request PATCH 'https://platform-api.mogenius.com/workspace/helm/release/upgrade' \
 --header 'Authorization: bearer YOUR_WORKSPACE_API_KEY' \
 --header 'Content-Type: application/json' \
@@ -53,7 +53,7 @@ curl --location --request PATCH 'https://platform-api.mogenius.com/workspace/hel
 ```
 
 
-``` Cluster level
+```Cluster Cluster
 curl --location --request PATCH 'https://platform-api.mogenius.com/helm/admin/YOUR_CLUSTER_ID/release/upgrade' \
 --header 'Authorization: bearer YOUR_CLUSTER_API_KEY' \
 --header 'Content-Type: application/json' \
