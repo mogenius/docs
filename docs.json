@@ -17,50 +17,50 @@
             "group": "Get Started",
             "pages": [
               "introduction",
-              "documentation/overview/quickstart",
-              "documentation/overview/demo-organization",
-              "documentation/overview/basic-concepts",
-              "documentation/overview/how-mogenius-works",
-              "documentation/overview/plans-pricing",
-              "documentation/overview/help-and-feedback",
-              "documentation/overview/release-notes"
+              "overview/quickstart",
+              "overview/demo-organization",
+              "overview/basic-concepts",
+              "overview/how-mogenius-works",
+              "overview/plans-pricing",
+              "overview/help-and-feedback",
+              "overview/release-notes"
             ]
           },
           {
             "group": "Clusters",
             "pages": [
-              "documentation/cluster-management/installing-mogenius",
-              "documentation/cluster-management/cluster-settings",
-              "documentation/cluster-management/workload-manager",
-              "documentation/cluster-management/network-policies",
-              "documentation/cluster-management/active-cluster-sync",
-              "documentation/cluster-management/update-and-uninstall",
-              "documentation/cluster-management/troubleshooting-clusters",
-              "documentation/cluster-management/managed-clusters"
+              "cluster-management/installing-mogenius",
+              "cluster-management/cluster-settings",
+              "cluster-management/workload-manager",
+              "cluster-management/network-policies",
+              "cluster-management/active-cluster-sync",
+              "cluster-management/update-and-uninstall",
+              "cluster-management/troubleshooting-clusters",
+              "cluster-management/managed-clusters"
             ]
           },
           {
             "group": "Workspaces",
             "pages": [
-              "documentation/workspaces/creating-workspaces",
-              "documentation/workspaces/workspace-dashboard",
-              "documentation/workspaces/resources",
-              "documentation/workspaces/service-status-and-errors",
-              "documentation/workspaces/members-and-roles",
-              "documentation/workspaces/integrations",
-              "documentation/workspaces/storage",
-              "documentation/workspaces/mogenius-API",
-              "documentation/workspaces/mogenius-CLI"
+              "workspaces/creating-workspaces",
+              "workspaces/workspace-dashboard",
+              "workspaces/resources",
+              "workspaces/service-status-and-errors",
+              "workspaces/members-and-roles",
+              "workspaces/integrations",
+              "workspaces/storage",
+              "workspaces/mogenius-API",
+              "workspaces/mogenius-CLI"
             ]
           },
           {
             "group": "Deploying applications",
             "pages": [
-              "documentation/deploying-applications/overview",
-              "documentation/deploying-applications/container-images",
-              "documentation/deploying-applications/pipeline-starters",
-              "documentation/deploying-applications/helm-charts",
-              "documentation/deploying-applications/kubernetes-manifests"
+              "deploying-applications/overview",
+              "deploying-applications/container-images",
+              "deploying-applications/pipeline-starters",
+              "deploying-applications/helm-charts",
+              "deploying-applications/kubernetes-manifests"
             ]
           }
         ]

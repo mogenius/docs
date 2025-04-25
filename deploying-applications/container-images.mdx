@@ -1,0 +1,18 @@
+---
+sidebar_position: 1
+---
+
+You can deploy container images with mogenius from any public or private container registry. To get started, click **Add Resource** on your workspace dashboard and select **Container image**.
+
+On the following page, enter some basic settings for the container image you want to deploy. Here's how the form works:
+
+- Name: The name of the deployment. This can't be changed later.
+- Kind: By default this is set to deployment. You can change it to [DaemonSet](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/) or [StatefulSet](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/).
+- Namespace: The namespace where your workload should run.
+- Container image: The URL of your container image and tag. By default, this fields accepts images from Docker hub (e.g. nginx:latest), but you can enter container image URLs from any registry. Note that if your image is private, you'll need to define an image pull secret below.
+- Container Settings: Define image commands and arguments that your container should execute when started.
+- Image Pull Secret: If your image is private, authentication is done through credentials that are stored in an image pull secret on your Kubernetes cluster. You can either select an existing one, or create a new secret by entering a secret name, registry URL, user, and access token.
+- YAML manifest: At the end, you can preview and modify the manifest that will be deployed to the cluster. After deploying your image, you'll have a UI for all the settings (environment variables, resource limits, health checks, etc.), so you don't need to configure all that in YAML.
+
+You can now click **Create** and the mogenius operator will deploy the container image to your cluster.
+

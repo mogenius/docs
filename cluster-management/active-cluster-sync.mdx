@@ -1,4 +1,4 @@
----
+﻿---
 sidebar_position: "8"
 description: "Use Active Cluster Sync to synchronize Kubernetes workloads with Git."
 ---
@@ -12,10 +12,6 @@ With Active Cluster Sync, you can use the mogenius operator to synchronize a Kub
 - **Backup and Failover:** Create a hot backup of a Kubernetes cluster that always mirrors the exact state of your production cluster. If there is an incident with your primary cluster, you can fail over to the backup to minimize downtime.
 - **Kubernetes Migration:** When you need to migrate a Kubernetes cluster from one provider or data center to another, you can quickly create a clone of your current cluster. This allows you to test all workloads in the new environment before fully transitioning your workflows to the new infrastructure.
 - **Bridging Location Limitations:** If regulations or data privacy laws require your organization to serve customers from specific locations where your current cloud provider does not have a data center, managing multiple providers can be costly and prone to errors. Active Cluster Sync provides a solution by maintaining a streamlined workflow for deploying and updating applications on your main infrastructure, while serving edge locations with replicas of your main setup.
-
-The following diagram describes a typical setup for these scenarios: The main cluster is configured with the push sync strategy, so it's synchronizing its workloads to a Git repository. The backup clusters apply the pull sync strategy, only pulling changes from Git. Manually overwriting workloads on the backup clusters isn't possible, so you'll make sure that the state in Git is the single source of truth for all backup clusters.
-
-![active cluster sync diagram](/img/active-cluster-sync-diagram.png)
 
 ## Configuration
 
