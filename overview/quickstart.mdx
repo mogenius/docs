@@ -1,4 +1,4 @@
----
+﻿---
 sidebar_position: "2"
 ---
 
@@ -24,7 +24,7 @@ To successfully complete the next steps, you will need the following:
 
 - A Kubernetes cluster. We recommend a managed Kubernetes service, like EKS (Amazon AWS), AKS (Microsoft Azure) or GKE (Google Cloud Platform), but any cluster with Kubernetes version 1.24 or higher will work. To get started, a local Kubernetes like minikube, Docker Desktop, or k3s, is also a great option.
 - A working installation of `Helm` and `kubectl`
-- OR optionally the [mogenius CLI](../development/mogenius-CLI.md)
+- OR optionally the [mogenius CLI](../workspaces/mogenius-CLI)
 - Kubernetes cluster admin permissions
 
 <Note>
@@ -35,7 +35,7 @@ After creating your organization, add a new cluster. Enter a name (this will onl
 
 ## 4. Install mogenius on the cluster
 
-Before you continue, make sure that you have a running Kubernetes cluster where you have admin access. Next, you will install the mogenius operator on the cluster using `Helm` or [mocli](../development/mogenius-CLI.md) to connect your cluster with the mogenius platform.
+Before you continue, make sure that you have a running Kubernetes cluster where you have admin access. Next, you will install the mogenius operator on the cluster using `Helm` or [mocli](../workspaces/mogenius-CLI) to connect your cluster with the mogenius platform.
 
 Copy the `Helm` or `mocli` command. Open a terminal and make sure that your kubecontext is set to the cluster that you want to connect with mogenius. Paste and execute the install command, return to mogenius, and click "I ran the command." The UI will confirm once the operator has established a connection with the mogenius controlplane.
 

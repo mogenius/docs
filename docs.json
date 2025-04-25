@@ -31,7 +31,7 @@
             "pages": [
               "cluster-management/installing-mogenius",
               "cluster-management/cluster-settings",
-              "cluster-management/workload-manager",
+              "cluster-management/kubernetes-workloads",
               "cluster-management/network-policies",
               "cluster-management/active-cluster-sync",
               "cluster-management/update-and-uninstall",

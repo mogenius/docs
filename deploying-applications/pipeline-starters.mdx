@@ -2,35 +2,47 @@
 sidebar_position: 2
 ---
 
-mogenius has an integrated build pipeline which you can use to build and deploy applications right from Github, Gitlab, or Bitbucket. mogenius will also keep your service up to date, automatically deploying updates of your application with each commit that you perform on the selected git branch.
+If you're starting from a repository with just a Dockerfile, mogenius has a pipeline starter for Github actions that seamlessly deploys your application to Kubernetes. This is the worklow that the pipeline starter creates:
 
-**Prerequisites for deploying from a repository**
-- An account at [Github](https://github.com), [Gitlab](https://gitlab.com), or [Bitbucket](https://bitbucket.com)
-- A git repository
-- A `Dockerfile` in your git repository
+1. The container image is built based on the Dockerfile in your repository.
+2. The image is pushed to your container registry.
+3. The mogenius operator is receives an API call to trigger the deployment.
+4. A deployment is created on Kubernetes.
+5. The new image from your Github actions workflow is set.
+6. Which each commit to your repository, the workflow is automatically triggered again.
 
-## Create a service
-In a project click "+ Create" on your dashboard or inside an environment. From the dropdown select "Repository" and fill in the form fields on the following view. First, enter a name for your service and select the environment where your service should be deployed.
+To deploy a container with the pipeline starter, go to your workspace dashboard.  
+Click **Add resource** and select **Pipeline starter** from the list.
 
-### Repository
-Select the git integration that you want to set up. You can connect to Github or Gitlab using your account from the respective platform. Alternitively, connect via access token from Github, Gitlab, or Bitbucket. You can read more about the integrations and required permissions in the section [Git integration](../development/git-integration.md).
+### Connect your Github account
 
-Once your integration is set up, select the repository that you want to use for your service. Then, fill out the additional settings:
-- Git branch: Select the branch that should be connected with your service. Whenever a new commit is pushed to this branch, a new version of your service will be built and deployed automatically.
-- Dockerfile path: This field defines where the pipeline should expect the Dockerfile in the repository. Per default this is set to a file with the name "Dockerfile" at root level.
-- Docker context: The context of your Dockerfile during `Docker build`.
+First, you'll be asked to set up the Github integration for the pipeline starter. After logging in with Github, select the Github organization, user, and repository permissions that you want to use. This will create an application in your Github account that manages the mogenius integration.
 
-Once you confirm, the service will be created in stopped state. You can now review and modify your service settings before deploying it.
+### General settings
 
-## Review and deploy
+After the integration is set up you'll define basic settings for the application you want to deploy:
+- Name: The name of the deployment. This can't be changed later.
+- Kind: By default this is set to deployment. You can change it to [DaemonSet](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/) or [StatefulSet](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/).
+- Namespace: The namespace where your workload should run.
+- Git repository: The repository of your application. The pipeline starter will be pushed to this repository.
+- Branch: The branch that should be used for the pipeline.
+- Dockerfile path: The location and name of your Dockerfile in the repository. By default this is set to root.
+- Docker context: The context that should be used during `Docker build`.
 
-The following settings are available to your service. You'll find additional information on the respective pages.
-- [Resource limits](../development/resources.md): Define the maximum resources your service can consume on the cluster.
-- [Variables](../development/environment-variables.md): Set environment variables, secrets, volume mounts, and connect services via internal hostnames.
-- Ports & Domains: Manage ports of your container and define external hostnames.
-- [Health Check](../development/health-checks.md): Enable Kubernetes health checks for improved monitoring.
-- Replicas: Manually set the number of pods that should start for your container.
-- [Autoscaling](../development/autoscaling.md): Enable horizontal pod autoscaling based on CPU or memory load.
-- Deployment strategy: Set up zero-downtime deployments.
+### API Key
 
-Once you have made the settings, click "Start" and the pipeline will build the Docker image based on the Dockerfile in your repository. It will be pushed to the container registry that was specified in your cluster settings and then deployed to your Kubernetes cluster. You can monitor each step of the pipeline in the logs tab on your service page.
+At the end of the workflow, the pipeline starter will trigger the mogenius operator to deploy the new image. This requires a [workspace API key](../workspaces/mogenius-API). If you stored an existing API key in a vault that you want to use, you can copy and paste it. If you want to use a new API key, create it with the button below the form field.
+
+### Container registry credentials
+
+You'll need to provide credentials to access the container registry when pushing the image and pulling it from Kubernetes later. If an [ImagePullSecret](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) exists on your cluster, you can select it from the dropdown menu to use the credentials that were stored there.
+
+Next, enter the credentials to authenticate with your container registry. Enter user, registry URLs, and access token in the respective form fields. The access token requires read and write access to your registry in order to push and pull images.
+
+If you're creating a new ImagePullSecret, enter a name for the secret. You'll see a preview of the `dockerconfigjson` below. This will be base64 encoded and used in the ImagePullSecret. You can also modify the content of the dockerconfigjson in the preview manually.
+
+### Deploy the pipeline starter
+
+Click **Create** to deploy the pipeline starter. This will push the pipeline starter to your repository and trigger the new worklow to build your image. The deployment will happen automatically and you should see your Pod restarting soon, pulling the new image. Please note, that while the initial workflow is running, it is normal that you Pod isn't starting. As soon as the image is ready, Kubernetes will pull it automatically.
+
+With the Git integration, you can follow the progress of the Github actions workflow in mogenius.
