@@ -1,6 +1,29 @@
-﻿---
-sidebar_position: 7
 ---
+sidebar_position: "7"
+---
+
+## 2.4.0 - 30.04.25
+
+- **Deploy Helm Charts from a workspace:** We added a new deployment option so that teams can also deploy Helm charts from within a workspace. Based on the Helm repositories that are installed on a cluster, users can select a chart, provide a custom values.yaml if required, and deploy the chart. The built-in Helm UI allows teams to monitor and manage existing releases. Read more on the [detail page about Helm charts](/deploying-applications/helm-charts).
+- **UI/YAML Toggle: **Detail pages of controllers (like Deployment, StatefulSet, or DaemonSet) are abstracted, gathering information like pod logs, events, metrics, and settings in one place with an easy-to-use UI. You can now switch this to a YAML-based view to go beyond the abstracted UI. YAML view provides access to the manifests and topology of all dependent resources, for a seamless navigation through the complete configuration of your application.
+- **Simplified handling of Image Pull Secrets: **You can now select or create Image Pull Secrets when deploying a container image, or manage it for existing deployments in the **Source** settings. This way, accessing private container registries is easier since you don't have to manage the secret as a separate resource.
+- **Set image and Helm upgrade via operator:** The API now supports updating your deployed images or upgrading a Helm chart. This makes integration with your pipelines and streamlined deployments across clusters even easier. Check out the [documentation](/workspaces/mogenius-API) with request examples.
+- **eBPF-based traffic monitoring: **Metrics now incorporate traffic data of your workspaces and applications based on eBPF. This allows for real-time and accurate traffic data enabling better monitoring and observability on your workspace dashboard, and on each detail page.
+- **Volume mount settings: **Deployment settings now have a comprehensive UI for managing volumes and mounts so that you don't have to jump between resource manager and deployment settings.
+- **Team activity on the dashboard: **The team widget on the workspace dashboard now shows when a user has last been active and who's online at the moment.
+- ...and many bugfixes and small improvements\! [Please let us know ](/overview/help-and-feedback)if you encounter any issues, or if you have ideas for improving the product. We're excited to build whatever makes your Kubernetes experience better\!
+
+## 2.3.0 - 25.03.25
+
+With this version, we're proud to present you the next generation of our platform. In the past month we went through a major redesign on both design and technical level, now introducing the new Kubernetes operator together with many changes and improvements to the mogenius platform. Here's what's new:
+
+- **Workspaces:** Replacing projects, workspaces will be the new hub for teams for managing their applications on clusters. Most importantly, workspaces allow you to import existing resources making implementing mogenius in your existing Kubernetes infrastructure a seamless experience.
+- **New Dashboards:** With workspaces we're introducing a new dashboard focusing on high visibility over Kubernetes deployments while keeping the intuitive and abstracted interfaces that you love.
+- **Pipeline starters:** With pipeline starters for Github Actions you're able to deploy seamlessly from Git repository to Kubernetes. All you need is a Dockerfile in your Github repository. Using the Git integration from your workspace, mogenius will deploy a Github actions workflow to your repository that builds your image and triggers the operator to deploy it on your cluster.
+- **Deploy YAML Manifests:** You can now deploy any Kubernetes resource from the UI. Simply select the type and refine the provided manifest template to create the resource.
+- **Resource Manager:** The built-in resource manager allows you to navigate all Kubernetes resources in your workspace and cluster. Check out logs, events, metrics, or directly access YAML manifests through the editor.
+- **Resource topology:** Navigating dependent Kubernetes resources can be hard. So we added a topology to the detail page of each resource that shows all dependent resources and allows you to navigate between them.
+- **Kubernetes-native by design:** Basically everything that we do is Kubernetes-native. This means, the platform will seamlessly integrate with your tools and workflows on Kubernetes. Workspaces are a CRD so you can also manage them as a Kubernetes object. Roles and permissions leverage Kubernetes RBAC to make sure you maintain a single source of truth. Last but not least, everything can be managed via API so that you don't have to depend on the web interface.
 
 <Note>
   After relaunching the mogenius platform we've archived older release notes to avoid confusion with outdated information. If you're interested in updates from older releases, feel free to reach out to us.
