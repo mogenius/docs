@@ -7,7 +7,12 @@
     "light": "#009BC5",
     "dark": "#00B6E8"
   },
-  "favicon": "/favicon.ico",
+  "favicon": "/mo-favicon.ico",
+  "seo": {
+    "metatags": {
+      "og:image":"/images/ogimage.png"
+  }
+},
   "navigation": {
     "tabs": [
       {
