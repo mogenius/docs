@@ -7,7 +7,7 @@
     "light": "#009BC5",
     "dark": "#00B6E8"
   },
-  "favicon": "/mo-favicon.ico",
+  "favicon": "/mo-favicon.svg",
   "seo": {
     "metatags": {
       "og:image":"/images/ogimage.png"
