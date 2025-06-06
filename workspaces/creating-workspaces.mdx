@@ -1,12 +1,15 @@
 ---
-sidebar_position: 1
+sidebar_position: "1"
 ---
 
 A workspace allows you to group a set of resources from Kubernetes based on namespaces, Helm releases, or labels. With integrated RBAC, monitoring, workload management, and pipeline integrations, workspaces provide self-service capabilities to any team.
 
 ## Adding a new workspace
 
+<iframe width="100%" height="432" src="https://www.loom.com/embed/42d33053dbea497ab163a10efaf3abfa?sid=3df54927-3aa5-4232-809b-db99ac8309a0&hide_title=true&muted=true&hideEmbedTopBar=true&hide_owner=true&hide_speed=true&hide_share=true" allowfullscreen style={{background: "#fff", borderRadius: "16px"}} />
+
 Once a cluster is connected, you can add a new workspace. In your organization, navigate to **Workspaces** and add a new workspace. There's two steps you need to complete:
+
 1. If you have a cluster with existing workloads, you can import these into a workspace. Select the namespaces, Helm releases, or labels, that you want to include in your workspace. They act as filters, so changes to resources inside these filters will be applied to your workspace automatically. You can also skip this step and start with a blank workspace. You can use the built-in tools to create namespaces, deploy Kubernetes manifests, or containers from a registry.
 2. Add users, or select them from your organization. You can define their permissions based on pre-defined groups ([Read more about RBAC](/workspaces/members-and-roles)).
 
