@@ -1,5 +1,16 @@
 ---
-sidebar_position: 3
+sidebar_position: "3"
 ---
 
-On the Resources page you can navigate through all the Kubernetes resources in your workspace. Use the resource manager to search and filter resources by kind, to restart a pods, access YAML configurations, or to explore resource dependencies with the topology.
+<iframe width="100%" height="451" src="https://www.loom.com/embed/76248cf2008a4f579240915dd73fab5f?sid=ed544f98-277e-4e10-b8b1-b2d199114e7d&hide_title=true&muted=true&hideEmbedTopBar=true&hide_owner=true&hide_speed=true&hide_share=true" allowfullscreen style={{ background:"#fff",borderRadius:"16px" }} />
+
+On the **Resources** page, you can explore all active Kubernetes resources across your current workspace. The **Resource Manager** offers a powerful interface to help you quickly identify, monitor, and interact with these resources.
+
+**Key capabilities include:**
+
+- **Search and Filtering**: Narrow down resources using filters by resource kind (e.g., Pods, Deployments, Services, Secrets), status, namespace, or labels. This allows for efficient troubleshooting and resource management in large-scale environments.
+- **Resource Actions**: Perform operational tasks such as restarting Pods, scaling Deployments, or deleting individual resources — all from the web UI, without requiring kubectl or terminal access.
+- **YAML Access and Editing**: View live YAML manifests for each resource with syntax highlighting and the option to copy, inspect, or modify definitions. This supports advanced debugging and infrastructure as code practices.
+- **Topology View**: Visualize dependencies and relationships between resources with the interactive **Topology Graph**. Understand how Deployments relate to Services, Ingress, ConfigMaps, and other components at a glance — especially useful for debugging microservices and validating Helm chart deployments.
+- **Event Streams**: For supported resource types like Pods and Deployments, view real-time Kubernetes events and logs directly within the panel. This helps developers and SREs to investigate incidents without accessing the underlying cluster.
+- **RBAC-Aware Access**: Actions and visibility are scoped by **Workspace RBAC**, ensuring developers, platform engineers, and operations teams only see and interact with resources they’re authorized to manage.
