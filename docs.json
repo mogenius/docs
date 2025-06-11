@@ -90,12 +90,21 @@
       {
         "label": "Support",
         "href": "mailto:support@mogenius.com"
+      },
+      {
+        "label": "mogenius website",
+        "href": "https://mogenius.com"
       }
     ],
     "primary": {
       "type": "button",
       "label": "mogenius Platform",
       "href": "https://app.mogenius.com"
+    },
+    "secondary": {
+      "type": "button",
+      "label": "Book a meeting",
+      "href": "https://mogenius.com/contact/get-in-touch"
     }
   },
   "footer": {
