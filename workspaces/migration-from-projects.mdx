@@ -1,0 +1,53 @@
+Migrating your organization from projects to the new workspace experience can be done with just a few steps.
+
+Here's how it works:
+1. Upgrade the mogenius operator to the latest version
+2. Create a workspace
+3. Connect your repositories
+
+Let's walk through each step.
+
+## Upgrade the mogenius operator
+
+For clusters that work with projects, the operator is on version 2.6.1. For full support of workspaces an upgrade to the latest operator version is required. Go to your cluster settings and click the Upgrade button. Your cluster will be disconnected temporarily and reconnect automatically.
+
+<Note>
+  The upgrade to a newer version contains a breaking change that will disable the integrated build pipeline, replacing it with [Pipeline starters](../deploying-applications/pipeline-starters). You'll activate Pipeline starters with the following steps.
+</Note>
+
+## Create a workspace
+
+Now you're ready to create a workspace.
+1. In the main navigation, open Workspaces.
+2. Create a new Workspace: Enter a name and select the cluster that you want to use.
+3. Select the namespaces that you previously created in your project and add them to the workspace.
+4. Finally, invite any team members that should have access to your workspace.
+
+Your workspace is now ready! Your applications are available as deployments on the dashboard and resource page. Finish the setup by connecting your deployments to Github and enabling the build pipeline for continuous deployments from Git.
+
+## Connect Github
+
+As a final step, enable the integrated build pipeline with Github to achieve continuous deployment to Kubernetes with each commit to your repository.
+
+### Configure the Github integration
+
+In your workspace, open Settings and navigate to Integrations. Connect Github by signing in with your Github account and approving the authentication request.
+
+<Note>
+  If you've used the mogenius Github integration before, your Github organization already contains the mogenius app. After connecting it with your workspace, you've received a request through Github to approve updated permissions. Make sure to approve the request in your Github application settings.
+</Note>
+
+### Create a Github access token
+
+The build pipeline requires access to a container registry to store and retrieve container images. You can use any registry with mogenius. We'll use the Github container registry for this example.
+
+1. In your Github account, create a [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
+2. Use the type Classic (not fine-grained). Granular access to the container registry can't be defined with fine-grained tokens yet.
+3. 
+
+
+### Deploy the Pipeline starter
+
+Lastly, you'll connect your deployments with Github repositories and deploy the build pipeline as a Github actions workflow.
+
+1. 
