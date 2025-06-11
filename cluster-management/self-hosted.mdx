@@ -1,0 +1,26 @@
+---
+sidebar_position: "6"
+---
+
+The mogenius platform is available as a SaaS option on [app.mogenius.com](https://app.mogenius.com). If you prefer the self-hosted version of mogenius, you can install it with our Helm chart. This way you can run mogenius on your own clusters and even in air-gapped environments.
+
+## Prerequisites
+- A Kubernetes cluster with at least XX CPU and XX GB of memory available.
+- A working local installation of [Helm](https://helm.sh/).
+- A MySQL server (optional)
+
+## Prepare your values.yaml
+
+### Quickstart
+The Helm chart uses default values that deploy all required resources for the mogenius platform at once, aiming for a lightweight setup. This way, minimal configuration is required before you can get started.
+
+<Warning>
+  The mogenius platform uses a MySQL database that is deployed from the public MySQL Docker image by default. This setup is not recommended for running the mogenius platform in production scenarios. Check out the Production setup below for instructions on connecting a dedicated MySQL instance during the installation.
+</Warning>
+
+
+### Production
+
+## Deploy the Helm chart
+
+## Access the mogenius web interface

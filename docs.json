@@ -32,16 +32,17 @@
             ]
           },
           {
-            "group": "Clusters",
+            "group": "Setup & Administration",
             "pages": [
-              "cluster-management/installing-mogenius",
+              "cluster-management/installing-the-mogenius-operator",
               "cluster-management/cluster-settings",
               "cluster-management/kubernetes-workloads",
               "cluster-management/network-policies",
               "cluster-management/active-cluster-sync",
               "cluster-management/update-and-uninstall",
               "cluster-management/troubleshooting-clusters",
-              "cluster-management/managed-clusters"
+              "cluster-management/managed-clusters",
+              "cluster-management/self-hosted"
             ]
           },
           {
