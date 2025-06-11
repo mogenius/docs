@@ -7,10 +7,6 @@ mogenius acts as a layer on top of Kubernetes, integrating seamlessly with your 
 - A single pane of glass to navigate Kubernetes from beginner to expert in a safe way.
 - Automating deployments and workload configuration with built-in pipelines and integrations.
 
-The following graphic provides a high-level visualization of how mogenius integrates with your infrastructure:
-
-![mogenius platform](https://imagedelivery.net/T7YEW5IAgZJ0dY4-LDTpyQ/8acd32ec-56e3-4c7e-daca-b80ab7357200/jpeg)
-
 ## The mogenius operator
 mogenius connects to Kubernetes clusters through our operator, which is installed on the cluster using `helm`. It establishes an outbound TCP connection to the mogenius platform. Once connected, the operator populates your workspaces with metrics, status events, logs, and resource updates. It is also capable of deploying applications with built-in pipelines, or by integrating existing pipelines.
 
