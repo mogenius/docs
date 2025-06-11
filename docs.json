@@ -95,17 +95,16 @@
       {
         "label": "mogenius website",
         "href": "https://mogenius.com"
+      },
+      {
+        "label": "Book a demo",
+        "href": "https://mogenius.com/contact/get-in-touch"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "mogenius Platform",
+      "label": "Sign up",
       "href": "https://app.mogenius.com"
-    },
-    "secondary": {
-      "type": "button",
-      "label": "Book a meeting",
-      "href": "https://mogenius.com/contact/get-in-touch"
     }
   },
   "footer": {

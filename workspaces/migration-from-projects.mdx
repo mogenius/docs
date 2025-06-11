@@ -15,6 +15,8 @@ For clusters that work with projects, the operator is on version 2.6.1. For full
   The upgrade to a newer version contains a breaking change that will disable the integrated build pipeline, replacing it with [Pipeline starters](../deploying-applications/pipeline-starters). You'll activate Pipeline starters with the following steps.
 </Note>
 
+<iframe width="100%" height="450" src="https://www.loom.com/embed/549824e498104f029addc4aa0f04c53a?sid=3bb07969-f48b-4d8a-954d-7a05124a4ee4&hide_title=true&muted=true&hideEmbedTopBar=true&hide_owner=true&hide_speed=true&hide_share=true" allowfullscreen style={{background: "#fff", borderRadius: "16px"}} />
+
 ## Create a workspace
 
 Now you're ready to create a workspace.
@@ -23,18 +25,20 @@ Now you're ready to create a workspace.
 3. Select the namespaces that you previously created in your project and add them to the workspace.
 4. Finally, invite any team members that should have access to your workspace.
 
+<iframe width="100%" height="432" src="https://www.loom.com/embed/42d33053dbea497ab163a10efaf3abfa?sid=3df54927-3aa5-4232-809b-db99ac8309a0&hide_title=true&muted=true&hideEmbedTopBar=true&hide_owner=true&hide_speed=true&hide_share=true" allowfullscreen style={{background: "#fff", borderRadius: "16px"}} />
+
 Your workspace is now ready! Your applications are available as deployments on the dashboard and resource page. Finish the setup by connecting your deployments to Github and enabling the build pipeline for continuous deployments from Git.
 
 ## Connect Github
 
-As a final step, enable the integrated build pipeline with Github to achieve continuous deployment to Kubernetes with each commit to your repository.
+As a final step, enable the integrated build pipeline with Github to achieve continuous deployment to Kubernetes on each commit to your repository.
 
 ### Configure the Github integration
 
 In your workspace, open Settings and navigate to Integrations. Connect Github by signing in with your Github account and approving the authentication request.
 
 <Note>
-  If you've used the mogenius Github integration before, your Github organization already contains the mogenius app. After connecting it with your workspace, you've received a request through Github to approve updated permissions. Make sure to approve the request in your Github application settings.
+  If you've used the mogenius Github integration before, your Github organization already contains the mogenius app. After connecting it with your workspace, you've received a request through Github to approve an update of its permissions. Make sure to approve the request in your Github application settings.
 </Note>
 
 ### Create a Github access token
@@ -42,12 +46,23 @@ In your workspace, open Settings and navigate to Integrations. Connect Github by
 The build pipeline requires access to a container registry to store and retrieve container images. You can use any registry with mogenius. We'll use the Github container registry for this example.
 
 1. In your Github account, create a [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
-2. Use the type Classic (not fine-grained). Granular access to the container registry can't be defined with fine-grained tokens yet.
-3. 
-
+2. Use the type Classic (not fine-grained). Granular access to the container registry is not supported yet with fine-grained tokens.
+3. Grant permissions for `read:write packages`.
+4. Create the token and store it in a safe location (e.g. a vault).
 
 ### Deploy the Pipeline starter
 
 Lastly, you'll connect your deployments with Github repositories and deploy the build pipeline as a Github actions workflow.
 
-1. 
+1. Open a deployment in mogenius and navigate to Settings.
+2. On the tab General scroll down to the Github integration.
+3. Use the dropdown to select the repository from your Github account that should be connected with the deployment.
+4. Set the branch that your deployment should connect to. Note that the build pipeline will be triggered each time you push changes to this branch, updating the image of your Kubernetes deployment accordingly.
+5. A button "Create Github Workflow" will appear next to the repository. Click it to open the pipeline configuration.
+6. In the workflow form, create a workspace API key or enter an existing API key.
+7. Create a new image pull secret. The form selects Github container registry by default. Enter your Github username and the access token your created in the previous step.
+8. Confirm with Create and the pipeline will be deployed to your Github repository.
+
+You're done! Repeat the steps for deploying the pipeline starter for all your deployments.
+
+In case you're facing issues, contact our [support](mailto:support@mogenius.com).
