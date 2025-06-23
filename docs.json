@@ -42,6 +42,7 @@
               "cluster-management/update-and-uninstall",
               "cluster-management/troubleshooting-clusters",
               "cluster-management/managed-clusters",
+              "cluster-management/single-sign-on",
               "cluster-management/self-hosted"
             ]
           },

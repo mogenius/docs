@@ -1,0 +1,56 @@
+﻿# Entra ID
+
+**Entra ID** (formerly known as Azure Active Directory) is Microsoft’s solution for Single Sign-On (SSO). You can configure Entra ID as an authentication method for your mogenius organization, allowing team members to log in using their existing Microsoft accounts. Once set up, your organization will receive a unique login page that can be shared with your team.
+
+## Prerequisites
+
+- An existing organization using [Microsoft Entra](https://www.microsoft.com/de-de/security/business/microsoft-entra?market=de)  
+- A mogenius organization with administrative permissions. Don’t have one yet? Create one [here](https://app.mogenius.com)
+
+## Step 1: Create an Entra App Registration
+
+1. Go to [entra.microsoft.com](https://entra.microsoft.com) and sign in with your Microsoft account.  
+2. Navigate to **Applications > App registrations**.  
+3. Click **New registration** and fill in the details:
+   - **Name**: A recognizable internal name for the app.  
+   - **Supported account types**: Select  
+     *Accounts in this organizational directory only (Single tenant)*.  
+   - **Redirect URI**: Leave this field empty for now — you will enter it later.
+4. Click **Register** to create the app.
+
+## Step 2: Create a Client Secret
+
+1. In the overview of your newly registered app, go to **Certificates & secrets > Client secrets**.  
+2. Click **New client secret** and note the generated value.  
+3. **Save this value securely** (e.g., in a vault) — you will not be able to view it again later.
+
+## Step 3: Connect Your Entra App with mogenius
+
+1. In your mogenius organization settings, go to the **SSO configuration page**.  
+2. Copy the following details from your Entra App into mogenius:
+   - **Client ID**
+   - **Tenant ID**
+   - **Client Secret** (the value you just saved)
+
+3. Click **Connect** to save your settings.
+
+4. mogenius will generate a **Redirect URI**. Copy this URI and go back to your Entra application.
+
+## Step 4: Add the Redirect URI in Entra
+
+1. In the Entra Portal, go to your app registration.  
+2. Navigate to **Authentication > Redirect URIs**.  
+3. Add the generated Redirect URI from mogenius as a new entry (type: "Web").  
+4. **Save** your changes.
+
+## Step 5: Log in via Your Organization’s Login Page
+
+You're all set!  
+
+mogenius has now added a new login method for your organization. Team members can sign in to mogenius using their Microsoft account via your unique **Login URL**, located in your mogenius SSO settings.
+
+Share this Login URL with your team — users who log in via this link will automatically be added to your mogenius organization.  
+
+<Note>
+Removing a user from your Entra organization will also deactivate their access in mogenius automatically.
+</Note>
