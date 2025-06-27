@@ -15,6 +15,26 @@ Here's how to set up the integration:
 3. On the following screens you can sign in with your Github account, set the Github organization and the integration's permission.
 4. Once your integration is set up, go to the **General settings** of your workload. Set the repository that you want to connect with your application. If it has a Github actions workflow, the status and logs of your workflows are now available in the mogenius UI.
 
+## Prometheus
+
+mogenius natively integrates with Prometheus, allowing you to monitor custom application metrics directly within the mogenius platform.
+
+How to set it up:
+1. Make sure Prometheus is running on your cluster—you can install it via a Helm chart, e.g., from the [Bitnami Helm repository](https://charts.bitnami.com/) (see [this guide](../deploying-applications/helm-charts) for help).  
+2. Once Prometheus is running on your cluster, mogenius will detect it automatically.  
+3. Open your deployment in mogenius, go to the **Metrics** tab, and click **Add Prometheus Metrics**.  
+4. Select a PromQL query from the dropdown, enter a display name, and click **Create**.  
+5. A chart will appear on your metrics page, visualizing the selected Prometheus data.
+
+### Additional Info
+
+- mogenius applies default [step values](https://prometheus.io/docs/prometheus/latest/querying/basics/) for chart resolution based on your selected time range.  
+- You can manually adjust the step value to control the resolution of the displayed data.
+
+<Note>
+All metric chart configurations are **persisted on your cluster**, meaning they are shared across all users within your workspace who access the same deployment.
+</Note>
+
 ## Gitlab
 
 <Note>
