@@ -14,3 +14,79 @@ Once a cluster is connected, you can add a new workspace. In your organization, 
 2. Add users, or select them from your organization. You can define their permissions based on pre-defined groups ([Read more about RBAC](/workspaces/members-and-roles)).
 
 That's it, your workspace dashboard will be ready immediately. The members you invited will receive an email to join the workspace. You can now start monitoring resources on the cluster, troubleshoot issues, or use built-in [pipeline tools](/deploying-applications/overview) to create new deployments.
+
+## Configuring workspaces and users as CRDs
+
+Since workspaces are stored as Custom Resource Definitions (CRD) on your cluster, you can also define them via YAML manifests. This allows you to automate provisioning workspaces und users from pipelines, or during onboarding workflows of team members.
+
+The following CRDs are used for this workflow with APIVersion `mogenius.com/v1alpha1`:
+- Workspace
+- User
+- Grant
+
+### Workspace
+
+`Workspace` is defined like this.
+
+```
+apiVersion: mogenius.com/v1alpha1
+kind: Workspace
+metadata:
+  creationTimestamp: '2025-03-27T21:06:24Z'
+  generation: 2
+  name: exampleworkspace
+  namespace: mogenius
+  resourceVersion: '4362774'
+  uid: b400fefe-7678-4548-bd21-14c8e1781b73
+spec:
+  resources:
+    - id: gitea # Identifies the namespace that should be added to the workspace
+      type: namespace
+    - id: discourse
+      namespace: discourse
+      type: helm # Add type: helm if you want to add resources only from a specific Helm release
+status: {}
+```
+
+### User
+
+Workspace users are managed on the cluster with the CRD `User`.
+
+```
+apiVersion: mogenius.com/v1alpha1
+kind: User
+metadata:
+  creationTimestamp: '2025-02-10T08:42:11Z'
+  generation: 1
+  name: user-12d19670-2b9d-5320-ae2e-cb728fc4f70b
+  namespace: mogenius
+  resourceVersion: '1296441'
+  uid: a30ea67d-d3a8-4be6-8c5d-b8ab45ef57cc
+spec:
+  email: email@example.com # An invitation email will be sent to the user to set up login credentials
+  firstName: Linus
+  lastName: Torvalds
+status: {}
+```
+
+### Grant
+
+With a `Grant` you assign users to workspaces and define their permission within the workspace.
+
+```
+apiVersion: mogenius.com/v1alpha1
+kind: Grant
+metadata:
+  creationTimestamp: '2025-02-25T13:28:47Z'
+  generation: 1
+  name: grant-0e98deb9-5872-4e3d-8417-19031aa1950e
+  namespace: mogenius
+  resourceVersion: '2929550'
+  uid: 223c3854-6b5f-4583-89c1-76b4278df4c0
+spec:
+  grantee: user-12d19670-2b9d-5320-ae2e-cb728fc4f70b # Retrieve this from the name of the User CRD
+  role: viewer # Can be viewer, editor, or admin
+  targetName: teamspace # The ID of the workspace where the user will be added
+  targetType: workspace
+status: {}
+```
