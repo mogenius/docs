@@ -54,14 +54,16 @@ The build pipeline requires access to a container registry to store and retrieve
 
 Lastly, you'll connect your deployments with Github repositories and deploy the build pipeline as a Github actions workflow.
 
-1. Open a deployment in mogenius and navigate to Settings.
-2. On the tab General scroll down to the Github integration.
+1. Open a deployment in mogenius and navigate to **Settings**.
+2. Go to the tab **Git integration**.
 3. Use the dropdown to select the repository from your Github account that should be connected with the deployment.
 4. Set the branch that your deployment should connect to. Note that the build pipeline will be triggered each time you push changes to this branch, updating the image of your Kubernetes deployment accordingly.
-5. A button "Create Github Workflow" will appear next to the repository. Click it to open the pipeline configuration.
-6. In the workflow form, create a workspace API key or enter an existing API key.
-7. Create a new image pull secret. The form selects Github container registry by default. Enter your Github username and the access token your created in the previous step.
-8. Confirm with Create and the pipeline will be deployed to your Github repository.
+5. From the dropdown, select the workflow template that you want to use for your pipeline. You can find all workflow templates in this [repository](https://github.com/mogenius/build-workflows/tree/develop). This setting can't be changed later.
+6. Create an API key and store it in a save location (e.g. 1password, or any other vault). This API key will be used in the pipeline to trigger the mogenius operator to update the image of your deployment.
+7. Create a new image pull secret. It will be used on the cluster to pull the image from your registry. The form selects Github container registry by default but you can use any registry. Enter your Github username and the access token you created in the previous step.
+8. Check the settings for **Pipeline registry credentials** and update them if needed. They've been pre-filled based on your image pull secret. These credentials will be used in the build workflow to push the images.
+9. Optionally, define Build Args as environment variables that you want to use in the build workflow.
+8. Save your settings and the pipeline will be deployed to your Github repository.
 
 You're done! Repeat the steps for deploying the pipeline starter for all your deployments.
 
