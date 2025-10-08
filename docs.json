@@ -37,6 +37,8 @@
               "cluster-management/installing-the-mogenius-operator",
               "cluster-management/cluster-settings",
               "cluster-management/kubernetes-workloads",
+              "cluster-management/gitops",
+              "cluster-management/audit-log",
               "cluster-management/network-policies",
               "cluster-management/active-cluster-sync",
               "cluster-management/update-and-uninstall",

@@ -1,0 +1,21 @@
+The audit log provides a streamlined history of all changes made through the mogenius platform on your cluster. It serves as a crucial tool for identifying the root cause of failures and is an essential component for maintaining compliance in regulated environments through fully audited workflows.
+
+## How Does It Work?
+The audit log captures all changes performed via the mogenius platform. Whenever a user creates, updates, or deletes a resource on your cluster using mogenius, a corresponding entry is generated in the audit log.
+
+## Logged Information
+Each audit log entry includes the following details (when applicable):
+
+- Type: The type of operation and resource, e.g., create/workload
+- Age: Timestamp for when the action occurred
+- Kind, Namespace, and Workspace: Details of the modified resource
+- User: The mogenius user who triggered the action
+- Diff: Shows a visual difference between the resource state before and after the change
+- Status: Indicates the result of the operation (e.g., success or error)  
+
+You can click on each log item to view the full API payload, along with the diff and any errors that occurred during the operation.
+
+<Note>
+The audit log only tracks actions performed through the mogenius platform. Changes made directly on the cluster (e.g., using kubectl) are not logged.
+To ensure a fully auditable workflow, we recommend limiting direct access to your cluster and enabling user interactions exclusively through mogenius. 
+</Note>

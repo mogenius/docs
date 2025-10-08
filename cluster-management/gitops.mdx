@@ -1,0 +1,83 @@
+<Note>
+This feature is in closed Beta. [Contact us](mailto:sales@mogenius.com) to request early access.
+</Note>
+
+GitOps (short for Git Operations) describes a declarative way of managing applications in cloud-native environments using the Git workflow. This means, application configurations are stored and updated via Git repositories. To track and synchronize the Git repositories with Kubernetes, a GitOps engine is used on the clusters.  
+
+mogenius comes with a native GitOps integration that allows you to easily implement GitOps in your teams, or to integrate the mogenius platform with your existing GitOps stack. This way, you can easily deploy workloads and resources to Kubernetes using the UI with mogenius Workspaces (see [Deploying Applications](https://docs.mogenius.com/deploying-applications)). Then, you can add GitOps as a layer of stability and control.  
+
+**Here's how you can use that in your teams:**
+- Deploy containers to Kubernetes using the mogenius UI, without requiring deep Kubernetes knowledge. Then, add them to GitOps for deploying them to production-grade deployments.
+- Configure your applications once and then deploy them to additional environments for a staged development workflow.
+- Backup all your manifests to recover your cluster state in case of an incident.
+
+## GitOps setup
+
+You can configure GitOps for each cluster. Navigate to **Clusters** in your organization and open the tab **GitOps**. Click the button to enable GitOps and open the configuration page.
+
+<Steps>
+  <Step title="Set up Argo and Sealed Secrets">
+    mogenius comes with a pre-configured stack for enabling GitOps consisting of two main applications:
+
+    1. Argo: mogenius relies on the open-source project [Argo](https://github.com/argoproj/argo-cd) as the GitOps engine.  
+    2. Sealed Secrets: To securely synchronize secrets with Git, mogenius uses [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets) to encrypt secrets when transferring them to Git.
+
+    The setup form uses defaults that should work out of the box. You can overwrite them to customize the installation.
+
+    <Tip>
+    Already have Argo and/or Sealed Secrets installed on your cluster? If possible, mogenius detects existing installations and updates the settings in the setup form. Check the default values and adjust them if they don't match your installation.
+    </Tip>
+  </Step>
+
+  <Step title="Connect a Github repository">
+    Your applications on a cluster will be synced with a repository on Github.  
+    To set it up, first go to Github.com and perform the following steps:  
+    - Create a new repository and make sure it has a branch.  
+    - Create a Personal Access Token. It requires at least `read/write` permissions on `Contents`. This way mogenius can commit changes on applications to the repository. If you want to use pull requests instead, make sure that the access token has `read/write` permissions for `Pull Requests` as well. Make sure to copy the PAT to a safe location.
+
+    <Tip>
+    You can use the same repository for multiple clusters. Your applications will be managed using the following structure for folders and files:  
+    `your-repository/mogenius/CLUSTER/APPLICATION/application.yaml`
+    </Tip>
+
+    Now, in your GitOps settings in mogenius, click **Connect repository** and follow the steps:  
+    - Enter a name for the repository.  
+    - Enter the Personal Access Token.  
+    - Your username and a dropdown to select your repository will load. In the dropdown, search for your GitOps repository and select it.  
+    - Set the commit behavior: By default, mogenius will commit changes directly on the branch of your application. Activate the toggle to create pull requests instead.  
+    - Save your settings to connect the repository.
+  </Step>
+
+  <Step title="GitOps is now enabled for your cluster 🎉">
+    You can proceed with creating applications.
+  </Step>
+</Steps>
+
+## Applications
+
+Your workloads and resources in Kubernetes are tracked in GitOps as applications. Each application consists of one or more resources.
+
+Typical examples for how applications can be defined:
+- A deployment for your container, plus Ingress, Service, and Secrets that are used by the deployment.
+- A platform deployment consisting of several microservices.
+
+You can create applications in your cluster settings as an admin, or within Workspaces. In your cluster, scroll to the bottom of your **GitOps** page. In a Workspace, navigate to the page **GitOps applications**. Click the button **Create application** to configure a new application.
+
+Here's how it works:  
+- Enter a name for your application. This is how it will be displayed in mogenius and it will be added as a folder to your Git repository.  
+- From the list of namespaces on your cluster, select the resources that you want to include in your application. You can select one namespace per application. Inside a namespace you can select all resources, or a selected list of resources.  
+- Confirm to create your application.  
+
+Your application is now added to the list, and the selected resources are stored in `application.yaml` in your Git repository. It can take a few minutes until Argo has synchronized it, and you'll see a loading animation in the meantime. Once it is synced, you'll see the status of your application and all included resources.
+
+## Working with GitOps in mogenius
+
+When workloads or resources in your Workspaces are part of an application (i.e. managed via GitOps), a status object `Application` will be shown. This indicates the sync status of the directory and the application. If an error occurs, you can hover over the status to view the error message.
+
+### Updating workloads
+
+You can continue using the mogenius UI to change configurations such as environment variables, resource limits, health checks, or YAML manifests on any resource. When saving changes, mogenius detects that GitOps is enabled for the resource and will update the corresponding `application.yaml` in Git. This follows the commit behavior defined in your cluster settings (direct commit or pull request). Changes are not applied directly to the cluster but will be synced by Argo within a few minutes. You can monitor this sync using the Application status.
+
+### GitOps log
+
+You can track the history and changes of your `application.yaml` using the **GitOps log**. It is available on any resource managed by a GitOps application and shows commits and pull requests.
