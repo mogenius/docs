@@ -71,8 +71,44 @@ curl --location --request PATCH 'https://platform-api.mogenius.com/helm/admin/YO
 
 </CodeGroup>
 
-## Detailed API reference
+## Update Ports & Hostnames
 
-<Tip>
-  [**Check out our API reference for a detailed documentation of all endpoints.**](https://api-docs.mogenius.com/)
-</Tip>
+You can `add` and `delete` ports and hostnames from deployments, just like from the UI. mogenius will automatically create or update the corresponding service and ingress resources.
+
+Here's an example request with configuration options on each parameter. Make sure to remove the comments when copying the example.
+
+```curl expandable
+{
+    "resource": {
+        "kind": "Deployment",
+        "name": "deployments",
+        "namespace": "",
+        "group": "apps/v1",
+        "version": ""
+    },
+    "resourceName": "my-deployment", // deployment name
+    "namespace": "my-namespace",
+    "service": { // service
+        // "resourceName": "test-service", // optional
+        "ports": [
+            {
+                "action": "add", // optional -> add or delete
+                "protocol": "TCP", // TCP/UDP
+                "targetPort": 8080,
+                "port": 8080,
+                "ingress": { // ingress
+                    // "resourceName": "test-ingress", // optional
+                    "domains": [ 
+                        {
+                            "action": "add", // optional -> add or delete
+                            "tls": true, // true or false
+                            "domain": "yourdomain.com",
+                            "tlsSecret": "" // optional, specify secret name if a custom TLS secret should be used
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}
+```
