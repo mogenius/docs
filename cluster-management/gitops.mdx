@@ -11,7 +11,7 @@ mogenius comes with a native GitOps integration that allows you to easily implem
 
 You can configure GitOps for each cluster. Navigate to **Clusters** in your organization and open the tab **GitOps**. Click the button to enable GitOps and open the configuration page.
 
-<video src="https://docs.mogenius.com/videos/gitops-setup.mp4" width="640" height="400" controls></video>
+<iframe width="100%" height="448" src="https://www.loom.com/embed/48155d88151f4c74b5d5f58c5bb4d65a?sid=49c80287-83c9-46cb-ad04-523155ca7e13" allowfullscreen style={{background: "#fff", borderRadius: "16px"}} />
 
 <Steps>
   <Step title="Set up Argo and Sealed Secrets">
@@ -61,7 +61,7 @@ Typical examples for how applications can be defined:
 
 You can create applications in your cluster settings as an admin, or within Workspaces. In your cluster, scroll to the bottom of your **GitOps** page. In a Workspace, navigate to the page **GitOps applications**. Click the button **Create application** to configure a new application.
 
-<video src="https://docs.mogenius.com/videos/gitops-applications.mp4" width="640" height="400" controls></video>
+<iframe width="100%" height="448" src="https://www.loom.com/embed/76c7f4b762e34fc8b176365e8e417fac?sid=15929eca-ee25-496e-b5be-ca530f0a882b" allowfullscreen style={{background: "#fff", borderRadius: "16px"}} />
 
 Here's how it works:  
 - Enter a name for your application. This is how it will be displayed in mogenius and it will be added as a folder to your Git repository.  
@@ -75,6 +75,8 @@ Your application is now added to the list, and the selected resources are stored
 When workloads or resources in your Workspaces are part of an application (i.e. managed via GitOps), a status object `Application` will be shown. This indicates the sync status of the directory and the application. If an error occurs, you can hover over the status to view the error message.
 
 ### Updating workloads
+
+<iframe width="100%" height="448" src="https://www.loom.com/embed/c16786de4bad439584286232993b1161?sid=6d5beb87-ad84-48aa-83e1-30007d81fc51" allowfullscreen style={{background: "#fff", borderRadius: "16px"}} />
 
 You can continue using the mogenius UI to change configurations such as environment variables, resource limits, health checks, or YAML manifests on any resource. When saving changes, mogenius detects that GitOps is enabled for the resource and will update the corresponding `application.yaml` in Git. This follows the commit behavior defined in your cluster settings (direct commit or pull request). Changes are not applied directly to the cluster but will be synced by Argo within a few minutes. You can monitor this sync using the Application status.
 
