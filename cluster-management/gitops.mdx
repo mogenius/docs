@@ -19,21 +19,21 @@ You can configure GitOps for each cluster. Navigate to **Clusters** in your orga
 <iframe width="100%" height="448" src="https://www.loom.com/embed/48155d88151f4c74b5d5f58c5bb4d65a?sid=49c80287-83c9-46cb-ad04-523155ca7e13" allowfullscreen style={{background: "#fff", borderRadius: "16px"}} />
 
 <Steps>
-  <Step title="Set up Argo and Sealed Secrets">
+  <Step title="Set up ArgoCD and Sealed Secrets">
     mogenius comes with a pre-configured stack for enabling GitOps consisting of two main applications:
 
-    1. Argo: mogenius relies on the open-source project [Argo](https://github.com/argoproj/argo-cd) as the GitOps engine.  
+    1. ArgoCD: mogenius relies on the open-source project [ArgoCD](https://github.com/argoproj/argo-cd) as the GitOps engine.  
     2. Sealed Secrets: To securely synchronize secrets with Git, mogenius uses [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets) to encrypt secrets when transferring them to Git.
 
     The setup form uses defaults that should work out of the box. You can overwrite them to customize the installation.
 
     <Tip>
-    Already have Argo and/or Sealed Secrets installed on your cluster? If possible, mogenius detects existing installations and updates the settings in the setup form. Check the default values and adjust them if they don't match your installation.
+    Already have ArgoCD and/or Sealed Secrets installed on your cluster? If possible, mogenius detects existing installations and updates the settings in the setup form. Check the default values and adjust them if they don't match your installation.
     </Tip>
   </Step>
 
-  <Step title="Connect a Github repository">
-    Your applications on a cluster will be synced with a repository on Github.  
+  <Step title="Connect a GitHub repository">
+    Your applications on a cluster will be synced with a repository on GitHub.  
     To set it up, first go to Github.com and perform the following steps:  
     - Create a new repository and make sure it has a branch.  
     - Create a Personal Access Token. It requires at least `read/write` permissions on `Contents`. This way mogenius can commit changes on applications to the repository. If you want to use pull requests instead, make sure that the access token has `read/write` permissions for `Pull Requests` as well. Make sure to copy the PAT to a safe location.
@@ -73,7 +73,7 @@ Here's how it works:
 - From the list of namespaces on your cluster, select the resources that you want to include in your application. You can select one namespace per application. Inside a namespace you can select all resources, or a selected list of resources.  
 - Confirm to create your application.  
 
-Your application is now added to the list, and the selected resources are stored in `application.yaml` in your Git repository. It can take a few minutes until Argo has synchronized it, and you'll see a loading animation in the meantime. Once it is synced, you'll see the status of your application and all included resources.
+Your application is now added to the list, and the selected resources are stored in `application.yaml` in your Git repository. It can take a few minutes until ArgoCD has synchronized it, and you'll see a loading animation in the meantime. Once it is synced, you'll see the status of your application and all included resources.
 
 ## Working with GitOps in mogenius
 
@@ -83,7 +83,7 @@ When workloads or resources in your Workspaces are part of an application (i.e. 
 
 <iframe width="100%" height="448" src="https://www.loom.com/embed/c16786de4bad439584286232993b1161?sid=6d5beb87-ad84-48aa-83e1-30007d81fc51" allowfullscreen style={{background: "#fff", borderRadius: "16px"}} />
 
-You can continue using the mogenius UI to change configurations such as environment variables, resource limits, health checks, or YAML manifests on any resource. When saving changes, mogenius detects that GitOps is enabled for the resource and will update the corresponding `application.yaml` in Git. This follows the commit behavior defined in your cluster settings (direct commit or pull request). Changes are not applied directly to the cluster but will be synced by Argo within a few minutes. You can monitor this sync using the Application status.
+You can continue using the mogenius UI to change configurations such as environment variables, resource limits, health checks, or YAML manifests on any resource. When saving changes, mogenius detects that GitOps is enabled for the resource and will update the corresponding `application.yaml` in Git. This follows the commit behavior defined in your cluster settings (direct commit or pull request). Changes are not applied directly to the cluster but will be synced by ArgoCD within a few minutes. You can monitor this sync using the Application status.
 
 ### GitOps log
 

@@ -4,16 +4,16 @@ sidebar_position: "6"
 
 You can enrich the capabilities of your workspace with integrations that connect your Kubernetes resources with data from external tools. This way, mogenius provides a streamlined interface for monitoring and troubleshooting Kubernetes applications.
 
-## Github
+## GitHub
 
-Use the Github integration to add logs and status information from Github actions to your Kubernetes deployments. This will populate the **Build log** on your application's detail page as well as adding a **Build status**.
+Use the GitHub integration to add logs and status information from GitHub actions to your Kubernetes deployments. This will populate the **Build log** on your application's detail page as well as adding a **Build status**.
 
 Here's how to set up the integration:
 
 1. Go to the **Integrations** tab in your workspace settings.
-2. Click **Connect** to authorize Github with your workspace.
-3. On the following screens you can sign in with your Github account, set the Github organization and the integration's permission.
-4. Once your integration is set up, go to the **General settings** of your workload. Set the repository that you want to connect with your application. If it has a Github actions workflow, the status and logs of your workflows are now available in the mogenius UI.
+2. Click **Connect** to authorize GitHub with your workspace.
+3. On the following screens you can sign in with your GitHub account, set the GitHub organization and the integration's permission.
+4. Once your integration is set up, go to the **General settings** of your workload. Set the repository that you want to connect with your application. If it has a GitHub actions workflow, the status and logs of your workflows are now available in the mogenius UI.
 
 ## Prometheus
 
@@ -38,9 +38,9 @@ All metric chart configurations are **persisted on your cluster**, meaning they 
 ## ArgoCD
 
 With the ArgoCD integration you can monitor your GitOps workflow right within mogenius. Once enabled, several components will be added to your Workspaces:  
-- Application status: Shows sync status and errors from Argo for a selected resource.
+- Application status: Shows sync status and errors from ArgoCD for a selected resource.
 - Application overview: On the page **GitOps applications** get a list of applications, see included resources, and monitor the sync status.
-- GitOps log: On resources managed by Argo you'll get a log with a history of commits and pull requests on the Argo application.
+- GitOps log: On resources managed by ArgoCD you'll get a log with a history of commits and pull requests on the ArgoCD application.
 
 Check our [GitOps documentation](https://docs.mogenius.com/cluster-management/gitops) for more information and setup instructions.
 

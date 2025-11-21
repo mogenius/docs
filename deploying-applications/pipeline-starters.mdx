@@ -2,21 +2,21 @@
 sidebar_position: 2
 ---
 
-If you're starting from a repository with just a Dockerfile, mogenius has a pipeline starter for Github actions that seamlessly deploys your application to Kubernetes. This is the worklow that the pipeline starter creates:
+If you're starting from a repository with just a Dockerfile, mogenius has a pipeline starter for GitHub actions that seamlessly deploys your application to Kubernetes. This is the worklow that the pipeline starter creates:
 
 1. The container image is built based on the Dockerfile in your repository.
 2. The image is pushed to your container registry.
 3. The mogenius operator is receives an API call to trigger the deployment.
 4. A deployment is created on Kubernetes.
-5. The new image from your Github actions workflow is set.
+5. The new image from your GitHub actions workflow is set.
 6. Which each commit to your repository, the workflow is automatically triggered again.
 
 To deploy a container with the pipeline starter, go to your workspace dashboard.  
 Click **Add resource** and select **Pipeline starter** from the list.
 
-### Connect your Github account
+### Connect your GitHub account
 
-First, you'll be asked to set up the Github integration for the pipeline starter. After logging in with Github, select the Github organization, user, and repository permissions that you want to use. This will create an application in your Github account that manages the mogenius integration.
+First, you'll be asked to set up the GitHub integration for the pipeline starter. After logging in with GitHub, select the GitHub organization, user, and repository permissions that you want to use. This will create an application in your GitHub account that manages the mogenius integration.
 
 ### General settings
 
@@ -45,4 +45,4 @@ If you're creating a new ImagePullSecret, enter a name for the secret. You'll se
 
 Click **Create** to deploy the pipeline starter. This will push the pipeline starter to your repository and trigger the new worklow to build your image. The deployment will happen automatically and you should see your Pod restarting soon, pulling the new image. Please note, that while the initial workflow is running, it is normal that you Pod isn't starting. As soon as the image is ready, Kubernetes will pull it automatically.
 
-With the Git integration, you can follow the progress of the Github actions workflow in mogenius.
+With the Git integration, you can follow the progress of the GitHub actions workflow in mogenius.
