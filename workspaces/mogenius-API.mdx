@@ -77,7 +77,16 @@ You can `add` and `delete` ports and hostnames from deployments, just like from 
 
 Here's an example request with configuration options on each parameter. Make sure to remove the comments when copying the example.
 
+```
+// HEADER
+Authorization: Bearer [your token]
+
+PATCH https://platform-api.mogenius.com/workspace/workload/ports-domains
+```
+
+
 ```curl expandable
+// BODY
 {
     "resource": {
         "kind": "Deployment",

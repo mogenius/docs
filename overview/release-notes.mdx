@@ -2,6 +2,17 @@
 sidebar_position: "7"
 ---
 
+
+## 2.5.7 - 15.10.25
+
+- **GitOps**: Install or connect Argo CD and manage all your applications with GitOps. Set up Argo applications in mogenius, monitor status and changes, and perform changes right from the UI. mogenius keeps track of your configurations in the UI and commits changes to your Git repositories. Read more on [GitOps docs](/cluster-management/gitops).
+- **Secrets & Configs page**: Managing secrets and configmaps is now easier with a dedicated page in Workspaces. With an intuitive UI creating, updating, and navigating secrets and configmaps doesn't require YAML anymore.
+- **Updating ports and hostnames via API**: We've published a dedicated endpoint to update ports and hostnames of a deployment with the mogenius API. It abstracts handling ingress and services so that you only need to specify the ports and hostnames that your application requires. Read more at [mogenius API](/workspaces/mogenius-api).
+- **Improved tables with sorting and filters**: Tables for working with resources and workloads have been overhauled, adding features for sorting and filtering columns.
+- **Pod monitoring**: On Workspace dashboards you can now track historical usage of CPU, RAM, and traffic for individual pods. Hover over the resource charts on the dashboards to get the list of Pods with their individual share in resource consumption.
+
+## 2.5.0
+
 ## 2.4.0 - 30.04.25
 
 - **Deploy Helm Charts from a workspace:** We added a new deployment option so that teams can also deploy Helm charts from within a workspace. Based on the Helm repositories that are installed on a cluster, users can select a chart, provide a custom values.yaml if required, and deploy the chart. The built-in Helm UI allows teams to monitor and manage existing releases. Read more on the [detail page about Helm charts](/deploying-applications/helm-charts).
