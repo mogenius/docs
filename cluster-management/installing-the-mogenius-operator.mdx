@@ -39,7 +39,7 @@ Retrieve the Helm install command from the user interface and run it on a termin
 ```jsx title="mogenius operator Helm install"
 helm repo add mogenius https://helm.mogenius.com/public
 helm repo update mogenius
-helm upgrade --install mogenius-operator mogenius/mogenius-k8s-manager -n mogenius --create-namespace --wait \
+helm upgrade --install mogenius-operator mogenius/mogenius-operator -n mogenius --create-namespace --wait \
 --set global.cluster_name="NAME" \
 --set global.api_key="API_KEY"
 ```
