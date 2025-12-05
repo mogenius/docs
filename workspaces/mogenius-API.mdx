@@ -71,32 +71,56 @@ curl --location --request PATCH 'https://platform-api.mogenius.com/helm/admin/YO
 
 </CodeGroup>
 
-## Update Ports & Hostnames
+## Manage Ports & Hostnames
 
-You can `add` and `delete` ports and hostnames from deployments, just like from the UI. mogenius will automatically create or update the corresponding service and ingress resources.
+You can `get`, `add`, and `delete` ports and hostnames from deployments, just like from the UI. mogenius will automatically create or update the corresponding service and ingress resources.
 
-Here's an example request with configuration options on each parameter. Make sure to remove the comments when copying the example.
+Here's example requests with configuration options on each parameter. Make sure to remove the comments when copying the example.
+
+### GET Ports & Domains
+Returns a JSON with all Service and Ingress configurations related to a Controller.
 
 ```
 // HEADER
 Authorization: Bearer [your token]
 
-PATCH https://platform-api.mogenius.com/workspace/workload/ports-domains
+GET https://platform-api.mogenius.com/resource/workload/ports-domains
+```
+
+```curl
+// BODY
+{
+    "kind": "Deployment",
+    "plural": "deployments",
+    "apiVersion": "apps/v1",
+    "namespaced": true,
+    "resourceName": "my-deployment",
+    "namespace": "my-namespace",
+}
+```
+
+### PATCH Ports & Domains
+
+Adds or deletes Service and Ingress configurations.
+
+```
+// HEADER
+Authorization: Bearer [your token]
+
+PATCH https://platform-api.mogenius.com/resource/workload/ports-domains
 ```
 
 
 ```curl expandable
 // BODY
 {
-    "resource": {
-        "kind": "Deployment",
-        "name": "deployments",
-        "namespace": "",
-        "group": "apps/v1",
-        "version": ""
-    },
+    "kind": "Deployment",
+    "plural": "deployments",
+    "apiVersion": "apps/v1",
+    "namespaced": true,
     "resourceName": "my-deployment", // deployment name
     "namespace": "my-namespace",
+    
     "service": { // service
         // "resourceName": "test-service", // optional
         "ports": [
