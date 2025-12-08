@@ -84,19 +84,7 @@ Returns a JSON with all Service and Ingress configurations related to a Controll
 // HEADER
 Authorization: Bearer [your token]
 
-GET https://platform-api.mogenius.com/resource/workload/ports-domains
-```
-
-```curl
-// BODY
-{
-    "kind": "Deployment",
-    "plural": "deployments",
-    "apiVersion": "apps/v1",
-    "namespaced": true,
-    "resourceName": "my-deployment",
-    "namespace": "my-namespace",
-}
+GET https://platform-api.mogenius.com/resource/workload/ports-domains?kind=Deployment&plural=deployments&apiVersion=apps/v1&namespaced=true&resourceName=my-container&namespace=my-namespace
 ```
 
 ### PATCH Ports & Domains
