@@ -2,29 +2,454 @@
 sidebar_position: "6"
 ---
 
-<Warning>
-🚧 Work in progress
-</Warning>
-
 The mogenius platform is available as a SaaS option on [app.mogenius.com](https://app.mogenius.com). If you prefer the self-hosted version of mogenius, you can install it with our Helm chart. This way you can run mogenius on your own clusters and even in air-gapped environments.
 
 ## Prerequisites
 - A Kubernetes cluster with at least 1 CPU and 1 GB of memory available.
+- Credentials for pulling the mogenius images from the container registry (see below).
+- The traefik ingress controller.
 - A working local installation of [Helm](https://helm.sh/).
-- A MySQL server (optional)
-
-## Prepare your values.yaml
-
-### Quickstart
-The Helm chart uses default values that deploy all required resources for the mogenius platform at once, aiming for a lightweight setup. This way, minimal configuration is required before you can get started.
+- A MySQL server (optional).
 
 <Warning>
-  The mogenius platform uses a MySQL database that is deployed from the public MySQL Docker image by default. This setup is not recommended for running the mogenius platform in production scenarios. Check out the Production setup below for instructions on connecting a dedicated MySQL instance during the installation.
+  Running the platform as a self-hosted version requires a subscription. <a href="mailto:sales@mogenius.com">Contact our sales team</a> for more information.
 </Warning>
 
+## Quickstart
+For a quick installation of the mogenius platform with defaults where possible, follow these steps.
 
-### Production
+### Create a Namespace
+On the cluster where you're installing the mogenius platform, create a new namespace `mogenius-platform`.
 
-## Deploy the Helm chart
+### Create Secrets
 
-## Access the mogenius web interface
+The platform services require a few secrets containing critical credentials that aren't created by the Helm chart. The following secrets are required for the minimum configuration. Additional secrets can be used when working with more sophisticated Helm chart configurations.
+
+**1. Container Registry**  
+After obtaining a subscription for the self-hosted version, you will have received credentials for the container registry where the platform images are stored. In your `mogenius-platform` namespace create a new secret `mo-registry-credentials` and store the credentials as type `kubernetes.io/dockerconfigjson`.
+
+**2. Redis**  
+Create a secret `mo-redis-secret` with the key `REDIS_SECRET`. Define a secure password as a value that you store in a safe place (e.g. a vault).
+
+**3. Encryption Key**  
+Create a secret `mo-platform-shared` with the key `MO_CORE_NEST__SSH_SYM_ENC_KEY`. As a value, use `openssl rand -base64 32` or a similar method on your terminal to create a base64-encrypted key.
+
+**4. MySQL**  
+Create the secret `mo-mysql-secret` with the keys `MYSQL_PASSWORD` and `MYSQL_ROOT_PASSWORD`. Use secure passwords as values.
+
+**5. Admin User**  
+Create the secret `mo-platform-user-secret` with the following keys and values:  
+
+`MO_USER_NEST__SYSTEM_ADMIN_EMAIL`  
+The email address to log in with your admin user.  
+
+`MO_USER_NEST__SYSTEM_ADMIN_PASSWORD`  
+The password for your admin user.  
+
+`MO_CORE_NEST__SSH_SYM_ENC_KEY`  
+Use the same value that you set in the secret `mo-platform-shared`.  
+
+`MO_USER_NEST__JWT_PRIVATE`  
+Create a private key using the following commands and retrieve the value from the text file.
+```
+openssl ecparam -genkey -name secp521r1 -noout -out ec512-key-pair.pem
+openssl base64 -A -in ec512-key-pair.pem -out ec512-key-pair.txt
+```
+
+`MO_USER_NEST__JWT_PUBLIC`  
+Create a public key using the following commands and retrieve the value from the text file.  
+```
+openssl ec -in ec512-key-pair.pem -pubout -out public.pem
+openssl base64 -A -in public.pem -out public.txt
+```
+
+`MO_USER_NEST__SESSION_SECRET`  
+Define a secure secret of your choice.
+
+
+### Prepare your values.yaml
+The Helm chart supports wide range of values that you can use to configure your installation of the mogenius platform. Skip to [values](/cluster-management/self-hosted#values) for a full reference of the chart.
+Below is an example `values.yaml` for a minimal setup to install the mogenius platform in a development environment. Make sure to review the configuration and ensure that it matches your infrastructure.
+
+```yaml values.yaml quickstart example 
+demo:
+  enabled: false
+ingress:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer
+    traefik.ingress.kubernetes.io/forward-headers: "true"
+    traefik.ingress.kubernetes.io/router.middlewares: mogenius-platform-cors-middleware@kubernetescrd
+    traefik.ingress.kubernetes.io/secure-headers: "true"
+  api_service_url: platform-api.YOURDOMAIN.com
+  hostname: mogenius.YOURDOMAIN.com
+  k8s_cmd_stream_url: k8s-cmd-stream.YOURDOMAIN.com
+  k8s_dispatcher_url: k8s-dispatcher.YOURDOMAIN.com
+  k8s_logs_url: k8s-logs.YOURDOMAIN.com
+  k8s_websocket_url: k8s-ws.YOURDOMAIN.com
+  rootDomain: YOURDOMAIN.com
+  socket_service_url: platform-ws.YOURDOMAIN.com
+  tls:
+  - hosts:
+    - mogenius.YOURDOMAIN.com
+    - platform-api.YOURDOMAIN.com
+    - platform-user.YOURDOMAIN.com
+    - platform-ws.YOURDOMAIN.com
+    - k8s-ws.YOURDOMAIN.com
+    - k8s-logs.YOURDOMAIN.com
+    - k8s-cmd-stream.YOURDOMAIN.com
+    - k8s-dispatcher.YOURDOMAIN.com
+    secretName: mo-platform-tls
+  traefik:
+    apiVersion: traefik.io/v1alpha1
+  user_service_url: platform-user.YOURDOMAIN.com
+mo_platform:
+  metrics:
+    enabled: true
+    resources:
+      requests:
+        cpu: 10m
+        memory: 50Mi
+mo_platform_api:
+  enableAutoRefreshToken: true
+  refreshTokenTask: true
+mo_platform_user:
+  openid:
+    enabled: false
+mogenius:
+  imagePullSecrets:
+  - mo-platform-credentials
+mysql:
+  enabled: true
+  ssl: false
+stage: prod
+storage:
+  accessMode: ReadWriteOnce
+  className: local-path
+  persistentVolume:
+    create: false
+```
+
+<Warning>
+  This chart configuration deploys the MySQL Docker image as part of the platform deployment. This setup is not recommended for running the mogenius platform in production scenarios. We recommend configuring the `mysql` values with connection to a high-availability MySQL for use in a production environment.
+</Warning>
+
+### Deploy the Helm chart
+Run the following command on your cluster to install the Helm chart with your values.yaml.
+
+```
+helm repo add mogenius https://helm.mogenius.com/private
+helm install mogenius-platform mogenius/mo-infrastructure -n mogenius-platform -f values.yaml
+```
+
+### Access the mogenius web interface
+Check the status of the installation and make sure all Pods are starting properly.
+
+```
+kubectl get Pods -n mogenius-platform
+```
+
+When all Pods are `Running`, access the mogenius platform with the hostname you specified in your Ingress (e.g. mogenius.yourdomain.com). You can log in with the credentials of your admin user.
+
+### Next steps
+Now that mogenius is up and running you can prepare the platform for your team. Check out the following resources as next steps:
+- [Quickstart guide](../overview/quickstart) for connecting your first cluster and getting started with Workspaces.
+- [Enable Single Sign-On](./single-sign-on) to enable your team joining the mogenius platform.
+- [Configure GitOps](./gitops) for enabling Git-based workflows in mogenius using Argo CD.
+
+### Support
+Need help setting up the mogenius platform? Contact us via [support@mogenius.com](mailto:support@mogenius.com).
+
+## Values
+
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| demo.enabled | bool | `true` |  |
+| demo.secretName | string | `"mo-platform-demo"` |  |
+| dockersecrets | object | `{}` |  |
+| global.imagePullSecrets | list | `[]` | list(of string) set the image pull secrets for all images |
+| global.serviceMonitor.fallbackScrapeProtocol | string | `"PrometheusText0.0.4"` | fallback scrape protocol for service monitors |
+| ingress.annotations | object | `{"traefik.ingress.kubernetes.io/forward-headers":"true","traefik.ingress.kubernetes.io/router.middlewares":"mogenius-cors-middleware@kubernetescrd","traefik.ingress.kubernetes.io/secure-headers":"true"}` | annotations to be placed on the ingress |
+| ingress.api_service_url | string | `nil` | api hostname e.g. api-app.example.com |
+| ingress.hostname | string | `nil` | platform hostname e.g. app.example.com |
+| ingress.ingressClassName | string | `"traefik"` |  |
+| ingress.k8s_cmd_stream_url | string | `nil` | kubernetes cmd stream hostname e.g. k8s-cmd-stream.example.com |
+| ingress.k8s_dispatcher_url | string | `nil` | kubernetes dispatcher hostname e.g. k8s-dispatcher.example.com |
+| ingress.k8s_logs_url | string | `nil` | kubernetes log hostname e.g. k8s-logs.example.com |
+| ingress.k8s_websocket_url | string | `nil` | kubernetes websocket hostname e.g. k8s-ws.example.com |
+| ingress.rootDomain | string | `nil` | Root domain that the platorm will be hosted on, e.g. example.com |
+| ingress.socket_service_url | string | `nil` | websocket hostname e.g. ws-app.example.com |
+| ingress.tls | list | `[]` | secret reference for tls |
+| ingress.traefik | object | `{"apiVersion":"traefik.containo.us/v1alpha1"}` | traefik specific settings |
+| ingress.traefik.apiVersion | string | `"traefik.containo.us/v1alpha1"` | the apiVersion that shall be used for traefik resources |
+| ingress.user_service_url | string | `nil` | user service hostname e.g. user-app.example.com |
+| mo_platform.containerSecurityContext.allowPrivilegeEscalation | bool | `false` |  |
+| mo_platform.containerSecurityContext.capabilities.drop[0] | string | `"ALL"` |  |
+| mo_platform.containerSecurityContext.readOnlyRootFilesystem | bool | `true` |  |
+| mo_platform.enabled | bool | `true` |  |
+| mo_platform.image.registry | string | `"ghcr.io"` |  |
+| mo_platform.image.repository | string | `"mogenius/mo-frontend"` |  |
+| mo_platform.image.tag | string | `"v2.5.7"` |  |
+| mo_platform.imagePullPolicy | string | `"IfNotPresent"` |  |
+| mo_platform.metrics | object | `{"containerSecurityContext":{"allowPrivilegeEscalation":false,"capabilities":{"drop":["ALL"]},"readOnlyRootFilesystem":true},"enabled":false,"image":{"registry":"docker.io","repository":"nginx/nginx-prometheus-exporter","tag":"1.5.1"},"port":9113,"resources":{},"serviceMonitor":{"enabled":false}}` | prometheus exporter for nginx |
+| mo_platform.podSecurityContext.fsGroup | int | `101` |  |
+| mo_platform.podSecurityContext.runAsUser | int | `101` |  |
+| mo_platform.podSecurityContext.seccompProfile.type | string | `"RuntimeDefault"` |  |
+| mo_platform.port | int | `8080` |  |
+| mo_platform.replicas | int | `1` |  |
+| mo_platform.resources | object | `{}` |  |
+| mo_platform.tolerations | object | `{}` |  |
+| mo_platform_api.containerSecurityContext | object | `{}` |  |
+| mo_platform_api.enableAutoRefreshToken | bool | `false` |  |
+| mo_platform_api.enabled | bool | `true` |  |
+| mo_platform_api.image.registry | string | `"ghcr.io"` |  |
+| mo_platform_api.image.repository | string | `"mogenius/mo-platform-api-service"` |  |
+| mo_platform_api.image.tag | string | `"v3.0.23"` |  |
+| mo_platform_api.imagePullPolicy | string | `"IfNotPresent"` |  |
+| mo_platform_api.initContainer.containerSecurityContext | object | `{}` |  |
+| mo_platform_api.initContainer.image.registry | string | `"docker.io"` |  |
+| mo_platform_api.initContainer.image.repository | string | `"alpine/curl"` |  |
+| mo_platform_api.initContainer.image.tag | string | `"8.14.1"` |  |
+| mo_platform_api.podSecurityContext | object | `{}` |  |
+| mo_platform_api.port | int | `1337` |  |
+| mo_platform_api.port_tcp | int | `7000` |  |
+| mo_platform_api.probes.enabled | bool | `true` |  |
+| mo_platform_api.probes.livenessProbe.enabled | bool | `true` |  |
+| mo_platform_api.probes.livenessProbe.path | string | `"/core/status"` |  |
+| mo_platform_api.probes.port | int | `1337` |  |
+| mo_platform_api.probes.readinessProbe.enabled | bool | `true` |  |
+| mo_platform_api.probes.readinessProbe.path | string | `"/core/status"` |  |
+| mo_platform_api.probes.startupProbe.enabled | bool | `true` |  |
+| mo_platform_api.probes.startupProbe.path | string | `"/core/status"` |  |
+| mo_platform_api.refreshTokenTask | bool | `false` | if set to true will refresh the tokens in the database |
+| mo_platform_api.replicas | int | `1` |  |
+| mo_platform_api.resources | object | `{}` |  |
+| mo_platform_api.sshSymEncKey.secretKey | string | `"MO_CORE_NEST__SSH_SYM_ENC_KEY"` |  |
+| mo_platform_api.sshSymEncKey.secretName | string | `"mo-platform-shared"` |  |
+| mo_platform_api.tolerations | object | `{}` |  |
+| mo_platform_api.ws_cmd_stream_port | int | `7003` |  |
+| mo_platform_api.ws_log_port | int | `7002` |  |
+| mo_platform_api.ws_port | int | `7001` |  |
+| mo_platform_api_valkey.containerSecurityContext.allowPrivilegeEscalation | bool | `false` |  |
+| mo_platform_api_valkey.containerSecurityContext.capabilities.drop[0] | string | `"ALL"` |  |
+| mo_platform_api_valkey.containerSecurityContext.readOnlyRootFilesystem | bool | `true` |  |
+| mo_platform_api_valkey.containerSecurityContext.runAsGroup | int | `999` |  |
+| mo_platform_api_valkey.containerSecurityContext.runAsNonRoot | bool | `true` |  |
+| mo_platform_api_valkey.containerSecurityContext.runAsUser | int | `999` |  |
+| mo_platform_api_valkey.enabled | bool | `true` |  |
+| mo_platform_api_valkey.host | string | `"mo-platform-api-valkey"` |  |
+| mo_platform_api_valkey.image.registry | string | `"docker.io"` |  |
+| mo_platform_api_valkey.image.repository | string | `"valkey/valkey"` |  |
+| mo_platform_api_valkey.image.tag | float | `8.1` |  |
+| mo_platform_api_valkey.imagePullPolicy | string | `"IfNotPresent"` |  |
+| mo_platform_api_valkey.password.secretKey | string | `"REDIS_SECRET"` |  |
+| mo_platform_api_valkey.password.secretName | string | `"mo-redis-secret"` |  |
+| mo_platform_api_valkey.podSecurityContext.fsGroup | int | `999` |  |
+| mo_platform_api_valkey.podSecurityContext.runAsGroup | int | `999` |  |
+| mo_platform_api_valkey.podSecurityContext.runAsUser | int | `999` |  |
+| mo_platform_api_valkey.podSecurityContext.seccompProfile.type | string | `"RuntimeDefault"` |  |
+| mo_platform_api_valkey.port | int | `6379` |  |
+| mo_platform_api_valkey.resources | object | `{}` |  |
+| mo_platform_message_dispatcher.containerSecurityContext | object | `{}` |  |
+| mo_platform_message_dispatcher.enabled | bool | `true` |  |
+| mo_platform_message_dispatcher.image.registry | string | `"ghcr.io"` |  |
+| mo_platform_message_dispatcher.image.repository | string | `"mogenius/mo-platform-message-dispatcher"` |  |
+| mo_platform_message_dispatcher.image.tag | string | `"v1.1.1"` |  |
+| mo_platform_message_dispatcher.imagePullPolicy | string | `"IfNotPresent"` |  |
+| mo_platform_message_dispatcher.listen_host | string | `"0.0.0.0"` |  |
+| mo_platform_message_dispatcher.podSecurityContext | object | `{}` |  |
+| mo_platform_message_dispatcher.port | int | `7060` |  |
+| mo_platform_message_dispatcher.redis.host | string | `"localhost"` |  |
+| mo_platform_message_dispatcher.redis.image.registry | string | `"docker.io"` |  |
+| mo_platform_message_dispatcher.redis.image.repository | string | `"redis"` |  |
+| mo_platform_message_dispatcher.redis.image.tag | string | `"7.4.6"` |  |
+| mo_platform_message_dispatcher.redis.imagePullPolicy | string | `"IfNotPresent"` |  |
+| mo_platform_message_dispatcher.redis.password.secretKey | string | `"REDIS_SECRET"` |  |
+| mo_platform_message_dispatcher.redis.password.secretName | string | `"mo-redis-secret"` |  |
+| mo_platform_message_dispatcher.redis.port | int | `6379` |  |
+| mo_platform_message_dispatcher.redis.tls | bool | `false` |  |
+| mo_platform_message_dispatcher.replicas | int | `1` |  |
+| mo_platform_message_dispatcher.resources | object | `{}` |  |
+| mo_platform_message_dispatcher.tolerations | object | `{}` |  |
+| mo_platform_notification.containerSecurityContext | object | `{}` |  |
+| mo_platform_notification.email.fromAddress | string | `"no-reply@mogenius.com"` |  |
+| mo_platform_notification.email.fromName | string | `"Mogenius Team"` |  |
+| mo_platform_notification.enabled | bool | `true` |  |
+| mo_platform_notification.image.registry | string | `"ghcr.io"` |  |
+| mo_platform_notification.image.repository | string | `"mogenius/mo-platform-notification"` |  |
+| mo_platform_notification.image.tag | string | `"v2.0.2"` |  |
+| mo_platform_notification.imagePullPolicy | string | `"IfNotPresent"` |  |
+| mo_platform_notification.podSecurityContext | object | `{}` |  |
+| mo_platform_notification.port | int | `7000` |  |
+| mo_platform_notification.replicas | int | `1` |  |
+| mo_platform_notification.resources | object | `{}` |  |
+| mo_platform_notification.sshSymEncKey.secretKey | string | `"MO_CORE_NEST__SSH_SYM_ENC_KEY"` |  |
+| mo_platform_notification.sshSymEncKey.secretName | string | `"mo-platform-shared"` |  |
+| mo_platform_notification.tolerations | object | `{}` |  |
+| mo_platform_queue.containerSecurityContext | object | `{}` |  |
+| mo_platform_queue.enabled | bool | `true` |  |
+| mo_platform_queue.image.registry | string | `"ghcr.io"` |  |
+| mo_platform_queue.image.repository | string | `"mogenius/mo-platform-queue"` |  |
+| mo_platform_queue.image.tag | string | `"v2.0.4"` |  |
+| mo_platform_queue.imagePullPolicy | string | `"IfNotPresent"` |  |
+| mo_platform_queue.podSecurityContext | object | `{}` |  |
+| mo_platform_queue.redis.host | string | `"localhost"` |  |
+| mo_platform_queue.redis.image.registry | string | `"docker.io"` |  |
+| mo_platform_queue.redis.image.repository | string | `"redis"` |  |
+| mo_platform_queue.redis.image.tag | string | `"7.4.6"` |  |
+| mo_platform_queue.redis.imagePullPolicy | string | `"IfNotPresent"` |  |
+| mo_platform_queue.redis.password.secretKey | string | `"REDIS_SECRET"` |  |
+| mo_platform_queue.redis.password.secretName | string | `"mo-redis-secret"` |  |
+| mo_platform_queue.redis.port | int | `6379` |  |
+| mo_platform_queue.replicas | int | `1` |  |
+| mo_platform_queue.resources | object | `{}` |  |
+| mo_platform_queue.sshSymEncKey.secretKey | string | `"MO_CORE_NEST__SSH_SYM_ENC_KEY"` |  |
+| mo_platform_queue.sshSymEncKey.secretName | string | `"mo-platform-shared"` |  |
+| mo_platform_queue.tolerations | object | `{}` |  |
+| mo_platform_queue_valkey.containerSecurityContext.allowPrivilegeEscalation | bool | `false` |  |
+| mo_platform_queue_valkey.containerSecurityContext.capabilities.drop[0] | string | `"ALL"` |  |
+| mo_platform_queue_valkey.containerSecurityContext.readOnlyRootFilesystem | bool | `true` |  |
+| mo_platform_queue_valkey.containerSecurityContext.runAsGroup | int | `999` |  |
+| mo_platform_queue_valkey.containerSecurityContext.runAsNonRoot | bool | `true` |  |
+| mo_platform_queue_valkey.containerSecurityContext.runAsUser | int | `999` |  |
+| mo_platform_queue_valkey.enabled | bool | `true` |  |
+| mo_platform_queue_valkey.host | string | `"mo-platform-queue-valkey"` |  |
+| mo_platform_queue_valkey.image.registry | string | `"docker.io"` |  |
+| mo_platform_queue_valkey.image.repository | string | `"valkey/valkey"` |  |
+| mo_platform_queue_valkey.image.tag | float | `8.1` |  |
+| mo_platform_queue_valkey.imagePullPolicy | string | `"IfNotPresent"` |  |
+| mo_platform_queue_valkey.password.secretKey | string | `"REDIS_SECRET"` |  |
+| mo_platform_queue_valkey.password.secretName | string | `"mo-redis-secret"` |  |
+| mo_platform_queue_valkey.podSecurityContext.fsGroup | int | `999` |  |
+| mo_platform_queue_valkey.podSecurityContext.runAsGroup | int | `999` |  |
+| mo_platform_queue_valkey.podSecurityContext.runAsUser | int | `999` |  |
+| mo_platform_queue_valkey.podSecurityContext.seccompProfile.type | string | `"RuntimeDefault"` |  |
+| mo_platform_queue_valkey.port | int | `6379` |  |
+| mo_platform_queue_valkey.resources | object | `{}` |  |
+| mo_platform_user.containerSecurityContext | object | `{}` |  |
+| mo_platform_user.enabled | bool | `true` |  |
+| mo_platform_user.image.registry | string | `"ghcr.io"` |  |
+| mo_platform_user.image.repository | string | `"mogenius/mo-platform-user"` |  |
+| mo_platform_user.image.tag | string | `"v2.0.4"` |  |
+| mo_platform_user.imagePullPolicy | string | `"IfNotPresent"` |  |
+| mo_platform_user.openid.accessTokenLifetime | int | `600` |  |
+| mo_platform_user.openid.adminAccessTokenLifetime | int | `28800` |  |
+| mo_platform_user.openid.enabled | bool | `true` |  |
+| mo_platform_user.openid.issuer | string | `"https://login-dev.mogenius.com"` |  |
+| mo_platform_user.openid.provider | object | `{"github":{"displayName":"GitHub","enabled":false,"secretKey":"github","secretName":"mo-openid-secret"},"gitlab":{"displayName":"GitLab","enabled":false,"secretKey":"gitlab","secretName":"mo-openid-secret"},"google":{"displayName":"Google","enabled":false,"secretKey":"google","secretName":"mo-openid-secret"},"linkedin":{"displayName":"LinkedIn","enabled":false,"secretKey":"linkedin","secretName":"mo-openid-secret"},"microsoft":{"displayName":"Microsoft","enabled":false,"secretKey":"microsoft","secretName":"mo-openid-secret"}}` | open id provider, e.g. openid.provider.gitlab.secret: `<your-secret>` |
+| mo_platform_user.openid.refreshTokenLifetime | int | `7776000` |  |
+| mo_platform_user.podSecurityContext | object | `{}` |  |
+| mo_platform_user.port | int | `1337` |  |
+| mo_platform_user.port_ws | int | `7000` |  |
+| mo_platform_user.probes.enabled | bool | `true` |  |
+| mo_platform_user.probes.livenessProbe.enabled | bool | `true` |  |
+| mo_platform_user.probes.livenessProbe.path | string | `"/core/status"` |  |
+| mo_platform_user.probes.port | int | `1337` |  |
+| mo_platform_user.probes.readinessProbe.enabled | bool | `true` |  |
+| mo_platform_user.probes.readinessProbe.path | string | `"/core/status"` |  |
+| mo_platform_user.probes.startupProbe.enabled | bool | `true` |  |
+| mo_platform_user.probes.startupProbe.path | string | `"/core/status"` |  |
+| mo_platform_user.redis.host | string | `"localhost"` |  |
+| mo_platform_user.redis.image.registry | string | `"docker.io"` |  |
+| mo_platform_user.redis.image.repository | string | `"redis"` |  |
+| mo_platform_user.redis.image.tag | string | `"7.4.6"` |  |
+| mo_platform_user.redis.imagePullPolicy | string | `"IfNotPresent"` |  |
+| mo_platform_user.redis.password.secretKey | string | `"REDIS_SECRET"` |  |
+| mo_platform_user.redis.password.secretName | string | `"mo-redis-secret"` |  |
+| mo_platform_user.redis.port | int | `6379` |  |
+| mo_platform_user.replicas | int | `1` |  |
+| mo_platform_user.resources | object | `{}` |  |
+| mo_platform_user.sshSymEncKey.secretKey | string | `"MO_CORE_NEST__SSH_SYM_ENC_KEY"` |  |
+| mo_platform_user.sshSymEncKey.secretName | string | `"mo-platform-shared"` |  |
+| mo_platform_user.tolerations | object | `{}` |  |
+| mo_platform_websocket.containerSecurityContext | object | `{}` |  |
+| mo_platform_websocket.enabled | bool | `true` |  |
+| mo_platform_websocket.image.registry | string | `"ghcr.io"` |  |
+| mo_platform_websocket.image.repository | string | `"mogenius/mo-platform-websocket"` |  |
+| mo_platform_websocket.image.tag | string | `"v2.0.2"` |  |
+| mo_platform_websocket.imagePullPolicy | string | `"IfNotPresent"` |  |
+| mo_platform_websocket.podSecurityContext | object | `{}` |  |
+| mo_platform_websocket.port | int | `1337` |  |
+| mo_platform_websocket.port_ws | int | `7000` |  |
+| mo_platform_websocket.replicas | int | `1` |  |
+| mo_platform_websocket.resources | object | `{}` |  |
+| mo_platform_websocket.sshSymEncKey.secretKey | string | `"MO_CORE_NEST__SSH_SYM_ENC_KEY"` |  |
+| mo_platform_websocket.sshSymEncKey.secretName | string | `"mo-platform-shared"` |  |
+| mo_platform_websocket.tolerations | object | `{}` |  |
+| mogenius.imagePullSecrets | list | `[]` | list(of string) set the image pull secret for mogenius images |
+| mysql.allow_empty_root_password | int | `0` |  |
+| mysql.containerSecurityContext.allowPrivilegeEscalation | bool | `false` |  |
+| mysql.containerSecurityContext.capabilities.drop[0] | string | `"ALL"` |  |
+| mysql.containerSecurityContext.readOnlyRootFilesystem | bool | `false` |  |
+| mysql.containerSecurityContext.runAsGroup | int | `999` |  |
+| mysql.containerSecurityContext.runAsNonRoot | bool | `true` |  |
+| mysql.containerSecurityContext.runAsUser | int | `999` |  |
+| mysql.database | string | `"platform"` |  |
+| mysql.enabled | bool | `false` |  |
+| mysql.host | string | `"mysql"` |  |
+| mysql.image.registry | string | `"docker.io"` |  |
+| mysql.image.repository | string | `"mysql"` |  |
+| mysql.image.tag | string | `"8.4.7"` |  |
+| mysql.imagePullPolicy | string | `"IfNotPresent"` |  |
+| mysql.mountpoint | string | `"/var/lib/mysql"` |  |
+| mysql.password.secretKey | string | `"MYSQL_PASSWORD"` |  |
+| mysql.password.secretName | string | `"mo-mysql-secret"` |  |
+| mysql.podSecurityContext.fsGroup | int | `999` |  |
+| mysql.port | int | `3306` |  |
+| mysql.replicas | int | `1` |  |
+| mysql.resources | object | `{}` |  |
+| mysql.root_password.secretKey | string | `"MYSQL_ROOT_PASSWORD"` |  |
+| mysql.root_password.secretName | string | `"mo-mysql-secret"` |  |
+| mysql.ssl | bool | `false` |  |
+| mysql.sslRejectUnauthorized | bool | `true` |  |
+| mysql.subpath | string | `"{{ tpl .Release.Namespace }}-mysql-storage"` |  |
+| mysql.tolerations | object | `{}` |  |
+| mysql.user | string | `"platform_user"` |  |
+| platform_websocket_redis.containerSecurityContext.allowPrivilegeEscalation | bool | `false` |  |
+| platform_websocket_redis.containerSecurityContext.capabilities.drop[0] | string | `"ALL"` |  |
+| platform_websocket_redis.containerSecurityContext.readOnlyRootFilesystem | bool | `true` |  |
+| platform_websocket_redis.containerSecurityContext.runAsGroup | int | `999` |  |
+| platform_websocket_redis.containerSecurityContext.runAsNonRoot | bool | `true` |  |
+| platform_websocket_redis.containerSecurityContext.runAsUser | int | `999` |  |
+| platform_websocket_redis.enabled | bool | `true` |  |
+| platform_websocket_redis.host | string | `"mo-platform-websocket-redis"` |  |
+| platform_websocket_redis.image.registry | string | `"docker.io"` |  |
+| platform_websocket_redis.image.repository | string | `"redis"` |  |
+| platform_websocket_redis.image.tag | string | `"7.4.6"` |  |
+| platform_websocket_redis.imagePullPolicy | string | `"IfNotPresent"` |  |
+| platform_websocket_redis.password.secretKey | string | `"REDIS_SECRET"` |  |
+| platform_websocket_redis.password.secretName | string | `"mo-redis-secret"` |  |
+| platform_websocket_redis.podSecurityContext.fsGroup | int | `999` |  |
+| platform_websocket_redis.port | int | `6379` |  |
+| platform_websocket_redis.replicas | int | `1` |  |
+| platform_websocket_redis.resources | object | `{}` |  |
+| platform_websocket_redis.tolerations | object | `{}` |  |
+| progressDeadlineSeconds | int | `600` |  |
+| redis_master.containerSecurityContext.allowPrivilegeEscalation | bool | `false` |  |
+| redis_master.containerSecurityContext.capabilities.drop[0] | string | `"ALL"` |  |
+| redis_master.containerSecurityContext.readOnlyRootFilesystem | bool | `true` |  |
+| redis_master.containerSecurityContext.runAsGroup | int | `999` |  |
+| redis_master.containerSecurityContext.runAsNonRoot | bool | `true` |  |
+| redis_master.containerSecurityContext.runAsUser | int | `999` |  |
+| redis_master.enabled | bool | `true` |  |
+| redis_master.host | string | `"redis-master"` |  |
+| redis_master.image.registry | string | `"docker.io"` |  |
+| redis_master.image.repository | string | `"redis"` |  |
+| redis_master.image.tag | string | `"7.4.6"` |  |
+| redis_master.imagePullPolicy | string | `"IfNotPresent"` |  |
+| redis_master.password.secretKey | string | `"REDIS_SECRET"` |  |
+| redis_master.password.secretName | string | `"mo-redis-secret"` |  |
+| redis_master.podSecurityContext.fsGroup | int | `999` |  |
+| redis_master.port | int | `6379` |  |
+| redis_master.queue_db | int | `7` |  |
+| redis_master.replicas | int | `1` |  |
+| redis_master.resources | object | `{}` |  |
+| redis_master.tls | bool | `false` |  |
+| redis_master.tolerations | object | `{}` |  |
+| revisionHistoryLimit | int | `1` | global revisionHistorylimit for all resources |
+| secrets | object | `{}` | secrets.`<secretName>`.`<secretKey>`.`<secretValue>` |
+| stage | string | `"production"` | current environment, one of [dev, production] |
+| storage.accessMode | string | `"ReadWriteMany"` |  |
+| storage.className | string | `"default"` |  |
+| storage.persistentVolume.basePath | string | `"/data"` | basePath for pv's ${basePath}/mysql and ${basePath}/redis must be present on host machine |
+| storage.persistentVolume.create | bool | `true` |  |
+| storage.persistentVolume.nodeAffinity | object | `{}` |  |
