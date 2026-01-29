@@ -1,0 +1,60 @@
+---
+title: "AI Insights"
+sidebarTitle: "AI Insights"
+---
+
+mogenius comes with a built-in AI agent that helps you troubleshoot errors in your workloads effectively. It runs inside the mogenius operator and can be connected with various AI models using OpenAI-compatible endpoints, Anthropic, or Ollama. Once activated, the agent continuously monitors your cluster and, on certain events, performs an analysis that:
+
+- Summarizes the issue  
+- Explains why it happened  
+- Proposes a solution  
+- If approved by a human, applies the solution  
+
+![AI Insights Widget](/images/ai-insights-widget.png)
+
+## Configuring AI Insights
+
+To activate AI Insights, navigate to your **Cluster** page and open the **AI Insights** tab. Start the configuration and use the following form fields to set up your AI agent:
+
+- **SDK**: Choose between OpenAI, Anthropic, or Ollama.  
+- **API Key**: If the model endpoint requires authentication, enter an API key or token.  
+- **Model**: Select your desired model from the dropdown. If no models appear, check your endpoint or authentication.  
+- **API URL**: Enter the model endpoint URL. For OpenAI, the default is `https://api.openai.com/v1`. You may also use any [OpenAI-compatible API endpoint](https://bentoml.com/llm/llm-inference-basics/openai-compatible-api).  
+- **Daily Token Limit**: Set a daily token usage limit for the AI agent. Once the limit is reached, new insights will be queued and processed when the limit resets.
+
+After saving your settings, AI Insights will begin monitoring and analyzing issues on your cluster. Your settings page will now display additional admin features:
+
+**Token usage**  
+Monitor today's token consumption and see when the limit will reset.
+
+**Reset token limit**  
+Manually reset the token usage to zero.
+
+**Delete all AI data**  
+Deletes all existing insight reports from the local database and resets the token usage. The agent will start fresh.
+
+## How It Works
+
+AI Insights operates based on event and status processing in the mogenius operator. It uses filters to define which events it should track. When an event occurs (e.g., a Pod enters a `CrashLoopBackOff` state), the agent launches an analysis. Depending on the error type, it automatically retrieves the necessary logs, events, and manifests from your cluster to understand the issue.
+
+It then generates a detailed report explaining the root cause and offers step-by-step solutions within mogenius.
+
+## Accessing the Reports
+
+All reports are stored locally on your cluster and assigned a status to indicate their progress:
+
+- **Pending**: An event triggered the AI agent and is queued for processing.  
+- **In progress**: The agent is currently generating the report.  
+- **Completed**: The report is finished and ready for review.  
+- **Ignored**: The report was dismissed by a user and won’t be shown on dashboards or resource pages.  
+- **Resolved**: The proposed solution was accepted and the issue resolved.
+
+You can access AI Reports from your **Clusters** page or within each **Workspace**. In Workspaces, reports are filtered to display only resources included in that workspace. When viewing a specific resource, a banner will show if the AI agent has detected an issue.
+
+![AI Insights Banner](/images/ai-insights-banner.png)
+
+## Resolving Issues
+
+If the AI agent is confident in a solution, it will provide a proposed **Solution** at the top of the report. You can review the suggestion with a visual diff between your current YAML manifest and the AI-generated version. If approved, mogenius will apply the solution and archive the report.
+
+Alternatively, you can **Ignore** a report to move it out of your **New Reports** inbox. It will appear under **All Reports** and will no longer show in dashboards or resource detail views.
