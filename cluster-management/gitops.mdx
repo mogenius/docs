@@ -9,8 +9,21 @@ mogenius comes with a native GitOps integration that allows you to easily implem
 
 **Here's how you can use that in your teams:**
 - Deploy containers to Kubernetes using the mogenius UI, without requiring deep Kubernetes knowledge. Then, add them to GitOps for deploying them to production-grade deployments.
-- Configure your applications once and then deploy them to additional environments for a staged development workflow.
+- Configure your applications once and then deploy them to additional environments for a staged development workflow. See [Multi-Environment Deployments](/deploying-applications/multi-environment-deployments) for a practical guide.
 - Backup all your manifests to recover your cluster state in case of an incident.
+
+## How the GitOps workflow works in mogenius
+
+The GitOps workflow in mogenius follows a UI-first approach. You don't need to write Kubernetes manifests manually — mogenius generates them for you.
+
+Here's the end-to-end flow:
+1. **Deploy via the UI**: Use the mogenius UI to deploy applications through [container images](/deploying-applications/container-images), [pipeline starters](/deploying-applications/pipeline-starters), [Helm charts](/deploying-applications/helm-charts), or [Kubernetes manifests](/deploying-applications/kubernetes-manifests).
+2. **Enable GitOps** on your cluster (see setup below).
+3. **Create a GitOps application** that includes your deployments.
+4. **Manifests are auto-generated**: mogenius automatically creates the Kubernetes manifests (`application.yaml`) for all selected resources and commits them to your Git repository. You do not need to write these manifests yourself.
+5. **Changes sync through Git**: When you modify configurations in the mogenius UI (environment variables, health checks, scaling, etc.), the changes are committed to Git. ArgoCD then syncs the updated manifests to your cluster.
+
+This means you get the speed and simplicity of UI-based deployments combined with the reliability and auditability of Git-based infrastructure management.
 
 ## GitOps setup
 
@@ -73,7 +86,7 @@ Here's how it works:
 - From the list of namespaces on your cluster, select the resources that you want to include in your application. You can select one namespace per application. Inside a namespace you can select all resources, or a selected list of resources.  
 - Confirm to create your application.  
 
-Your application is now added to the list, and the selected resources are stored in `application.yaml` in your Git repository. It can take a few minutes until ArgoCD has synchronized it, and you'll see a loading animation in the meantime. Once it is synced, you'll see the status of your application and all included resources.
+Your application is now added to the list, and mogenius automatically generates the Kubernetes manifests for all selected resources and stores them as `application.yaml` in your Git repository. It can take a few minutes until ArgoCD has synchronized it, and you'll see a loading animation in the meantime. Once it is synced, you'll see the status of your application and all included resources.
 
 ## Working with GitOps in mogenius
 
@@ -88,3 +101,11 @@ You can continue using the mogenius UI to change configurations such as environm
 ### GitOps log
 
 You can track the history and changes of your `application.yaml` using the **GitOps log**. It is available on any resource managed by a GitOps application and shows commits and pull requests.
+
+## CI/CD integration with GitHub Actions
+
+For teams that want to combine CI/CD builds with GitOps-based deployment, mogenius provides GitHub Actions workflow templates in the [mogenius build-workflows repository](https://github.com/mogenius/build-workflows). These templates automate the process of building your container image and triggering the mogenius operator to update the deployment, which is then tracked and synced by GitOps.
+
+You can use these templates in two ways:
+- **Through Pipeline Starters**: The easiest approach — mogenius sets up the GitHub Actions workflow for you directly from the UI. See [Pipeline Starters](/deploying-applications/pipeline-starters) for details.
+- **Custom integration**: Use the workflow templates directly in your own CI/CD pipelines for more control over the build and deployment process.

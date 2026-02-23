@@ -1,0 +1,143 @@
+---
+sidebar_position: 1.5
+title: "Deployment Configuration"
+sidebarTitle: "Deployment Configuration"
+description: "Configure environment variables, secrets, scaling, health checks, update strategies, and resource limits for your deployments in mogenius."
+---
+
+After deploying an application with [container images](/deploying-applications/container-images), [pipeline starters](/deploying-applications/pipeline-starters), or [Kubernetes manifests](/deploying-applications/kubernetes-manifests), you can configure all deployment settings through the mogenius UI. Open any deployment in your workspace to access the detail page, where you'll find settings for environment variables, health checks, scaling, and more. You can use the simplified UI forms or switch to the YAML editor for full control over your manifests.
+
+<Tip>
+If [GitOps](/cluster-management/gitops) is enabled, any configuration change you make through the UI is automatically committed to your Git repository and synced by ArgoCD.
+</Tip>
+
+## Environment variables
+
+Environment variables allow you to pass configuration values to your containers at runtime. In mogenius, you manage them directly from the deployment settings.
+
+To configure environment variables:
+1. Open the detail page of your deployment in the workspace.
+2. Navigate to the **Settings** section.
+3. Add environment variables as key-value pairs using the form.
+4. To edit multiple variables at once, switch to the **YAML editor** for bulk editing.
+5. Save your changes to apply them to the deployment.
+
+### Referencing secrets
+
+Instead of storing sensitive values directly as environment variables, you can reference Kubernetes Secrets. This keeps credentials, API keys, and other sensitive data separate from your deployment configuration. In the environment variables form, you can set a variable to reference a value from a Secret using the `valueFrom` pattern, which maps to a specific key in a Kubernetes Secret object.
+
+### ConfigMaps as environment variables
+
+Similarly, you can reference values from ConfigMaps to inject shared configuration data into your containers. This is useful for non-sensitive configuration that is shared across multiple deployments.
+
+## Secrets and ConfigMaps
+
+mogenius provides a dedicated **Secrets & Configs** page in each workspace for managing Kubernetes Secrets and ConfigMaps without requiring YAML.
+
+On this page you can:
+- **Create new Secrets** with an intuitive form — enter key-value pairs and mogenius handles encoding and resource creation.
+- **Create ConfigMaps** for non-sensitive configuration data shared across deployments.
+- **Edit existing Secrets and ConfigMaps** directly through the UI.
+- **Navigate** between Secrets, ConfigMaps, and the deployments that reference them.
+
+### Image pull secrets
+
+When deploying from a private container registry, you need an image pull secret to authenticate. You can create image pull secrets during the initial deployment (see [Container Images](/deploying-applications/container-images)), or manage them afterwards in the **Source** settings of your deployment. From there, you can select an existing secret on the cluster or create a new one by providing your registry URL, username, and access token.
+
+## Resource limits and requests
+
+Resource limits and requests control how much CPU and memory your containers can use. Setting these correctly ensures stable performance and efficient cluster utilization.
+
+In the deployment settings, configure:
+- **CPU request**: The minimum CPU resources guaranteed for your container.
+- **CPU limit**: The maximum CPU resources the container can consume.
+- **Memory request**: The minimum memory guaranteed for your container.
+- **Memory limit**: The maximum memory the container can use before being terminated.
+
+<Note>
+Setting appropriate resource requests is important for Kubernetes scheduling. If requests are too high, pods may not be scheduled. If too low, pods may be evicted under resource pressure.
+</Note>
+
+## Health checks and probes
+
+Health checks ensure that your application is running correctly and ready to serve traffic. Kubernetes uses three types of probes that you can configure in the deployment settings.
+
+### Probe types
+
+- **Liveness probe**: Checks if your container is still running. If the liveness probe fails, Kubernetes restarts the container. Use this to recover from deadlocks or unresponsive states.
+- **Readiness probe**: Checks if your container is ready to accept traffic. If the readiness probe fails, Kubernetes removes the pod from service endpoints until it passes again. Use this to avoid sending traffic to pods that are still initializing or temporarily unable to serve requests.
+- **Startup probe**: Delays liveness and readiness checks until the startup probe succeeds. Use this for slow-starting containers that need extra time to initialize before health checks begin.
+
+### Configuring probes
+
+To set up health checks:
+1. Open the deployment settings.
+2. Navigate to the health checks section.
+3. Select the check method:
+   - **HTTP**: Sends an HTTP GET request to a specified path and port. The check passes if the response status is between 200 and 399.
+   - **TCP**: Attempts a TCP connection to a specified port. The check passes if the connection is established.
+   - **Exec**: Runs a command inside the container. The check passes if the command exits with status code 0.
+4. Configure the probe parameters:
+   - **Initial delay (seconds)**: Time to wait after the container starts before running the first check.
+   - **Period (seconds)**: How often to run the check.
+   - **Timeout (seconds)**: How long to wait for a response before the check is considered failed.
+   - **Success threshold**: Number of consecutive successes required to mark the probe as passing.
+   - **Failure threshold**: Number of consecutive failures required to take action (restart or remove from service).
+
+<Tip>
+Start with a readiness probe as the minimum configuration. This prevents traffic from being routed to pods that aren't ready, which is the most common cause of errors during deployments and restarts.
+</Tip>
+
+## Horizontal scaling
+
+mogenius supports both manual replica scaling and automatic horizontal pod autoscaling (HPA) through the deployment settings.
+
+### Manual scaling
+
+Set the **replica count** to define how many instances of your pod should run simultaneously. You can adjust this in the deployment settings, or use the [Resource Manager](/workspaces/resources) to quickly scale a deployment up or down.
+
+### Horizontal Pod Autoscaler (HPA)
+
+For automatic scaling based on resource utilization, configure the HPA in the deployment settings:
+
+- **Minimum replicas**: The lowest number of pods to maintain, even under low load.
+- **Maximum replicas**: The upper limit of pods that the autoscaler can create.
+- **Scaling triggers**: Define the target utilization thresholds that trigger scaling. Common triggers include:
+  - **CPU utilization**: Scale when average CPU usage across pods exceeds a target percentage.
+  - **Memory utilization**: Scale when average memory usage exceeds a target percentage.
+
+When the observed resource usage exceeds the target, Kubernetes automatically adds pods up to the maximum. When usage drops, it scales back down to the minimum.
+
+<Tip>
+Scaling settings are also manageable through [GitOps](/cluster-management/gitops), which allows you to maintain consistent scaling configurations across environments.
+</Tip>
+
+## Update strategy
+
+The update strategy defines how Kubernetes replaces existing pods with new ones during a deployment update (e.g., when you change the container image or configuration).
+
+### Rolling update
+
+This is the default strategy. Kubernetes gradually replaces old pods with new ones, ensuring that your application remains available throughout the process.
+
+Configure the rolling update behavior in deployment settings:
+- **maxSurge**: The maximum number of pods that can be created above the desired replica count during an update. For example, if you have 3 replicas and maxSurge is 1, Kubernetes may run up to 4 pods during the update.
+- **maxUnavailable**: The maximum number of pods that can be unavailable during the update. For example, if set to 1, at least 2 out of 3 replicas remain available at all times.
+
+### Recreate
+
+With the Recreate strategy, all existing pods are terminated before new ones are created. This causes downtime but is useful when your application cannot run multiple versions simultaneously (e.g., due to database migrations or shared file locks).
+
+<Tip>
+Pair rolling updates with [health checks](#health-checks-and-probes) to ensure that new pods are verified as healthy before old pods are terminated. This prevents broken deployments from taking down your application.
+</Tip>
+
+## Volume mounts
+
+Volume mount settings allow you to attach persistent storage and configuration files to your containers. You can configure volumes and their mount paths directly in the deployment settings.
+
+For persistent storage solutions, see [Storage](/workspaces/storage).
+
+## Using the YAML editor
+
+Every setting described above can also be configured through the YAML editor. On the detail page of any controller (Deployment, StatefulSet, DaemonSet), use the **UI/YAML toggle** to switch between the simplified form view and the full YAML manifest editor. The YAML view provides direct access to the Kubernetes manifest, and includes a topology of all dependent resources for navigation through the complete configuration.

@@ -68,9 +68,11 @@
             "pages": [
               "deploying-applications/overview",
               "deploying-applications/container-images",
+              "deploying-applications/deployment-configuration",
               "deploying-applications/pipeline-starters",
               "deploying-applications/helm-charts",
-              "deploying-applications/kubernetes-manifests"
+              "deploying-applications/kubernetes-manifests",
+              "deploying-applications/multi-environment-deployments"
             ]
           }
         ]

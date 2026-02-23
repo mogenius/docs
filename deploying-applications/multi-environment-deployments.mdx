@@ -1,0 +1,85 @@
+---
+sidebar_position: 6
+title: "Multi-Environment Deployments"
+sidebarTitle: "Multi-Environment Deployments"
+description: "Set up a multi-environment deployment strategy with dev, staging, and production using mogenius UI and GitOps."
+---
+
+A common pattern for production-ready applications is maintaining separate environments for development, staging, and production. mogenius supports this through a combination of UI-based deployments for rapid iteration and GitOps for stable, version-controlled environments.
+
+**The recommended approach:**
+- **Development**: Deploy and iterate quickly using the mogenius UI.
+- **Staging and Production**: Enable GitOps to manage deployments declaratively through Git, with pull request-based reviews for production changes.
+
+## Setting up a development environment
+
+<Steps>
+  <Step title="Create a workspace">
+    Create a workspace for your development environment. Assign it to the cluster and namespace where your dev workloads should run. See [Creating Workspaces](/workspaces/creating-workspaces).
+  </Step>
+
+  <Step title="Deploy your application">
+    Use any of the deployment methods to get your application running:
+    - [Container images](/deploying-applications/container-images) for deploying from a registry.
+    - [Pipeline starters](/deploying-applications/pipeline-starters) for CI/CD from a Git repository.
+    - [Helm charts](/deploying-applications/helm-charts) for chart-based deployments.
+  </Step>
+
+  <Step title="Configure deployment settings">
+    Set up environment-specific configuration for your dev environment: environment variables, resource limits, health checks, and scaling. See [Deployment Configuration](/deploying-applications/deployment-configuration).
+  </Step>
+
+  <Step title="Iterate and test">
+    Use the built-in [monitoring and logs](/workspaces/service-status-and-errors) to debug and iterate on your application. The mogenius UI allows you to make changes and see results quickly without needing to manage YAML files or kubectl commands.
+  </Step>
+</Steps>
+
+## Enabling GitOps for environment promotion
+
+Once your application is working in development, enable GitOps to version-control your configurations and promote them to other environments.
+
+<Steps>
+  <Step title="Enable GitOps on your cluster">
+    Navigate to your cluster settings and enable GitOps. This installs ArgoCD and Sealed Secrets on your cluster and connects a GitHub repository. See [GitOps setup](/cluster-management/gitops).
+  </Step>
+
+  <Step title="Create a GitOps application">
+    Add your development deployments to a GitOps application. mogenius automatically generates the Kubernetes manifests and commits them to your Git repository. You now have a versioned, declarative representation of your application.
+  </Step>
+
+  <Step title="Your manifests are now in Git">
+    All configuration changes you make through the mogenius UI are automatically committed to Git. This gives you a full history of changes and enables Git-based workflows for promoting configurations to other environments.
+  </Step>
+</Steps>
+
+## Creating staging and production environments
+
+With your application manifests in Git, you can set up additional environments using GitOps.
+
+### Staging environment
+
+Create a separate workspace with its own namespace for staging. Use GitOps to deploy from the same Git repository, ensuring consistency between development and staging. Adjust environment-specific settings (environment variables, resource limits, replica counts) as needed for the staging context.
+
+### Production environment
+
+For production, use GitOps with **pull request-based commit behavior**. This ensures that every change to your production configuration goes through a review process before being applied.
+
+To enable this:
+1. In your cluster's GitOps settings, activate the toggle for creating pull requests instead of direct commits.
+2. When changes are made, mogenius creates a pull request in your Git repository.
+3. Team members review and approve the pull request.
+4. Once merged, ArgoCD syncs the changes to the production cluster.
+
+<Tip>
+Using pull request-based commits for production environments enforces code review on all infrastructure changes, providing an audit trail and preventing accidental configuration changes.
+</Tip>
+
+## Managing environment-specific configurations
+
+When running multiple environments, keep these practices in mind:
+
+- **Use separate namespaces** for each environment to isolate resources and prevent conflicts.
+- **Environment variables**: Set different values per environment (e.g., database URLs, API endpoints, feature flags) in each workspace's [deployment settings](/deploying-applications/deployment-configuration).
+- **Resource limits and scaling**: Development environments typically need fewer resources and replicas than production. Configure appropriate [resource limits and scaling](/deploying-applications/deployment-configuration#horizontal-scaling) per environment.
+- **Secrets**: Manage environment-specific secrets through the Secrets & Configs page in each workspace. When GitOps is enabled, secrets are encrypted with [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets) before being committed to Git.
+- **Workspaces as team boundaries**: Use [workspace roles](/workspaces/members-and-roles) to control who can make changes in each environment. For example, give developers editor access to dev but only viewer access to production.

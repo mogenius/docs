@@ -2,19 +2,70 @@
 sidebar_position: 4
 ---
 
-Within your workspace there's several levels of monitoring that you can rely on. Data from the cluster is polled in real-time to ensure fast troubleshooting and a smooth experience.
+Within your workspace there are several levels of monitoring that you can rely on. Data from the cluster is polled in real-time to ensure fast troubleshooting and a smooth experience.
+
+<Tip>
+Monitoring and logging are built-in features of the mogenius platform. No additional setup is required to access status, metrics, logs, and events for your deployments.
+</Tip>
 
 ## Status
-The status module in a workspace provides a real-time view into cluster resources. If available, it will automatically show related status information from dependent resources. For example, a deployment can also show the status of ReplicaSets and Pods to provide you with all relevant information in one place. If a resource has recent events, they'll also be available by hovering on the status module.
+
+The status module provides a real-time view into cluster resources. You'll find it on the **workspace dashboard** and on each **deployment detail page**.
+
+If available, the status module automatically shows related status information from dependent resources. For example, a Deployment also displays the status of its ReplicaSets and Pods, providing all relevant information in one place. Hover over the status module to view recent Kubernetes events.
+
+Common statuses you may encounter:
+
+| Status | Description |
+|--------|-------------|
+| **Running** | All pods are running and healthy. |
+| **Pending** | Pods are waiting to be scheduled, often due to insufficient resources or pending image pulls. |
+| **CrashLoopBackOff** | A container is repeatedly crashing and Kubernetes is waiting before restarting it. Check the logs for error details. |
+| **ImagePullBackOff** | Kubernetes cannot pull the container image. Verify the image URL and image pull secret. |
+| **Error** | A general error state. Hover over the status or check events for details. |
+
+Use the [topology view](/workspaces/resources) on the detail page to understand dependencies between resources (Deployments, Services, Ingress, ConfigMaps) and trace issues across related components.
 
 ## Metrics
-mogenius collects metrics using its operator and the Kubernetes metrics server. By default, data for CPU, RAM, and traffic usage will be sent to the mogenius UI. The data is presented in charts on the workspace dashboard and on the detail page of an application.
+
+mogenius collects metrics using its operator and the Kubernetes metrics server. Data for **CPU**, **RAM**, and **traffic** usage is presented in charts on the workspace dashboard and on each deployment detail page.
+
+On the workspace dashboard, charts show aggregated resource consumption across all deployments. You can filter by time range to identify trends and spikes. Hover over the charts to see a **per-pod breakdown** showing each pod's individual share of resource consumption.
+
+On the deployment detail page, metrics are scoped to that specific application, allowing you to monitor resource usage at the application level.
+
+### Prometheus integration
+
+For custom application metrics, mogenius integrates natively with Prometheus. Once Prometheus is running on your cluster, you can add custom PromQL queries to visualize application-specific metrics directly on the deployment detail page. See [Integrations](/workspaces/integrations) for setup details.
 
 ## Logs
-Logs are streamed in real-time from pods and jobs and made available in the UI on each detail page. There you can search and filter through logs. If a pod restarted, the previous log will be automatically inserted on top of the current log of a pod.
+
+Logs are streamed in real-time from pods and jobs and are available on each deployment detail page.
+
+To access logs:
+1. Open the detail page of your deployment in the workspace.
+2. Navigate to the **Logs** section.
+3. Use the search and filter tools to find specific log entries.
+
+If a pod restarted, the **previous log** is automatically inserted above the current log, so you can review what happened before the restart without needing to switch between log sources.
+
+Logs are streamed live, so you can monitor application output as it happens — useful for debugging startup issues, tracking request flows, or watching for errors in real time.
 
 ## Events
-On the detail page of an application, events are collected from different resources related to this application into a single log.
+
+On the detail page of a deployment, events are collected from multiple related resources into a single timeline. This aggregated view includes events from the Deployment, its ReplicaSets, and individual Pods, so you don't need to inspect each resource separately.
+
+Common events you'll see include:
+- **Scheduling**: Pod assigned to a node.
+- **Image pulls**: Container image being pulled from the registry.
+- **Scaling**: Replica count changes (manual or via autoscaler).
+- **Health check failures**: Liveness or readiness probe failures that trigger restarts or endpoint removal.
+- **Resource warnings**: Events related to resource limits, OOM kills, or evictions.
+
+## Build logs
+
+If you have the [GitHub integration](/workspaces/integrations) enabled, your deployment detail page also shows **build status** and **build logs** from GitHub Actions workflows. This lets you track CI/CD pipeline progress alongside your deployment status without leaving mogenius.
 
 ## Integrations
-You can extend the information on the application page with integrations that poll data from tools in your workflow, such as the CI pipeline. If an integration is enabled, you'll find additional status modules and logs on each detail page. Read more about [integrations](/workspaces/integrations).
+
+You can extend monitoring capabilities with integrations that connect your Kubernetes resources with data from external tools. Read more about available [integrations](/workspaces/integrations), including GitHub, Prometheus, and ArgoCD.

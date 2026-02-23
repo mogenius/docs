@@ -46,3 +46,11 @@ If you're creating a new ImagePullSecret, enter a name for the secret. You'll se
 Click **Create** to deploy the pipeline starter. This will push the pipeline starter to your repository and trigger the new worklow to build your image. The deployment will happen automatically and you should see your Pod restarting soon, pulling the new image. Please note, that while the initial workflow is running, it is normal that you Pod isn't starting. As soon as the image is ready, Kubernetes will pull it automatically.
 
 With the Git integration, you can follow the progress of the GitHub actions workflow in mogenius.
+
+### GitHub Actions templates
+
+The pipeline starter is based on GitHub Actions workflow templates maintained by mogenius. You can find these templates in the [mogenius build-workflows repository](https://github.com/mogenius/build-workflows). The templates can also be used independently in your own CI/CD pipelines for custom integrations with the mogenius operator.
+
+<Tip>
+For production deployments, consider enabling [GitOps](/cluster-management/gitops) to layer declarative Git-based management on top of your CI/CD pipeline. This gives you version-controlled infrastructure with full audit history.
+</Tip>
