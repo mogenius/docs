@@ -36,6 +36,7 @@
             "pages": [
               "cluster-management/installing-the-mogenius-operator",
               "cluster-management/cluster-settings",
+              "cluster-management/blueprints",
               "cluster-management/kubernetes-workloads",
               "cluster-management/gitops",
               "cluster-management/audit-log",
