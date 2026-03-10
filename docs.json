@@ -38,7 +38,6 @@
               "cluster-management/cluster-settings",
               "cluster-management/kubernetes-workloads",
               "cluster-management/gitops",
-              "cluster-management/ai-insights",
               "cluster-management/audit-log",
               "cluster-management/network-policies",
               "cluster-management/active-cluster-sync",
@@ -47,6 +46,15 @@
               "cluster-management/managed-clusters",
               "cluster-management/single-sign-on",
               "cluster-management/self-hosted"
+            ]
+          },
+          {
+            "group": "AI",
+            "pages": [
+              "ai/setup",
+              "ai/chat",
+              "ai/ai-insights",
+              "ai/mcp"
             ]
           },
           {

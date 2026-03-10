@@ -43,3 +43,5 @@ yalc.lock
 /mo-data
 
 .env
+
+benchmark.md

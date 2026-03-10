@@ -1,0 +1,100 @@
+---
+title: "MCP Server"
+sidebarTitle: "MCP"
+description: "Connect external AI tools and IDEs to your mogenius cluster using the Model Context Protocol (MCP) server."
+---
+
+mogenius exposes a Model Context Protocol (MCP) server that lets external AI-powered tools — such as IDE assistants, Claude Desktop, or custom automations — interact with your Kubernetes cluster through the same AI infrastructure used by [AI Chat](/ai/chat) and [AI Insights](/ai/ai-insights).
+
+## Setup
+
+The MCP server is available through the mogenius API and requires a mogenius API key for authentication.
+
+## Authentication & Permissions
+
+Access to the MCP server requires a valid **API key** generated through the mogenius platform. Each API key is tied to a specific user and inherits that user's workspace permissions.
+
+This means:
+
+- The MCP client can only access namespaces and resources the API key owner has permission to view or manage.
+- For different Workspaces you can create individual API keys, each scoped to the resources and permissions in a Workspace.
+- API keys can be revoked at any time from the platform settings.
+
+You can create an API key from the settings of a **Cluster** or **Workspace**.
+
+### Connecting a Client
+
+Add the mogenius MCP server to your client's configuration. The exact steps depend on the tool you're using, but typically you can edit a local config file that holds the MCP servers of your client.
+
+#### Claude Desktop
+
+For remote MCP servers Claude typically refers to Connectors. mogenius is not yet available as a Connector in Claude but you can configure it as a local MCP server. Modify the following JSON to match your setup and add it to your `claude_desktop_config.json` file.
+
+```
+"mcpServers": {
+    "mogenius": {
+      "command": "PATH-TO-YOUR-NODE-INSTALLATION/.nvm/versions/node/v23.3.0/bin/npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://platform-api.mogenius.com/mcp",
+        "--header",
+        "Authorization: bearer YOUR-MOGENIUS-API-KEY"
+      ],
+      "env": {
+        "PATH": "PATH-TO-YOUR-NODE-INSTALLATION/.nvm/versions/node/v23.3.0/bin:/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin"
+      }
+    }
+  },
+```
+
+#### Cursor
+
+In your Cursor Desktop app open **Settings** and navigate to **Tools & MCP**. Add a new MCP server. Cursor will open your mcp.json and you can add the mogenius MCP server like this.
+
+```
+{
+  "mcpServers": {
+    "mogenius": {
+        "type": "streamable-http",
+        "url": "https://platform-api.mogenius.com/mcp",
+        "headers": {
+          "Authorization" : "bearer YOUR-MOGENIUS-API-KEY"
+      }
+    }
+  }
+}
+```
+
+## Tools & Capabilities
+
+The MCP server exposes the same tools available in AI Chat, allowing external clients to perform cluster operations through natural language or structured requests.
+
+### Kubernetes
+
+External clients can query and inspect Kubernetes resources through the MCP server:
+
+- List and describe Pods, Deployments, Services, ConfigMaps, and other resources.
+- Read Pod logs and events for troubleshooting.
+- Retrieve resource manifests and status information.
+- Inspect namespace-level overviews.
+- Create and modify resources and workloads.
+
+### Helm
+
+The MCP server provides access to Helm operations:
+
+- List installed Helm releases across namespaces.
+- Inspect chart values and release configuration.
+- Review release history and rollback information.
+- Deploy Helm charts.
+
+### GitHub
+
+When GitHub is connected in [AI Setup](/ai/setup#github), the MCP server can also access linked repositories:
+
+- Browse repository contents, files, and directory structures.
+- Read source code, configuration files, and CI/CD pipelines.
+- Cross-reference cluster resources with the codebase that manages them.
+
+If a [Memory Repository](/ai/setup#memory-repository) is configured, the MCP server can read and write persistent context, enabling external tools to benefit from the same long-term knowledge base used by AI Chat and AI Insights.

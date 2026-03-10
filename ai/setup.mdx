@@ -1,0 +1,55 @@
+---
+title: "AI Setup"
+sidebarTitle: "Setup"
+description: "Connect an AI model, configure token limits, and enable tools for mogenius AI features."
+---
+
+All AI-powered features in mogenius — including [AI Insights](/ai/ai-insights) and [AI Chat](/ai/chat) — share a single model configuration. Once you connect a model and configure limits, every AI feature on your cluster is ready to use.
+
+## Connecting an AI Model
+
+Navigate to your **Cluster** page and open the **AI** tab. Click **Configure AI** and fill in the following fields:
+
+- **SDK**: Choose between OpenAI, Anthropic, or Ollama.
+- **API Key**: If the model endpoint requires authentication, enter an API key or token.
+- **Model**: Select your desired model from the dropdown. If no models appear, check your endpoint or authentication.
+- **API URL**: Enter the model endpoint URL. For OpenAI, the default is `https://api.openai.com/v1`. You may also use any [OpenAI-compatible API endpoint](https://bentoml.com/llm/llm-inference-basics/openai-compatible-api).
+
+After saving, mogenius will validate the connection and activate AI features across your cluster.
+
+## Token Limits
+
+Set a **Daily Token Limit** to control how much the AI agent can consume per day. This limit is shared across Insights reports and Chat conversations on the cluster.
+
+Once the limit is reached, new Insights reports are queued and processed when the limit resets the next day.
+
+After configuration, the settings page displays additional admin controls:
+
+**Token usage** — Monitor today's token consumption and see when the limit will reset.
+
+**Reset token limit** — Manually reset the token usage to zero.
+
+**Delete all AI data** — Deletes all existing insight reports from the local database and resets the token usage. The agent will start fresh.
+
+## Tools
+
+The AI agent has access to built-in tools for interacting with your cluster, plus optional integrations you can enable.
+
+### Built-in Tools
+
+These tools are always available once AI is configured:
+
+- **Kubernetes** — Query and inspect cluster resources such as Pods, Deployments, Services, ConfigMaps, and events. Read logs, describe resources, and retrieve manifests. Create new resources and manifests to deploy applications.
+- **Helm** — List and create Helm releases, inspect chart values, and review release history.
+
+### GitHub
+
+Connect a GitHub repository to give the AI agent access to your codebase and enable the Memory Repository feature.
+
+To enable GitHub integration, navigate to the AI settings page and enter a Personal Access Token for your Github account.
+
+#### Memory Repository
+
+The Memory Repository is a GitHub repository that the AI agent uses to store and retrieve long-term context. You can use an [agents.md](https://agents.md/) file as a generic format to provide additional context on how the agent should behave within your organization. When enabled, the agent can persist knowledge across sessions — such as recurring issues, environment-specific configurations, or team conventions — and reference it in future analyses and conversations.
+
+To set up a Memory Repository, select a GitHub repository in the Tools configuration. The agent will use this repository to read and write context files that improve the quality of its responses over time.
