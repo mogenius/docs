@@ -1,0 +1,89 @@
+---
+title: "Blueprints"
+description: "Deploy pre-configured Helm charts to your cluster using the Blueprints library, with optional GitOps integration and full customization."
+---
+
+Blueprints provide a library of pre-configured Helm charts that you can deploy to your cluster with sensible defaults. They replace the previous Cluster Services approach and give you full control over the configuration of each component before deployment.
+
+Once a Blueprint is deployed, it becomes a standard Helm release and is managed through the existing [Helm Charts](/deploying-applications/helm-charts) interface — Blueprints are an entry point for installation, not a separate management layer.
+
+## How Blueprints work
+
+Each Blueprint is defined in a Blueprint Repository — a Git repository that contains Helm chart references, default values, and metadata. mogenius provides a default repository with commonly used infrastructure components. You can replace it with your own repository to define a custom standard stack for your organization.
+
+A Blueprint includes the following metadata:
+
+- **Display name and description** of the component
+- **Category and tags** for filtering (e.g. security, networking, monitoring)
+- **Helm chart reference** pointing to the upstream chart
+- **Default values** that are pre-configured for a production-ready setup
+
+## Default Blueprints
+
+mogenius ships with Blueprints for the following infrastructure components:
+
+| Blueprint | Category | Description |
+|---|---|---|
+| cert-manager | Security | Automated TLS certificate management — integrates with Let's Encrypt and private CAs. |
+| Traefik | Networking | Cloud-native reverse proxy and ingress controller with automatic HTTPS. |
+| MetalLB | Networking | Bare-metal load-balancer — assigns external IPs on clusters without cloud load-balancers. |
+| Cilium | Networking | eBPF-based CNI providing networking, observability and security. |
+| Alertmanager | Monitoring | Routes alerts from Prometheus to receivers like email, Slack, or PagerDuty. |
+| Kube Prometheus Stack | Monitoring | Full monitoring stack — Prometheus, Grafana, Alertmanager and kube-state-metrics. |
+| Argo CD | GitOps | Declarative GitOps continuous delivery — syncs your cluster state from Git. |
+| Flux Operator | GitOps | Manages Flux CD instances declaratively using a FluxInstance CRD. |
+| Metrics Server | Operations | Resource usage aggregator — required for `kubectl top` and Horizontal Pod Autoscaler. |
+| Calico (Tigera Operator) | Networking | CNI plugin with fine-grained network policies. |
+| External Secrets Operator | Security | Syncs secrets from AWS Secrets Manager, GCP Secret Manager, Vault, and others into Kubernetes. |
+| Harbor | Registry | Container and artifact registry with vulnerability scanning, RBAC and replication. |
+| Kyverno | Security | Kubernetes-native policy engine — validates, mutates and generates resources. |
+| NFS Subdir External Provisioner | Storage | Automatic NFS-based PersistentVolume provisioner for PVC claims. |
+| Renovate | Operations | Automated dependency updates — keeps Helm charts, container images and packages current. |
+
+## Installing a Blueprint
+
+To deploy a Blueprint, navigate to the **Helm Charts** tab in your cluster and click **Install Chart**. In the installation dialog, you can choose between installing a chart from a Helm repository or selecting a Blueprint.
+
+<Steps>
+  <Step title="Select a Blueprint">
+    Browse the available Blueprints in the library. Each entry shows the name, description, and category. Select the Blueprint you want to install.
+  </Step>
+  <Step title="Review and customize Helm values">
+    The Blueprint's default Helm values are pre-filled in the YAML editor. Review them and adjust any settings to match your requirements before proceeding. The defaults are designed to work out of the box for most setups.
+  </Step>
+  <Step title="Configure deployment settings">
+    Set the release name and target namespace. If the namespace does not exist yet, use the **Create New Namespace** button — the namespace will be created automatically before the chart is installed.
+
+    If your cluster has [GitOps](/cluster-management/gitops) enabled, you can activate the GitOps toggle to deploy the Blueprint through Argo CD instead of a direct Helm install. This stores the configuration in your Git repository, making it versioned and auditable.
+  </Step>
+  <Step title="Deploy and monitor">
+    Confirm your settings to start the installation. A real-time log view shows the deployment progress. Once the installation completes, the release appears in your Helm Charts overview with its current status.
+
+    If errors occur during installation, the log output provides details. Check the error message and adjust the Helm values or namespace configuration as needed.
+  </Step>
+</Steps>
+
+After deployment, the Blueprint is a regular Helm release. You can view its status, resources, and values on the [Helm Charts](/deploying-applications/helm-charts) page and manage it like any other release.
+
+## GitOps integration
+
+When GitOps is enabled on your cluster, Blueprints can be deployed through the GitOps workflow. Activating the GitOps toggle during installation creates an Argo CD Application in your connected Git repository instead of installing the chart directly.
+
+This means the Blueprint configuration is stored in Git, versioned alongside your other cluster resources, and synced by Argo CD. For more details on the GitOps setup, see [GitOps](/cluster-management/gitops).
+
+If GitOps is not configured on your cluster, Blueprints are deployed as direct Helm releases — no additional setup is required.
+
+## Using a custom Blueprint repository
+
+By default, mogenius uses the [mogenius/helm-chart-blueprints](https://github.com/mogenius/helm-chart-blueprints) repository. You can replace it with your own repository in the **Organization Settings** to define a custom set of Blueprints for your teams.
+
+To create a custom Blueprint repository, we recommend forking the default mogenius repository and modifying it to fit your needs. The repository structure is straightforward:
+
+- The `/charts` directory contains individual Blueprint definitions, each referencing a Helm chart with default values.
+- The `index.yaml` at the root defines which Blueprints are shown in the mogenius UI, including display names, descriptions, categories, and icons.
+
+Once your custom repository is configured, the Blueprint library in mogenius will show your Blueprints instead of the defaults.
+
+<Tip>
+To keep your Blueprint repository up to date with the latest Helm chart versions, we recommend using [mogenius/renovate-operator](https://github.com/mogenius/renovate-operator). It automatically monitors chart dependencies and creates updates.
+</Tip>
