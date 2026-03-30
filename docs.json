@@ -98,8 +98,8 @@
     }
   },
   "logo": {
-    "light": "/logo/logo.svg",
-    "dark": "/logo/logo_dark.svg"
+    "light": "/images/Logo_mogenius_black.svg",
+    "dark": "/images/Logo_mogenius_white.svg"
   },
   "navbar": {
     "links": [
