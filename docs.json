@@ -46,7 +46,6 @@
               "cluster-management/troubleshooting-clusters",
               "cluster-management/managed-clusters",
               "cluster-management/single-sign-on",
-              "cluster-management/sso-gitlab",
               "cluster-management/self-hosted"
             ]
           },
