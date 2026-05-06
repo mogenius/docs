@@ -1,55 +1,138 @@
 ---
+title: "mogenius CLI"
+description: "Manage your mogenius clusters, resources, and workloads from the terminal with mocli"
 sidebar_position: "9"
 ---
 
-With `mocli`, you can observe your mogenius clusters, workspaces, resources, and more with style right from your command line environment.
+With `mocli`, you can manage your mogenius clusters, browse Kubernetes resources, stream logs, and set up port-forwarding — all from your terminal.
 
-<Note>
-  The mogenius CLI is in Beta, with a limited feature set. Follow our release notes to keep track of new features.
-</Note>
+The CLI includes an interactive Terminal UI (TUI) that provides k9s-style navigation without requiring a local kubeconfig. Authentication is handled through the mogenius platform, giving you secure access to any connected cluster from anywhere.
 
 ## Installation
 
 ### Mac, Linux
 
-Use [homebrew](https://brew.sh) to install the `mocli` on your Mac or Linux machines with the following commands:
+Use [homebrew](https://brew.sh) to install `mocli`:
 
-```jsx title="Install mocli"
+```bash
 brew tap mogenius/mocli
 brew install mocli
 ```
 
-> Be aware that on Linux with a headless machine, `mocli` would unfortunately not work as it currently requires a browser to log in to our platform.
+<Note>
+On Linux with a headless machine, `mocli` requires a browser for the initial login. After the first login, your session persists locally.
+</Note>
 
 ### Windows
 
-```jsx title="Install mocli"
+```bash
 scoop bucket add mocli https://github.com/mogenius/homebrew-mocli
 scoop install mocli
 ```
 
 ## Getting Started
 
-You need an account for mogenius to use `mocli`. If you do not have one yet [sign up here](https://app.mogenius.com).
+You need a mogenius account to use `mocli`. If you don't have one yet, [sign up here](https://app.mogenius.com).
 
-Once you created your account, on your command line run following command. Your browser will open to log you in on the CLI with your mogenius account.
+### Login
 
-```jsx title="Launch the CLI"
+Run the following command to authenticate. Your browser will open automatically to complete the login:
+
+```bash
 mocli login
 ```
 
-## Connecting a cluster
+Your session is stored locally, so you only need to log in once per machine.
 
-You can use the CLI to install the mogenius operator on your Kubernetes cluster. Follow the steps to connect your cluster:
+## Terminal UI
 
-1. In the mogenius UI, add a new cluster.
-2. Go back to your terminal and run
+Launch the interactive TUI to browse and manage your resources:
 
-   ```
+```bash
+mocli
+```
+
+The TUI provides a visual interface for navigating your mogenius organization, clusters, and Kubernetes resources. All keybindings are displayed at the bottom of each screen.
+
+### Navigation
+
+The TUI follows a hierarchical navigation pattern:
+
+**Organization → Cluster → Namespace → Resources**
+
+| Key | Action |
+|-----|--------|
+| Arrow keys | Move up/down |
+| `Enter` | Select / drill down |
+| `Esc` | Go back |
+| `q` | Quit |
+| `/` | Filter list |
+| `:` | Command mode (switch resource types) |
+
+### Browsing Resources
+
+Once you select a namespace, you'll see a list of Pods by default. Use command mode (`:`) to switch between resource types:
+
+- `:pods` or `:po` — Pods
+- `:deployments` or `:deploy` — Deployments
+- `:services` or `:svc` — Services
+- `:statefulsets` or `:sts` — StatefulSets
+- `:daemonsets` or `:ds` — DaemonSets
+- `:jobs` — Jobs
+- `:cronjobs` or `:cj` — CronJobs
+- `:configmaps` or `:cm` — ConfigMaps
+- `:secrets` — Secrets
+- `:ingresses` or `:ing` — Ingresses
+
+The TUI also supports custom resources (CRDs) — type the resource name in command mode to browse any resource type available in your cluster.
+
+### Viewing Logs
+
+Select a Pod and press `Enter` to view its logs in real-time. If the Pod has multiple containers, you'll be prompted to select one.
+
+| Key | Action |
+|-----|--------|
+| `PgUp` / `PgDn` | Scroll through logs |
+| `s` | Toggle autoscroll |
+| `w` | Toggle word wrap |
+| `Esc` | Return to resource list |
+
+### Port Forwarding
+
+From the logs view or resource list, press `t` to create a port-forward tunnel to the selected Pod. Enter the port mapping (e.g., `8080:80`) and the tunnel will be established.
+
+Active tunnels persist while the TUI is running. Press `Esc` from the port-forward view to return to browsing while keeping tunnels open.
+
+## CLI Commands
+
+In addition to the TUI, `mocli` provides direct CLI commands:
+
+```bash
+# Authentication
+mocli login
+mocli logout
+
+# Cluster management
+mocli cluster connect    # Install the mogenius operator on a cluster
+mocli cluster list       # List connected clusters
+
+# Port forwarding
+mocli portforward        # Manage port-forward sessions
+
+# Version info
+mocli version
+```
+
+## Connecting a Cluster
+
+You can use the CLI to install the mogenius operator on your Kubernetes cluster:
+
+1. In the mogenius UI, add a new cluster
+2. Run the connect command:
+   ```bash
    mocli cluster connect
    ```
-3. The available clusters of your organization will be shown. Select the cluster that you want to connect with your current kube context.
-4. Verify that your local kube context is set to the cluster where you want to install the mogenius operator.
-5. To deploy the operator, hit **Enter.**
+3. Select the cluster from the list that matches your current kube context
+4. Confirm to deploy the operator
 
-The operator will now be deployed to your cluster. You can verify if the connection between operator and platform was established via `mocli clusters list` or through the mogenius UI.
+The operator will be deployed to your cluster. Verify the connection with `mocli cluster list` or through the mogenius UI.
