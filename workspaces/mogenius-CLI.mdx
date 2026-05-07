@@ -136,3 +136,21 @@ You can use the CLI to install the mogenius operator on your Kubernetes cluster:
 4. Confirm to deploy the operator
 
 The operator will be deployed to your cluster. Verify the connection with `mocli cluster list` or through the mogenius UI.
+
+## Port Forwarding (CLI)
+
+Use the CLI to create secure TCP tunnels to Kubernetes services without direct cluster access:
+
+```bash
+mocli port-forward --namespace <namespace> --service <service-name> --port <local>:<remote>
+```
+
+For example, to connect to a PostgreSQL database:
+
+```bash
+mocli port-forward --namespace production --service postgres --port 5432:5432
+```
+
+The tunnel remains active while the CLI process runs. Press `Ctrl+C` to terminate.
+
+For detailed usage and options, see [Tunnels](/workspaces/tunnels).

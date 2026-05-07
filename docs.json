@@ -63,6 +63,7 @@
               "workspaces/creating-workspaces",
               "workspaces/workspace-dashboard",
               "workspaces/resources",
+              "workspaces/tunnels",
               "workspaces/service-status-and-errors",
               "workspaces/members-and-roles",
               "workspaces/integrations",

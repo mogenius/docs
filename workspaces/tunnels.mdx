@@ -1,0 +1,179 @@
+---
+title: "Tunnels"
+description: "Access Kubernetes Services securely through TCP tunnels without direct cluster access"
+---
+
+Tunnels allow you to establish secure TCP connections to Kubernetes Services running in your clusters — without requiring direct cluster access or a local kubeconfig. All connections are routed through the mogenius platform with full RBAC enforcement and audit logging.
+
+## Use Cases
+
+- **Internal tools**: Securely access admin panels, monitoring dashboards, or management interfaces without exposing them publicly
+- **Database access**: Connect your local database client to a PostgreSQL, MySQL, or Redis service running in Kubernetes
+- **Internal APIs**: Test internal microservices from your development machine
+- **Debugging**: Access services that aren't exposed via Ingress for troubleshooting
+- **Development**: Connect local tools to staging or production services securely
+
+## How It Works
+
+When you create a Tunnel, mogenius establishes a secure WebSocket connection between your browser (or CLI) and the target service in your cluster:
+
+```
+Your Machine → mogenius Platform → Operator → Kubernetes Service
+```
+
+The connection is authenticated through your mogenius account and authorized based on your workspace and cluster permissions. Each tunnel session receives a unique URL that you can use to access the service.
+
+## Creating Tunnels via UI
+
+### From the Tunnel Overview
+
+The Tunnel overview page provides a central place to create and manage all your tunnels:
+
+1. Navigate to **Tunnels** in the sidebar (cluster or workspace level)
+2. Click **Create Tunnel**
+3. Select the target service from the dropdown
+4. Choose a session duration:
+   - **30 minutes** (default)
+   - **4 hours**
+   - **24 hours**
+   - **Unlimited**
+5. Click **Create** to start the tunnel
+
+The tunnel URL follows the pattern `[session-id].platform-api.mogenius.com` and provides direct access to your service.
+
+### From the Resource Browser
+
+You can also create tunnels directly from the Resource Browser:
+
+1. Navigate to **Resources** in your workspace
+2. Filter by **Kind: Service** to see available services
+3. Click the **Tunnel** button on the service you want to access
+4. A new tunnel session opens with a unique URL
+
+### Managing Active Tunnels
+
+The Tunnel overview displays all active tunnel sessions with:
+
+- **Service name** and namespace
+- **Tunnel URL** for accessing the service
+- **Session duration** and time remaining
+- **Status** indicator
+
+Use the context menu on each tunnel to:
+- **Open in new tab** — Launch the tunnel URL in a new browser tab
+- **Copy URL** — Copy the tunnel URL to your clipboard
+- **Delete** — Terminate the tunnel session
+
+<Note>
+Tunnels are automatically closed after the configured session duration expires or after 30 minutes of inactivity.
+</Note>
+
+## Creating Tunnels via CLI
+
+The mogenius CLI (`mocli`) provides a `port-forward` command for creating tunnels directly from your terminal. This is ideal for connecting local tools and scripts to Kubernetes services.
+
+### Prerequisites
+
+- [Install mocli](/workspaces/mogenius-CLI) and log in with `mocli login`
+- Ensure you have at least **Editor** permissions for the target workspace
+
+### Terminal UI
+
+The CLI includes an interactive terminal UI for creating tunnels. Launch it by running:
+
+```bash
+mocli
+```
+
+To create a tunnel from the Terminal UI:
+
+1. Navigate to the target **Pod**, **Deployment**, or **Service**
+2. Press **p** to open the port-forward configuration
+3. Configure the local and remote port mapping
+4. The tunnel starts and remains active while the TUI is running
+
+### Basic Usage
+
+```bash
+mocli port-forward --namespace <namespace> --service <service-name> --port <local>:<remote>
+```
+
+**Parameters:**
+- `--namespace` — Kubernetes namespace where the service runs
+- `--service` — Name of the Kubernetes Service to tunnel to
+- `--port` — Port mapping in `local:remote` format (e.g., `8080:80`)
+
+### Examples
+
+**Connect to a PostgreSQL database:**
+```bash
+mocli port-forward --namespace production --service postgres --port 5432:5432
+```
+Then connect with your database client to `localhost:5432`.
+
+**Access an internal API:**
+```bash
+mocli port-forward --namespace staging --service api-server --port 8080:8080
+```
+The API is now available at `http://localhost:8080`.
+
+**Tunnel to a specific Deployment:**
+```bash
+mocli port-forward --namespace staging --deployment worker --port 3000:3000
+```
+
+**Tunnel to a specific Pod:**
+```bash
+mocli port-forward --namespace default --pod my-pod-abc123 --port 9090:9090
+```
+
+### Supported Target Types
+
+The CLI supports tunneling to different Kubernetes resource types:
+
+| Flag | Target Type | Description |
+|------|-------------|-------------|
+| `--service` | Service | Routes to any healthy pod backing the service |
+| `--deployment` | Deployment | Routes to a pod from the deployment's replica set |
+| `--pod` | Pod | Routes directly to a specific pod |
+
+### Session Behavior
+
+- The tunnel remains active as long as the CLI process is running
+- Press `Ctrl+C` to terminate the tunnel
+- The CLI maintains a keepalive ping to prevent timeouts
+- If the connection drops, the CLI will attempt to reconnect automatically
+
+## Permissions
+
+Creating tunnels requires **Editor** or higher permissions in the workspace:
+
+| Role | Can Create Tunnels | Can View Active Tunnels |
+|------|-------------------|------------------------|
+| Viewer | No | No |
+| Editor | Yes | Yes |
+| Admin | Yes | Yes (all tunnels) |
+
+<Warning>
+Tunnels provide direct TCP access to services in your cluster. Ensure you only create tunnels to services you're authorized to access, and avoid sharing tunnel URLs with unauthorized users.
+</Warning>
+
+## Troubleshooting
+
+### Tunnel fails to connect
+
+- Verify the target service exists and has healthy endpoints
+- Check that you have sufficient permissions for the namespace
+- Ensure the mogenius operator is running in the cluster
+
+### Connection drops frequently
+
+- Check your network connection stability
+- For CLI tunnels, ensure the terminal session remains active
+- Consider using a longer session duration for UI tunnels
+
+### Port already in use (CLI)
+
+If the local port is already in use, the CLI will display an error. Either:
+- Stop the process using the port, or
+- Choose a different local port (e.g., `--port 5433:5432`)
