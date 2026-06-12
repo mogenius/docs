@@ -2,7 +2,7 @@
 sidebar_position: 1.5
 title: "Deployment Configuration"
 sidebarTitle: "Deployment Configuration"
-description: "Configure environment variables, secrets, scaling, health checks, update strategies, and resource limits for your deployments in mogenius."
+description: "Configure environment variables, secrets, ports and domains, scaling, health checks, update strategies, and resource limits for your deployments in mogenius."
 ---
 
 After deploying an application with [container images](/deploying-applications/container-images), [pipeline starters](/deploying-applications/pipeline-starters), or [Kubernetes manifests](/deploying-applications/kubernetes-manifests), you can configure all deployment settings through the mogenius UI. Open any deployment in your workspace to access the detail page, where you'll find settings for environment variables, health checks, scaling, and more. You can use the simplified UI forms or switch to the YAML editor for full control over your manifests.
@@ -131,6 +131,42 @@ With the Recreate strategy, all existing pods are terminated before new ones are
 <Tip>
 Pair rolling updates with [health checks](#health-checks-and-probes) to ensure that new pods are verified as healthy before old pods are terminated. This prevents broken deployments from taking down your application.
 </Tip>
+
+## Ports and domains
+
+The Ports & Domains section configures how your application is exposed internally within the cluster and externally to the internet. This controls the Kubernetes Service and Ingress resources for your deployment.
+
+### Configuring ports
+
+Each port entry defines how traffic reaches your container:
+
+- **Type**: The protocol for the port — either `TCP` (default) or `UDP`.
+- **Container port**: The port your application listens on inside the container. You can select from ports defined in your container spec or enter a custom value.
+- **Service port**: The port exposed by the Kubernetes Service. Other workloads in the cluster can reach your application at `<service-name>:<service-port>`.
+
+Click **Add Port** to define additional ports if your application listens on multiple ports.
+
+### Exposing ports externally
+
+To make a port accessible from outside the cluster, enable the **Expose port** toggle. This creates an Ingress rule that routes external traffic to your service.
+
+When a port is exposed, you can configure one or more domains:
+
+- **Domain**: The hostname for accessing your application (e.g., `api.example.com`). When adding a domain, mogenius pre-fills it with your cluster's load balancer hostname. You can use this default or replace it with your own custom domain.
+- **SSL/TLS**: Enable HTTPS for the domain. By default, mogenius uses cert-manager to automatically issue a Let's Encrypt certificate.
+
+<Tip>
+To use a custom domain, create a DNS CNAME record pointing your domain to your cluster's load balancer hostname.
+</Tip>
+
+### Custom TLS certificates
+
+If you need to use your own TLS certificate instead of Let's Encrypt (for example, for wildcard certificates or internal CAs), expand the **Advanced** settings under SSL/TLS:
+
+1. Enable **Custom Secret**.
+2. Select an existing `kubernetes.io/tls` Secret from the dropdown. This secret must contain your certificate and private key.
+
+When Custom Secret is disabled, cert-manager automatically provisions and renews certificates from Let's Encrypt.
 
 ## Volume mounts
 
