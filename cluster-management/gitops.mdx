@@ -43,11 +43,34 @@ You can configure GitOps for each cluster. Navigate to **Clusters** in your orga
     </Tip>
   </Step>
 
-  <Step title="Connect a GitHub repository">
-    Your applications on a cluster will be synced with a repository on GitHub.  
-    To set it up, first go to Github.com and perform the following steps:  
-    - Create a new repository and make sure it has a branch.  
-    - Create a Personal Access Token. It requires at least `read/write` permissions on `Contents`. This way mogenius can commit changes on applications to the repository. If you want to use pull requests instead, make sure that the access token has `read/write` permissions for `Pull Requests` as well. Make sure to copy the PAT to a safe location.
+  <Step title="Connect a Git repository">
+    Your applications on a cluster will be synced with a Git repository. mogenius supports both GitHub and GitLab as providers.
+
+    <Tabs>
+      <Tab title="GitHub">
+        To set up a GitHub repository, go to github.com and perform the following steps:
+        - Create a new repository and make sure it has a branch.
+        - Create a Personal Access Token. It requires at least `read/write` permissions on `Contents`. This way mogenius can commit changes on applications to the repository. If you want to use pull requests instead, make sure that the access token has `read/write` permissions for `Pull Requests` as well. Make sure to copy the PAT to a safe location.
+      </Tab>
+      <Tab title="GitLab">
+        To set up a GitLab repository, go to gitlab.com (or your self-hosted GitLab instance) and perform the following steps:
+        - Create a new repository (project) and make sure it has a branch.
+        - Create a Personal Access Token. Navigate to **User Settings** → **Access Tokens** and create a new token.
+
+        <Warning>
+        GitLab's fine-grained personal access tokens are currently in Beta. For reliable integration, use a **Personal Access Token (classic)** instead.
+        </Warning>
+
+        The token requires the following scopes:
+        - `read_user` — Read access to your user profile
+        - `read_repository` — Read access to the repository
+        - `write_repository` — Write access to the repository
+        - `read_api` — Read access to the API
+        - `api` — Full API access (required for write operations)
+
+        Make sure to copy the token to a safe location before leaving the page.
+      </Tab>
+    </Tabs>
 
     <Tip>
     You can use the same repository for multiple clusters. Your applications will be managed using the following structure for folders and files:  
