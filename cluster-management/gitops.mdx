@@ -51,6 +51,10 @@ You can configure GitOps for each cluster. Navigate to **Clusters** in your orga
         To set up a GitHub repository, go to github.com and perform the following steps:
         - Create a new repository and make sure it has a branch.
         - Create a Personal Access Token. It requires at least `read/write` permissions on `Contents`. This way mogenius can commit changes on applications to the repository. If you want to use pull requests instead, make sure that the access token has `read/write` permissions for `Pull Requests` as well. Make sure to copy the PAT to a safe location.
+
+        <Note>
+        **Branch protection and direct commits:** If you enable branch protection rules on your repository (e.g., requiring pull request reviews), direct commits from the mogenius UI will fail with an error. In this case, you must use the pull request workflow instead. The mogenius UI provides buttons to create pull requests when saving changes to GitOps-managed resources.
+        </Note>
       </Tab>
       <Tab title="GitLab">
         To set up a GitLab repository, go to gitlab.com (or your self-hosted GitLab instance) and perform the following steps:
@@ -69,6 +73,10 @@ You can configure GitOps for each cluster. Navigate to **Clusters** in your orga
         - `api` — Full API access (required for write operations)
 
         Make sure to copy the token to a safe location before leaving the page.
+
+        <Note>
+        **Branch protection and direct commits:** If you enable branch protection rules on your repository (e.g., requiring merge request approvals), direct commits from the mogenius UI will fail with an error. In this case, you must use the pull request workflow instead. The mogenius UI provides buttons to create merge requests when saving changes to GitOps-managed resources.
+        </Note>
       </Tab>
     </Tabs>
 
