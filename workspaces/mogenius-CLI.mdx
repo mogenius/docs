@@ -210,16 +210,35 @@ mocli shell my-pod -c app -n acme-staging
 
 `mocli exec` is an alias for `mocli shell`.
 
-### Authentication and Cluster Management
+### Authentication
 
 ```bash
-# Authentication
+# Browser-based login (interactive)
 mocli login
-mocli logout
 
-# Cluster management
-mocli cluster connect    # Install the mogenius operator on a cluster
-mocli cluster list       # List connected clusters
+# API key login (for CI/CD pipelines)
+mocli login --api-key mo_pat:user:password
+
+# Or use environment variable
+export MOGENIUS_API_KEY=mo_pat:user:password
+mocli login --api-key
+
+# Logout
+mocli logout
+```
+
+<Tip>
+**CI/CD Integration:** For automated pipelines, create an API key in your mogenius profile settings and set the `MOGENIUS_API_KEY` environment variable. When this variable is set, `mocli` automatically uses API key authentication — no `--api-key` flag needed.
+</Tip>
+
+### Cluster Management
+
+```bash
+# Install the mogenius operator on a cluster
+mocli cluster connect
+
+# List connected clusters
+mocli cluster list
 
 # Port forwarding
 mocli portforward        # Manage port-forward sessions
