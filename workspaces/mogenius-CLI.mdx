@@ -103,9 +103,114 @@ From the logs view or resource list, press `t` to create a port-forward tunnel t
 
 Active tunnels persist while the TUI is running. Press `Esc` from the port-forward view to return to browsing while keeping tunnels open.
 
+### Shell Access
+
+Select a Pod and press `x` to open an interactive shell session in the container. If the Pod has multiple containers, you'll be prompted to select one.
+
+The shell session is tunnelled through the mogenius platform — no local kubeconfig or direct cluster access required.
+
 ## CLI Commands
 
-In addition to the TUI, `mocli` provides direct CLI commands:
+In addition to the TUI, `mocli` provides kubectl-style CLI commands for scripting and automation.
+
+### Context Management
+
+Before using resource commands, set up your context to specify which organization, cluster, and namespace to target:
+
+```bash
+# Interactive setup — select org, cluster, and default namespace
+mocli config use-context
+
+# Non-interactive setup
+mocli config use-context --org acme --cluster prod -n acme-staging
+
+# Show current context
+mocli config current-context
+
+# List available organizations and clusters
+mocli config list
+```
+
+The context is stored locally and used by all resource commands. You can override it per-command with `--org`, `--cluster`, or `-n` flags.
+
+### Listing and Getting Resources
+
+```bash
+# List all pods in a namespace
+mocli get pods -n acme-staging
+
+# Get a specific resource
+mocli get deployment my-app -n acme-staging
+
+# Output as YAML or JSON
+mocli get configmap my-config -n acme-staging -o yaml
+mocli get secret db-credentials -n acme-staging -o json
+
+# Wide output with additional columns
+mocli get pods -n acme-staging -o wide
+
+# List cluster-scoped resources
+mocli get crd
+mocli get namespaces
+```
+
+`mocli list` is an alias for `mocli get` when listing all resources of a kind:
+
+```bash
+mocli list pods -n acme-staging
+mocli list cronjobs -n acme-staging
+```
+
+### Creating Resources
+
+Create resources from manifest files or directly via CLI:
+
+```bash
+# Create from a YAML manifest (supports multi-document files)
+mocli create -f manifest.yaml -n acme-staging
+
+# Create a namespace
+mocli create namespace acme-staging
+
+# Create a Job with a container image
+mocli create job db-migration --image=postgres:15 -n acme-staging
+
+# Create a Job with a custom command
+mocli create job db-migration --image=postgres:15 -n acme-staging -- pg_dump -h db
+
+# Create a Job from a CronJob template (trigger a one-off run)
+mocli create job --from=cronjob/nightly-backup -n acme-staging
+```
+
+### Deleting Resources
+
+```bash
+# Delete a specific resource (prompts for confirmation)
+mocli delete pod my-pod-abc123 -n acme-staging
+mocli delete job db-migration -n acme-staging
+
+# Skip confirmation prompt
+mocli delete pod my-pod-abc123 -n acme-staging -y
+
+# Delete resources defined in a manifest
+mocli delete -f manifest.yaml
+```
+
+### Shell Access
+
+Open an interactive shell in a running container:
+
+```bash
+# Shell into a pod (uses first container if multiple)
+mocli shell my-pod -n acme-staging
+
+# Specify a container
+mocli shell my-pod -c app -n acme-staging
+```
+
+`mocli exec` is an alias for `mocli shell`.
+
+### Authentication and Cluster Management
 
 ```bash
 # Authentication
