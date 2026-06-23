@@ -210,6 +210,48 @@ mocli shell my-pod -c app -n acme-staging
 
 `mocli exec` is an alias for `mocli shell`.
 
+### Viewing Logs (CLI)
+
+Stream or fetch logs from pods and jobs:
+
+```bash
+# View logs from a pod
+mocli logs my-pod -n acme-staging
+
+# View logs from a specific container (multi-container pods)
+mocli logs my-pod -c app -n acme-staging
+
+# Stream logs in real-time
+mocli logs my-pod -f -n acme-staging
+
+# View logs from a Job (automatically finds the pod)
+mocli logs job/db-migration -n acme-staging
+```
+
+### Waiting for Conditions
+
+Wait for a resource to reach a specific condition — useful in CI/CD pipelines:
+
+```bash
+# Wait for a Job to complete
+mocli wait job/db-migration --for=condition=complete -n acme-staging
+
+# Wait for a Job to complete with timeout
+mocli wait job/db-migration --for=condition=complete --timeout=10m -n acme-staging
+
+# Wait for a Pod to be ready
+mocli wait pod/my-pod --for=condition=ready -n acme-staging
+
+# Wait for a resource to be deleted
+mocli wait pod/my-pod --for=delete -n acme-staging
+```
+
+**Supported conditions:**
+- `condition=complete` — Job completed successfully
+- `condition=failed` — Job failed
+- `condition=ready` — Pod is ready
+- `delete` — Resource has been deleted
+
 ### Authentication
 
 ```bash
@@ -217,10 +259,10 @@ mocli shell my-pod -c app -n acme-staging
 mocli login
 
 # API key login (for CI/CD pipelines)
-mocli login --api-key mo_pat:user:password
+mocli login --api-key <api-key>
 
 # Or use environment variable
-export MOGENIUS_API_KEY=mo_pat:user:password
+export MOGENIUS_API_KEY=<api-key>
 mocli login --api-key
 
 # Logout
@@ -228,7 +270,7 @@ mocli logout
 ```
 
 <Tip>
-**CI/CD Integration:** For automated pipelines, create an API key in your mogenius profile settings and set the `MOGENIUS_API_KEY` environment variable. When this variable is set, `mocli` automatically uses API key authentication — no `--api-key` flag needed.
+**CI/CD Integration:** For automated pipelines, create an API key in your mogenius profile settings. The API key is a single opaque token starting with `mo_pat:`. Set the `MOGENIUS_API_KEY` environment variable and `mocli` automatically uses API key authentication.
 </Tip>
 
 ### Cluster Management
@@ -236,12 +278,6 @@ mocli logout
 ```bash
 # Install the mogenius operator on a cluster
 mocli cluster connect
-
-# List connected clusters
-mocli cluster list
-
-# Port forwarding
-mocli portforward        # Manage port-forward sessions
 
 # Version info
 mocli version
@@ -251,29 +287,45 @@ mocli version
 
 You can use the CLI to install the mogenius operator on your Kubernetes cluster:
 
-1. In the mogenius UI, add a new cluster
-2. Run the connect command:
+1. Run the connect command:
    ```bash
    mocli cluster connect
    ```
-3. Select the cluster from the list that matches your current kube context
+2. Select an organization
+3. Create a new cluster entry or select an existing one
 4. Confirm to deploy the operator
 
-The operator will be deployed to your cluster. Verify the connection with `mocli cluster list` or through the mogenius UI.
+The operator will be deployed to your cluster via Helm. Verify the connection through the mogenius UI or by running `mocli config list` to see your available clusters.
 
 ## Port Forwarding (CLI)
 
-Use the CLI to create secure TCP tunnels to Kubernetes services without direct cluster access:
+Use the CLI to create secure TCP tunnels to Kubernetes workloads without direct cluster access:
 
 ```bash
-mocli port-forward --namespace <namespace> --service <service-name> --port <local>:<remote>
+mocli port-forward -n <namespace> -k <kind> -w <workload-name> -p <local>:<remote>
 ```
 
-For example, to connect to a PostgreSQL database:
+Supported resource kinds: `Pod`, `Service`, `Deployment`, `StatefulSet`, `DaemonSet`
+
+**Examples:**
 
 ```bash
-mocli port-forward --namespace production --service postgres --port 5432:5432
+# Forward to a Service
+mocli port-forward -n production -k Service -w postgres -p 5432:5432
+
+# Forward to a Deployment
+mocli port-forward -n staging -k Deployment -w api-server -p 8080:8080
+
+# Forward to a specific Pod
+mocli port-forward -n default -k Pod -w my-pod-abc123 -p 3000:3000
 ```
+
+| Flag | Description |
+|------|-------------|
+| `-n, --namespace` | Kubernetes namespace (required) |
+| `-k, --kind` | Resource kind (required) |
+| `-w, --name` | Workload name (required) |
+| `-p, --port` | Port mapping `LOCAL:REMOTE` (required) |
 
 The tunnel remains active while the CLI process runs. Press `Ctrl+C` to terminate.
 
