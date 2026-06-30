@@ -53,4 +53,80 @@ To install a new Helm chart, click the **Install Chart** button. Here's how to p
 
 After installation, the release will appear in the list, and its status should change to `Deployed`. If errors occur, check the logs and adjust the release configuration as needed.
 
-**Congratulations on installing your first Helm chart with mogenius 🎉**
+## Installing from OCI Registries
+
+In addition to traditional Helm repositories, mogenius supports installing charts from OCI-compliant registries such as GitHub Container Registry (ghcr.io), Amazon ECR, Google Artifact Registry, or Docker Hub.
+
+To install an OCI chart:
+
+1. Click **Install OCI Chart** on the Helm Charts page.
+2. Enter the **OCI Chart URL** in the format `oci://registry/repository/chart` (e.g., `oci://ghcr.io/myorg/my-chart`).
+3. Optionally provide **registry credentials** if the chart requires authentication.
+4. Select the **version**, **release name**, and **namespace** as with standard chart installations.
+5. Configure custom values if needed and confirm to install.
+
+<Tip>
+OCI registries are increasingly common for distributing Helm charts. If your organization uses GitHub Packages, ECR, or a similar registry for container images, you can likely store Helm charts there as well.
+</Tip>
+
+## Upgrading a Helm Release
+
+To upgrade an existing release to a new chart version or apply updated values:
+
+1. Open the release details by clicking on a release in the list.
+2. Click **Upgrade** to open the upgrade dialog.
+3. Select the new **chart version** from the available versions.
+4. Review and modify the **values** as needed. The current values are pre-filled for reference.
+5. Confirm to start the upgrade.
+
+The upgrade process creates a new revision of the release. You can monitor progress in the logs. If the upgrade succeeds, the release status updates to `Deployed` with the new version.
+
+<Note>
+Upgrading a release preserves its revision history, allowing you to roll back if needed.
+</Note>
+
+## Rolling Back a Release
+
+If an upgrade introduces issues, you can roll back to a previous revision:
+
+1. Open the release details by clicking on a release in the list.
+2. Click **Rollback** to open the rollback dialog.
+3. Select the **revision** you want to restore from the list of previous revisions. Each revision shows the chart version and description.
+4. Confirm to roll back.
+
+The rollback creates a new revision that restores the previous configuration. This is a safe operation — the previous revisions remain available in case you need to roll back again or roll forward.
+
+<Tip>
+Before rolling back, review the revision details to understand what configuration was active at that point. This helps ensure you're restoring to the correct state.
+</Tip>
+
+## Linking Releases to Workspaces
+
+Helm releases installed at the cluster level can be linked to a Workspace for easier monitoring and access control. When a release is linked to a Workspace:
+
+- Workspace members can view the release status and resources
+- The release appears in the Workspace's resource list
+- Access is governed by Workspace roles
+
+To link a release to a Workspace:
+
+1. Open the release details.
+2. Click **Link to Workspace**.
+3. Select the target Workspace from the list.
+4. Confirm to create the link.
+
+This is useful when a platform team installs shared infrastructure (databases, message queues, etc.) that application teams need to monitor but not manage directly.
+
+## Uninstalling a Release
+
+To remove a Helm release from your cluster:
+
+1. Open the release details by clicking on a release in the list.
+2. Click **Uninstall** (or use the actions menu).
+3. Confirm the uninstallation.
+
+<Warning>
+Uninstalling a release deletes all Kubernetes resources managed by that release. This action cannot be undone. Make sure to back up any important data before uninstalling.
+</Warning>
+
+The uninstallation process removes the release and its resources from the cluster. Once complete, the release will no longer appear in the list.
