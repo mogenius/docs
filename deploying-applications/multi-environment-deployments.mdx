@@ -74,6 +74,26 @@ To enable this:
 Using pull request-based commits for production environments enforces code review on all infrastructure changes, providing an audit trail and preventing accidental configuration changes.
 </Tip>
 
+## Alternative: ApplicationSets for existing Git configurations
+
+If your team already maintains Kubernetes manifests, Helm charts, or Kustomize overlays in Git, you can use **ApplicationSets** instead of the workspace-based approach described above. ApplicationSets deploy directly from your existing Git repository structure.
+
+This approach is useful when:
+- You have an established GitOps workflow with manifests already in Git
+- You use Kustomize overlays for environment-specific configurations (e.g., `overlays/dev`, `overlays/staging`, `overlays/prod`)
+- You want to manage environment differences through Git rather than the mogenius UI
+
+To set this up:
+1. Enable GitOps on your cluster and connect your manifest repository
+2. Create an ApplicationSet for each environment, pointing to the appropriate overlay or values file
+3. Use Kustomize configuration options (namespace overrides, name prefixes, image overrides) to differentiate environments
+
+For example, with a Kustomize-based repository:
+- **Dev ApplicationSet**: Path `apps/my-service/overlays/dev`, Kustomize Namespace `development`
+- **Prod ApplicationSet**: Path `apps/my-service/overlays/prod`, Kustomize Namespace `production`, Name Prefix `prod-`
+
+See [ApplicationSets](/cluster-management/gitops#applicationsets) for detailed configuration options.
+
 ## Managing environment-specific configurations
 
 When running multiple environments, keep these practices in mind:

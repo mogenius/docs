@@ -127,6 +127,101 @@ You can continue using the mogenius UI to change configurations such as environm
 
 You can track the history and changes of your `application.yaml` using the **GitOps log**. It is available on any resource managed by a GitOps application and shows commits and pull requests.
 
+## ApplicationSets
+
+ApplicationSets allow you to deploy applications from an external Git repository directly to your cluster using ArgoCD. Unlike standard Applications (which track mogenius-managed resources), ApplicationSets sync manifests that already exist in a Git repository — ideal for teams with existing Kubernetes configurations, Helm charts, or Kustomize overlays.
+
+**When to use ApplicationSets:**
+- You have existing Kubernetes manifests, Helm charts, or Kustomize overlays in Git
+- You want to deploy the same application to multiple environments from a single source
+- You're integrating mogenius with an existing GitOps workflow
+
+### Creating an ApplicationSet
+
+Navigate to **Clusters → [Your Cluster] → GitOps** and click **Create ApplicationSet**.
+
+<Steps>
+  <Step title="Configure basic settings">
+    - **ApplicationSet name**: A unique name for this ApplicationSet
+    - **Repository**: Select a connected Git repository containing your manifests
+    - **Branch**: The branch to sync from
+    - **Path**: The directory containing your manifests (e.g., `apps/my-service/overlays/prod`)
+  </Step>
+
+  <Step title="Select source type">
+    Choose how ArgoCD should interpret the contents of the path:
+
+    | Source Type | Use When | Path Must Contain |
+    |-------------|----------|-------------------|
+    | **Directory** | Plain Kubernetes YAML manifests | `.yaml` or `.json` files |
+    | **Helm** | Helm chart | `Chart.yaml` |
+    | **Kustomize** | Kustomize overlay | `kustomization.yaml` |
+  </Step>
+
+  <Step title="Configure source-specific options">
+    Depending on your source type, additional options are available:
+
+    **For Helm sources:**
+    - **Values Files**: Paths to values files (one per line, relative to chart directory). Files are applied in order — later files override earlier ones.
+
+    **For Kustomize sources:** See [Kustomize configuration](#kustomize-configuration) below.
+  </Step>
+
+  <Step title="Set target namespace (optional)">
+    Specify where ArgoCD should deploy resources if the manifests don't include a namespace. Leave empty to use the ArgoCD default namespace.
+  </Step>
+</Steps>
+
+Once created, the ApplicationSet appears in your GitOps overview. ArgoCD will sync the manifests from Git and deploy them to your cluster. The sync status shows whether the cluster state matches the Git repository.
+
+### Kustomize configuration
+
+When using Kustomize as the source type, you can configure additional transformations that ArgoCD applies during deployment:
+
+| Option | Description | Example |
+|--------|-------------|---------|
+| **Kustomize Namespace** | Override the namespace in all manifests | `production` |
+| **Name Prefix** | Prepend a string to all resource names | `prod-` |
+| **Name Suffix** | Append a string to all resource names | `-v2` |
+| **Image Overrides** | Replace container images (one per line) | `nginx=my-registry/nginx:1.21` |
+| **Common Labels** | Add labels to all resources (key=value per line) | `env=production` |
+| **Common Annotations** | Add annotations to all resources | `owner=platform-team` |
+
+<Tip>
+If both **Target Namespace** and **Kustomize Namespace** are set but differ, Kustomize Namespace takes precedence and overrides the namespace in your manifests before deployment.
+</Tip>
+
+**Example: Deploying to production with Kustomize**
+
+For a production deployment with environment-specific settings:
+- **Path**: `apps/my-service/overlays/prod`
+- **Kustomize Namespace**: `production`
+- **Name Prefix**: `prod-`
+- **Image Overrides**: `my-app=ghcr.io/myorg/my-app:v2.1.0`
+- **Common Labels**: `app.kubernetes.io/env=production`
+
+### Managing ApplicationSets
+
+ApplicationSets are listed alongside standard Applications in the GitOps overview. You can:
+- View the sync status and included resources
+- Delete an ApplicationSet (this removes the ArgoCD ApplicationSet but does not delete deployed resources by default)
+
+To update an ApplicationSet's configuration, delete it and create a new one with the updated settings.
+
+## Argo CD Projects
+
+Argo CD Projects provide a way to organize applications and control access to cluster resources. When connecting a Git repository, you can assign it to a specific Argo CD Project.
+
+By default, mogenius creates a `mogenius` project for your applications. If you have existing Argo CD Projects on your cluster, you can select them when configuring a repository:
+
+1. Navigate to **Clusters → [Your Cluster] → GitOps**
+2. When adding or editing a repository connection, use the **ArgoCD Project** dropdown to select the target project
+
+Projects are useful for:
+- Separating applications by team or environment
+- Applying different sync policies or access controls
+- Integrating with existing Argo CD setups that use project-based organization
+
 ## CI/CD integration with GitHub Actions
 
 For teams that want to combine CI/CD builds with GitOps-based deployment, mogenius provides GitHub Actions workflow templates in the [mogenius build-workflows repository](https://github.com/mogenius/build-workflows). These templates automate the process of building your container image and triggering the mogenius operator to update the deployment, which is then tracked and synced by GitOps.
@@ -134,3 +229,51 @@ For teams that want to combine CI/CD builds with GitOps-based deployment, mogeni
 You can use these templates in two ways:
 - **Through Pipeline Starters**: The easiest approach — mogenius sets up the GitHub Actions workflow for you directly from the UI. See [Pipeline Starters](/deploying-applications/pipeline-starters) for details.
 - **Custom integration**: Use the workflow templates directly in your own CI/CD pipelines for more control over the build and deployment process.
+
+## Working with Sealed Secrets
+
+When GitOps is enabled, secrets cannot be stored in Git as plain text — they would be exposed to anyone with repository access. mogenius uses [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets) to solve this: secrets are encrypted before being committed to Git, and only the Sealed Secrets controller running on your cluster can decrypt them.
+
+### How secrets flow through GitOps
+
+When you create a Secret through the mogenius UI with GitOps enabled:
+
+1. **You create a Secret** using the [Secrets & Configs](/deploying-applications/deployment-configuration#secrets-and-configmaps) page in your workspace
+2. **mogenius encrypts it** using the Sealed Secrets controller's public certificate
+3. **A SealedSecret is committed** to your Git repository (encrypted, safe to store in Git)
+4. **ArgoCD syncs** the SealedSecret to your cluster
+5. **The controller decrypts it** and creates a regular Kubernetes Secret that your pods can use
+
+This happens automatically — you work with secrets normally in the UI, and mogenius handles the sealing and Git commits.
+
+### Creating secrets
+
+To create a secret that will be managed through GitOps:
+
+1. Navigate to your workspace and open the **Secrets & Configs** page
+2. Click **Create Secret** and enter your key-value pairs
+3. Save the secret — mogenius creates the Secret in your cluster
+4. Add the secret to a GitOps application to include it in Git sync
+
+Once the secret is part of a GitOps application, mogenius automatically seals it and commits the SealedSecret to your repository. The encrypted secret in Git is safe to store — only the Sealed Secrets controller on your cluster can decrypt it.
+
+### Viewing secrets
+
+**In the mogenius UI:**
+The Secrets & Configs page shows all secrets in your workspace. You can view the keys (but not values) and see which deployments reference each secret.
+
+**Using mocli:**
+Use the [mogenius CLI](/workspaces/mogenius-CLI) to view secrets from your terminal:
+
+```bash
+# List secrets in a namespace
+mocli get secrets -n <namespace>
+
+# View a secret's data (base64 encoded)
+mocli get secret <secret-name> -n <namespace> -o yaml
+```
+
+You can also browse secrets interactively in the mocli TUI — launch `mocli`, navigate to your namespace, and type `:secrets` to switch to the secrets view.
+
+**What's in Git:**
+The SealedSecret in your repository contains encrypted data that is not human-readable. This is expected — it ensures secrets are safe even if your repository is compromised.
