@@ -229,3 +229,51 @@ For teams that want to combine CI/CD builds with GitOps-based deployment, mogeni
 You can use these templates in two ways:
 - **Through Pipeline Starters**: The easiest approach — mogenius sets up the GitHub Actions workflow for you directly from the UI. See [Pipeline Starters](/deploying-applications/pipeline-starters) for details.
 - **Custom integration**: Use the workflow templates directly in your own CI/CD pipelines for more control over the build and deployment process.
+
+## Working with Sealed Secrets
+
+When GitOps is enabled, secrets cannot be stored in Git as plain text — they would be exposed to anyone with repository access. mogenius uses [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets) to solve this: secrets are encrypted before being committed to Git, and only the Sealed Secrets controller running on your cluster can decrypt them.
+
+### How secrets flow through GitOps
+
+When you create a Secret through the mogenius UI with GitOps enabled:
+
+1. **You create a Secret** using the [Secrets & Configs](/deploying-applications/deployment-configuration#secrets-and-configmaps) page in your workspace
+2. **mogenius encrypts it** using the Sealed Secrets controller's public certificate
+3. **A SealedSecret is committed** to your Git repository (encrypted, safe to store in Git)
+4. **ArgoCD syncs** the SealedSecret to your cluster
+5. **The controller decrypts it** and creates a regular Kubernetes Secret that your pods can use
+
+This happens automatically — you work with secrets normally in the UI, and mogenius handles the sealing and Git commits.
+
+### Creating secrets
+
+To create a secret that will be managed through GitOps:
+
+1. Navigate to your workspace and open the **Secrets & Configs** page
+2. Click **Create Secret** and enter your key-value pairs
+3. Save the secret — mogenius creates the Secret in your cluster
+4. Add the secret to a GitOps application to include it in Git sync
+
+Once the secret is part of a GitOps application, mogenius automatically seals it and commits the SealedSecret to your repository. The encrypted secret in Git is safe to store — only the Sealed Secrets controller on your cluster can decrypt it.
+
+### Viewing secrets
+
+**In the mogenius UI:**
+The Secrets & Configs page shows all secrets in your workspace. You can view the keys (but not values) and see which deployments reference each secret.
+
+**Using mocli:**
+Use the [mogenius CLI](/workspaces/mogenius-CLI) to view secrets from your terminal:
+
+```bash
+# List secrets in a namespace
+mocli get secrets -n <namespace>
+
+# View a secret's data (base64 encoded)
+mocli get secret <secret-name> -n <namespace> -o yaml
+```
+
+You can also browse secrets interactively in the mocli TUI — launch `mocli`, navigate to your namespace, and type `:secrets` to switch to the secrets view.
+
+**What's in Git:**
+The SealedSecret in your repository contains encrypted data that is not human-readable. This is expected — it ensures secrets are safe even if your repository is compromised.
