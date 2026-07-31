@@ -1,0 +1,119 @@
+---
+title: "Agents"
+sidebarTitle: "Agents"
+description: "Configure AI agents that monitor your Kubernetes workloads, generate troubleshooting reports, and propose fixes for your approval."
+---
+
+Agents are configurable AI workers that run against your cluster. Each agent has its own instruction, scope, triggers, and tools, and files its findings as **reports** with actionable proposals that you review and approve.
+
+mogenius ships a set of **curated default agents** for common use cases — such as workload troubleshooting — and you can adapt them or create your own.
+
+<Note>
+Agents require a connected AI model. If you haven't configured one yet, see [AI Models & Setup](/ai/setup).
+</Note>
+
+## Where to find agents
+
+Open the **Agents** section at either level:
+
+- **Cluster** — agents and reports across every namespace the operator manages.
+- **Workspace** — the same view, scoped to that workspace's namespaces.
+
+The landing page has two views, switched with the toggle at the top:
+
+- **Reports** — the inbox of findings your agents have produced, with **Open** and **All** tabs.
+- **Agents** — one box per configured agent, with its trigger summary, open‑proposal count, and last run.
+
+## Managing agents
+
+From the **Agents** view, each agent box offers:
+
+- **Run now** — Trigger the agent immediately, independent of its schedule or event triggers.
+- **Enable / disable** — Turn the agent's automatic triggers on or off without deleting it.
+- **Configure** — Open the full configuration page.
+- Selecting the box opens the **agent detail** page with its run history.
+
+To create a new agent, choose **New agent** and fill in the configuration below. To remove one, open its configuration page and use **Delete agent** in the danger zone at the bottom — this is only available for existing agents and asks for confirmation before deleting.
+
+## Configuring an agent
+
+The configuration page is organized into sections. A live preview shows the resulting `Agent` resource (`mogenius.com/v1alpha1`) as YAML.
+
+### Identity
+
+- **Display name** — The human‑readable name shown in the UI.
+- **Resource name** — The technical name (lowercase letters, digits, and dashes). Generated from the display name and fixed once the agent exists.
+- **Description** — A one‑line summary of what the agent looks after.
+- **Icon** — An icon for the agent box.
+- **Instruction** — Free‑text guidance appended to the base system prompt on every run. This is where you describe what the agent should focus on.
+- **Enabled** — Whether the agent's automatic triggers are active.
+
+### Model
+
+- **Use cluster default** — The agent uses the model marked as the cluster default.
+- **Specific model** — Turn the default off to pick a particular model for this agent. Models are managed in [AI Models & Setup](/ai/setup).
+
+### Scope
+
+Scope defines what the agent may access. Choose one of:
+
+- **Namespaces** — Select specific namespaces, or enable **All namespaces (`*`)**.
+- **Workspace** — Reference a workspace; all of its namespaces are in scope.
+
+### Triggers
+
+Triggers decide when the agent runs. You can combine them, and you can always run an agent manually.
+
+- **Cron** — Periodic runs on a schedule. Presets cover hourly, daily, weekly, and monthly, or you can enter a custom 5‑field cron expression.
+- **On change** — Runs when resources in scope change. Configure which **kinds** wake the agent (e.g. `Pod`, `Deployment` — leave empty for all watched types), which **change types** apply (`created`, `updated`, `deleted`), and a **minimum interval** (cooldown) to debounce noisy resources.
+- **Manual** — Every agent can be triggered on demand with **Run now** in the UI, or from the CLI with `mocli agent run <name>`.
+
+### Tools
+
+Tools determine what the agent can do. See [Tools & Custom MCP Servers](/ai/tools) for details.
+
+- **Built‑in — Kubernetes** — Read and manage Kubernetes resources in scope.
+- **Built‑in — Helm** — Install, upgrade, and inspect Helm releases in scope.
+- **Custom MCP servers** — Reference one or more [custom MCP servers](/ai/tools#custom-mcp-servers) to give the agent access to their tools.
+
+### Budgets
+
+Budgets override the model defaults for this agent:
+
+- **Max tool calls per run** — Caps how many tool calls a single run may make.
+- **Token budget per run** — Caps tokens per run (`0` = unlimited).
+
+## Reports and proposals
+
+When an agent runs, it produces **reports** collected in the Reports inbox. The inbox has two tabs:
+
+- **Open** — Reports that still need attention (pending, in progress, proposed, or executing).
+- **All** — Every report, including resolved and dismissed ones.
+
+Reports carry a status that reflects their progress:
+
+- **Pending** — Queued for processing.
+- **In progress** — The agent is analyzing.
+- **Proposal** — The agent has a proposed change awaiting your decision.
+- **Executing / Executed** — An approved proposal is being applied, or has been applied.
+- **Solved** — The proposed solution was accepted and the issue resolved.
+- **Ignored / Rejected** — Dismissed by a user; hidden from dashboards and resource views.
+- **Failed** — The report or its execution could not complete.
+
+### Approving proposals
+
+When an agent is confident in a fix, it attaches a **proposal** — a create, update, or delete operation on a resource. You can:
+
+- **Show diff** — Review a visual diff between the current manifest and the agent's proposed version.
+- **Approve** — Apply the proposal. mogenius executes the change and marks the report solved. Destructive operations (such as deleting a resource) ask for explicit confirmation first.
+- **Reject / Ignore** — Dismiss the proposal without applying it.
+- **Solve** — Mark the report as resolved manually.
+- **Replay** — Re‑queue the report for a fresh analysis.
+
+### Agent runs and the reasoning timeline
+
+The **agent detail** page groups findings into **runs**. Each run shows how it was triggered (event, cron, or manual), its duration, and token usage. Open a run to see the agent's step‑by‑step **reasoning timeline** — the think → act → observe loop, including the tools it called and the findings it produced — updated live while the run is in progress.
+
+## Reports on a resource
+
+When you view a specific Kubernetes resource, a banner appears if an agent has detected an issue with it. The resource's report view is filtered to that resource, so you can review and act on findings in context.

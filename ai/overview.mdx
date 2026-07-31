@@ -1,0 +1,53 @@
+---
+title: "AI on mogenius"
+sidebarTitle: "Overview"
+description: "Configurable AI agents, an interactive chat, and connectable models and tools — the AI capabilities built into your mogenius cluster."
+---
+
+mogenius brings AI directly into your Kubernetes operations. Instead of a single fixed assistant, you get a **toolbox of configurable agents**, an interactive **chat**, and a shared foundation of **models** and **tools** that both build on.
+
+Everything runs against your own cluster through the mogenius operator and respects your existing roles and permissions.
+
+## The building blocks
+
+- **Agents** — Configurable AI workers that watch your cluster and produce troubleshooting reports and actionable proposals. You can run the curated defaults, adapt them, or create your own. See [Agents](/ai/agents).
+- **Chat** — An interactive assistant for asking questions, investigating issues, and drafting manifests through natural language. See [Chat](/ai/chat).
+- **AI Models** — One or more language models (OpenAI, Anthropic, or any OpenAI‑compatible / Ollama endpoint) that power agents and chat. See [AI Models & Setup](/ai/setup).
+- **Tools** — Built‑in Kubernetes and Helm access, plus custom [MCP](https://modelcontextprotocol.io) servers you connect as additional agent tools. See [Tools & Custom MCP Servers](/ai/tools).
+
+<Note>
+All AI features require at least one connected AI model. If you haven't set one up yet, start with [AI Models & Setup](/ai/setup).
+</Note>
+
+## Agents vs. Chat
+
+Both use the same models and tools, but serve different jobs:
+
+- **Agents** run **autonomously** — on a schedule, on cluster events, or on demand — and file their findings as **reports** you review and approve. Use them for continuous monitoring and remediation.
+- **Chat** is **interactive** — you drive the conversation in real time. Use it for ad‑hoc investigation, questions, and quick edits.
+
+## Where to find it
+
+The AI features live under the **Agents** section in the platform:
+
+- **Cluster level** — cluster‑wide agents and reports across every namespace the operator manages.
+- **Workspace level** — the same view, scoped to the namespaces belonging to that workspace.
+
+Models, tools, and custom MCP servers are managed centrally under **Cluster Settings → AI** and shared across the whole cluster.
+
+## Get started
+
+<Steps>
+  <Step title="Connect a model">
+    Add at least one AI model and mark a default. See [AI Models & Setup](/ai/setup).
+  </Step>
+  <Step title="Run or create an agent">
+    Use a curated default agent or configure your own scope, triggers, and tools. See [Agents](/ai/agents).
+  </Step>
+  <Step title="Review reports">
+    Approve, reject, or apply the proposals your agents generate. See [Reports & proposals](/ai/agents#reports-and-proposals).
+  </Step>
+  <Step title="Chat when you need it">
+    Open the chat for interactive investigation. See [Chat](/ai/chat).
+  </Step>
+</Steps>

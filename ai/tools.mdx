@@ -1,0 +1,50 @@
+---
+title: "Tools & Custom MCP Servers"
+sidebarTitle: "Tools"
+description: "Give agents and chat access to your cluster with built-in tools, and extend them with custom MCP servers and integrations."
+---
+
+Tools are what let mogenius AI *do* things rather than just answer. Both [agents](/ai/agents) and [chat](/ai/chat) draw on the same set of tools: built‑in Kubernetes and Helm access, plus any custom [MCP](https://modelcontextprotocol.io) servers and integrations you connect.
+
+## Built‑in tools
+
+These tools are always available once an AI model is configured. Agents enable them per agent; chat uses them automatically.
+
+- **Kubernetes** — Query and inspect resources (Pods, Deployments, Services, ConfigMaps, events), read logs, describe resources, and retrieve manifests. With write access in scope, agents can also create and modify resources.
+- **Helm** — List releases, inspect chart values, review release history, and install or upgrade releases in scope.
+
+During an agent run or chat conversation, tool usage is shown so you can see which tools are being used to reach an answer.
+
+## Custom MCP servers
+
+The [Model Context Protocol (MCP)](https://modelcontextprotocol.io) is an open standard for connecting AI models to external tools. mogenius lets you register **custom MCP servers** and expose their tools to your agents — for example a GitHub, GitLab, or Atlassian server, or your own internal tooling.
+
+Custom MCP servers are managed centrally under **Cluster Settings → AI**, alongside your models. Define a server once and reference it from any number of agents.
+
+### Adding an MCP server
+
+Each MCP server has the following configuration:
+
+- **Display name & description** — A name for the server and a short note on what its tools are for. The description helps the agent decide when to use it.
+- **Transport** — How mogenius connects to the server: **Streamable HTTP** (recommended) or **SSE**. Local `stdio` servers are not supported.
+- **URL** — The server endpoint. Required.
+- **Authentication** — One of **None**, **Bearer token**, or **API key**. For bearer/API‑key auth, enter the token (stored as a managed secret) or reference an existing secret; the API‑key header defaults to `X-Api-Key` and can be customized.
+- **Allowed tools** — An optional allowlist restricting which of the server's tools agents may use. Leave empty to expose all discovered tools.
+- **Headers** — Optional additional request headers.
+
+Once connected, mogenius discovers the server's tools and shows a readiness state, the number of available tools, and when it last connected.
+
+### Assigning MCP servers to an agent
+
+In an agent's [Tools configuration](/ai/agents#tools), select the MCP servers it may use. The agent then has access to the tools those servers expose (filtered by each server's allowlist). The agent detail page shows the connected tools as tags.
+
+## GitHub & memory repository
+
+mogenius also supports connecting a **GitHub** account and a **memory repository** as chat integrations, configured under **Cluster Settings → AI**:
+
+- **GitHub** — Provide a personal access token so the assistant can look up source code, configuration, and CI/CD pipelines in your linked repositories and cross‑reference them with cluster state.
+- **Memory repository** — A GitHub repository the assistant uses to read and write long‑term context, so it can recall recurring issues, environment‑specific quirks, and team conventions over time. You can use an [agents.md](https://agents.md/) file to provide organization‑specific guidance.
+
+<Note>
+For connecting external clients such as Cursor or Claude Desktop **to** mogenius — rather than connecting tools **to** your agents — see the [mogenius MCP Server](/ai/mcp-server).
+</Note>

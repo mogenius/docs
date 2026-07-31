@@ -1,0 +1,90 @@
+---
+title: "mogenius MCP Server"
+sidebarTitle: "MCP Server"
+description: "Connect external AI tools and IDEs to your mogenius cluster through the mogenius Model Context Protocol (MCP) server."
+---
+
+mogenius exposes its own **Model Context Protocol (MCP) server**, so external AI‑powered tools — such as IDE assistants, Claude Desktop, or custom automations — can interact with your Kubernetes cluster through the same AI infrastructure that powers [Agents](/ai/agents) and [Chat](/ai/chat).
+
+<Note>
+This is the **outbound** direction: external clients connect **to** mogenius. To connect external tools **to your agents** (for example a GitHub or GitLab MCP server), see [Tools & Custom MCP Servers](/ai/tools#custom-mcp-servers) instead.
+</Note>
+
+## Authentication & permissions
+
+Access to the mogenius MCP server requires a valid **API key** generated in the platform. Each API key is tied to a specific user and inherits that user's workspace permissions.
+
+This means:
+
+- The MCP client can only access namespaces and resources the API key owner is permitted to view or manage.
+- You can create separate API keys per workspace, each scoped to that workspace's resources and permissions.
+- API keys can be revoked at any time from the platform settings.
+
+You can create an API key from the settings of a **Cluster** or **Workspace**.
+
+## Connecting a client
+
+Add the mogenius MCP server to your client's configuration. The exact steps depend on the tool, but typically you edit a local config file that lists the client's MCP servers. Replace the endpoint and API key to match your setup.
+
+### Claude Desktop
+
+For remote MCP servers, Claude uses Connectors. mogenius is not yet available as a Connector, but you can configure it as a local MCP server. Adapt the following and add it to your `claude_desktop_config.json`:
+
+```json
+"mcpServers": {
+    "mogenius": {
+      "command": "PATH-TO-YOUR-NODE-INSTALLATION/.nvm/versions/node/v23.3.0/bin/npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://platform-api.mogenius.com/mcp",
+        "--header",
+        "Authorization: bearer YOUR-MOGENIUS-API-KEY"
+      ],
+      "env": {
+        "PATH": "PATH-TO-YOUR-NODE-INSTALLATION/.nvm/versions/node/v23.3.0/bin:/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin"
+      }
+    }
+  }
+```
+
+### Cursor
+
+In the Cursor Desktop app, open **Settings** and go to **Tools & MCP**. Add a new MCP server — Cursor opens your `mcp.json`, where you can add the mogenius server:
+
+```json
+{
+  "mcpServers": {
+    "mogenius": {
+        "type": "streamable-http",
+        "url": "https://platform-api.mogenius.com/mcp",
+        "headers": {
+          "Authorization" : "bearer YOUR-MOGENIUS-API-KEY"
+      }
+    }
+  }
+}
+```
+
+## Tools & capabilities
+
+The mogenius MCP server exposes the same tools available to agents and chat, so external clients can perform cluster operations through natural language or structured requests.
+
+### Kubernetes
+
+- List and describe Pods, Deployments, Services, ConfigMaps, and other resources.
+- Read Pod logs and events for troubleshooting.
+- Retrieve resource manifests and status information.
+- Inspect namespace‑level overviews.
+- Create and modify resources and workloads.
+
+### Helm
+
+- List installed Helm releases across namespaces.
+- Inspect chart values and release configuration.
+- Review release history and rollback information.
+- Deploy Helm charts.
+
+## Auditing MCP activity
+
+Requests made through the mogenius MCP server are recorded in the cluster [audit log](/cluster-management/audit-log) and tagged as MCP requests, so you can trace which actions were taken by external clients.
