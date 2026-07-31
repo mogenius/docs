@@ -1,61 +1,69 @@
 ---
 title: "Chat with AI"
 sidebarTitle: "Chat"
-description: "Use the interactive AI Chat to ask questions, troubleshoot issues, and manage your Kubernetes cluster through natural language."
+description: "Use the interactive AI chat to ask questions, investigate issues, and manage your Kubernetes cluster through natural language."
 ---
 
-The AI Chat lets you interact with the mogenius AI agent directly through a conversational interface. You can ask questions, investigate issues, and give instructions — the agent has access to your cluster and will use its [configured tools](/ai/setup#tools) to find answers and take action.
+The AI chat lets you interact with the mogenius AI directly through a conversational interface. You can ask questions, investigate issues, and give instructions — the assistant has access to your cluster and uses its tools to find answers and take action, reasoning step by step in a think → act → observe loop.
 
 <Note>
-AI Chat requires a connected AI model. If you haven't configured one yet, see [AI Setup](/ai/setup).
+Chat requires a connected AI model. If you haven't configured one yet, see [AI Models & Setup](/ai/setup).
 </Note>
 
-## Opening the Chat
+## Opening the chat
 
-Click the **chat icon** in the platform header to open the AI Chat sidebar. The chat is available at both the **Cluster** and **Workspace** level — the agent automatically scopes its responses to the context you're working in.
+Open the chat from the **chat button** in the platform header — it appears in a sidebar next to your current view. You can also open it as a **separate window** to keep the conversation visible while you work elsewhere.
 
-## What You Can Do
+The chat is available at both the **Cluster** and **Workspace** level, and automatically scopes its responses to the context you're working in.
 
-The AI agent understands natural language and can use its tools to interact with your cluster on your behalf. Common use cases include:
+## What you can do
+
+The assistant understands natural language and can use its tools to interact with your cluster on your behalf. Common uses include:
 
 - Investigating issues such as misconfigured resources, unreachable applications, or networking problems.
 - Querying cluster resources like Pods, Deployments, Services, and ConfigMaps.
-- Getting guidance on resource optimization, including node allocation and resource limits.
-- Reviewing and writing Kubernetes manifests or Helm values.
-- Troubleshooting errors interactively by providing additional context the agent can use.
+- Getting guidance on resource optimization, node allocation, and resource limits.
+- Reviewing and drafting Kubernetes manifests or Helm values.
+- Troubleshooting interactively by feeding the assistant additional context.
 
-## Tools
+## Chat modes
 
-The AI Chat uses the same tools configured in [AI Setup](/ai/setup#tools). Depending on your configuration, the agent can access the following during a conversation:
+A mode selector tailors how the assistant responds:
 
-### Built-in Tools
+- **Ask** — Answer questions and explain, without proposing changes.
+- **Code** — Focus on writing and editing manifests, values, and configuration.
+- **Plan** — Break a task down into a step‑by‑step plan before acting.
 
-These are always available:
+You can **clear the conversation** at any time to start fresh.
 
-- **Kubernetes** — The agent can query resources, read logs, describe Pods, inspect events, and retrieve manifests from your cluster. When you ask about a failing Deployment or a misconfigured Service, the agent fetches the relevant data in real time.
-- **Helm** — The agent can list releases, inspect chart values, and check release history. Useful for questions about what's currently deployed or reviewing a Helm upgrade.
+## Choosing a model
 
-During a conversation, tool usage is indicated with badges (e.g., "Kubernetes", "Helm") so you can see which tools the agent is using to answer your question.
+A model picker lets you switch between the models marked as **chat enabled** in [AI Models & Setup](/ai/setup). The cluster default is preselected. Switching models starts a fresh connection for the next message.
 
-### GitHub
+## Tools and reasoning
 
-When GitHub is connected in [AI Setup](/ai/setup#github), the agent can access your linked repositories during chat. This enables:
+The chat uses the same tools as agents. As the assistant works, it shows which tools it is calling so you can follow its reasoning:
 
-- Looking up source code, configurations, and CI/CD pipelines related to the resources you're asking about.
-- Cross-referencing cluster state with the code that produced it.
+- **Kubernetes** — Query resources, read logs, describe Pods, inspect events, and retrieve manifests in real time.
+- **Helm** — List releases, inspect chart values, and review release history.
+- **Custom tools** — Any [custom MCP servers](/ai/tools#custom-mcp-servers) and integrations connected to your cluster.
 
-#### Memory Repository
+See [Tools & Custom MCP Servers](/ai/tools) for the full picture.
 
-If a [Memory Repository](/ai/setup#memory-repository) is configured, the agent can recall context from previous interactions. It stores and retrieves long-term knowledge — such as recurring issues, environment-specific quirks, or team conventions — to provide more relevant answers over time.
+## Streaming and cancelling
+
+Responses stream in as they are generated, with an indicator while the assistant is thinking. If a response is heading in the wrong direction, use **Cancel** to stop it immediately and refine your prompt.
+
+Each message offers quick actions — copy, retry, and edit & resend — plus feedback controls, and code blocks have their own copy button.
 
 ## Permissions
 
-The AI agent operates under the same permissions as the logged-in user. If your workspace role grants you **View** access to specific namespaces, the AI agent can only query resources in those same namespaces. The chat never exposes data beyond what you are authorized to see.
+The assistant operates under the same permissions as the logged‑in user. If your role grants **View** access to specific namespaces, the chat can only query resources in those namespaces. It never exposes data beyond what you are authorized to see.
 
-## Token Usage
+## Token usage
 
-Chat conversations count toward the cluster-wide [daily token limit](/ai/setup#token-limits). A usage indicator near the input field shows how much of the daily budget has been consumed. Once the limit is reached, new messages are queued until the limit resets.
+Chat conversations count toward the token limits of the model in use. A usage indicator shows how much of the budget has been consumed. Once a limit is reached, further messages are queued until it resets. See [token and budget limits](/ai/setup#token-and-budget-limits).
 
-## Session Persistence
+## Session persistence
 
-Chat sessions are preserved across page reloads and browser refreshes. You can close the sidebar, navigate to other pages, and return to an ongoing conversation without losing context.
+Chat sessions are preserved across page reloads and browser refreshes, scoped to your user and the current organization, cluster, and workspace. You can close the chat, navigate elsewhere, and return to an ongoing conversation without losing context.

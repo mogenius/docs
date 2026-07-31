@@ -51,10 +51,12 @@
           {
             "group": "AI",
             "pages": [
+              "ai/overview",
               "ai/setup",
+              "ai/agents",
               "ai/chat",
-              "ai/ai-insights",
-              "ai/mcp"
+              "ai/tools",
+              "ai/mcp-server"
             ]
           },
           {
@@ -97,6 +99,20 @@
       ]
     }
   },
+  "redirects": [
+    {
+      "source": "/ai/ai-insights",
+      "destination": "/ai/agents"
+    },
+    {
+      "source": "/ai/mcp",
+      "destination": "/ai/mcp-server"
+    },
+    {
+      "source": "/cluster-management/ai-insights",
+      "destination": "/ai/agents"
+    }
+  ],
   "logo": {
     "light": "/images/Logo_mogenius_black.svg",
     "dark": "/images/Logo_mogenius_white.svg"
