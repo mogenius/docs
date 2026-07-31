@@ -1,0 +1,80 @@
+---
+title: "Custom Resource Forms"
+sidebarTitle: "Custom Resource Forms"
+description: "Give any custom resource a form-based create and edit experience in mogenius instead of raw YAML, using UI Configs."
+---
+
+By default, custom resources (CRDs) on your cluster are created and edited as raw YAML. A **UI Config** replaces that raw editor with a structured form: labelled inputs, grouped sections, dropdowns, toggles, and validation. You define the form once for a resource type, and from then on everyone who opens a resource of that type gets the same guided experience.
+
+If no UI Config exists for a resource type, mogenius falls back to the plain YAML editor — so adding a UI Config is always additive and never blocks the raw workflow.
+
+<Note>
+UI Configs currently apply to **custom resources (CRDs)** only. Built-in Kubernetes kinds keep their existing editors.
+</Note>
+
+## How it works
+
+A UI Config is a cluster-scoped resource that binds a **form layout** to a **target resource type** (its API version and kind). Only one UI Config exists per resource type.
+
+When you create a new form, mogenius reads the target CRD's OpenAPI schema and auto-generates a starting layout with all available fields. You then curate that layout — keep the fields that matter, relabel them, group them into sections, and set defaults or validation. A live preview shows the resulting form as you edit.
+
+## Creating a UI form
+
+UI Configs are managed by cluster administrators.
+
+1. Open your **Cluster** and go to **Settings → UI Configs**.
+2. Select **New UI Form**.
+3. Pick the target resource type from the list of custom resources. Types that already have a UI Config are shown but cannot be selected again.
+4. The form editor opens with a schema auto-generated from the resource's OpenAPI definition.
+
+## Building the form
+
+The editor has two panels: the **builder** on the left and a **live preview** on the right that updates as you make changes.
+
+### Sections
+
+Fields are grouped into ordered **sections** that render as blocks in the final form. By convention the first section holds the resource's metadata (name, namespace); the following sections map to the top-level spec. Nested objects in the spec are expressed as child sections rather than fields, keeping every field a simple input.
+
+### Fields
+
+Each field maps to one property in the resource manifest. A field has:
+
+- **Key** — the dot-notation path into the resource YAML, e.g. `spec.replicas` or `spec.template.spec.containers[].image`. This is where the entered value is written.
+- **Label** — the name shown next to the input.
+- **Description** — hint text shown below the input to explain the expected value.
+- **Type** — the input widget (see below).
+- **Required** — blocks form submission when left empty.
+- **Default** — pre-filled into a blank create form.
+- **Enum** — restricts the input to a fixed set of allowed values, rendered as a dropdown.
+
+### Field types
+
+- **string** — free-text input.
+- **integer** / **number** — numeric input.
+- **boolean** — a toggle switch.
+- **array** — a list of scalar values with add/remove.
+- **map** — a set of key/value pairs.
+
+Set an **Enum** on a field to turn it into a dropdown restricted to the allowed values.
+
+### Curating the layout
+
+Starting from the auto-generated fields you can toggle fields on or off, rename them, reorder them, and move them between sections by drag and drop. Once you save your own edits, the UI Config is marked as **customized** to distinguish it from an untouched auto-generated schema.
+
+## Saving
+
+Use **Save** in the editor header to store the UI Config. It takes effect immediately for every resource of the target type across the cluster.
+
+## How users experience it
+
+Once a UI Config exists for a resource type, users opening a resource of that type see a **Details** tab that renders the form — on both the resource detail page and the resource drawer. They can fill in and edit values through the form controls instead of editing YAML, with required fields validated inline. If no UI Config exists, the **YAML** tab is shown instead.
+
+## Managing UI forms
+
+From **Settings → UI Configs** you can, per resource type:
+
+- **Edit** — reopen the form editor to adjust the layout.
+- **View YAML** — inspect the underlying UI Config manifest.
+- **Delete** — remove the form. Resources of that type fall back to the plain YAML editor.
+
+{/* TODO screenshots: UI Configs list, form editor with builder + live preview, rendered Details tab on a resource */}

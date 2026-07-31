@@ -35,7 +35,7 @@
             "pages": [
               "cluster-management/installing-the-mogenius-operator",
               "cluster-management/cluster-settings",
-              "cluster-management/blueprints",
+              "cluster-management/ui-configs",
               "cluster-management/kubernetes-workloads",
               "cluster-management/gitops",
               "cluster-management/audit-log",
@@ -80,6 +80,7 @@
               "deploying-applications/deployment-configuration",
               "deploying-applications/pipeline-starters",
               "deploying-applications/helm-charts",
+              "deploying-applications/blueprints",
               "deploying-applications/kubernetes-manifests",
               "deploying-applications/multi-environment-deployments"
             ]
@@ -97,6 +98,12 @@
       ]
     }
   },
+  "redirects": [
+    {
+      "source": "/cluster-management/blueprints",
+      "destination": "/deploying-applications/blueprints"
+    }
+  ],
   "logo": {
     "light": "/images/Logo_mogenius_black.svg",
     "dark": "/images/Logo_mogenius_white.svg"

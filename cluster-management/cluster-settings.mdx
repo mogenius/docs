@@ -23,7 +23,7 @@ In your DNS settings, create two records of type A:
 |A|*.yourdomain.com|LOADBALANCER_IP|
 
 ## Blueprints
-To set up infrastructure services on your cluster (ingress controllers, monitoring, certificate management, etc.), use [Blueprints](/cluster-management/blueprints). Blueprints provide pre-configured Helm charts with sensible defaults that you can review and customize before deploying. They replace the previous Cluster Services and support optional GitOps integration.
+To set up infrastructure services on your cluster (ingress controllers, monitoring, certificate management, etc.), use [Blueprints](/deploying-applications/blueprints). Blueprints provide pre-configured Helm charts with sensible defaults that you can review and customize before deploying. They replace the previous Cluster Services and support optional GitOps integration.
 
 <Note>
 If you previously installed services through Cluster Services, they continue to work as standard Helm releases. No migration is needed. For new installations, use Blueprints instead.
