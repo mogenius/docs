@@ -1,5 +1,7 @@
 ---
 sidebar_position: "2"
+title: "Workspace Dashboard"
+description: "The workspace overview page — what it shows, and how administrators tailor it per workspace with custom dashboards."
 ---
 
 ![Workspace Dashboard Docu Pn](/images/WorkspaceDashboard_docu.png)
@@ -10,4 +12,43 @@ The workspace dashboard provides a streamlined overview of your workspace resour
 - See team activity on the workspace.
 - Identify issues and events from Kubernetes workloads.
 
-From here, you can dive into the resources of your workspace for further troubleshooting, or
+From here, you can dive into the [resources](/workspaces/resources) of your workspace for further troubleshooting.
+
+## Customizing workspace dashboards
+
+The layout of the workspace dashboard is not fixed. Cluster administrators can define **custom dashboards** that control which sections appear and add tailored resource tables — so each team can get a landing view that fits how they work. A single dashboard can be shared across multiple workspaces.
+
+Workspaces that aren't assigned a custom dashboard use the built-in **default dashboard**, which shows all standard sections.
+
+### Configuring a dashboard
+
+Custom dashboards are managed by cluster administrators.
+
+1. Open your **Cluster** and go to **Settings → Workspace Dashboards**.
+2. Edit the default dashboard, or create a new named dashboard.
+3. Toggle the built-in sections and add resource tables (see below).
+4. Assign the dashboard to one or more workspaces. A live preview shows the resulting layout as you edit.
+
+### Built-in sections
+
+Each of these standard sections can be turned on or off:
+
+- **Dashboard header** — the workspace summary at the top of the page.
+- **Capacities** — the resource-consumption tile.
+- **Agents** — the banner surfacing AI agent findings and proposals for the workspace.
+- **Members** — the workspace members tile.
+- **Resource overview** — the standard overview of workspace resources.
+
+### Resource tables
+
+Below the built-in sections you can add any number of **resource tables**. Each table has a heading and lists the Kubernetes resource kinds you choose (for example Deployments, StatefulSets, or a specific custom resource). Tables render in the order you arrange them, letting you put the resources a team cares about front and center.
+
+### Assigning dashboards to workspaces
+
+A workspace can be assigned to at most one dashboard. Assigning a workspace to a custom dashboard immediately changes what its members see on the Dashboard tab. Removing the assignment — or deleting the dashboard — reverts the workspace to the default dashboard.
+
+### Permissions
+
+Any workspace member with view access sees the dashboard that applies to their workspace. Creating and editing dashboards requires cluster administrator permissions.
+
+{/* TODO screenshots: Workspace Dashboards settings list, dashboard editor with live preview, a custom dashboard as seen in a workspace */}
