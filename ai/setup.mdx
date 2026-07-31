@@ -1,55 +1,52 @@
 ---
-title: "AI Setup"
+title: "AI Models & Setup"
 sidebarTitle: "Setup"
-description: "Connect an AI model, configure token limits, and enable tools for mogenius AI features."
+description: "Connect one or more AI models, set a default, and configure token and budget limits for mogenius AI features."
 ---
 
-All AI-powered features in mogenius — including [AI Insights](/ai/ai-insights) and [AI Chat](/ai/chat) — share a single model configuration. Once you connect a model and configure limits, every AI feature on your cluster is ready to use.
+All AI features in mogenius — [Agents](/ai/agents) and [Chat](/ai/chat) — run on the AI models you connect to your cluster. You can register **several models** and choose which one is the default and which are available in chat.
 
-## Connecting an AI Model
+Models are managed centrally under **Cluster Settings → AI** and shared across the whole cluster.
 
-Navigate to your **Cluster** page and open the **AI** tab. Click **Configure AI** and fill in the following fields:
+## Connecting an AI model
 
-- **SDK**: Choose between OpenAI, Anthropic, or Ollama.
-- **API Key**: If the model endpoint requires authentication, enter an API key or token.
-- **Model**: Select your desired model from the dropdown. If no models appear, check your endpoint or authentication.
-- **API URL**: Enter the model endpoint URL. For OpenAI, the default is `https://api.openai.com/v1`. You may also use any [OpenAI-compatible API endpoint](https://bentoml.com/llm/llm-inference-basics/openai-compatible-api).
+Open **Cluster Settings → AI** and add a model. Each model has the following fields:
 
-After saving, mogenius will validate the connection and activate AI features across your cluster.
+- **SDK** — The provider: **OpenAI**, **Anthropic**, or **Ollama**. Choose OpenAI for any OpenAI‑compatible endpoint.
+- **Model** — The model identifier. Pick from the list the provider returns; if none appear, check the endpoint and authentication.
+- **API URL** — The endpoint URL. Required for Ollama and for OpenAI‑compatible providers; the standard OpenAI and Anthropic endpoints are used by default otherwise. Any [OpenAI‑compatible API endpoint](https://bentoml.com/llm/llm-inference-basics/openai-compatible-api) works.
+- **API Key** — Authentication for the endpoint. Enter a key as plain text and mogenius stores it as a managed Kubernetes secret, or reference an existing secret. Ollama endpoints that require no authentication can be left without a key.
 
-## Token Limits
+After saving, mogenius validates the connection and the model becomes available to your cluster.
 
-Set a **Daily Token Limit** to control how much the AI agent can consume per day. This limit is shared across Insights reports and Chat conversations on the cluster.
+<Note>
+You can add multiple models — for example a fast model for chat and a more capable model for agents. Each is stored as its own resource and can be edited, tested, or removed independently.
+</Note>
 
-Once the limit is reached, new Insights reports are queued and processed when the limit resets the next day.
+## Default and chat‑enabled models
 
-After configuration, the settings page displays additional admin controls:
+- **Default** — Mark one model as the cluster default. Agents that don't specify their own model, and new chat sessions, use it automatically.
+- **Chat enabled** — Toggle whether a model appears in the chat model picker. This lets you keep some models for agents only.
 
-**Token usage** — Monitor today's token consumption and see when the limit will reset.
+## Token and budget limits
 
-**Reset token limit** — Manually reset the token usage to zero.
+Limits are configured **per model**, so each model carries its own budget:
 
-**Delete all AI data** — Deletes all existing insight reports from the local database and resets the token usage. The agent will start fresh.
+- **Daily token limit** — The maximum tokens the model may consume per day across agents and chat (`0` = unlimited). Once reached, further work is queued until the limit resets.
+- **Token budget per run** — A per‑run cap on tokens (`0` = unlimited). Agents can override this in their own [budget settings](/ai/agents#budgets).
+- **Max tool calls per run** — A per‑run cap on how many tool calls the model may make. Agents can override this too.
 
-## Tools
+Each model shows its current usage, and you can **reset the usage** counter manually at any time.
 
-The AI agent has access to built-in tools for interacting with your cluster, plus optional integrations you can enable.
+## Testing and maintenance
 
-### Built-in Tools
+The model list provides administrative controls per model:
 
-These tools are always available once AI is configured:
+- **Test** — Runs a connectivity probe against the endpoint and reports whether the model is reachable and correctly authenticated. A readiness badge reflects the current state.
+- **Reset usage** — Resets the recorded token usage for that model to zero.
 
-- **Kubernetes** — Query and inspect cluster resources such as Pods, Deployments, Services, ConfigMaps, and events. Read logs, describe resources, and retrieve manifests. Create new resources and manifests to deploy applications.
-- **Helm** — List and create Helm releases, inspect chart values, and review release history.
+## Next steps
 
-### GitHub
-
-Connect a GitHub repository to give the AI agent access to your codebase and enable the Memory Repository feature.
-
-To enable GitHub integration, navigate to the AI settings page and enter a Personal Access Token for your Github account.
-
-#### Memory Repository
-
-The Memory Repository is a GitHub repository that the AI agent uses to store and retrieve long-term context. You can use an [agents.md](https://agents.md/) file as a generic format to provide additional context on how the agent should behave within your organization. When enabled, the agent can persist knowledge across sessions — such as recurring issues, environment-specific configurations, or team conventions — and reference it in future analyses and conversations.
-
-To set up a Memory Repository, select a GitHub repository in the Tools configuration. The agent will use this repository to read and write context files that improve the quality of its responses over time.
+- Configure what your agents do in [Agents](/ai/agents).
+- Give agents extra capabilities in [Tools & Custom MCP Servers](/ai/tools).
+- Start an interactive session in [Chat](/ai/chat).
