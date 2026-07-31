@@ -65,6 +65,8 @@ To deploy a Blueprint, navigate to the **Helm Charts** tab in your cluster and c
 
 After deployment, the Blueprint is a regular Helm release. You can view its status, resources, and values on the [Helm Charts](/deploying-applications/helm-charts) page and manage it like any other release.
 
+You can also deploy Blueprints programmatically — see [Deploy a Blueprint](/workspaces/mogenius-API#deploy-a-blueprint) in the API reference.
+
 ## GitOps integration
 
 When GitOps is enabled on your cluster, Blueprints can be deployed through the GitOps workflow. Activating the GitOps toggle during installation creates an Argo CD Application in your connected Git repository instead of installing the chart directly.

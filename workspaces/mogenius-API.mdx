@@ -71,6 +71,89 @@ curl --location --request PATCH 'https://platform-api.mogenius.com/helm/admin/YO
 
 </CodeGroup>
 
+## Deploy a Blueprint
+
+[Blueprints](/deploying-applications/blueprints) are pre-configured Helm charts. Deploying one via the API is a two-step flow:
+
+1. Read the blueprint to get its chart coordinates and default values.
+2. Install that chart with the Helm install endpoint.
+
+The target cluster is selected with the `cluster-id` header. Use a cluster-level API key (or a workspace-level key with editor permissions); installing requires editor/admin rights on the cluster.
+
+### 1. List blueprints
+
+```
+// HEADER
+Authorization: Bearer YOUR_CLUSTER_API_KEY
+cluster-id: YOUR_CLUSTER_ID
+
+GET https://platform-api.mogenius.com/helm/blueprints
+```
+
+Returns the catalog with each blueprint's `id`, `displayName`, `description`, `category`, and `tags`.
+
+### 2. Get a blueprint's details
+
+```
+// HEADER
+Authorization: Bearer YOUR_CLUSTER_API_KEY
+cluster-id: YOUR_CLUSTER_ID
+
+GET https://platform-api.mogenius.com/helm/blueprints/BLUEPRINT_ID
+```
+
+The response includes the blueprint's Helm `repository` and `chart` (name and version) plus its default install target (`namespace`, `release`) and default `values`. Use these to build the install request.
+
+### 3. Install the chart
+
+Install the blueprint's chart as a standard Helm release. For repository-based charts, the Helm repository must be added to the cluster first (the `chart` value has the form `REPO_NAME/CHART_NAME`).
+
+```
+// HEADER
+Authorization: Bearer YOUR_CLUSTER_API_KEY
+cluster-id: YOUR_CLUSTER_ID
+Content-Type: application/json
+
+POST https://platform-api.mogenius.com/helm/chart/install
+```
+
+```curl expandable
+// BODY
+{
+    "namespace": "YOUR_NAMESPACE",
+    "chart": "REPO_NAME/CHART_NAME",  // from the blueprint's chart
+    "release": "RELEASE_NAME",
+    "version": "CHART_VERSION",
+    "values": "key1: value1",          // YAML string with your value overrides
+    "dryRun": false
+}
+```
+
+For charts hosted in an OCI registry, use the OCI install endpoint instead:
+
+```
+// HEADER
+Authorization: Bearer YOUR_CLUSTER_API_KEY
+cluster-id: YOUR_CLUSTER_ID
+Content-Type: application/json
+
+POST https://platform-api.mogenius.com/helm/chart/oci/install
+```
+
+```curl expandable
+// BODY
+{
+    "ociChartUrl": "oci://REGISTRY/CHART",
+    "namespace": "YOUR_NAMESPACE",
+    "release": "RELEASE_NAME",
+    "version": "CHART_VERSION",   // optional
+    "values": "key1: value1",      // optional YAML string
+    "dryRun": false
+}
+```
+
+Once installed, the blueprint becomes a standard Helm release that you can manage through the [Helm upgrade](#helm-upgrade) endpoint or the [Helm Charts](/deploying-applications/helm-charts) interface.
+
 ## Manage Ports & Hostnames
 
 You can `get`, `add`, and `delete` ports and hostnames from deployments, just like from the UI. mogenius will automatically create or update the corresponding service and ingress resources.
