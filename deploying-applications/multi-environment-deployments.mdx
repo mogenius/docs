@@ -40,7 +40,7 @@ Once your application is working in development, enable GitOps to version-contro
 
 <Steps>
   <Step title="Enable GitOps on your cluster">
-    Navigate to your cluster settings and enable GitOps. This installs ArgoCD and Sealed Secrets on your cluster and connects a GitHub repository. See [GitOps setup](/cluster-management/gitops).
+    Navigate to your cluster settings and enable GitOps. This installs ArgoCD and Sealed Secrets on your cluster and connects a GitHub repository. See [GitOps setup](/cluster-management/gitops/argocd).
   </Step>
 
   <Step title="Create a GitOps application">
@@ -92,7 +92,7 @@ For example, with a Kustomize-based repository:
 - **Dev ApplicationSet**: Path `apps/my-service/overlays/dev`, Kustomize Namespace `development`
 - **Prod ApplicationSet**: Path `apps/my-service/overlays/prod`, Kustomize Namespace `production`, Name Prefix `prod-`
 
-See [ApplicationSets](/cluster-management/gitops#applicationsets) for detailed configuration options.
+See [ApplicationSets](/cluster-management/gitops/argocd#applicationsets) for detailed configuration options.
 
 ## Managing environment-specific configurations
 

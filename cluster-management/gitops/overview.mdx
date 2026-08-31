@@ -1,0 +1,41 @@
+---
+title: "GitOps"
+sidebarTitle: "Overview"
+---
+
+GitOps (short for Git Operations) describes a declarative way of managing applications in cloud-native environments using the Git workflow. Application configurations are stored and updated via Git repositories, and a GitOps engine running on the cluster tracks those repositories and keeps the cluster in sync with them.
+
+mogenius comes with a native GitOps integration that lets you implement GitOps in your teams, or integrate the mogenius platform with your existing GitOps stack. You can deploy workloads and resources to Kubernetes through the UI with mogenius Workspaces (see [Deploying Applications](/deploying-applications/overview)) and add GitOps as a layer of stability and control.
+
+**Here's how you can use that in your teams:**
+- Deploy containers to Kubernetes using the mogenius UI, without requiring deep Kubernetes knowledge. Then, add them to GitOps for production-grade deployments.
+- Configure your applications once and then deploy them to additional environments for a staged development workflow. See [Multi-Environment Deployments](/deploying-applications/multi-environment-deployments) for a practical guide.
+- Back up all your manifests to recover your cluster state in case of an incident.
+
+## Two GitOps engines
+
+mogenius supports two GitOps engines. A cluster runs **one** engine, and mogenius detects which one is installed and shows it on the cluster's **GitOps** page.
+
+<CardGroup cols={2}>
+  <Card title="Argo CD" icon="rocket" href="/cluster-management/gitops/argocd">
+    UI-first. mogenius installs and manages Argo CD (plus Sealed Secrets), **generates** your Kubernetes manifests, and commits them to Git. You start in the mogenius UI.
+  </Card>
+  <Card title="Flux" icon="wind" href="/cluster-management/gitops/flux">
+    Git-first, bring-your-own. Flux already runs on the cluster; mogenius **detects**, observes, and manages it, and lets you **edit the existing source manifests** from the UI. You start in Git.
+  </Card>
+</CardGroup>
+
+The two engines follow different workflows:
+
+- **Argo CD path** — UI-first. You deploy through the mogenius UI; mogenius generates manifests and commits them for you (Applications and ApplicationSets), and Argo CD syncs them to the cluster. mogenius installs and manages Argo CD and Sealed Secrets.
+- **Flux path** — Git-first. Flux is already installed on the cluster (self-installed or via the flux-operator). mogenius detects it, shows the status and all Flux resources, lets you reconcile, suspend, and resume them, and lets you edit the source manifests in Git — with AI assistance.
+
+## How to choose
+
+- Choose **Argo CD** if you want mogenius to drive deployments from the UI and generate the manifests for you — ideal for teams that want GitOps without writing Kubernetes YAML by hand.
+- Choose **Flux** if you already run Flux (or standardize on it) and want mogenius to observe, manage, and help you edit your existing Flux setup from a single UI.
+
+Both engines give you the auditability and reliability of Git-based infrastructure management. Pick the one that matches how your team already works, then follow the matching guide:
+
+- [GitOps with Argo CD](/cluster-management/gitops/argocd)
+- [GitOps with Flux](/cluster-management/gitops/flux)

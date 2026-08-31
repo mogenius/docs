@@ -31,7 +31,7 @@ mogenius ships with Blueprints for the following infrastructure components:
 | Alertmanager | Monitoring | Routes alerts from Prometheus to receivers like email, Slack, or PagerDuty. |
 | Kube Prometheus Stack | Monitoring | Full monitoring stack — Prometheus, Grafana, Alertmanager and kube-state-metrics. |
 | Argo CD | GitOps | Declarative GitOps continuous delivery — syncs your cluster state from Git. |
-| Flux Operator | GitOps | Manages Flux CD instances declaratively using a FluxInstance CRD. |
+| Flux Operator | GitOps | Manages Flux CD instances declaratively using a FluxInstance CRD. Once installed, manage it from [GitOps with Flux](/cluster-management/gitops/flux). |
 | Metrics Server | Operations | Resource usage aggregator — required for `kubectl top` and Horizontal Pod Autoscaler. |
 | Calico (Tigera Operator) | Networking | CNI plugin with fine-grained network policies. |
 | External Secrets Operator | Security | Syncs secrets from AWS Secrets Manager, GCP Secret Manager, Vault, and others into Kubernetes. |
@@ -54,7 +54,7 @@ To deploy a Blueprint, navigate to the **Helm Charts** tab in your cluster and c
   <Step title="Configure deployment settings">
     Set the release name and target namespace. If the namespace does not exist yet, use the **Create New Namespace** button — the namespace will be created automatically before the chart is installed.
 
-    If your cluster has [GitOps](/cluster-management/gitops) enabled, you can activate the GitOps toggle to deploy the Blueprint through Argo CD instead of a direct Helm install. This stores the configuration in your Git repository, making it versioned and auditable.
+    If your cluster has [GitOps](/cluster-management/gitops/argocd) enabled, you can activate the GitOps toggle to deploy the Blueprint through Argo CD instead of a direct Helm install. This stores the configuration in your Git repository, making it versioned and auditable.
   </Step>
   <Step title="Deploy and monitor">
     Confirm your settings to start the installation. A real-time log view shows the deployment progress. Once the installation completes, the release appears in your Helm Charts overview with its current status.
@@ -71,7 +71,7 @@ You can also deploy Blueprints programmatically — see [Deploy a Blueprint](/wo
 
 When GitOps is enabled on your cluster, Blueprints can be deployed through the GitOps workflow. Activating the GitOps toggle during installation creates an Argo CD Application in your connected Git repository instead of installing the chart directly.
 
-This means the Blueprint configuration is stored in Git, versioned alongside your other cluster resources, and synced by Argo CD. For more details on the GitOps setup, see [GitOps](/cluster-management/gitops).
+This means the Blueprint configuration is stored in Git, versioned alongside your other cluster resources, and synced by Argo CD. For more details on the GitOps setup, see [GitOps](/cluster-management/gitops/argocd).
 
 If GitOps is not configured on your cluster, Blueprints are deployed as direct Helm releases — no additional setup is required.
 

@@ -3,9 +3,14 @@ sidebar_position: "7"
 ---
 
 
+{/* TODO @Jan: set the correct version number and date for the Flux release below */}
+## Flux GitOps support
+
+- **Flux GitOps**: mogenius now supports [Flux](/cluster-management/gitops/flux) as a GitOps engine alongside Argo CD. When Flux is installed on a cluster, mogenius detects it automatically and lets you browse all Flux resources (Kustomizations, HelmReleases, Sources, and more), monitor their health and sync status, and reconcile, suspend, or resume them right from the UI. You can edit the source manifests directly in Git — via pull request or direct commit — and use AI assistance ("Fix with AI" and "Flux Doctor") to diagnose and fix broken resources. Read more in the [Flux docs](/cluster-management/gitops/flux).
+
 ## 2.5.7 - 15.10.25
 
-- **GitOps**: Install or connect Argo CD and manage all your applications with GitOps. Set up Argo applications in mogenius, monitor status and changes, and perform changes right from the UI. mogenius keeps track of your configurations in the UI and commits changes to your Git repositories. Read more on [GitOps docs](/cluster-management/gitops).
+- **GitOps**: Install or connect Argo CD and manage all your applications with GitOps. Set up Argo applications in mogenius, monitor status and changes, and perform changes right from the UI. mogenius keeps track of your configurations in the UI and commits changes to your Git repositories. Read more on [GitOps docs](/cluster-management/gitops/argocd).
 - **Secrets & Configs page**: Managing secrets and configmaps is now easier with a dedicated page in Workspaces. With an intuitive UI creating, updating, and navigating secrets and configmaps doesn't require YAML anymore.
 - **Updating ports and hostnames via API**: We've published a dedicated endpoint to update ports and hostnames of a deployment with the mogenius API. It abstracts handling ingress and services so that you only need to specify the ports and hostnames that your application requires. Read more at [mogenius API](/workspaces/mogenius-API).
 - **Improved tables with sorting and filters**: Tables for working with resources and workloads have been overhauled, adding features for sorting and filtering columns.

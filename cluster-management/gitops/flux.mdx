@@ -1,0 +1,74 @@
+---
+title: "GitOps with Flux"
+sidebarTitle: "Flux"
+---
+
+mogenius integrates with [Flux](https://fluxcd.io), the CNCF GitOps engine. When Flux is installed on a cluster, mogenius **detects it automatically** and gives you a single place to operate it: monitor all Flux resources and their sync health, reconcile, suspend and resume them, and **edit the source manifests directly in Git** — with AI assistance for diagnosing and fixing broken resources.
+
+Unlike the [Argo CD path](/cluster-management/gitops/argocd), the Flux integration is **Git-first**: your desired state already lives in Git and is reconciled by Flux. mogenius does not generate manifests for you — it manages and edits the manifests you already have.
+
+## Prerequisites and detection
+
+Flux must already be running on the cluster. You can install it yourself (for example with the Flux CLI) or via the [flux-operator](/deploying-applications/blueprints) blueprint. Once Flux is present, mogenius detects it and shows the Flux integration on the cluster's **GitOps** page (**Clusters → [Your Cluster] → GitOps**).
+
+Monitoring and reconcile actions work immediately, with no additional setup. Editing manifests in Git is opt-in and requires [Git write access](#editing-manifests-in-git).
+
+<Note>
+**Mogenius-managed Flux install (private beta).** A managed installation path — where mogenius installs and configures Flux and your Git repositories for you via the platform configuration (`PlatformConfig`) — is available in **private beta**. Contact mogenius to have it enabled for your account. Without it, use your own Flux installation as described above; all features on this page work the same either way.
+</Note>
+
+## Managing Flux resources
+
+The GitOps page lists all your Flux resources — Kustomizations, HelmReleases, Sources (GitRepository, OCIRepository, HelmRepository, Bucket), and, when present, Image Automation, ResourceSets, and Receivers. You can search and filter by ready state, see each resource's sync health and current revision, and spot resources that are failing or **behind** their source.
+
+Opening a resource shows its status, source, dependencies, applied inventory, revision history, conditions, and events, so you can understand why a resource is out of sync without leaving mogenius.
+
+For each resource you can trigger the standard Flux operations:
+
+- **Reconcile** — request an immediate reconciliation.
+- **Reconcile with source** — refresh the source first, then reconcile the workload.
+- **Force** — force a reconciliation (HelmRelease only).
+- **Suspend** / **Resume** — pause or resume reconciliation.
+
+These actions require the appropriate permissions (see [Permissions](#permissions)).
+
+## Editing manifests in Git
+
+Because Flux reconciles from Git, mogenius lets you edit the **source manifest** that backs a resource and commit the change back to your repository — directly from the resource's manifest view. mogenius locates the file in the repo, so you don't have to. Editing is opt-in and disabled until Git write access is configured for the repository.
+
+### Enable Git write access
+
+<Steps>
+  <Step title="Add a write credential">
+    On the cluster **GitOps** page, open **Git write access** and enable editing for a repository. Paste a **personal access token** with write permission (and a username if required). Supported providers are **GitHub**, **GitLab**, and **Gitea**.
+
+    mogenius validates the token against the provider before storing it. The token is stored as a Secret in the cluster's `mogenius` namespace — mogenius never stores your token itself. Removing the credential turns editing off again. Enabling write access requires the **cluster change** permission.
+  </Step>
+  <Step title="Choose a write mode">
+    Set how changes reach the repository, per repository:
+
+    - **Pull Request** (default) — mogenius opens a branch and a pull request. Nothing is reconciled until the PR is merged. Use this when the tracked branch is protected.
+    - **Direct commit** — mogenius commits straight to the tracked branch. Commits to a protected branch are rejected.
+
+    <Note>
+    If the write mode is declared in your platform configuration (`PlatformConfig`), that value takes precedence over the UI choice. mogenius never edits your `PlatformConfig` for you — a snippet is shown that you can commit to your own GitOps repository to declare the settings in Git.
+    </Note>
+  </Step>
+</Steps>
+
+### Edit and commit
+
+Open a resource's manifest, switch to the **Git** view, edit the YAML (or use **Fix with AI**), add a commit message, and commit. In Pull Request mode a PR is opened and linked; in direct-commit mode you can optionally reconcile right after the commit. Concurrent edits are protected — a save that is based on a stale version is rejected rather than overwriting someone else's change.
+
+### When editing is blocked
+
+If a file can't be edited, mogenius explains why. Common reasons: no write credential, write disabled, an unsupported Git host, the file couldn't be located or matched unambiguously, a SOPS-encrypted manifest, or a Kustomization that renders overlays rather than mapping to a single file.
+
+## AI-assisted fixes
+
+Broken Flux resources can be fixed with AI. **Fix with AI** proposes a corrected manifest as a reviewable diff — nothing is committed without you. The **Flux Doctor** agent watches your Flux resources and explains failed reconciliations. Both require a chat-enabled AI model on the cluster; see [Agents](/ai/agents) for details and setup.
+
+## Permissions
+
+- Enabling Git write access and performing runtime actions require the **cluster change** permission.
+- **Workspace-scoped users** can act on a Flux resource only if it is **assigned to their workspace** — otherwise it is read-only. This rule is enforced in the UI and on the server.

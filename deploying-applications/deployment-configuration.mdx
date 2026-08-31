@@ -8,7 +8,7 @@ description: "Configure environment variables, secrets, ports and domains, scali
 After deploying an application with [container images](/deploying-applications/container-images), [pipeline starters](/deploying-applications/pipeline-starters), or [Kubernetes manifests](/deploying-applications/kubernetes-manifests), you can configure all deployment settings through the mogenius UI. Open any deployment in your workspace to access the detail page, where you'll find settings for environment variables, health checks, scaling, and more. You can use the simplified UI forms or switch to the YAML editor for full control over your manifests.
 
 <Tip>
-If [GitOps](/cluster-management/gitops) is enabled, any configuration change you make through the UI is automatically committed to your Git repository and synced by ArgoCD.
+If [GitOps](/cluster-management/gitops/argocd) is enabled, any configuration change you make through the UI is automatically committed to your Git repository and synced by ArgoCD.
 </Tip>
 
 ## Environment variables
@@ -109,7 +109,7 @@ For automatic scaling based on resource utilization, configure the HPA in the de
 When the observed resource usage exceeds the target, Kubernetes automatically adds pods up to the maximum. When usage drops, it scales back down to the minimum.
 
 <Tip>
-Scaling settings are also manageable through [GitOps](/cluster-management/gitops), which allows you to maintain consistent scaling configurations across environments.
+Scaling settings are also manageable through [GitOps](/cluster-management/gitops/argocd), which allows you to maintain consistent scaling configurations across environments.
 </Tip>
 
 ## Update strategy
