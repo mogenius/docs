@@ -1,20 +1,20 @@
 ---
-title: "GitOps"
-sidebarTitle: "GitOps"
+title: "GitOps with Argo CD"
+sidebarTitle: "Argo CD"
 ---
 
-GitOps (short for Git Operations) describes a declarative way of managing applications in cloud-native environments using the Git workflow. This means, application configurations are stored and updated via Git repositories. To track and synchronize the Git repositories with Kubernetes, a GitOps engine is used on the clusters.  
+This page covers mogenius' **Argo CD**–based GitOps workflow. For the GitOps concept and help choosing between the two engines, see the [GitOps overview](/cluster-management/gitops/overview).
 
-mogenius comes with a native GitOps integration that allows you to easily implement GitOps in your teams, or to integrate the mogenius platform with your existing GitOps stack. This way, you can easily deploy workloads and resources to Kubernetes using the UI with mogenius Workspaces (see [Deploying Applications](https://docs.mogenius.com/deploying-applications)). Then, you can add GitOps as a layer of stability and control.  
+The Argo CD path in mogenius is **UI-first**: you deploy through the mogenius UI, mogenius generates the Kubernetes manifests and commits them to your Git repository, and Argo CD syncs them to your cluster. mogenius installs and manages Argo CD (and Sealed Secrets) for you.
 
 **Here's how you can use that in your teams:**
 - Deploy containers to Kubernetes using the mogenius UI, without requiring deep Kubernetes knowledge. Then, add them to GitOps for deploying them to production-grade deployments.
 - Configure your applications once and then deploy them to additional environments for a staged development workflow. See [Multi-Environment Deployments](/deploying-applications/multi-environment-deployments) for a practical guide.
 - Backup all your manifests to recover your cluster state in case of an incident.
 
-## How the GitOps workflow works in mogenius
+## How the Argo CD workflow works
 
-The GitOps workflow in mogenius follows a UI-first approach. You don't need to write Kubernetes manifests manually — mogenius generates them for you.
+The Argo CD workflow in mogenius follows a UI-first approach. You don't need to write Kubernetes manifests manually — mogenius generates them for you.
 
 Here's the end-to-end flow:
 1. **Deploy via the UI**: Use the mogenius UI to deploy applications through [container images](/deploying-applications/container-images), [pipeline starters](/deploying-applications/pipeline-starters), [Helm charts](/deploying-applications/helm-charts), or [Kubernetes manifests](/deploying-applications/kubernetes-manifests).

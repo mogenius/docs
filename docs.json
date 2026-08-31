@@ -36,7 +36,14 @@
               "cluster-management/cluster-settings",
               "cluster-management/ui-configs",
               "cluster-management/kubernetes-workloads",
-              "cluster-management/gitops",
+              {
+                "group": "GitOps",
+                "pages": [
+                  "cluster-management/gitops/overview",
+                  "cluster-management/gitops/argocd",
+                  "cluster-management/gitops/flux"
+                ]
+              },
               "cluster-management/audit-log",
               "cluster-management/network-policies",
               "cluster-management/active-cluster-sync",
@@ -100,6 +107,10 @@
     }
   },
   "redirects": [
+    {
+      "source": "/cluster-management/gitops",
+      "destination": "/cluster-management/gitops/overview"
+    },
     {
       "source": "/cluster-management/blueprints",
       "destination": "/deploying-applications/blueprints"
