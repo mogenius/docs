@@ -1,0 +1,45 @@
+---
+title: Custom SSO — Re-connect After the Authentik Update
+description: One-time steps for existing Custom SSO customers to re-create their SSO connection after mogenius adds Authentik as a platform component.
+---
+
+With the current release, mogenius introduces **Authentik** as a component of the platform — our integrated identity broker. If you connected your own identity provider via OIDC ("Custom SSO"), please **re-create your SSO connection once** after the update. It takes a few minutes.
+
+You reuse your existing identity-provider app (Entra App Registration or GitLab/OIDC application) — no need to create a new one. Keep your **Client ID** and **Client Secret** ready. (Entra shows a client secret only once at creation; if you no longer have it, create a new secret in the App Registration first.)
+
+## Step 1 — Remove the existing SSO connection
+
+In mogenius, go to **Organization Settings → SSO** and click **Remove SSO**.
+
+While SSO is removed, members sign in with email and password. Re-create the connection right away (Step 2) to keep the interruption short.
+
+## Step 2 — Set up SSO again
+
+Still under **Organization Settings → SSO**, choose your provider and enter the credentials from your identity-provider app:
+
+- **Microsoft Entra:** Client ID, Client Secret, Tenant ID
+- **OpenID Connect** (GitLab, Okta, Keycloak, Auth0, …): Client ID, Client Secret, and the **Issuer URL** of your provider (its `/.well-known/openid-configuration` must be reachable there — e.g. `https://gitlab.com` for GitLab.com, or your self-hosted URL)
+
+After saving, mogenius shows a **Redirect URI** and a **Login URL** for your organization. Copy both.
+
+## Step 3 — Update your identity-provider app
+
+Add the **Redirect URI** shown in mogenius to your identity-provider app:
+
+- **Microsoft Entra:** App registration → Authentication → Web → Redirect URIs
+- **GitLab / OIDC:** the OAuth application's Redirect URI (callback URL)
+
+The provider validates this value exactly — sign-in only works once it is registered.
+
+### Microsoft Entra only — add group permission and grant admin consent
+
+mogenius reads the signed-in user's group memberships via Microsoft Graph. Add the delegated scope and consent to it:
+
+1. App registration → API permissions → Add a permission → Microsoft Graph → Delegated permissions → **`GroupMember.Read.All`** → Add.
+2. Click **"Grant admin consent for `<tenant>`"**.
+
+Admin consent is mandatory — `GroupMember.Read.All` is admin-restricted, so users cannot approve it themselves. Without it, sign-in fails with "Need admin approval". (GitLab and other OIDC providers need no equivalent step.)
+
+## Step 4 — Done
+
+Test the sign-in using the displayed **Login URL**.
