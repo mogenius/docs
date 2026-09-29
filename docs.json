@@ -33,6 +33,7 @@
             "group": "Setup & Administration",
             "pages": [
               "cluster-management/installing-the-mogenius-operator",
+              "cluster-management/platform-config",
               "cluster-management/cluster-settings",
               "cluster-management/ui-configs",
               "cluster-management/kubernetes-workloads",
@@ -76,8 +77,18 @@
               "workspaces/members-and-roles",
               "workspaces/integrations",
               "workspaces/storage",
-              "workspaces/mogenius-API",
-              "workspaces/mogenius-CLI"
+              "workspaces/mogenius-API"
+            ]
+          },
+          {
+            "group": "mogenius CLI",
+            "pages": [
+              "cli/overview",
+              "cli/installation",
+              "cli/clusters-and-contexts",
+              "cli/terminal-ui",
+              "cli/commands",
+              "cli/port-forwarding"
             ]
           },
           {
@@ -126,6 +137,10 @@
     {
       "source": "/cluster-management/ai-insights",
       "destination": "/ai/agents"
+    },
+    {
+      "source": "/workspaces/mogenius-CLI",
+      "destination": "/cli/overview"
     }
   ],
   "logo": {

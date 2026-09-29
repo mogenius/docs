@@ -1,0 +1,208 @@
+---
+title: "CLI commands"
+description: "kubectl-style verbs for scripting and automation with mocli"
+---
+
+In addition to the [Terminal UI](/cli/terminal-ui), `mocli` provides kubectl-style CLI commands for scripting and automation. They run against your active [context](/cli/clusters-and-contexts) and accept the same connection flags (`--org/--cluster/-n`, `--context`, `--kubeconfig`, `--direct`, `--platform`).
+
+## Listing and getting resources
+
+```bash
+# List all pods in a namespace
+mocli get pods -n acme-staging
+
+# Get a specific resource
+mocli get deployment my-app -n acme-staging
+
+# Output as YAML or JSON
+mocli get configmap my-config -n acme-staging -o yaml
+mocli get secret db-credentials -n acme-staging -o json
+
+# Wide output with additional columns
+mocli get pods -n acme-staging -o wide
+
+# List cluster-scoped resources
+mocli get crd
+mocli get namespaces
+```
+
+`mocli list` is an alias for `mocli get` when listing all resources of a kind:
+
+```bash
+mocli list pods -n acme-staging
+mocli list cronjobs -n acme-staging
+```
+
+## Describing resources
+
+Show a detailed, human-readable view of a resource — its spec, status, and recent events:
+
+```bash
+mocli describe pod my-pod-abc123 -n acme-staging
+mocli describe deployment my-app -n acme-staging
+```
+
+## Creating resources
+
+Create resources from manifest files or directly via CLI:
+
+```bash
+# Create from a YAML manifest (supports multi-document files)
+mocli create -f manifest.yaml -n acme-staging
+
+# Create a namespace
+mocli create namespace acme-staging
+
+# Create a Job with a container image
+mocli create job db-migration --image=postgres:15 -n acme-staging
+
+# Create a Job with a custom command
+mocli create job db-migration --image=postgres:15 -n acme-staging -- pg_dump -h db
+
+# Create a Job from a CronJob template (trigger a one-off run)
+mocli create job --from=cronjob/nightly-backup -n acme-staging
+```
+
+## Applying resources
+
+Apply a manifest with create-or-update semantics — resources that don't exist yet are created, and resources that already exist are updated in place. Applying the same manifest twice is safe (idempotent):
+
+```bash
+mocli apply -f deployment.yaml -n acme-staging
+mocli apply -f manifests.yaml -n acme-staging
+```
+
+Unlike `mocli create`, which fails when a resource already exists, `mocli apply` reconciles the cluster to match your manifest — making it the safer choice for repeatable deployments and CI/CD pipelines.
+
+## Editing resources
+
+Open a resource in your editor and apply the changes on save (uses `$KUBE_EDITOR` or `$EDITOR`):
+
+```bash
+mocli edit deployment my-app -n acme-staging
+mocli edit configmap my-config -n acme-staging
+```
+
+## Scaling and restarting workloads
+
+```bash
+# Scale a deployment
+mocli scale deployment my-app --replicas=3 -n acme-staging
+
+# Roll out a fresh set of pods (restart)
+mocli rollout restart deployment my-app -n acme-staging
+```
+
+## Resource usage
+
+Show CPU and memory usage for pods and nodes:
+
+```bash
+mocli top pod -n acme-staging
+mocli top node
+```
+
+<Note>
+On a direct kubeconfig connection, `top` and pod CPU/RAM columns require a [metrics-server](https://github.com/kubernetes-sigs/metrics-server) on the cluster.
+</Note>
+
+## Deleting resources
+
+```bash
+# Delete a specific resource (prompts for confirmation)
+mocli delete pod my-pod-abc123 -n acme-staging
+mocli delete job db-migration -n acme-staging
+
+# Skip confirmation prompt
+mocli delete pod my-pod-abc123 -n acme-staging -y
+
+# Delete resources defined in a manifest
+mocli delete -f manifest.yaml
+```
+
+## Shell access
+
+Open an interactive shell in a running container:
+
+```bash
+# Shell into a pod (uses first container if multiple)
+mocli shell my-pod -n acme-staging
+
+# Specify a container
+mocli shell my-pod -c app -n acme-staging
+```
+
+`mocli exec` is an alias for `mocli shell`.
+
+## Viewing logs
+
+Stream or fetch logs from pods and jobs:
+
+```bash
+# View logs from a pod
+mocli logs my-pod -n acme-staging
+
+# View logs from a specific container (multi-container pods)
+mocli logs my-pod -c app -n acme-staging
+
+# Stream logs in real-time
+mocli logs my-pod -f -n acme-staging
+
+# View logs from a Job (automatically finds the pod)
+mocli logs job/db-migration -n acme-staging
+```
+
+## Waiting for conditions
+
+Wait for a resource to reach a specific condition — useful in CI/CD pipelines:
+
+```bash
+# Wait for a Job to complete
+mocli wait job/db-migration --for=condition=complete -n acme-staging
+
+# With a timeout
+mocli wait job/db-migration --for=condition=complete --timeout=10m -n acme-staging
+
+# Wait for a Pod to be ready
+mocli wait pod/my-pod --for=condition=ready -n acme-staging
+
+# Wait for a resource to be deleted
+mocli wait pod/my-pod --for=delete -n acme-staging
+```
+
+**Supported conditions:**
+- `condition=complete` — Job completed successfully
+- `condition=failed` — Job failed
+- `condition=ready` — Pod is ready
+- `delete` — Resource has been deleted
+
+## Shell autocompletion
+
+`mocli` can complete commands, flags, and even live resource names, namespaces, and kinds directly in your shell.
+
+The quickest way is to let `mocli` detect your shell and set everything up automatically:
+
+```bash
+mocli completion install
+```
+
+This adds a source line to your shell's config file (`~/.zshrc`, `~/.bashrc`) or writes a completion file for fish (`~/.config/fish/completions/`). The command is idempotent — running it twice does nothing. Restart your shell or re-source the config file to activate it.
+
+To set it up manually, generate the completion script for your shell:
+
+```bash
+mocli completion zsh
+mocli completion bash
+mocli completion fish
+mocli completion powershell
+```
+
+<Tip>
+Autocompletion is dynamic: when you tab-complete a resource name, namespace, or kind, `mocli` queries your active context live — so you get the real names from your cluster, not just static command names.
+</Tip>
+
+## Version
+
+```bash
+mocli version
+```

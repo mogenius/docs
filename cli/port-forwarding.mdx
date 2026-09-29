@@ -1,0 +1,40 @@
+---
+title: "Port forwarding"
+description: "Create secure TCP tunnels to Kubernetes workloads from the terminal with mocli"
+---
+
+Use the CLI to create TCP tunnels to Kubernetes workloads:
+
+```bash
+mocli port-forward -n <namespace> -k <kind> -w <workload-name> -p <local>:<remote>
+```
+
+Supported resource kinds: `Pod`, `Service`, `Deployment`, `StatefulSet`, `DaemonSet`
+
+## Examples
+
+```bash
+# Forward to a Service
+mocli port-forward -n production -k Service -w postgres -p 5432:5432
+
+# Forward to a Deployment
+mocli port-forward -n staging -k Deployment -w api-server -p 8080:8080
+
+# Forward to a specific Pod
+mocli port-forward -n default -k Pod -w my-pod-abc123 -p 3000:3000
+```
+
+## Flags
+
+| Flag | Description |
+| --- | --- |
+| `-n, --namespace` | Kubernetes namespace (required) |
+| `-k, --kind` | Resource kind (required) |
+| `-w, --name` | Workload name (required) |
+| `-p, --port` | Port mapping `LOCAL:REMOTE` (required) |
+
+The tunnel remains active while the CLI process runs. Press `Ctrl+C` to terminate.
+
+<Note>
+On a mogenius platform connection, port-forwards are tunnelled through the platform with full RBAC enforcement and can be exposed as public tunnel URLs. On a direct kubeconfig connection, forwards are local only. See [Tunnels](/workspaces/tunnels).
+</Note>

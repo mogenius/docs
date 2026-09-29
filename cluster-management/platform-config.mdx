@@ -1,0 +1,67 @@
+---
+title: Platform Config
+description: Define and manage a cluster's platform tool stack declaratively through GitOps.
+---
+
+The Platform Config is a declarative definition of your cluster's platform tool stack — the baseline components that every workload on the cluster relies on, such as GitOps, ingress, certificates, monitoring, and secrets. It lives in a Git repository as a single `PlatformConfig` resource, and mogenius keeps the cluster in sync with it through GitOps. Instead of installing and wiring these components by hand, you describe the tool stack you want and the operator reconciles the cluster to match.
+
+## Components
+
+The Platform Config bundles the platform components you can enable and configure:
+
+- **Argo CD** — the GitOps engine that keeps the cluster in sync with Git. Configure the repositories it watches.
+- **kube-prometheus-stack** — metrics and dashboards with Prometheus, Grafana, and Alertmanager. Adjust individual charts through patches.
+- **Alloy** — collects logs and metrics from the cluster.
+- **Loki** — persistent log storage. Optional, disabled by default; enable it when you want logs retained on the cluster.
+- **Renovate operator** — automated dependency updates for your platform components.
+- **Traefik** — the ingress controller. Set service annotations, for example load-balancer provider annotations.
+- **external-dns** — automated DNS record management. Choose the provider (for example Cloudflare), reference the API-token secret, and set the domains it manages via `domainFilters`.
+- **cert-manager** — TLS certificates via Let's Encrypt. Define your `clusterIssuers` and `issuers`.
+- **external-secrets** — pulls secrets from an external vault. Configure the `vaults` to connect (for example 1Password).
+
+## Managing the Platform Config
+
+You edit the Platform Config in the mogenius UI under **Cluster → Settings → Platform config**. Every change you save is written back to the Git repository, and the GitOps engine applies it to the cluster — so Git always reflects the current state of your platform.
+
+## Example
+
+A `PlatformConfig` is a Kubernetes resource. Here is a shortened example with a few components enabled:
+
+```yaml
+apiVersion: mogenius.com/v1alpha1
+kind: PlatformConfig
+metadata:
+  name: platform
+spec:
+  platformVersion: main
+
+  gitOps:
+    argocd:
+      enabled: true
+    repositories: []
+
+  kubePrometheusStack:
+    enabled: true
+    patches:
+      - name: grafana
+
+  traefik:
+    enabled: true
+
+  certManager:
+    enabled: true
+    clusterIssuers:
+      - name: letsencrypt-prod
+        email: ops@example.com
+        solvers:
+          - http01:
+              ingress:
+                class: traefik
+```
+
+## Platform Config vs. Blueprints
+
+Platform Config and [Blueprints](/deploying-applications/blueprints) serve two distinct roles:
+
+- **Platform Config** manages the **platform** — the shared tool stack of a cluster. This is the admin's job.
+- **Blueprints** create **applications** on top of that platform. This is what the user does.

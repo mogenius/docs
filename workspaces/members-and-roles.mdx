@@ -29,3 +29,8 @@ In a workspace you can invite users to provide them with access to Kubernetes re
 |Volumes|Create, Edit, Delete|Create, Edit, Delete|View|
 |Integrations|Create, Edit, Delete|Create, Edit, Delete|View|
 |Team members|Add, Edit, Delete|Add, Edit, Delete|View|
+
+## Access via identity-provider groups
+Besides inviting members individually, you can grant workspace access through identity-provider groups. Using a [GroupGrant](/cluster-management/single-sign-on#group-based-workspace-access), an SSO group is mapped to a workspace with a role (viewer, editor, or admin).
+
+Members who receive access this way appear in the member list marked as **SSO group**. Their role is managed in the identity provider / GroupGrant, not per user in mogenius. See [Single Sign-On](/cluster-management/single-sign-on) for setup.

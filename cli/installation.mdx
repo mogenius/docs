@@ -1,0 +1,90 @@
+---
+title: "Installation"
+description: "Install mocli, sign in for platform features, and configure self-hosted or API-key access"
+---
+
+## Install
+
+### Mac, Linux
+
+Use [homebrew](https://brew.sh) to install `mocli`:
+
+```bash
+brew tap mogenius/mocli
+brew install mocli
+```
+
+<Note>
+On Linux with a headless machine, `mocli login` requires a browser for the initial login. After the first login, your session persists locally.
+</Note>
+
+### Windows
+
+```bash
+scoop bucket add mocli https://github.com/mogenius/homebrew-mocli
+scoop install mocli
+```
+
+## Login (optional)
+
+Signing in to mogenius is **optional** — you only need it for the platform features (organizations, workspaces, operator-connected clusters, tunnels). Working against a local kubeconfig needs no login.
+
+To use platform features, authenticate once. Your browser opens automatically to complete the login:
+
+```bash
+mocli login
+```
+
+Your session is stored locally, so you only need to log in once per machine.
+
+```bash
+# Log out again
+mocli logout
+```
+
+## Self-hosted instances
+
+By default, `mocli` connects to the mogenius cloud at `app.mogenius.com`. If you run a self-hosted mogenius platform, point `mocli` at your own instance by editing its configuration file.
+
+The config file lives at:
+
+| OS | Path |
+| --- | --- |
+| Mac, Linux | `~/.mocli/config.yaml` |
+| Windows | `%USERPROFILE%\.mocli\config.yaml` |
+
+Replace the endpoints in the `services` block with the URLs of your self-hosted deployment:
+
+```yaml
+services:
+  api:      "https://platform-api.mogenius.example.com/"
+  user:     "https://platform-user.mogenius.example.com/"
+  platform: "https://app.mogenius.example.com/"
+  ws:       "wss://k8s-cmd-stream.mogenius.example.com"
+  socket:   "https://platform-ws.mogenius.example.com"
+```
+
+All five endpoints refer to the same self-hosted instance. Ask your platform administrator for the exact hostnames if you are unsure — they follow the DNS scheme configured during installation.
+
+<Note>
+`mocli` must be able to reach these endpoints over the network from the machine it runs on. In restricted environments where the platform is only reachable from inside a managed desktop or jump host (for example via a VDI or bastion), run `mocli` there rather than on your local machine.
+</Note>
+
+## API-key authentication
+
+For automated pipelines — or locked-down environments where the browser callback used by `mocli login` is blocked — authenticate with an API key instead. It needs no local callback server:
+
+```bash
+# API-key login
+mocli login --api-key mo_pat:<your-api-key>
+
+# Or via environment variable
+export MOGENIUS_API_KEY=mo_pat:<your-api-key>
+mocli login --api-key
+```
+
+Create the API key in your mogenius profile settings. The key is a single opaque token starting with `mo_pat:`. When `MOGENIUS_API_KEY` is set, `mocli` automatically uses API-key authentication.
+
+<Tip>
+**CI/CD integration:** set the `MOGENIUS_API_KEY` environment variable in your pipeline and `mocli` picks it up automatically — no interactive step required.
+</Tip>

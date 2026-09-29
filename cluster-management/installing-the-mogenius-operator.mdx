@@ -11,7 +11,7 @@ To successfully complete the next steps, you will need the following:
 
 - A Kubernetes cluster. We recommend a managed Kubernetes service, like EKS (Amazon AWS), AKS (Microsoft Azure) or GKE (Google Cloud Platform), but any cluster with Kubernetes version 1.24 or higher will work. To get started, a local Kubernetes like Docker Desktop, k3s, or minikube is also a great option.
 - A working installation of `Helm` and `kubectl`
-- OR optionally the [mogenius CLI](../workspaces/mogenius-CLI)
+- OR optionally the [mogenius CLI](/cli/installation)
 - Kubernetes cluster admin permissions
 
 ## Resource requirements
@@ -24,6 +24,20 @@ In your organization open "Clusters" and select "Add cluster." Enter a display n
 
 <Note>
   This will create a management pane for a Kubernetes cluster in mogenius. It will not create an actual Kubernetes cluster.
+</Note>
+
+## Set up your platform tool stack (optional)
+
+During onboarding you can optionally set up a [Platform Config](/cluster-management/platform-config) — a declarative tool stack (GitOps, ingress, certificates, monitoring, secrets, and more) that the operator installs and keeps in sync for you:
+
+1. Connect a Git repository for the Platform Config.
+2. Configure the components you want. If the repository has no Platform Config yet, mogenius loads a default for you to adjust; if one already exists, it is loaded so you can edit it.
+3. Save. mogenius commits the `platformconfig.yaml` to the repository (directly or as a pull request).
+
+Once the operator is installed (next step), it installs the GitOps engine, which syncs the Platform Config to the cluster; the operator then reconciles it and creates the configured components.
+
+<Note>
+  This step is optional. You can also connect a cluster with just the operator and add a Platform Config later. See [Platform Config](/cluster-management/platform-config) for the full component catalog and how to manage it.
 </Note>
 
 ## Install the operator
