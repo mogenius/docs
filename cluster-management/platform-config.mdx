@@ -9,7 +9,7 @@ The Platform Config is a declarative definition of your cluster's platform tool 
 
 The Platform Config bundles the platform components you can enable and configure:
 
-- **Argo CD** — the GitOps engine that keeps the cluster in sync with Git. Configure the repositories it watches.
+- **GitOps engine** — keeps the cluster in sync with Git. Choose **Argo CD** (`gitOps.argocd`) or **Flux** (`gitOps.fluxcd`) — a cluster runs one engine — and configure the `repositories` it watches. See [GitOps](/cluster-management/gitops/overview) for how the two engines differ.
 - **kube-prometheus-stack** — metrics and dashboards with Prometheus, Grafana, and Alertmanager. Adjust individual charts through patches.
 - **Alloy** — collects logs and metrics from the cluster.
 - **Loki** — persistent log storage. Optional, disabled by default; enable it when you want logs retained on the cluster.
@@ -36,7 +36,7 @@ spec:
   platformVersion: main
 
   gitOps:
-    argocd:
+    argocd:            # or: fluxcd (a cluster runs one engine)
       enabled: true
     repositories: []
 
