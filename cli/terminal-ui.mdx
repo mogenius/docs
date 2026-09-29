@@ -1,0 +1,67 @@
+---
+title: "Terminal UI"
+description: "Browse and manage your resources in a full-screen, k9s-style interface with mocli tui"
+---
+
+Launch the interactive Terminal UI to browse and manage your resources:
+
+```bash
+mocli tui
+```
+
+The TUI provides a visual interface for navigating your clusters and Kubernetes resources. It works against both a mogenius platform cluster and a local kubeconfig context — on a platform connection you additionally navigate through organizations and clusters. All keybindings are displayed at the bottom of each screen.
+
+## Navigation
+
+The TUI follows a hierarchical navigation pattern. On a platform connection this starts at the organization; a direct kubeconfig connection has no org/cluster hierarchy above the cluster.
+
+**Organization → Cluster → Namespace → Resources**
+
+| Key | Action |
+| --- | --- |
+| Arrow keys | Move up/down |
+| `Enter` | Select / drill down |
+| `Esc` | Go back |
+| `q` | Quit |
+| `/` | Filter list |
+| `:` | Command mode (switch resource types, including CRDs) |
+
+## Browsing resources
+
+Once you select a namespace, you'll see a list of Pods by default. Use command mode (`:`) to switch between resource types:
+
+- `:pods` or `:po` — Pods
+- `:deployments` or `:deploy` — Deployments
+- `:services` or `:svc` — Services
+- `:statefulsets` or `:sts` — StatefulSets
+- `:daemonsets` or `:ds` — DaemonSets
+- `:jobs` — Jobs
+- `:cronjobs` or `:cj` — CronJobs
+- `:configmaps` or `:cm` — ConfigMaps
+- `:secrets` — Secrets
+- `:ingresses` or `:ing` — Ingresses
+
+The TUI also supports custom resources (CRDs) — type the resource name in command mode to browse any resource type available in your cluster.
+
+## Viewing logs
+
+Select a Pod and press `Enter` to view its logs in real-time. If the Pod has multiple containers, you'll be prompted to select one.
+
+| Key | Action |
+| --- | --- |
+| `PgUp` / `PgDn` | Scroll through logs |
+| `s` | Toggle autoscroll |
+| `w` | Toggle word wrap |
+| `Esc` | Return to resource list |
+
+## Port forwarding
+
+From the logs view or resource list, press `t` to create a port-forward tunnel to the selected Pod. Enter the port mapping (e.g., `8080:80`) and the tunnel will be established.
+
+Active tunnels persist while the TUI is running. Press `Esc` from the port-forward view to return to browsing while keeping tunnels open. See [Port forwarding](/cli/port-forwarding) for the scriptable CLI equivalent.
+
+## Shell access
+
+Select a Pod and press `x` to open an interactive shell session in the container. If the Pod has multiple containers, you'll be prompted to select one.
+
+On a platform connection the shell session is tunnelled through the mogenius platform — no local kubeconfig or direct cluster access required.

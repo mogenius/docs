@@ -1,0 +1,66 @@
+---
+title: "Clusters & contexts"
+description: "List every reachable cluster and target a mogenius platform cluster or a local kubeconfig context"
+---
+
+`mocli` reaches a cluster either through the mogenius platform or straight through your kubeconfig. A **context** stores which cluster you are pointed at (plus a default namespace) so that resource commands run without re-selecting it every time.
+
+## List every reachable cluster
+
+`get-contexts` shows the mogenius clusters of every organization you belong to **and** the contexts in your kubeconfig, in one table. The active one is marked with `*`.
+
+```bash
+# Both sources side by side
+mocli config get-contexts
+
+# kubeconfig contexts only
+mocli config get-contexts --direct
+```
+
+<Note>
+mogenius clusters are only listed when you are already logged in — `get-contexts` never opens a browser. A kubeconfig is read regardless of login.
+</Note>
+
+## Set your context
+
+```bash
+# Interactive setup — pick a platform cluster (org + cluster + default namespace)
+mocli config use-context
+
+# Non-interactive platform cluster
+mocli config use-context --org acme --cluster prod -n acme-staging
+
+# Pin a kubeconfig context (direct access)
+mocli config use-context --context kind-dev
+
+# Use a specific kubeconfig file
+mocli config use-context --kubeconfig ~/clusters/dev.yaml --context dev
+
+# Show what you are currently pointed at
+mocli config current-context
+
+# List available organizations and clusters (platform)
+mocli config list
+```
+
+The context is stored locally and used by all resource commands. You can override it per command with the flags below.
+
+## Connection flags
+
+These flags work on any command and select the connection for that invocation:
+
+| Flag | Meaning |
+| --- | --- |
+| `--kubeconfig <path>` | Path to a kubeconfig file (implies direct access) |
+| `--context <name>` | kubeconfig context to use (implies direct access) |
+| `--direct` | Use the kubeconfig's current-context |
+| `--platform` | Force the mogenius connection even if a direct one is saved |
+| `--org`, `--cluster`, `-n` | Override the platform organization, cluster, and namespace |
+
+## kubeconfig resolution
+
+Direct access follows standard kubeconfig resolution: `$KUBECONFIG` first, then `~/.kube/config`, including multi-file merging. `exec` credential plugins work out of the box — for example `aws eks get-token` or `gke-gcloud-auth-plugin` — so cloud clusters authenticate exactly as they do with `kubectl`.
+
+<Note>
+`mocli cluster connect` (registering a cluster with the platform and installing the operator) is a platform action and has no meaning on a direct kubeconfig connection. See [Installing the mogenius operator](/cluster-management/installing-the-mogenius-operator).
+</Note>

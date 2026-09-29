@@ -1,112 +1,130 @@
 ---
 title: Single Sign-On
-description: Configure SSO for your mogenius organization using Microsoft Entra ID or GitLab
+description: Configure SSO for your mogenius organization using Microsoft Entra, GitHub, or any OpenID Connect provider — including group-based workspace access.
 ---
 
 # Single Sign-On
 
-mogenius supports Single Sign-On (SSO) through OpenID Connect (OIDC), allowing team members to authenticate using their existing identity provider accounts. Once configured, your organization receives a unique login page that can be shared with your team.
+mogenius supports Single Sign-On (SSO) through OpenID Connect (OIDC), allowing team members to authenticate using their existing identity provider accounts. Once configured, your organization receives a unique login page that you share with your team.
 
 ## Supported Providers
 
 - **Microsoft Entra ID** (formerly Azure Active Directory)
-- **GitLab** (including self-hosted instances)
+- **GitHub**
+- **OpenID Connect** — any standards-compliant OIDC provider (GitLab, Okta, Keycloak, Auth0, and others)
+
+## How the connection works
+
+You configure SSO under **Organization settings → Single sign-on**. When you select a provider, the form shows a **Redirect URI** for your organization — copy it and register it in your identity-provider app. The provider validates this value exactly, so it must match including the trailing slash:
+
+```
+https://<idp-host>/source/oauth/callback/org-<orgId>/
+```
+
+After you enter the provider credentials and click **Connect**, mogenius displays a **Login URL** for your organization. Share this URL with your team — users who sign in via this link are added to your organization automatically.
 
 ## Microsoft Entra ID
 
-### Prerequisites
+All steps happen in the **Microsoft Entra admin center** of your own tenant. First decide how mogenius should learn about your users' groups — the steps differ:
 
-- An existing organization using [Microsoft Entra](https://www.microsoft.com/de-de/security/business/microsoft-entra)
-- A mogenius organization with administrative permissions. Don't have one yet? Create one [here](https://app.mogenius.com)
+| Mode | What mogenius gets | Requires |
+| -- | -- | -- |
+| **Microsoft Graph** (default) | Group **names** and Entra app roles → organization roles and workspace access | Delegated `GroupMember.Read.All` with **admin consent** |
+| **Token claims** | Group **object IDs** from the sign-in token → workspace access via GroupGrant rules | Only the groups claim on the app registration — **no Graph permission, no admin consent** |
 
-### Step 1: Get the Redirect URI from mogenius
+### Step 1: Register the application (both modes)
 
-1. In your mogenius organization, go to **Settings**.
-2. In the **Single sign-on** section, click **Configure**.
-3. Copy the **Redirect URI** displayed at the top of the form — you will need this for your Entra app registration.
+1. **App registrations → New registration.** Any name; supported account types: *Accounts in this organizational directory only*.
+2. **Authentication → Add a platform → Web.** Set the Redirect URI to the value shown in the mogenius SSO form. The trailing slash is required.
+3. **Certificates & secrets → New client secret.** Copy the secret **Value** immediately — it is shown only once.
+4. **Overview.** Note the *Application (client) ID* and the *Directory (tenant) ID*.
 
-### Step 2: Create an Entra App Registration
+### Step 2a: Group memberships via Microsoft Graph
 
-1. Go to [entra.microsoft.com](https://entra.microsoft.com) and sign in with your Microsoft account.
-2. Navigate to **Applications > App registrations**.
-3. Click **New registration** and fill in the details:
-   - **Name**: A recognizable internal name for the app.
-   - **Supported account types**: Select *Accounts in this organizational directory only (Single tenant)*.
-   - **Redirect URI**: Select "Web" and paste the Redirect URI you copied from mogenius.
-4. Click **Register** to create the app.
-
-### Step 3: Create a Client Secret
-
-1. In the overview of your newly registered app, go to **Certificates & secrets > Client secrets**.
-2. Click **New client secret** and note the generated value.
-3. **Save this value securely** (e.g., in a vault) — you will not be able to view it again later.
-
-### Step 4: Connect Your Entra App with mogenius
-
-1. Back in mogenius, enter the following details from your Entra app:
-   - **Client ID** — Found in the app overview as "Application (client) ID"
-   - **Tenant ID** — Found in the app overview as "Directory (tenant) ID"
-   - **Client Secret** — The value you saved in the previous step
-2. Click **Connect** to complete the setup.
-
-### Step 5: Share the Login URL
-
-Your SSO configuration is complete. mogenius displays a **Login URL** for your organization. Share this URL with your team — users who sign in via this link will automatically be added to your mogenius organization.
+1. **API permissions → Add a permission → Microsoft Graph → Delegated →** `GroupMember.Read.All`.
+2. **Grant admin consent for `<tenant>`.** The row must show *Granted*. Adding the permission alone is not enough — users would see "Approval required" at sign-in.
+3. **App roles → Create app role.** Allowed member types *Users/Groups*; values `admin`, `editor`, `viewer` (further values are passed on as workspace roles).
+4. **Enterprise applications → `<app>` → Users and groups → Add user/group.** Assign each group an app role. Only assigned groups are synced.
+5. Organization roles: groups named `mogenius-admin`, `mogenius-editor`, or `mogenius-viewer` set the organization role; their app role is ignored.
 
 <Note>
-Removing a user from your Entra organization will also deactivate their access in mogenius automatically.
+Assigning groups to enterprise applications requires Entra ID P1. The app reads its own role assignments by itself, so no application permission is needed.
 </Note>
 
-## GitLab
+### Step 2b: Group memberships via token claims
 
-You can use GitLab as an SSO provider for your mogenius organization, including self-hosted GitLab instances.
-
-### Prerequisites
-
-- A GitLab account with permissions to create OIDC applications (at group, user, or instance level)
-- A mogenius organization with administrative permissions
+1. **Token configuration → Add groups claim.** Select **Security groups**; keep **Group ID** for the ID token. (Manifest equivalent: `"groupMembershipClaims": "SecurityGroup"`.)
+2. **Token configuration → Add optional claim → ID:** `email`, `given_name`, `family_name` (recommended for complete profiles).
+3. **API permissions:** the default `User.Read` is enough — no admin consent.
+4. **Groups → `<group>` → Overview → Object ID.** Note the object ID of every group that should grant workspace access.
+5. In the cluster, create a GroupGrant per group (see [Group-based workspace access](#group-based-workspace-access)).
 
 <Note>
-For self-hosted GitLab, make sure your instance is reachable on a public HTTPS hostname. mogenius requires discovery URLs that are publicly accessible.
+Organization roles are not derived from Entra in this mode — reserved group names don't match object IDs. Manage them in mogenius. If a user belongs to more than ~200 groups, Entra omits the groups claim; choose *Groups assigned to the application* and assign the relevant groups under **Enterprise applications → Users and groups** (Entra ID P1).
 </Note>
 
-### Step 1: Get the Redirect URI from mogenius
+### Step 3: Connect in mogenius
 
-1. In your mogenius organization, go to **Settings**.
-2. In the **Single sign-on** section, click **Configure** and select **GitLab**.
-3. Copy the **Redirect URI** displayed at the top of the form.
+1. **Organization settings → Single sign-on → Microsoft Entra.** Choose *Group memberships* (**Microsoft Graph** or **Token claims**), enter the **Client ID**, **Client Secret**, and **Tenant ID**, then click **Connect**.
+2. Members sign in through the organization's Login URL. Group changes take effect at the next sign-in.
 
-### Step 2: Create an OIDC Application in GitLab
+### Both modes
 
-1. In GitLab, navigate to your group, user settings, or admin area (depending on where you want to register the app).
-2. Go to **Applications** and click **New application**.
-3. Fill in the details:
-   - **Name**: A recognizable name (e.g., "mogenius SSO")
-   - **Redirect URI**: Paste the Redirect URI from mogenius
-   - **Confidential**: Enabled
-   - **Scopes**: Select `openid`, `email`, and `profile`
-4. Click **Save application**.
-5. Note the **Application ID** and **Secret** — you will need these for mogenius.
+- Users must be **members** of a group — owners do not count.
+- The Redirect URI needs the trailing slash.
 
-### Step 3: Connect GitLab with mogenius
+## GitHub
 
-1. Back in mogenius, enter the following details:
-   - **Application ID** — From your GitLab application
-   - **Client Secret** — From your GitLab application
-   - **Self-hosted**: If using a self-hosted GitLab instance, enable the toggle and enter your GitLab base URL (HTTPS only)
-2. Click **Connect** to complete the setup.
+1. In GitHub, go to **Settings → Developer settings → OAuth Apps → New OAuth App** (in your personal account or an organization).
+2. Fill in the details:
+   - **Application name**: A recognizable name (e.g., "mogenius SSO")
+   - **Authorization callback URL**: Paste the Redirect URI from the mogenius SSO form
+3. Register the app, then generate a **client secret**.
+4. Back in mogenius, select **GitHub**, enter the **Client ID** and **Client Secret**, and click **Connect**.
 
-### Step 4: Share the Login URL
+## OpenID Connect
 
-Your SSO configuration is complete. Share the **Login URL** displayed in mogenius with your team.
+Use the generic OpenID Connect provider for any standards-compliant OIDC identity provider — for example GitLab (including self-hosted instances), Okta, Keycloak, or Auth0.
+
+1. In your provider, create an OIDC/OAuth application:
+   - **Redirect URI**: Paste the Redirect URI from the mogenius SSO form
+   - **Scopes**: `openid`, `email`, `profile`
+   - Where applicable, mark the application as **confidential**.
+2. Note the **Client ID**, **Client Secret**, and the provider's **Issuer URL** — the base URL where its discovery document lives at `<issuer>/.well-known/openid-configuration` (for example `https://gitlab.com` for GitLab.com, or your self-hosted base URL).
+3. Back in mogenius, select **OpenID Connect**, enter the **Client ID**, **Client Secret**, and **Issuer URL**, then click **Connect**.
+
+<Note>
+For self-hosted providers, make sure the instance is reachable on a public HTTPS hostname. mogenius needs the discovery URL to be publicly accessible.
+</Note>
+
+## Group-based workspace access
+
+With a GroupGrant, an identity-provider group maps to access on a workspace (or cluster) with a specific role. In the token-claims flow you reference the group by its object ID; with name-based groups you reference the group name.
+
+```yaml
+apiVersion: mogenius.com/v1alpha1
+kind: GroupGrant
+metadata:
+  name: <grant-name>
+  namespace: mogenius
+spec:
+  claimValue: <entra-group-object-id>
+  targetType: workspace   # or: cluster
+  targetName: <workspace-name>
+  role: editor            # optional: viewer (default) | editor | admin
+```
+
+`role` is optional. A GroupGrant saved without a role defaults to **viewer** (applied for kubectl/GitOps as well as the UI/CLI), so a forgotten role never grants more than read access.
+
+Members who receive access through a GroupGrant appear in the workspace member list marked as **SSO group**. Their role is managed in the identity provider / GroupGrant, not per user in mogenius.
 
 ## Troubleshooting
 
 **Redirect URI mismatch error**
-Ensure the Redirect URI in your identity provider exactly matches the one shown in mogenius, including the protocol (`https://`) and trailing path.
+Ensure the Redirect URI in your identity provider exactly matches the one shown in mogenius, including the protocol (`https://`) and the trailing slash.
 
-**Discovery failures (self-hosted GitLab)**
-Verify that your GitLab instance is reachable from the internet and that `<base-url>/.well-known/openid-configuration` returns a valid JSON document. Self-hosted instances behind a VPN or on a private IP cannot be used.
+**Discovery failures (self-hosted OpenID Connect)**
+Verify that your provider is reachable from the internet and that `<issuer>/.well-known/openid-configuration` returns a valid JSON document. Instances behind a VPN or on a private IP cannot be used.
 
 **Missing email in user profile**
-Ensure the `email` scope is included in your OIDC application configuration and that users have a verified email address in their identity provider.
+Ensure the `email` scope (or, for Entra, the `email` optional claim) is included, and that users have a verified email address in their identity provider.

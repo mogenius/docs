@@ -1,0 +1,48 @@
+---
+title: "Overview"
+description: "Manage Kubernetes clusters, resources, and workloads from your terminal with mocli — through the mogenius platform or straight through your kubeconfig"
+---
+
+`mocli` is the mogenius command-line tool. It ships an interactive Terminal UI (k9s-style navigation) and kubectl-style commands for scripting — browse resources, stream logs, open shells, and set up port-forwards, all from your terminal.
+
+## Two ways to connect
+
+`mocli` reaches a cluster in one of two ways, and lists both side by side:
+
+- **mogenius platform** — clusters connected to your mogenius organization through the operator. Authentication is handled by the platform, so you get secure access to any connected cluster from anywhere without a local kubeconfig.
+- **Local kubeconfig (direct access)** — point `mocli` at a kubeconfig context and go. No operator, no `mocli login` required. Standard kubeconfig resolution applies, including `exec` credential plugins like `aws eks get-token`.
+
+You choose the connection when you set your context or with connection flags — see [Clusters & contexts](/cli/clusters-and-contexts).
+
+## What works where
+
+Features a plain kubeconfig connection cannot provide are hidden rather than failing when you reach for them.
+
+| Capability | mogenius | kubeconfig |
+| --- | :---: | :---: |
+| Browse, describe, edit and delete resources | ✅ | ✅ |
+| Logs, shell, port-forward | ✅ | ✅ |
+| Organizations and workspaces | ✅ | — |
+| Public tunnel URLs | ✅ | local only |
+| RBAC-enforced access without handing out a kubeconfig | ✅ | — |
+| `mocli ssh-proxy` / `setup-ssh` | ✅ | — |
+| Operator install and upgrade (`mocli cluster connect`) | ✅ | — |
+| Pod CPU/RAM columns | ✅ | needs metrics-server |
+| Server-side search and sorting | ✅ | done locally |
+
+## Get started
+
+<CardGroup cols={2}>
+  <Card title="Installation" icon="download" href="/cli/installation">
+    Install `mocli`, sign in (optional), and configure self-hosted or API-key access.
+  </Card>
+  <Card title="Clusters & contexts" icon="sitemap" href="/cli/clusters-and-contexts">
+    List every reachable cluster and pick a platform cluster or a kubeconfig context.
+  </Card>
+  <Card title="Terminal UI" icon="table-cells" href="/cli/terminal-ui">
+    Launch `mocli tui` for a full-screen, k9s-style view of your cluster.
+  </Card>
+  <Card title="CLI commands" icon="terminal" href="/cli/commands">
+    kubectl-style verbs for scripting and automation.
+  </Card>
+</CardGroup>
