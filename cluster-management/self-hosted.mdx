@@ -19,52 +19,101 @@ The mogenius platform is available as a SaaS option on [app.mogenius.com](https:
 For a quick installation of the mogenius platform with defaults where possible, follow these steps.
 
 ### Create a Namespace
-On the cluster where you're installing the mogenius platform, create a new namespace `mogenius-platform`.
+On the cluster where you're installing the mogenius platform, create a new namespace `mogenius-platform`. All following commands target this namespace.
+
+```bash
+kubectl create namespace mogenius-platform
+```
 
 ### Create Secrets
 
 The platform services require a few secrets containing critical credentials that aren't created by the Helm chart. The following secrets are required for the minimum configuration. Additional secrets can be used when working with more sophisticated Helm chart configurations.
 
-**1. Container Registry**  
-After obtaining a subscription for the self-hosted version, you will have received credentials for the container registry where the platform images are stored. In your `mogenius-platform` namespace create a new secret `mo-registry-credentials` and store the credentials as type `kubernetes.io/dockerconfigjson`.
+The commands below create each secret directly with `kubectl`. They generate secure random values on the fly using `openssl`, so you can run them as-is and only replace the placeholders that are marked with `<...>`.
 
-**2. Valkey (Redis-compatible)**  
-Create a secret `mo-redis-secret` with the key `REDIS_SECRET`. Define a secure password as a value that you store in a safe place (e.g. a vault).
+<Note>
+  The encryption key `MO_CORE_NEST__SSH_SYM_ENC_KEY` must be **identical** in the `mo-platform-shared` and `mo-platform-user-secret` secrets. The commands below generate it once into a shell variable and reuse it, so run them in the same terminal session.
+</Note>
 
-**3. Encryption Key**  
-Create a secret `mo-platform-shared` with the key `MO_CORE_NEST__SSH_SYM_ENC_KEY`. As a value, use `openssl rand -base64 32` or a similar method on your terminal to create a base64-encrypted key.
+**1. Container Registry**
 
-**4. MySQL**  
-Create the secret `mo-mysql-secret` with the keys `MYSQL_PASSWORD` and `MYSQL_ROOT_PASSWORD`. Use secure passwords as values.
+After obtaining a subscription for the self-hosted version, you will have received credentials for the container registry where the platform images are stored. Store them as a `mo-registry-credentials` secret of type `kubernetes.io/dockerconfigjson`. Replace the placeholders with the values from your subscription.
 
-**5. Admin User**  
-Create the secret `mo-platform-user-secret` with the following keys and values:  
-
-`MO_USER_NEST__SYSTEM_ADMIN_EMAIL`  
-The email address to log in with your admin user.  
-
-`MO_USER_NEST__SYSTEM_ADMIN_PASSWORD`  
-The password for your admin user.  
-
-`MO_CORE_NEST__SSH_SYM_ENC_KEY`  
-Use the same value that you set in the secret `mo-platform-shared`.  
-
-`MO_USER_NEST__JWT_PRIVATE`  
-Create a private key using the following commands and retrieve the value from the text file.
+```bash
+kubectl create secret docker-registry mo-registry-credentials \
+  --namespace mogenius-platform \
+  --docker-server=<REGISTRY_SERVER> \
+  --docker-username=<REGISTRY_USERNAME> \
+  --docker-password=<REGISTRY_PASSWORD>
 ```
+
+**2. Valkey (Redis-compatible)**
+
+Holds the password shared by all Valkey instances. The command generates a secure random value.
+
+```bash
+kubectl create secret generic mo-redis-secret \
+  --namespace mogenius-platform \
+  --from-literal=REDIS_SECRET="$(openssl rand -base64 32)"
+```
+
+**3. Encryption Key**
+
+Generate the symmetric encryption key once and keep it in a shell variable so it can be reused for the admin user secret in step 5.
+
+```bash
+export MO_ENC_KEY="$(openssl rand -base64 32)"
+
+kubectl create secret generic mo-platform-shared \
+  --namespace mogenius-platform \
+  --from-literal=MO_CORE_NEST__SSH_SYM_ENC_KEY="$MO_ENC_KEY"
+```
+
+**4. MySQL**
+
+Holds the application and root passwords for the MySQL database. The command generates secure random values.
+
+<Warning>
+  Avoid single quotes (`'`) and backslashes (`\`) in MySQL passwords — they break the MySQL container's init and cause *Access denied*. Use **alphanumeric passwords** (`A–Z`, `a–z`, `0–9`). The command below already generates compliant values.
+</Warning>
+
+```bash
+kubectl create secret generic mo-mysql-secret \
+  --namespace mogenius-platform \
+  --from-literal=MYSQL_PASSWORD="$(LC_ALL=C tr -dc 'A-Za-z0-9' </dev/urandom | head -c 32)" \
+  --from-literal=MYSQL_ROOT_PASSWORD="$(LC_ALL=C tr -dc 'A-Za-z0-9' </dev/urandom | head -c 32)"
+```
+
+**5. Admin User**
+
+Holds the credentials for the initial admin user and the JWT signing keys. First generate the EC key pair used for signing JWTs:
+
+```bash
 openssl ecparam -genkey -name secp521r1 -noout -out ec512-key-pair.pem
-openssl base64 -A -in ec512-key-pair.pem -out ec512-key-pair.txt
-```
-
-`MO_USER_NEST__JWT_PUBLIC`  
-Create a public key using the following commands and retrieve the value from the text file.  
-```
 openssl ec -in ec512-key-pair.pem -pubout -out public.pem
-openssl base64 -A -in public.pem -out public.txt
 ```
 
-`MO_USER_NEST__SESSION_SECRET`  
-Define a secure secret of your choice.
+Then create the secret. Replace the admin email and password placeholders; all other values are derived automatically (the JWT keys are base64-encoded, and `MO_CORE_NEST__SSH_SYM_ENC_KEY` reuses the `$MO_ENC_KEY` from step 3).
+
+```bash
+kubectl create secret generic mo-platform-user-secret \
+  --namespace mogenius-platform \
+  --from-literal=MO_USER_NEST__SYSTEM_ADMIN_EMAIL="<ADMIN_EMAIL>" \
+  --from-literal=MO_USER_NEST__SYSTEM_ADMIN_PASSWORD="<ADMIN_PASSWORD>" \
+  --from-literal=MO_CORE_NEST__SSH_SYM_ENC_KEY="$MO_ENC_KEY" \
+  --from-literal=MO_USER_NEST__JWT_PRIVATE="$(openssl base64 -A -in ec512-key-pair.pem)" \
+  --from-literal=MO_USER_NEST__JWT_PUBLIC="$(openssl base64 -A -in public.pem)" \
+  --from-literal=MO_USER_NEST__SESSION_SECRET="$(openssl rand -base64 32)"
+```
+
+The keys stored in this secret are:
+
+`MO_USER_NEST__SYSTEM_ADMIN_EMAIL` — the email address to log in with your admin user.
+`MO_USER_NEST__SYSTEM_ADMIN_PASSWORD` — the password for your admin user.
+`MO_CORE_NEST__SSH_SYM_ENC_KEY` — the same encryption key set in the `mo-platform-shared` secret.
+`MO_USER_NEST__JWT_PRIVATE` — the base64-encoded private key for signing JWTs.
+`MO_USER_NEST__JWT_PUBLIC` — the base64-encoded public key for verifying JWTs.
+`MO_USER_NEST__SESSION_SECRET` — a secure random secret for session handling.
 
 
 ### Prepare your values.yaml
@@ -131,7 +180,7 @@ storage:
 ### Deploy the Helm chart
 Run the following command on your cluster to install the Helm chart with your values.yaml.
 
-```
+```bash
 helm repo add mogenius https://helm.mogenius.com/private
 helm install mogenius-platform mogenius/mo-infrastructure -n mogenius-platform -f values.yaml
 ```
@@ -139,8 +188,8 @@ helm install mogenius-platform mogenius/mo-infrastructure -n mogenius-platform -
 ### Access the mogenius web interface
 Check the status of the installation and make sure all Pods are starting properly.
 
-```
-kubectl get Pods -n mogenius-platform
+```bash
+kubectl get pods -n mogenius-platform
 ```
 
 When all Pods are `Running`, access the mogenius platform with the hostname you specified in your Ingress (e.g. mogenius.yourdomain.com). You can log in with the credentials of your admin user.
