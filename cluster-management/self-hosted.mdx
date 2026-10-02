@@ -73,11 +73,15 @@ kubectl create secret generic mo-platform-shared \
 
 Holds the application and root passwords for the MySQL database. The command generates secure random values.
 
+<Warning>
+  Avoid single quotes (`'`) and backslashes (`\`) in MySQL passwords — they break the MySQL container's init and cause *Access denied*. Use **alphanumeric passwords** (`A–Z`, `a–z`, `0–9`). The command below already generates compliant values.
+</Warning>
+
 ```bash
 kubectl create secret generic mo-mysql-secret \
   --namespace mogenius-platform \
-  --from-literal=MYSQL_PASSWORD="$(openssl rand -base64 24)" \
-  --from-literal=MYSQL_ROOT_PASSWORD="$(openssl rand -base64 24)"
+  --from-literal=MYSQL_PASSWORD="$(LC_ALL=C tr -dc 'A-Za-z0-9' </dev/urandom | head -c 32)" \
+  --from-literal=MYSQL_ROOT_PASSWORD="$(LC_ALL=C tr -dc 'A-Za-z0-9' </dev/urandom | head -c 32)"
 ```
 
 **5. Admin User**
