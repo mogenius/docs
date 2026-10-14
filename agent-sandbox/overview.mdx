@@ -10,6 +10,10 @@ AI agents write and run code. Running that code on a developer's machine puts it
 
 It is a native capability of the mogenius platform — provisioned on demand through the UI, CLI, REST API, or SDK, and built on the existing operator, workspaces, RBAC, and audit log. Nothing leaves your infrastructure: sandboxes run on any cloud, on-prem, or air-gapped cluster you already operate.
 
+<Frame caption="Cluster › Sandboxes — the feature's home: installation status, the templates and warm pools that back it, and the agent sandboxes running on the cluster.">
+  ![The Sandboxes area on a cluster, showing running agent sandboxes with inline terminal, SSH, suspend, and delete actions.](/images/agent-sandbox/sandboxes.png)
+</Frame>
+
 <Note>
 Agent Sandbox is built on the Kubernetes SIG [`agent-sandbox`](https://github.com/kubernetes-sigs/agent-sandbox) project. There is no proprietary runtime and no lock-in — the operator materializes standard custom resources, and mogenius adds the access, governance, and tooling around them.
 </Note>

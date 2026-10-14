@@ -6,6 +6,10 @@ description: "Keep pre-started sandboxes ready for a template so requests are se
 
 Starting a sandbox from scratch means waiting for a pod to schedule and the image to come up. A **Warm Pool** keeps a number of sandboxes pre-started for a given [template](/agent-sandbox/templates), so a request is claimed from the pool and handed over immediately. Administrators manage warm pools under **Cluster → Sandboxes → Warm Pools**.
 
+<Frame caption="The Warm Pools tab: each pool references one template and keeps a number of ready replicas, with its update strategy shown.">
+  ![The Warm Pools list showing pools with their template, ready/desired replica counts, and update strategy.](/images/agent-sandbox/warm-pools.png)
+</Frame>
+
 ## What a warm pool defines
 
 - **Template** — the Sandbox Template the pool keeps ready. A warm pool references exactly one template.
