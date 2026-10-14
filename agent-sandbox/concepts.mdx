@@ -36,6 +36,19 @@ Agent Sandbox reuses the mogenius platform rather than adding a new control plan
 - The **mogenius API** brokers access — authenticating the caller, enforcing RBAC, exposing typed lifecycle, exec, and file operations, and writing to the audit log.
 - The **clients** — platform UI, `mocli`, the REST API, and the SDK — all drive the same API, so a sandbox created in one interface is visible and controllable from the others.
 
+```mermaid
+flowchart LR
+  UI["UI · CLI · API · SDK"] --> API["mogenius API<br/>auth · RBAC · audit"]
+  API --> OP["Operator"]
+  OP --> T
+  subgraph K8S["Kubernetes"]
+    direction LR
+    T["Sandbox Template"] --> W["Warm Pool"]
+    W --> S["Sandbox"]
+    T -.->|on demand| S
+  end
+```
+
 ## Isolation model
 
 Each sandbox runs in a dedicated namespace with network egress governed by a `NetworkPolicy` — by default the sandbox only reaches what you allow. This namespace-plus-policy isolation is the baseline and applies to every sandbox.
