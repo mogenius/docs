@@ -1,0 +1,23 @@
+---
+title: "Warm Pools"
+sidebarTitle: "Warm Pools"
+description: "Keep pre-started sandboxes ready for a template so requests are served instantly instead of waiting for a pod to start."
+---
+
+Starting a sandbox from scratch means waiting for a pod to schedule and the image to come up. A **Warm Pool** keeps a number of sandboxes pre-started for a given [template](/agent-sandbox/templates), so a request is claimed from the pool and handed over immediately. Administrators manage warm pools under **Cluster → Sandboxes → Warm Pools**.
+
+## What a warm pool defines
+
+- **Template** — the Sandbox Template the pool keeps ready. A warm pool references exactly one template.
+- **Replicas** — how many ready sandboxes to keep on hand. Set it to `0` to pause the pool without deleting it.
+- **Update strategy** — how the pool reacts when its template changes:
+  - **OnReplenish** (default) — ready sandboxes are replaced with the new template only as they are claimed and refilled. No disruption to pods already waiting.
+  - **Recreate** — ready sandboxes are rebuilt against the new template right away.
+
+## How claims work
+
+When a developer or agent creates a sandbox against a template that has a warm pool, the request is served from the pool and the pool refills itself in the background. If the pool is empty — or the request is for an isolated sandbox — a new one is created on demand instead.
+
+<Tip>
+Size the pool to your expected concurrency. A small warm pool is enough to make the common case feel instant while keeping idle resource use low; set it to `0` when the pool isn't needed.
+</Tip>

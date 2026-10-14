@@ -1,0 +1,47 @@
+---
+title: "Concepts & architecture"
+sidebarTitle: "Concepts"
+description: "The building blocks of Agent Sandbox — templates, warm pools, and sandboxes — and how the operator, API, and clients work together."
+---
+
+Agent Sandbox is built from three Kubernetes custom resources and the mogenius services that broker access to them. Understanding the three objects makes the rest of this section straightforward.
+
+## The building blocks
+
+- **Sandbox Template** — the blueprint for a sandbox. It defines the base image, the start command, the security context, and whether the working directory is persistent or ephemeral. An administrator maintains one or more templates per cluster. See [Sandbox Templates](/agent-sandbox/templates).
+- **Warm Pool** — a set of pre-started sandboxes kept ready for a given template, so a request is served instantly instead of waiting for a pod to start. A warm pool references exactly one template. See [Warm Pools](/agent-sandbox/warm-pools).
+- **Sandbox** — a single running environment. A developer or agent claims one (from a warm pool, or created on demand from a template), works in it, and then stops or deletes it. See [Using sandboxes](/agent-sandbox/using-sandboxes).
+
+## Lifecycle
+
+A sandbox moves through a simple lifecycle:
+
+<Steps>
+  <Step title="Create or claim">
+    A request comes in through the UI, CLI, API, or SDK. If a warm pool has a ready sandbox it is claimed immediately; otherwise one is created from the template.
+  </Step>
+  <Step title="Execute">
+    Commands and code run inside the sandbox over an interactive terminal, SSH, or a programmatic exec call. Files can be read and written, and ports can be exposed.
+  </Step>
+  <Step title="Stop or delete">
+    Stop keeps the persistent workspace volume so the environment can be resumed later; delete tears everything down. Either way, nothing runs on the machine that launched the work.
+  </Step>
+</Steps>
+
+## How the pieces fit together
+
+Agent Sandbox reuses the mogenius platform rather than adding a new control plane:
+
+- The **operator** materializes the sandbox custom resources on the cluster and keeps them reconciled.
+- The **mogenius API** brokers access — authenticating the caller, enforcing RBAC, exposing typed lifecycle, exec, and file operations, and writing to the audit log.
+- The **clients** — platform UI, `mocli`, the REST API, and the SDK — all drive the same API, so a sandbox created in one interface is visible and controllable from the others.
+
+## Isolation model
+
+Each sandbox runs in a dedicated namespace with network egress governed by a `NetworkPolicy` — by default the sandbox only reaches what you allow. This namespace-plus-policy isolation is the baseline and applies to every sandbox.
+
+For untrusted code that needs kernel-level separation from the host, sandboxes can additionally run under a stronger runtime class such as gVisor or Kata on dedicated node pools.
+
+<Note>
+Kernel-level runtime isolation (gVisor / Kata) is an optional add-on configured at the node-pool level. The namespace and network-policy isolation described above applies to all sandboxes out of the box.
+</Note>
