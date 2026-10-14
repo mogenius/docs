@@ -1,0 +1,31 @@
+---
+title: "Security & compliance"
+sidebarTitle: "Security & compliance"
+description: "How Agent Sandbox isolates code, controls egress, enforces access, and records every action — on infrastructure you control."
+---
+
+Agent Sandbox exists to run code you don't fully trust. Its security model rests on four pillars: isolation, egress control, access control, and attribution — all on a cluster you operate.
+
+## Isolation
+
+Every sandbox runs in a dedicated namespace with no access to developer machines, company secrets, or other workloads. For code that needs kernel-level separation from the host, sandboxes can additionally run under a stronger runtime class such as gVisor or Kata on dedicated node pools. See the [isolation model](/agent-sandbox/concepts#isolation-model) for how this is configured.
+
+## Egress control
+
+Network egress is governed by a `NetworkPolicy`. With the managed policy enabled, the sandbox namespace is default-deny: a sandbox only reaches the destinations you explicitly allow, and administrators can block additional network ranges (for example a cloud metadata endpoint or internal CIDRs) when [enabling the component](/agent-sandbox/enable). Generated code cannot quietly exfiltrate your source or data to the open internet.
+
+## Access control
+
+Sandboxes inherit the platform's existing [roles and permissions](/workspaces/members-and-roles). Who can create, access, and delete sandboxes is governed by the same RBAC and workspace scoping that applies to the rest of your cluster — there is no separate, parallel permission system to keep in sync.
+
+## Attribution & audit
+
+Every create, exec, and egress attempt is attributed to the authenticated developer or agent and recorded in the [audit log](/cluster-management/audit-log). When someone needs to reconstruct what an agent did — or prove it to an auditor — the record is there.
+
+## Sovereignty
+
+Sandboxes run on **your** Kubernetes: any cloud, on-prem, or air-gapped. No code and no data leave your infrastructure, which keeps Agent Sandbox compatible with GDPR and data-residency requirements that rule out third-party, US-hosted sandbox services.
+
+<Note>
+mogenius is ISO 27001 certified (TÜV Saarland), a CNCF Silver Member, and a Certified Kubernetes product. Because Agent Sandbox reuses the platform's isolation, RBAC, and audit, the controls above are the same ones already in scope for your mogenius deployment.
+</Note>

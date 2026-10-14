@@ -176,6 +176,20 @@ mocli wait pod/my-pod --for=delete -n acme-staging
 - `condition=ready` — Pod is ready
 - `delete` — Resource has been deleted
 
+## Sandboxes
+
+Create and manage [Agent Sandboxes](/agent-sandbox/overview) — isolated, ephemeral environments for running agent-generated code — straight from the terminal:
+
+```bash
+# Create a sandbox and jump into it
+mocli sandbox create
+
+# List your sandboxes
+mocli sandbox list
+```
+
+See [Using sandboxes](/agent-sandbox/using-sandboxes) for the full workflow.
+
 ## Shell autocompletion
 
 `mocli` can complete commands, flags, and even live resource names, namespaces, and kinds directly in your shell.

@@ -1,0 +1,47 @@
+---
+title: "Enable Agent Sandbox on a cluster"
+sidebarTitle: "Enable on a cluster"
+description: "Turn Agent Sandbox on per cluster through the Platform Config — the operator installs the controller, a default template, and a warm pool."
+---
+
+Agent Sandbox is enabled per cluster as a component of the [Platform Config](/cluster-management/platform-config). Turning it on tells the operator to install the sandbox controller and its custom resources and to apply the namespace and network isolation you configure. This is an administrator task.
+
+## Prerequisites
+
+- The [mogenius operator](/cluster-management/installing-the-mogenius-operator) is installed on the cluster.
+- A [GitOps engine](/cluster-management/gitops/overview) (Argo CD or Flux) is configured — the Platform Config is applied to the cluster through GitOps.
+
+## Enable the component
+
+Edit the Platform Config in the UI under **Cluster → Settings → Platform config** and enable **Agent Sandboxes**. The component exposes a small inline form:
+
+- **Namespace** — the namespace sandboxes run in (default `agent-sandbox`).
+- **Managed network policy** — when on, the operator maintains a default-deny egress `NetworkPolicy` for the sandbox namespace, so sandboxes only reach what you explicitly allow.
+- **Additional blocked CIDRs** — extra network ranges to deny, on top of the defaults (for example your internal API-server or metadata ranges).
+
+Saving writes the change back to Git, and the GitOps engine reconciles the cluster to match.
+
+## As a resource
+
+The component is a block on the `PlatformConfig` resource:
+
+```yaml
+apiVersion: mogenius.com/v1alpha1
+kind: PlatformConfig
+metadata:
+  name: platform
+spec:
+  agentSandboxes:
+    enabled: true
+    namespace: agent-sandbox
+    networkPolicy:
+      managed: true
+      additionalBlockedCidrs:
+        - 169.254.169.254/32   # cloud metadata endpoint
+```
+
+Once reconciled, the operator installs the sandbox controller and seeds a standard [Sandbox Template](/agent-sandbox/templates) and [Warm Pool](/agent-sandbox/warm-pools), which you can use as-is or extend.
+
+## Migrating from the Agent Sandbox Blueprint
+
+Earlier releases shipped Agent Sandbox as a Helm Blueprint. It is now a Platform Config component, so the two must not run side by side. If you previously installed the `agent-sandbox` Blueprint, uninstall that release before enabling the component to avoid a conflict on the same namespace and release name.

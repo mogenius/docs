@@ -66,6 +66,19 @@
             ]
           },
           {
+            "group": "Agent Sandbox",
+            "pages": [
+              "agent-sandbox/overview",
+              "agent-sandbox/concepts",
+              "agent-sandbox/enable",
+              "agent-sandbox/templates",
+              "agent-sandbox/warm-pools",
+              "agent-sandbox/using-sandboxes",
+              "agent-sandbox/sdk",
+              "agent-sandbox/security"
+            ]
+          },
+          {
             "group": "Workspaces",
             "pages": [
               "workspaces/creating-workspaces",
@@ -140,6 +153,10 @@
     {
       "source": "/workspaces/mogenius-CLI",
       "destination": "/cli/overview"
+    },
+    {
+      "source": "/agent-sandbox",
+      "destination": "/agent-sandbox/overview"
     }
   ],
   "logo": {

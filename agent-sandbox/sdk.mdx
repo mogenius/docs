@@ -1,0 +1,60 @@
+---
+title: "Agent Sandbox SDK"
+sidebarTitle: "SDK"
+description: "Provision and drive sandboxes from your own code with @mogenius/sandbox — a minimal, Daytona-compatible surface built for agent frameworks."
+---
+
+The **`@mogenius/sandbox`** SDK lets an agent or application create a sandbox, run commands and code in it, work with its files, and tear it down — all programmatically. The surface is deliberately small and is **Daytona-compatible**, so it drops into existing agent frameworks with minimal change.
+
+Sandboxes created through the SDK are the same ones you see in the UI and CLI: pods in your Kubernetes cluster, driven through the mogenius API with full RBAC and audit.
+
+## Install
+
+```bash
+npm install @mogenius/sandbox
+```
+
+The SDK is available for TypeScript and Go; a Python package is planned. See [`mogenius/mo-sandbox-sdk`](https://github.com/mogenius/mo-sandbox-sdk) for all packages and the full reference.
+
+## Authenticate
+
+The client reads its credentials from the environment (an `.env` file is loaded automatically):
+
+- `MOGENIUS_API_KEY` — an API key for your organization.
+- `MOGENIUS_CLUSTER_ID` — the cluster the sandboxes run on.
+
+## Quickstart
+
+```javascript
+import { Mogenius } from '@mogenius/sandbox';
+
+const mogenius = new Mogenius();
+
+// Provision a sandbox (from the template's warm pool when available)
+const sandbox = await mogenius.create();
+
+// Run a command inside it
+const result = await sandbox.process.executeCommand('python3 --version');
+console.log(result.exitCode, result.result);
+
+// Tear it down
+await mogenius.delete(sandbox);
+```
+
+## Surface
+
+- **Lifecycle** — `mogenius.create()` provisions a sandbox; `mogenius.delete(sandbox)` tears it down.
+- **Process** — `sandbox.process.executeCommand(command)` runs shell commands and returns the exit code and output.
+- **Code** — `sandbox.codeRun()` executes code directly.
+- **Filesystem** — `sandbox.fs` reads, writes, and lists files in the sandbox.
+- **Sessions** — persistent shell sessions for long-running or multi-step work.
+- **Tunnels** — reach a port inside the sandbox from your client.
+- **Errors** — a typed error hierarchy keyed by HTTP status, so callers can branch on failure cleanly.
+
+<Note>
+Because the surface mirrors Daytona's, migrating an existing integration is largely an import swap. The repository's [`/docs`](https://github.com/mogenius/mo-sandbox-sdk) cover Getting Started, Concepts, Commands, Sessions, Files, Tunnels, Errors, and Recipes in full.
+</Note>
+
+## REST API
+
+The SDK wraps typed REST endpoints for sandbox lifecycle, command execution, and file operations. If you'd rather call them directly — for example from a language without an SDK — the same operations are available over HTTP through the mogenius API, authenticated with the same API key.
