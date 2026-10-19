@@ -122,6 +122,7 @@ Below is an example `values.yaml` for a minimal setup to install the mogenius pl
 
 ```yaml values.yaml quickstart example 
 ingress:
+  ingressClassName: traefik
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer
     traefik.ingress.kubernetes.io/forward-headers: "true"
@@ -135,6 +136,7 @@ ingress:
   k8s_websocket_url: k8s-ws.YOURDOMAIN.com
   rootDomain: YOURDOMAIN.com
   socket_service_url: platform-ws.YOURDOMAIN.com
+  user_service_url: platform-user.YOURDOMAIN.com
   tls:
   - hosts:
     - mogenius.YOURDOMAIN.com
@@ -148,10 +150,11 @@ ingress:
     secretName: mo-platform-tls
   traefik:
     apiVersion: traefik.io/v1alpha1
-  user_service_url: platform-user.YOURDOMAIN.com
 mo_platform:
   metrics:
     enabled: true
+    serviceMonitor:
+      enabled: true 
     resources:
       requests:
         cpu: 10m
@@ -181,8 +184,8 @@ storage:
 Run the following command on your cluster to install the Helm chart with your values.yaml.
 
 ```bash
-helm repo add mogenius https://helm.mogenius.com/private
-helm install mogenius-platform mogenius/mo-infrastructure -n mogenius-platform -f values.yaml
+helm repo add mogenius-private https://helm.mogenius.com/private
+helm install mogenius-platform mogenius-private/mo-infrastructure -n mogenius-platform -f values.yaml
 ```
 
 ### Access the mogenius web interface
