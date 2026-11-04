@@ -1,0 +1,6 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "github>mogenius/renovate-config//presets/automerge-patch.json#main"
+  ]
+}
