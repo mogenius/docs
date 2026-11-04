@@ -162,7 +162,6 @@ mo_platform:
 mo_platform_api:
   enableAutoRefreshToken: true
   refreshTokenTask: true
-mo_platform_user:
   openid:
     enabled: false
 mogenius:
@@ -205,6 +204,42 @@ Now that mogenius is up and running you can prepare the platform for your team. 
 
 ### Support
 Need help setting up the mogenius platform? Contact us via [support@mogenius.com](mailto:support@mogenius.com).
+
+<Accordion title="Migrating from v5 to v6: OpenID moved from the user service to the API service" icon="arrow-up-right-dots">
+  In v6, the user service (`mo_platform_user`) and its dedicated Valkey instance (`mo_user_valkey`) are discontinued and removed from the chart. OpenID/SSO configuration moves to the API service (`mo_platform_api`). If you're upgrading from v5, update your `values.yaml` as follows:
+
+  <Warning>
+    The `mo_platform_user` and `mo_user_valkey` keys no longer exist in the v6 chart schema. If either is still present in your `values.yaml` — even just `mo_platform_user.enabled: false` — Helm chart rendering will fail. Remove both blocks entirely rather than disabling them.
+  </Warning>
+
+  1. **Move your OpenID config** from `mo_platform_user.openid.*` to `mo_platform_api.openid.*`:
+
+  ```yaml values.yaml (v5, deprecated)
+  mo_platform_user:
+    openid:
+      enabled: true
+      provider:
+        github:
+          enabled: true
+  ```
+
+  ```yaml values.yaml (v6)
+  mo_platform_api:
+    openid:
+      enabled: true
+      provider:
+        github:
+          enabled: true
+  ```
+
+  2. **Delete the `mo_platform_user` and `mo_user_valkey` blocks** entirely from your `values.yaml` — they're no longer valid chart values.
+
+  3. **Run `helm upgrade`** with your updated `values.yaml` against the new chart version.
+
+  <Note>
+    All other v5 values (secrets, MySQL, remaining Valkey instances) remain unchanged. Only the `openid` block, the user service and its Valkey instance are affected by this migration.
+  </Note>
+</Accordion>
 
 ## Values
 
@@ -308,38 +343,21 @@ traefik.ingress.kubernetes.io/secure-headers: "true"
 | mo_platform_api.initContainer.image.repository | string | `"alpine/curl"` | Init container image repository |
 | mo_platform_api.initContainer.image.tag | string | `"8.20.0"` | Init container image tag |
 
-#### mo_platform_user (User Service)
-
-| Key | Type | Default | Description |
-|-----|------|---------|-------------|
-| mo_platform_user.enabled | bool | `true` | Enable user service |
-| mo_platform_user.replicas | int | `1` | Number of replicas |
-| mo_platform_user.image.registry | string | `"ghcr.io"` | Image registry |
-| mo_platform_user.image.repository | string | `"mogenius/mo-platform-user"` | Image repository |
-| mo_platform_user.image.tag | string | `"v2.0.17"` | Image tag |
-| mo_platform_user.imagePullPolicy | string | `"IfNotPresent"` | Image pull policy |
-| mo_platform_user.port | int | `1337` | HTTP port |
-| mo_platform_user.port_ws | int | `7000` | WebSocket port |
-| mo_platform_user.resources | object | `{}` | Resource requests/limits |
-| mo_platform_user.tolerations | object | `{}` | Pod tolerations |
-| mo_platform_user.probes.enabled | bool | `true` | Enable health probes |
-| mo_platform_user.sshSymEncKey.secretName | string | `"mo-platform-shared"` | Secret name for SSH symmetric encryption key |
-| mo_platform_user.sshSymEncKey.secretKey | string | `"MO_CORE_NEST__SSH_SYM_ENC_KEY"` | Secret key for SSH symmetric encryption key |
-
 **OpenID Configuration:**
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| mo_platform_user.openid.enabled | bool | `true` | Enable OpenID |
-| mo_platform_user.openid.issuer | string | `"https://login-dev.mogenius.com"` | OpenID issuer URL |
-| mo_platform_user.openid.accessTokenLifetime | string | `"600"` | Access token lifetime in seconds |
-| mo_platform_user.openid.refreshTokenLifetime | string | `"7776000"` | Refresh token lifetime in seconds |
-| mo_platform_user.openid.adminAccessTokenLifetime | string | `"28800"` | Admin access token lifetime in seconds |
-| mo_platform_user.openid.provider.github.enabled | bool | `false` | Enable GitHub OAuth |
-| mo_platform_user.openid.provider.gitlab.enabled | bool | `false` | Enable GitLab OAuth |
-| mo_platform_user.openid.provider.google.enabled | bool | `false` | Enable Google OAuth |
-| mo_platform_user.openid.provider.linkedin.enabled | bool | `false` | Enable LinkedIn OAuth |
-| mo_platform_user.openid.provider.microsoft.enabled | bool | `false` | Enable Microsoft OAuth |
+| mo_platform_api.openid.enabled | bool | `true` | Enable OpenID |
+| mo_platform_api.openid.issuer | string | `"https://login-dev.mogenius.com"` | OpenID issuer URL |
+| mo_platform_api.openid.accessTokenLifetime | string | `"600"` | Access token lifetime in seconds |
+| mo_platform_api.openid.refreshTokenLifetime | string | `"7776000"` | Refresh token lifetime in seconds |
+| mo_platform_api.openid.adminAccessTokenLifetime | string | `"28800"` | Admin access token lifetime in seconds |
+| mo_platform_api.openid.provider.github.enabled | bool | `false` | Enable GitHub OAuth |
+| mo_platform_api.openid.provider.gitlab.enabled | bool | `false` | Enable GitLab OAuth |
+| mo_platform_api.openid.provider.google.enabled | bool | `false` | Enable Google OAuth |
+| mo_platform_api.openid.provider.linkedin.enabled | bool | `false` | Enable LinkedIn OAuth |
+| mo_platform_api.openid.provider.microsoft.enabled | bool | `false` | Enable Microsoft OAuth |
+
 
 #### mo_platform_websocket (WebSocket Service)
 
@@ -464,21 +482,6 @@ Shared Valkey instance used for queue processing and cross-service communication
 | mo_websocket_valkey.password.secretKey | string | `"REDIS_SECRET"` | Secret key for password |
 | mo_websocket_valkey.resources | object | `{}` | Resource requests/limits |
 | mo_websocket_valkey.metrics.enabled | bool | `false` | Enable Prometheus metrics exporter |
-
-#### mo_user_valkey
-
-| Key | Type | Default | Description |
-|-----|------|---------|-------------|
-| mo_user_valkey.enabled | bool | `true` | Enable Valkey for user service |
-| mo_user_valkey.image.registry | string | `"docker.io"` | Image registry |
-| mo_user_valkey.image.repository | string | `"valkey/valkey"` | Image repository |
-| mo_user_valkey.image.tag | string | `"9.1.0"` | Image tag |
-| mo_user_valkey.port | int | `6379` | Service port |
-| mo_user_valkey.host | string | `"mo-user-valkey"` | Service hostname |
-| mo_user_valkey.password.secretName | string | `"mo-redis-secret"` | Secret name for password |
-| mo_user_valkey.password.secretKey | string | `"REDIS_SECRET"` | Secret key for password |
-| mo_user_valkey.resources | object | `{}` | Resource requests/limits |
-| mo_user_valkey.metrics.enabled | bool | `false` | Enable Prometheus metrics exporter |
 
 #### mo_message_dispatcher_valkey
 
