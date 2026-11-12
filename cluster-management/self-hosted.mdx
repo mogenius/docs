@@ -86,14 +86,15 @@ kubectl create secret generic mo-mysql-secret \
 
 **5. Admin User**
 
-Holds the credentials for the initial admin user and the JWT signing keys. First generate the EC key pair used for signing JWTs:
+Holds the credentials for the initial admin user and the OAuth signing secrets. First generate the JWKS used for signing JWTs and the random secrets used for cookie signing and the BFF OAuth client:
 
 ```bash
-openssl ecparam -genkey -name secp521r1 -noout -out ec512-key-pair.pem
-openssl ec -in ec512-key-pair.pem -pubout -out public.pem
+export MO_OAUTH_JWKS="$(node -e "const k = require('crypto').generateKeyPairSync('ec', { namedCurve: 'P-256' }).privateKey.export({ format: 'jwk' }); console.log(Buffer.from(JSON.stringify({ ...k, alg: 'ES256' })).toString('base64'))")"
+export MO_OAUTH_COOKIE_KEYS="$(node -e "console.log(require('crypto').randomBytes(32).toString('base64url'))")"
+export MO_OAUTH_BFF_CLIENT_SECRET="$(node -e "console.log(require('crypto').randomBytes(32).toString('base64url'))")"
 ```
 
-Then create the secret. Replace the admin email and password placeholders; all other values are derived automatically (the JWT keys are base64-encoded, and `MO_CORE_NEST__SSH_SYM_ENC_KEY` reuses the `$MO_ENC_KEY` from step 3).
+Then create the secret. Replace the admin email and password placeholders; all other values are derived automatically (`MO_CORE_NEST__SSH_SYM_ENC_KEY` reuses the `$MO_ENC_KEY` from step 3).
 
 ```bash
 kubectl create secret generic mo-platform-user-secret \
@@ -101,9 +102,9 @@ kubectl create secret generic mo-platform-user-secret \
   --from-literal=MO_USER_NEST__SYSTEM_ADMIN_EMAIL="<ADMIN_EMAIL>" \
   --from-literal=MO_USER_NEST__SYSTEM_ADMIN_PASSWORD="<ADMIN_PASSWORD>" \
   --from-literal=MO_CORE_NEST__SSH_SYM_ENC_KEY="$MO_ENC_KEY" \
-  --from-literal=MO_USER_NEST__JWT_PRIVATE="$(openssl base64 -A -in ec512-key-pair.pem)" \
-  --from-literal=MO_USER_NEST__JWT_PUBLIC="$(openssl base64 -A -in public.pem)" \
-  --from-literal=MO_USER_NEST__SESSION_SECRET="$(openssl rand -base64 32)"
+  --from-literal=MO_USER_NEST__OAUTH__JWKS="$MO_OAUTH_JWKS" \
+  --from-literal=MO_USER_NEST__OAUTH__COOKIE_KEYS="$MO_OAUTH_COOKIE_KEYS" \
+  --from-literal=MO_USER_NEST__OAUTH__BFF_CLIENT_SECRET="$MO_OAUTH_BFF_CLIENT_SECRET"
 ```
 
 The keys stored in this secret are:
@@ -111,9 +112,9 @@ The keys stored in this secret are:
 `MO_USER_NEST__SYSTEM_ADMIN_EMAIL` — the email address to log in with your admin user.
 `MO_USER_NEST__SYSTEM_ADMIN_PASSWORD` — the password for your admin user.
 `MO_CORE_NEST__SSH_SYM_ENC_KEY` — the same encryption key set in the `mo-platform-shared` secret.
-`MO_USER_NEST__JWT_PRIVATE` — the base64-encoded private key for signing JWTs.
-`MO_USER_NEST__JWT_PUBLIC` — the base64-encoded public key for verifying JWTs.
-`MO_USER_NEST__SESSION_SECRET` — a secure random secret for session handling.
+`MO_USER_NEST__OAUTH__JWKS` — the base64-encoded JWK (P-256, ES256) used for signing and verifying JWTs.
+`MO_USER_NEST__OAUTH__COOKIE_KEYS` — a secure random secret for signing session cookies.
+`MO_USER_NEST__OAUTH__BFF_CLIENT_SECRET` — a secure random client secret for the backend-for-frontend OAuth client.
 
 
 ### Prepare your values.yaml
@@ -205,8 +206,40 @@ Now that mogenius is up and running you can prepare the platform for your team. 
 ### Support
 Need help setting up the mogenius platform? Contact us via [support@mogenius.com](mailto:support@mogenius.com).
 
-<Accordion title="Migrating from v5 to v6: OpenID moved from the user service to the API service" icon="arrow-up-right-dots">
-  In v6, the user service (`mo_platform_user`) and its dedicated Valkey instance (`mo_user_valkey`) are discontinued and removed from the chart. OpenID/SSO configuration moves to the API service (`mo_platform_api`). If you're upgrading from v5, update your `values.yaml` as follows:
+<Accordion title="Migrating from v7 to v8: JWT/session secrets replaced with OAuth JWKS-based secrets" icon="key">
+  In v8, the `MO_USER_NEST__JWT_PRIVATE`, `MO_USER_NEST__JWT_PUBLIC`, and `MO_USER_NEST__SESSION_SECRET` keys in the `mo-platform-user-secret` secret are discontinued. They're replaced by three new keys: `MO_USER_NEST__OAUTH__JWKS`, `MO_USER_NEST__OAUTH__COOKIE_KEYS`, and `MO_USER_NEST__OAUTH__BFF_CLIENT_SECRET`. The chart also drops the token lifetime settings under `mo_platform_api.openid`. If you're upgrading from v7, update your secret and `values.yaml` as follows:
+
+  1. **Generate the new secret values:**
+
+  ```bash
+  # MO_USER_NEST__OAUTH__JWKS (one line of base64; decode with `base64 -d` to inspect the JWK)
+  node -e "const k = require('crypto').generateKeyPairSync('ec', { namedCurve: 'P-256' }).privateKey.export({ format: 'jwk' }); console.log(Buffer.from(JSON.stringify({ ...k, alg: 'ES256' })).toString('base64'))"
+
+  # MO_USER_NEST__OAUTH__COOKIE_KEYS and MO_USER_NEST__OAUTH__BFF_CLIENT_SECRET (run once per value)
+  node -e "console.log(require('crypto').randomBytes(32).toString('base64url'))"
+  ```
+
+  2. **Update the `mo-platform-user-secret` secret** — remove `MO_USER_NEST__JWT_PRIVATE`, `MO_USER_NEST__JWT_PUBLIC`, and `MO_USER_NEST__SESSION_SECRET`, and add the three generated values as `MO_USER_NEST__OAUTH__JWKS`, `MO_USER_NEST__OAUTH__COOKIE_KEYS`, and `MO_USER_NEST__OAUTH__BFF_CLIENT_SECRET`. See [Create Secrets](#create-secrets) for the full `kubectl create secret` command — rerun it (or `kubectl delete secret` first) with the new keys.
+
+  3. **Remove the deprecated token lifetime settings** from `mo_platform_api.openid` in your `values.yaml` — they're no longer valid chart values:
+
+  ```yaml values.yaml (v7, deprecated)
+  mo_platform_api:
+    openid:
+      accessTokenLifetime: "600"
+      refreshTokenLifetime: "7776000"
+      adminAccessTokenLifetime: "28800"
+  ```
+
+  4. **Run `helm upgrade`** with your updated `values.yaml` against the new chart version.
+
+  <Note>
+    All other v7 values and secrets (MySQL, Valkey, encryption key, admin credentials) remain unchanged. Only the JWT/session keys in `mo-platform-user-secret` and the `openid` token lifetime settings are affected by this migration.
+  </Note>
+</Accordion>
+
+<Accordion title="Migrating from v5 to v7: OpenID moved from the user service to the API service" icon="arrow-up-right-dots">
+  In v7, the user service (`mo_platform_user`) and its dedicated Valkey instance (`mo_user_valkey`) are discontinued and removed from the chart. OpenID/SSO configuration moves to the API service (`mo_platform_api`). If you're upgrading from v5, update your `values.yaml` as follows:
 
   <Warning>
     The `mo_platform_user` and `mo_user_valkey` keys no longer exist in the v6 chart schema. If either is still present in your `values.yaml` — even just `mo_platform_user.enabled: false` — Helm chart rendering will fail. Remove both blocks entirely rather than disabling them.
@@ -349,9 +382,6 @@ traefik.ingress.kubernetes.io/secure-headers: "true"
 |-----|------|---------|-------------|
 | mo_platform_api.openid.enabled | bool | `true` | Enable OpenID |
 | mo_platform_api.openid.issuer | string | `"https://login-dev.mogenius.com"` | OpenID issuer URL |
-| mo_platform_api.openid.accessTokenLifetime | string | `"600"` | Access token lifetime in seconds |
-| mo_platform_api.openid.refreshTokenLifetime | string | `"7776000"` | Refresh token lifetime in seconds |
-| mo_platform_api.openid.adminAccessTokenLifetime | string | `"28800"` | Admin access token lifetime in seconds |
 | mo_platform_api.openid.provider.github.enabled | bool | `false` | Enable GitHub OAuth |
 | mo_platform_api.openid.provider.gitlab.enabled | bool | `false` | Enable GitLab OAuth |
 | mo_platform_api.openid.provider.google.enabled | bool | `false` | Enable Google OAuth |
