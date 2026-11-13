@@ -4,13 +4,27 @@ sidebar_position: "8"
 
 The mogenius REST API allows you to manage your mogenius workspaces and resources in scripts, automations, and third party tools.
 
-## Creating an API key
+## Authentication
 
-To authenticate with the mogenius API, first create an API key. You can do this on cluster level, or workspace level. Go to the section **API key** in the respective settings and add a new key by filling out the form:
+The mogenius REST API authenticates every request with a **Bearer token** in the `Authorization` header:
 
-- Set a name to identify the API key later.
-- Define the expiration date.
-- Set the scope based on the [pre-defined groups](./members-and-roles.md).
+```
+Authorization: Bearer mo_pat:<your-api-key>
+```
+
+For scripts, automations, and third-party tools, use an **API key** — a stable token that starts with `mo_pat:`. (Interactive clients such as [`mocli`](/cli/installation) and [MCP clients](/ai/mcp-server) sign in with OAuth and receive short-lived access tokens instead; for programmatic access an API key is the right choice.)
+
+### Creating an API key
+
+An API key is **always a personal key**: it is tied to your user account and inherits your permissions. When you create it, you set its **scope** so the key is limited to exactly what the integration needs:
+
+- **Scope** — an organization, a cluster, or a workspace. The same personal key can be narrowed to a single cluster or workspace.
+- **Role** — a role from the [pre-defined groups](/workspaces/members-and-roles).
+- **Name** and **expiration date** — to identify and time-box the key.
+
+Create and manage API keys in your mogenius **profile settings**, under **API Keys**.
+
+The requests below use a scoped key — `YOUR_WORKSPACE_API_KEY` or `YOUR_CLUSTER_API_KEY` — to match the level each endpoint requires.
 
 ## Set Image
 
