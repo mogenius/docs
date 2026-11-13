@@ -29,16 +29,25 @@ scoop install mocli
 
 Signing in to mogenius is **optional** — you only need it for the platform features (organizations, workspaces, operator-connected clusters, tunnels). Working against a local kubeconfig needs no login.
 
+<Warning>
+`mocli` signs in through the mogenius OAuth flow. An older `mocli` cannot complete this login and will show an "update required" message instead. If that happens, install the latest version (see [Install](#install)) and run `mocli login` again.
+</Warning>
+
 To use platform features, authenticate once. Your browser opens automatically to complete the login:
 
 ```bash
 mocli login
 ```
 
-Your session is stored locally, so you only need to log in once per machine.
+During login, mogenius shows a **consent screen** where you choose how much access the CLI session gets:
+
+- **Full access** (default) — the session acts with your own permissions. One click.
+- **Limited** — restrict the session to a single organization, cluster, or workspace and a role, the same way an API key is scoped.
+
+Your session is stored locally and refreshes automatically, so you normally only log in once per machine.
 
 ```bash
-# Log out again
+# Log out again (revokes the session)
 mocli logout
 ```
 
