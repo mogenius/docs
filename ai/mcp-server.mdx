@@ -4,31 +4,106 @@ sidebarTitle: "MCP Server"
 description: "Connect external AI tools and IDEs to your mogenius cluster through the mogenius Model Context Protocol (MCP) server."
 ---
 
-mogenius exposes its own **Model Context Protocol (MCP) server**, so external AI‑powered tools — such as IDE assistants, Claude Desktop, or custom automations — can interact with your Kubernetes cluster through the same AI infrastructure that powers [Agents](/ai/agents) and [Chat](/ai/chat).
+mogenius exposes its own **Model Context Protocol (MCP) server**, so external AI‑powered tools — such as IDE assistants, Claude, or custom automations — can interact with your Kubernetes cluster through the same AI infrastructure that powers [Agents](/ai/agents) and [Chat](/ai/chat).
+
+The server is reachable at:
+
+```
+https://platform-api.mogenius.com/mcp
+```
 
 <Note>
 This is the **outbound** direction: external clients connect **to** mogenius. To connect external tools **to your agents** (for example a GitHub or GitLab MCP server), see [Tools & Custom MCP Servers](/ai/tools#custom-mcp-servers) instead.
 </Note>
 
-## Authentication & permissions
+## Authentication
 
-Access to the mogenius MCP server requires a valid **API key** generated in the platform. Each API key is tied to a specific user and inherits that user's workspace permissions.
+The mogenius MCP server supports two ways to authenticate. Pick the one your client supports:
 
-This means:
+- **OAuth (recommended)** — for clients that support remote MCP servers with sign‑in, such as Claude and Cursor. You add the server URL, a browser opens, you sign in to mogenius and approve access. No key to copy or store.
+- **API key** — for clients that can only send a static `Authorization` header. You create a key in mogenius and paste it into the client's config.
 
-- The MCP client can only access namespaces and resources the API key owner is permitted to view or manage.
-- You can create separate API keys per workspace, each scoped to that workspace's resources and permissions.
-- API keys can be revoked at any time from the platform settings.
+Both methods respect your mogenius permissions: a client can only see and act on the namespaces and resources your login (or the API key owner) is allowed to.
 
-You can create an API key from the settings of a **Cluster** or **Workspace**.
+### OAuth sign‑in and consent
+
+When a client connects with OAuth, mogenius opens a **consent screen** in your browser. You choose:
+
+- the **organization** the session acts in,
+- the **role** it uses (for example viewer or editor), and
+- optionally, a single **cluster or workspace** to restrict the session to.
+
+The resulting access is **scoped to the MCP server only** — the token cannot be used against the rest of the mogenius REST API. You can review and revoke every connected client at any time under **Profile → Devices**.
+
+Discovery is automatic: the client finds the mogenius authorization server from the `/mcp` endpoint (per the OAuth protected‑resource standard), registers itself, and runs the sign‑in flow. You only ever provide the server URL.
+
+### API keys
+
+An API key is a single opaque token that starts with `mo_pat:`. A key is **always a personal key** — it is tied to your user account and inherits your permissions. When you create it, you set its **scope** to an organization, a cluster, or a workspace, so the same personal key can be narrowed to exactly the resources a client needs.
+
+You can:
+
+- create several keys, each with its own scope,
+- revoke a key at any time from the platform settings.
+
+Create and manage API keys in your **Profile → API Keys**.
 
 ## Connecting a client
 
-Add the mogenius MCP server to your client's configuration. The exact steps depend on the tool, but typically you edit a local config file that lists the client's MCP servers. Replace the endpoint and API key to match your setup.
+### Claude
 
-### Claude Desktop
+Claude connects to remote MCP servers as a **custom connector** and signs in with OAuth — no API key required.
 
-For remote MCP servers, Claude uses Connectors. mogenius is not yet available as a Connector, but you can configure it as a local MCP server. Adapt the following and add it to your `claude_desktop_config.json`:
+1. Open **Settings → Connectors → Add custom connector**.
+2. Enter the mogenius MCP server URL: `https://platform-api.mogenius.com/mcp`
+3. Complete the mogenius sign‑in and consent in the browser window that opens.
+
+For Claude Code, add it from the terminal:
+
+```bash
+claude mcp add --transport http mogenius https://platform-api.mogenius.com/mcp
+```
+
+The first request triggers the browser sign‑in automatically.
+
+<Tip>
+If your client does not yet support OAuth for remote MCP servers, use `mcp-remote` with an API key as shown below.
+</Tip>
+
+### Cursor
+
+In the Cursor Desktop app, open **Settings → Tools & MCP** and add a new MCP server. Cursor opens your `mcp.json` — add the mogenius server with its URL and let Cursor run the OAuth sign‑in:
+
+```json
+{
+  "mcpServers": {
+    "mogenius": {
+      "type": "streamable-http",
+      "url": "https://platform-api.mogenius.com/mcp"
+    }
+  }
+}
+```
+
+To authenticate with an API key instead of OAuth, add the header:
+
+```json
+{
+  "mcpServers": {
+    "mogenius": {
+      "type": "streamable-http",
+      "url": "https://platform-api.mogenius.com/mcp",
+      "headers": {
+        "Authorization": "bearer YOUR-MOGENIUS-API-KEY"
+      }
+    }
+  }
+}
+```
+
+### API key via `mcp-remote`
+
+For clients that only support local (stdio) MCP servers, bridge to the remote server with `mcp-remote` and authenticate with an API key. Adapt the following and add it to the client's MCP config (for example `claude_desktop_config.json`):
 
 ```json
 "mcpServers": {
@@ -46,24 +121,6 @@ For remote MCP servers, Claude uses Connectors. mogenius is not yet available as
       }
     }
   }
-```
-
-### Cursor
-
-In the Cursor Desktop app, open **Settings** and go to **Tools & MCP**. Add a new MCP server — Cursor opens your `mcp.json`, where you can add the mogenius server:
-
-```json
-{
-  "mcpServers": {
-    "mogenius": {
-        "type": "streamable-http",
-        "url": "https://platform-api.mogenius.com/mcp",
-        "headers": {
-          "Authorization" : "bearer YOUR-MOGENIUS-API-KEY"
-      }
-    }
-  }
-}
 ```
 
 ## Tools & capabilities
