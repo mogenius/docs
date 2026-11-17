@@ -1,0 +1,27 @@
+---
+title: "Concepts"
+sidebarTitle: "Concepts"
+description: "The handful of terms that run through the Vibe-Coding Platform: App, Team, Vibe Coder, Platform Admin, and the agent."
+---
+
+The Vibe-Coding Platform has a small vocabulary. These are the terms you'll meet across the rest of these pages.
+
+## App
+
+An **App** is one application a Vibe Coder ships — the unit everything revolves around. Each app belongs to a team and gets its own repository, build pipeline, domain, and optionally a database. It's served at a URL like `https://<name>-<team>.<your-apps-domain>` and keeps its identity for its whole life.
+
+## Team
+
+A **Team** groups Vibe Coders and their apps. Teams come from your identity provider: users are organized into groups, and those groups become teams in mogenius. Each app belongs to one team, which scopes who can see it and which resource limits apply.
+
+## Vibe Coder
+
+A **Vibe Coder** is a citizen developer — someone who wants to put an app online without knowing Kubernetes. They work through an AI agent and the mogenius UI: they describe apps, watch them deploy, and set the occasional secret. Their access is scoped to their team.
+
+## Platform Admin
+
+A **Platform Admin** — an IT lead, DevOps engineer, or platform engineer — owns the cluster. They enable the workflow, connect the required services, and monitor team and app activity with full visibility into every app. See [Setup & Administration](/vibe-coding/prerequisites).
+
+## Agent
+
+The Vibe Coder works with the platform through an **AI agent** — for example Claude — connected to mogenius. The agent creates and manages apps, reads status and logs, and writes code on the Vibe Coder's behalf, always scoped to what their role allows. It runs under the **user's own AI account**, so the AI model stays the customer's responsibility.

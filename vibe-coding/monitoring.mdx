@@ -1,0 +1,21 @@
+---
+title: "Monitoring"
+sidebarTitle: "Monitoring"
+description: "The Platform Admin's view over team and app activity: apps by team and status, app hygiene, resource usage, and the audit log."
+---
+
+Platform Admins get an overview across every app and team on the cluster — enough to keep the platform healthy, secure, and within its limits. A Vibe Coder sees only their own team; you see everything.
+
+## What you can see
+
+- **Apps by team and status** — the full inventory of apps, who owns each, and where it is in its lifecycle.
+- **App details** — for any app, its components, settings, and logs. The abstraction a Vibe Coder works above is fully transparent to you underneath.
+- **App hygiene** — how current each app is, open vulnerabilities, and pending updates, so you can spot apps that need attention.
+- **Resource usage** — usage against per-team limits, so you can plan an increase before a team is blocked.
+- **Audit log** — actions across the platform. See [Audit log](/cluster-management/audit-log).
+
+Underneath, a Prometheus and Grafana stack ships with the platform and feeds these views, with alerting on failures such as missed backups. Requests that need your decision — like [egress approvals](/vibe-coding/egress-control) — surface here and in your notification channel.
+
+<Note>
+Monitoring is oversight, not operation. Vibe Coders stay self-service; you keep visibility into hygiene, security, and resource use without having to touch each app.
+</Note>

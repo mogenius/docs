@@ -1,0 +1,27 @@
+---
+title: "Backups & restore"
+sidebarTitle: "Backups & restore"
+description: "How the platform protects app data with continuous, point-in-time backups to your object storage, and why that matters when agents push to main without review."
+---
+
+Code is protected by Git, but data needs its own mechanism — and in a vibe-coding setup that matters more than usual:
+
+- **Agents push to `main` without review.** A destructive change — a dropped column, a wrong `UPDATE` — is live within minutes, and rolling back the code does not undo it. Only a restore does.
+- **Deleting an app deletes its database.** Without backups outside the cluster, that data would be gone for good.
+
+So every app database is backed up continuously to the **object storage you connected** during [setup](/vibe-coding/prerequisites), kept outside the cluster and outliving the app.
+
+## What you get
+
+- **Continuous, point-in-time recovery** — database writes are archived continuously on top of daily base backups, so you can restore to a specific moment, not just the last nightly snapshot.
+- **Coverage** — every app's PostgreSQL database, plus the platform's own state (the identity broker and the Git provider), so logins, teams, and repositories are recoverable too.
+- **Retention** — backups are kept for a fixed window and then expire automatically. Each app has its own isolated storage prefix.
+- **Your storage, your environment** — the target is your S3-compatible storage, so backup data never leaves your control.
+
+## Restore
+
+Restore is a **Platform Admin** operation, performed on demand to recover a database to a chosen point in time; the app is then pointed at the restored database. Vibe Coders aren't involved.
+
+<Note>
+Backups cover the platform-managed state. Data an app keeps only on its local filesystem is not durable — apps are built to keep data in their database, which is what gets backed up.
+</Note>

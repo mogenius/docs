@@ -1,0 +1,39 @@
+---
+title: "App capabilities"
+sidebarTitle: "App capabilities"
+description: "What your app can have — a database, a company login, access to external services, and preview environments. You ask your agent for them."
+---
+
+Your app can do more than serve a page. It can store data, sit behind a company login, call external services, and run a safe preview of changes. You don't configure any of this — you **tell your agent** what you need. This page is so you know what to ask for.
+
+## Database
+
+Your app can have its own **database**. Ask the agent — *"give this app a database"* — and it provisions one and connects it. Keep anything that must survive there; it's the durable place for your app's data.
+
+## Company login
+
+Your app can sit behind your **company login**, so only people in your company can open it:
+
+> "Put our company login in front of this app."
+
+The app then knows who the signed-in user is automatically. Without it, the app is reachable by anyone with the URL.
+
+## External access
+
+Apps can't reach external services by default. When your app needs to call one — to send email, or pull data from another service — ask the agent:
+
+> "This app needs to call api.example.com."
+
+A **Platform Admin reviews and approves** the host. Until it's granted, those calls are blocked, so the app handles that gracefully. See [Egress control](/vibe-coding/egress-control).
+
+## Previews
+
+For riskier changes, your app can run a **preview** — a second copy at its own URL, with its own data, while the live app keeps running. Ask the agent to *"put this on a preview first,"* check it, and when you're happy, ask it to **publish**.
+
+## Agent access for tests & reviews
+
+When your app sits behind the [company login](#company-login), your agent can still reach it — to click through it, run tests, or review a change against the running app. It signs in **as you**, so the app stays protected to everyone else. Ask the agent to enable this when you want it to test and review the app for you.
+
+## Secrets
+
+The one value you provide yourself is a **secret** — an API key or token your app needs. You enter those through a one-time form in the mogenius UI. See [Secrets](/vibe-coding/secrets).

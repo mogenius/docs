@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" font-family="Inter, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+  <rect width="1200" height="600" fill="#ffffff"/>
+  <!-- navbar -->
+  <rect width="1200" height="48" fill="#f4f5f7"/>
+  <line x1="0" y1="48" x2="1200" y2="48" stroke="#e6e8eb"/>
+  <text x="24" y="31" font-size="20" font-weight="800" fill="#0f172a">mogenius</text>
+  <rect x="150" y="12" width="94" height="25" rx="6" fill="#123a47"/>
+  <text x="197" y="29" font-size="13" fill="#ffffff" text-anchor="middle">Team Apps</text>
+  <text x="266" y="29" font-size="13" fill="#5b6472">Setup</text>
+  <path d="M1154 17 a9 9 0 1 0 6 16 a7 7 0 0 1 -6 -16 z" fill="#9aa2ad"/>
+  <circle cx="1182" cy="21" r="5" fill="none" stroke="#9aa2ad" stroke-width="1.6"/>
+  <path d="M1175 33 a7 7 0 0 1 14 0" fill="none" stroke="#9aa2ad" stroke-width="1.6"/>
+  <!-- header -->
+  <text x="180" y="82" font-size="12" fill="#6b7280">← Team Apps</text>
+  <text x="180" y="116" font-size="24" font-weight="700" fill="#0f172a">feedback-board</text>
+  <text x="180" y="138" font-size="13" fill="#6b7280">Team acme</text>
+  <text x="262" y="138" font-size="13" fill="#6b7280" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">feedback-board-acme.apps.example.com</text>
+  <rect x="900" y="98" width="120" height="33" rx="6" fill="#1aa3e8"/>
+  <rect x="922" y="109" width="9" height="9" rx="1.5" fill="none" stroke="#ffffff" stroke-width="1.4"/>
+  <text x="972" y="119" font-size="12" font-weight="600" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">OPEN APP</text>
+  <!-- tabs -->
+  <text x="180" y="178" font-size="14" font-weight="600" fill="#0f172a">Overview</text>
+  <rect x="180" y="188" width="72" height="2" fill="#0f172a"/>
+  <text x="272" y="178" font-size="14" fill="#6b7280">Specifications</text>
+  <text x="1020" y="178" font-size="12" fill="#9ca3af" text-anchor="end">Updated 3 s ago · refreshes automatically</text>
+  <!-- status card -->
+  <rect x="180" y="202" width="840" height="74" rx="10" fill="#f3faf4" stroke="#e3f0e5"/>
+  <circle cx="216" cy="239" r="16" fill="#e2f2e4"/>
+  <path d="M209 239 l5 5 l9 -10" fill="none" stroke="#1a7f37" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="248" y="228" font-size="11" font-weight="600" fill="#7c8a80" letter-spacing="0.6">YOUR APP</text>
+  <text x="248" y="250" font-size="18" font-weight="700" fill="#1a7f37">Running</text>
+  <text x="248" y="268" font-size="12" fill="#6b7280">Version 1 · live since 16 Nov</text>
+  <!-- latest change + stepper -->
+  <rect x="180" y="288" width="840" height="152" rx="10" fill="#ffffff" stroke="#e5e7eb"/>
+  <circle cx="216" cy="324" r="16" fill="#e8f6ea"/>
+  <path d="M216 332 l0 -15 M210 323 l6 -6 l6 6" fill="none" stroke="#1a7f37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="248" y="314" font-size="11" font-weight="600" fill="#9ca3af" letter-spacing="0.6">LATEST CHANGE</text>
+  <text x="248" y="334" font-size="15" font-weight="700" fill="#0f172a">Version 1 went live</text>
+  <text x="248" y="351" font-size="12" fill="#6b7280">Live since 16 Nov</text>
+  <!-- stepper -->
+  <line x1="234" y1="392" x2="966" y2="392" stroke="#2e8b3d" stroke-width="2"/>
+  <circle cx="234" cy="392" r="7" fill="#2e8b3d"/>
+  <circle cx="478" cy="392" r="7" fill="#2e8b3d"/>
+  <circle cx="722" cy="392" r="7" fill="#2e8b3d"/>
+  <circle cx="966" cy="392" r="7" fill="#2e8b3d"/>
+  <text x="234" y="418" font-size="13" font-weight="600" fill="#0f172a">Code</text>
+  <text x="234" y="434" font-size="12" fill="#9ca3af">16 Nov</text>
+  <text x="478" y="418" font-size="13" font-weight="600" fill="#0f172a" text-anchor="middle">Build</text>
+  <text x="478" y="434" font-size="12" fill="#9ca3af" text-anchor="middle">done</text>
+  <text x="722" y="418" font-size="13" font-weight="600" fill="#0f172a" text-anchor="middle">Start</text>
+  <text x="722" y="434" font-size="12" fill="#9ca3af" text-anchor="middle">healthy</text>
+  <text x="966" y="418" font-size="13" font-weight="600" fill="#0f172a" text-anchor="end">Live</text>
+  <text x="966" y="434" font-size="12" fill="#9ca3af" text-anchor="end">16 Nov</text>
+  <!-- history -->
+  <text x="180" y="480" font-size="16" font-weight="700" fill="#0f172a">History</text>
+  <text x="180" y="500" font-size="12" fill="#6b7280">Everything that happened to the app, newest first.</text>
+  <circle cx="192" cy="542" r="5" fill="#2e8b3d"/>
+  <rect x="216" y="516" width="804" height="64" rx="8" fill="#ffffff" stroke="#e5e7eb"/>
+  <text x="238" y="542" font-size="14" font-weight="600" fill="#0f172a">Platform update</text>
+  <text x="238" y="561" font-size="12" fill="#6b7280">The platform rebuilt the app with updated components. Your code didn't change.</text>
+  <rect x="898" y="528" width="42" height="18" rx="4" fill="#e7f6ec"/>
+  <text x="919" y="541" font-size="10" font-weight="700" fill="#1a7f37" text-anchor="middle">LIVE</text>
+  <text x="1000" y="541" font-size="12" fill="#9ca3af" text-anchor="end">1 d ago</text>
+</svg>

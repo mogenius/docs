@@ -1,0 +1,37 @@
+---
+title: "Working with your agent"
+sidebarTitle: "Working with your agent"
+description: "How a Vibe Coder ships an app by talking to an AI agent: describe what you want, let it build and deploy, and iterate in conversation."
+---
+
+Once your agent is [connected](/vibe-coding/connect-your-agent), building an app is a conversation. You describe what you want in plain language; the agent builds and deploys it.
+
+## Create an app
+
+Tell the agent what you want to build — for example:
+
+> "Build me a small internal tool that lets our team submit and vote on ideas. It should be reachable from inside the company and keep the data in a database."
+
+The agent asks whatever it needs — which **team** the app is for, whether it should be **reachable externally**, whether it needs a **database** — then creates the app and ships it.
+
+## Watch it go live
+
+Follow the app in the mogenius UI as it moves through **Code → Build → Start → Live**. When it's live, you get a **domain**. See [Your Apps](/vibe-coding/your-apps).
+
+## Keep iterating
+
+Keep talking to the agent to evolve the app:
+
+> "Add a page that shows the top-voted ideas."
+
+Each change is built and rolled out automatically. A new version only goes live once it's working, so a broken change won't take your app down.
+
+## When something breaks
+
+If a build fails or the app misbehaves, ask the agent — it can read the logs, fix the problem, and ship again.
+
+<Note>
+A couple of things live in the mogenius UI rather than the conversation: watching your apps, and [setting secrets](/vibe-coding/secrets). Everything else is the agent.
+</Note>
+
+Your agent can also give an app a database, a company login, external access, and preview environments — just ask. See [App capabilities](/vibe-coding/app-capabilities).

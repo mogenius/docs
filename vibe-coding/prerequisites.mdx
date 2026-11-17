@@ -1,0 +1,36 @@
+---
+title: "Prerequisites"
+sidebarTitle: "Prerequisites"
+description: "What a Platform Admin needs before enabling the vibe-coding workflow: a Kubernetes cluster, an identity provider, a DNS provider, and backup storage — plus a few optional integrations."
+---
+
+Vibe-coding runs on your own Kubernetes and integrates with a few of your services. You supply these once during setup; mogenius installs and wires up everything else.
+
+## Required
+
+<Steps>
+  <Step title="Kubernetes cluster">
+    A conformant Kubernetes cluster to run the platform and the apps on — any cloud, on-prem, or managed cluster you already operate. Its **CNI must enforce NetworkPolicies** (for example Cilium or Calico): app isolation and egress control depend on it, so a cluster without policy enforcement would run apps without the isolation they're meant to have.
+  </Step>
+  <Step title="Identity provider (OIDC)">
+    An OIDC application for mogenius. Users are organized into **groups**, and those groups become the **teams** that own apps. Microsoft Entra ID is supported, as is any OIDC provider that issues group claims. mogenius brokers it through authentik, so the platform and every app federate to your IdP for login.
+  </Step>
+  <Step title="DNS provider">
+    A DNS zone and API credentials for the apps' domain. The platform manages records automatically and issues TLS certificates, so every app gets a reachable HTTPS URL under a domain you control.
+  </Step>
+  <Step title="Backup storage">
+    S3-compatible object storage for backups, kept outside the cluster so a lost cluster doesn't take its backups with it. See [Backups & restore](/vibe-coding/backups).
+  </Step>
+</Steps>
+
+## Optional
+
+- **External secret store** — 1Password or Azure Key Vault for the platform's credentials. Without one, you create the handful of external secrets (IdP client, DNS token) by hand; everything else the platform generates in the cluster.
+- **Your own Git provider** — a Git provider ships with the platform by default, so you don't need to bring one. If you'd rather host app repositories in your own **GitHub** organization, you can connect it instead. See [Platform components](/vibe-coding/platform-components#git-provider).
+- **Notification channel** — email, Slack, or Teams for platform notifications, such as egress requests waiting for approval.
+
+<Note>
+The whole workflow runs on your infrastructure, and the AI model a Vibe Coder's agent uses runs under that user's own AI account — so model usage and data handling stay under your and your users' control.
+</Note>
+
+Next: [Enable the workflow](/vibe-coding/enabling-vibe-coding).

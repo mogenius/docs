@@ -16,7 +16,7 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Documentation",
+        "tab": "Developer Platform",
         "groups": [
           {
             "group": "Get Started",
@@ -114,6 +114,41 @@
               "deploying-applications/blueprints",
               "deploying-applications/kubernetes-manifests",
               "deploying-applications/multi-environment-deployments"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Vibe-Coding Platform",
+        "groups": [
+          {
+            "group": "Introduction",
+            "pages": [
+              "vibe-coding/overview",
+              "vibe-coding/how-it-works",
+              "vibe-coding/concepts"
+            ]
+          },
+          {
+            "group": "Setup & Administration",
+            "pages": [
+              "vibe-coding/prerequisites",
+              "vibe-coding/enabling-vibe-coding",
+              "vibe-coding/platform-components",
+              "vibe-coding/teams-and-roles",
+              "vibe-coding/egress-control",
+              "vibe-coding/monitoring",
+              "vibe-coding/backups"
+            ]
+          },
+          {
+            "group": "Building Apps",
+            "pages": [
+              "vibe-coding/connect-your-agent",
+              "vibe-coding/working-with-your-agent",
+              "vibe-coding/your-apps",
+              "vibe-coding/app-capabilities",
+              "vibe-coding/secrets"
             ]
           }
         ]

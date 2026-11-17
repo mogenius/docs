@@ -1,0 +1,36 @@
+---
+title: "Teams & roles"
+sidebarTitle: "Teams & roles"
+description: "How teams are derived from your identity provider's groups, and what the Vibe Coder role can do."
+---
+
+Who a user is and what they may do both come from your **identity provider**. There is no separate user management to maintain — teams mirror your IdP groups, and the Vibe Coder role grants exactly the access a citizen developer needs.
+
+## Teams come from your IdP
+
+Users are organized into **groups** in your identity provider, and each relevant group becomes a **team** in mogenius. Team membership follows group membership — add someone to the group, and they belong to the team. mogenius federates to your IdP through authentik, so the same identity signs users in to the platform, to the Git provider, and to the apps behind a company login.
+
+Teams scope everything:
+
+- Every app belongs to exactly **one team**, and the team is part of the app's URL.
+- A Vibe Coder sees their **team's apps**, not the whole cluster.
+- **Resource limits** apply per team. See [Monitoring](/vibe-coding/monitoring).
+
+## The Vibe Coder role
+
+**Vibe Coder** is the role for citizen developers. Within their team, they can:
+
+- Connect an agent and create, change, and deploy apps.
+- View their apps' status, domain, repository, and logs.
+- Set an app's secrets through a one-time form. See [Secrets](/vibe-coding/secrets).
+- Request external hosts, which a Platform Admin approves. See [Egress control](/vibe-coding/egress-control).
+
+Their access stops at their team — the guardrails are built into the platform, not a matter of trusting the user.
+
+## Platform Admins
+
+Platform Admins sit above teams. They enable and govern the workflow, see every app across all teams, and approve requests like egress and quota changes. Admin access follows your existing cluster roles.
+
+<Note>
+Because identity and teams come from your IdP, offboarding happens where you already handle it: remove a user from the group and their access to the team's apps goes away.
+</Note>

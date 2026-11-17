@@ -1,0 +1,30 @@
+---
+title: "Enabling vibe-coding"
+sidebarTitle: "Enabling vibe-coding"
+description: "Turn the vibe-coding workflow on through the platform configuration, supply the connection details, and mogenius sets up the platform on the cluster."
+---
+
+Vibe-coding is activated and governed through the same **Platform Config** process that manages the rest of a mogenius cluster. You enable it once, provide the details you [gathered](/vibe-coding/prerequisites), and the platform provisions everything teams need.
+
+<Note>
+This builds on the standard cluster setup. If you haven't installed the operator and configured the platform yet, start with [Installing the mogenius operator](/cluster-management/installing-the-mogenius-operator) and [Platform Config](/cluster-management/platform-config).
+</Note>
+
+## Activate the workflow
+
+<Steps>
+  <Step title="Enable vibe-coding in the Platform Config">
+    Turn on the vibe-coding workflow in the cluster's platform configuration.
+  </Step>
+  <Step title="Connect your services">
+    Supply the identity provider, DNS, secret store, backup storage, and optional notification channel from the [prerequisites](/vibe-coding/prerequisites).
+  </Step>
+  <Step title="The platform sets itself up">
+    mogenius installs and configures the vibe-coding stack on the cluster. See [Platform components](/vibe-coding/platform-components).
+  </Step>
+  <Step title="Teams appear from your IdP">
+    Groups from your identity provider become teams, and their members can start shipping apps. See [Teams & roles](/vibe-coding/teams-and-roles).
+  </Step>
+</Steps>
+
+Once it's live, Vibe Coders [connect an agent](/vibe-coding/connect-your-agent) and create apps, while you keep oversight from the [admin views](/vibe-coding/monitoring).

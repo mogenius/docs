@@ -1,0 +1,52 @@
+---
+title: "Platform components"
+sidebarTitle: "Platform components"
+description: "The integrated stack that enabling vibe-coding installs on the cluster — what ships by default, what you can point at your own services, and the properties that matter for an admin."
+---
+
+Enabling the workflow installs a complete, integrated stack on the cluster. You don't assemble it — the components are delivered and configured together so an app description becomes a running app with no manual wiring. This page explains what each part is, what ships by default, and where you can plug in your own service.
+
+## App abstraction & GitOps
+
+Each app is modeled as two small resources, `App` and `AppConfig`, which **Crossplane** composes into everything the app needs. **Flux** is the only write path into the cluster: the agent commits to Git, Flux applies, Crossplane composes. Nothing the agent does writes to the cluster directly — a property worth knowing, because it means every change is in Git and subject to the platform's policies.
+
+## Git provider
+
+Every app gets its own Git repository, plus a shared template and platform repository.
+
+- **Default: Forgejo, in the cluster.** A Forgejo instance ships with the platform and is managed for you. Users sign in to it through your IdP and rarely need to touch it directly; teams, accounts, and repositories are created automatically from your IdP groups.
+- **Alternative: your own GitHub.** Instead of the bundled Forgejo, you can host app repositories in your own **GitHub** organization. The GitHub teams and the platform repository are then maintained on GitHub.
+
+The provider is chosen **once at installation** and fixed afterwards (changing it would re-home every app's repository). Azure DevOps is planned.
+
+## Builds & registry
+
+**kpack** builds each app straight from its repository using **Paketo buildpacks** — no Dockerfile, for Node.js, Python, and Go. Built images are stored in an **in-cluster Zot registry** with machine-only access (no public pull, no web UI) and are scanned for vulnerabilities, so image hygiene is visible to you.
+
+## Authentication
+
+**authentik** runs as the OIDC broker and federates to your identity provider — the platform and the apps all log in through it. When an app requires a login, it gets its **own OIDC client** and an **oauth2-proxy** sidecar in front, so only signed-in users of the right team reach it, and the app itself needs no login code.
+
+## Database
+
+Apps that need one get a **PostgreSQL database** managed by **CloudNativePG**, provisioned per app and wired in through connection environment variables. Each database is backed up continuously (see [Backups](/vibe-coding/backups)).
+
+## Isolation & policies
+
+Each app runs in its **own namespace** with:
+
+- **Default-deny networking** enforced by the cluster's CNI — apps reach only their database until you approve an [egress host](/vibe-coding/egress-control). This is why a NetworkPolicy-enforcing CNI is a [prerequisite](/vibe-coding/prerequisites).
+- **Restricted Pod Security** and per-team **resource quotas**.
+- Admission and runtime **policies (Kyverno)** that, for example, restrict images to the cluster registry and keep secrets handled correctly.
+
+## Maintenance
+
+**Renovate** opens dependency updates in app repositories automatically, so apps stay patched without anyone watching them.
+
+## Monitoring
+
+A **Prometheus and Grafana** stack ships with dashboards for the platform and the apps, feeding the admin [monitoring](/vibe-coding/monitoring) views and alerting on failures such as missed backups.
+
+<Note>
+The stack is intentionally opinionated and closed, delivered as one integrated process. The seams that are meant to be yours — the cluster, your IdP, DNS, backup storage, and optionally your Git provider and secret store — are the ones in the [prerequisites](/vibe-coding/prerequisites); the rest is managed for you.
+</Note>

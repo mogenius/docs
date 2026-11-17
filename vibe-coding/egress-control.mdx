@@ -1,0 +1,25 @@
+---
+title: "Egress control"
+sidebarTitle: "Egress control"
+description: "Apps are isolated on the network by default. How Vibe Coders request the external hosts their app needs, and how Platform Admins approve them."
+---
+
+Every app is **isolated on the network by default**. An app can reach its own database, but any call to an external service is blocked until the specific host is approved for that app. This gives the platform team a review point for everything a citizen-developer app talks to.
+
+Isolation is enforced by the cluster's CNI through per-app NetworkPolicies — which is why a NetworkPolicy-enforcing CNI is a [prerequisite](/vibe-coding/prerequisites). On a cluster without enforcement, the policies wouldn't take effect and this control would be ineffective.
+
+## How a host gets approved
+
+<Steps>
+  <Step title="The Vibe Coder requests hosts">
+    When an app needs to call an external service, the agent submits a request listing the exact hosts and a reason.
+  </Step>
+  <Step title="The platform team is notified">
+    The request appears for Platform Admins to review, and goes to your [notification channel](/vibe-coding/prerequisites) if configured.
+  </Step>
+  <Step title="An admin approves">
+    You review the hosts and the reason, and approve the ones that are acceptable. Approval is **per app** — granting a host for one app doesn't open it for others.
+  </Step>
+</Steps>
+
+Each request is a small review: is this host appropriate for this app and team? Until a host is approved, the app's calls to it are blocked.
