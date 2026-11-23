@@ -168,6 +168,15 @@ mo_platform_api:
 mogenius:
   imagePullSecrets:
   - mo-registry-credentials
+
+  valkey:
+    replica:
+      enabled: false
+    sentinel:
+      enabled: false
+    haproxy:
+      enabled: false
+
 mysql:
   enabled: true
   ssl: false
@@ -205,6 +214,54 @@ Now that mogenius is up and running you can prepare the platform for your team. 
 
 ### Support
 Need help setting up the mogenius platform? Contact us via [support@mogenius.com](mailto:support@mogenius.com).
+
+<Accordion title="Migrating from v8 to v9: Valkey instances replaced by the valkey subchart" icon="database">
+  In v9, the dedicated Valkey instances (`mo_platform_api_valkey`, `mo_valkey_shared`, `mo_websocket_valkey`, and `mo_message_dispatcher_valkey`) are replaced by a single Valkey deployed through the `valkey` subchart. The queue service (`mo_platform_queue`) and the WebSocket service (`mo_platform_websocket`) are removed from the chart. If you're upgrading from v8, update your `values.yaml` as follows:
+
+  1. **Delete the old Valkey blocks** entirely from your `values.yaml` — they're no longer valid chart values:
+
+  ```yaml values.yaml (v8, deprecated)
+  mo_platform_api_valkey:
+    ...
+  mo_valkey_shared:
+    ...
+  mo_websocket_valkey:
+    ...
+  mo_message_dispatcher_valkey:
+    ...
+  ```
+
+  2. **Delete the `mo_platform_queue` and `mo_platform_websocket` blocks** entirely from your `values.yaml`:
+
+  ```yaml values.yaml (v8, deprecated)
+  mo_platform_queue:
+    ...
+  mo_platform_websocket:
+    ...
+  ```
+
+  <Note>
+    Only the top-level `mo_platform_queue` and `mo_platform_websocket` blocks are removed. Keep the WebSocket hostnames under `ingress` (`ingress.socket_service_url`, `ingress.k8s_websocket_url`) unchanged.
+  </Note>
+
+  3. **Configure the `valkey` subchart** (optional). The chart ships with high availability defaults, which run a single Valkey with 3 replicas, 3 sentinels and 3 HAProxies. You only need to add a `valkey` block to your `values.yaml` if you want to override them:
+
+  ```yaml values.yaml
+  valkey:
+    replica:
+      enabled: false
+    sentinel:
+      enabled: false
+    haproxy:
+      enabled: false
+  ```
+
+  4. **Run `helm upgrade`** with your updated `values.yaml` against the new chart version.
+
+  <Note>
+    All other v8 values and secrets (MySQL, encryption key, admin credentials, OAuth secrets) remain unchanged. Only the Valkey instances, the queue service, and the WebSocket service are affected by this migration.
+  </Note>
+</Accordion>
 
 <Accordion title="Migrating from v7 to v8: JWT/session secrets replaced with OAuth JWKS-based secrets" icon="key">
   In v8, the `MO_USER_NEST__JWT_PRIVATE`, `MO_USER_NEST__JWT_PUBLIC`, and `MO_USER_NEST__SESSION_SECRET` keys in the `mo-platform-user-secret` secret are discontinued. They're replaced by three new keys: `MO_USER_NEST__OAUTH__JWKS`, `MO_USER_NEST__OAUTH__COOKIE_KEYS`, and `MO_USER_NEST__OAUTH__BFF_CLIENT_SECRET`. The chart also drops the token lifetime settings under `mo_platform_api.openid`. If you're upgrading from v7, update your secret and `values.yaml` as follows:
@@ -389,23 +446,6 @@ traefik.ingress.kubernetes.io/secure-headers: "true"
 | mo_platform_api.openid.provider.microsoft.enabled | bool | `false` | Enable Microsoft OAuth |
 
 
-#### mo_platform_websocket (WebSocket Service)
-
-| Key | Type | Default | Description |
-|-----|------|---------|-------------|
-| mo_platform_websocket.enabled | bool | `true` | Enable WebSocket service |
-| mo_platform_websocket.replicas | int | `1` | Number of replicas |
-| mo_platform_websocket.image.registry | string | `"ghcr.io"` | Image registry |
-| mo_platform_websocket.image.repository | string | `"mogenius/mo-platform-websocket"` | Image repository |
-| mo_platform_websocket.image.tag | string | `"v2.0.7"` | Image tag |
-| mo_platform_websocket.imagePullPolicy | string | `"IfNotPresent"` | Image pull policy |
-| mo_platform_websocket.port | int | `1337` | HTTP port |
-| mo_platform_websocket.port_ws | int | `7000` | WebSocket port |
-| mo_platform_websocket.resources | object | `{}` | Resource requests/limits |
-| mo_platform_websocket.tolerations | object | `{}` | Pod tolerations |
-| mo_platform_websocket.sshSymEncKey.secretName | string | `"mo-platform-shared"` | Secret name for SSH symmetric encryption key |
-| mo_platform_websocket.sshSymEncKey.secretKey | string | `"MO_CORE_NEST__SSH_SYM_ENC_KEY"` | Secret key for SSH symmetric encryption key |
-
 #### mo_platform_notification (Notification Service)
 
 | Key | Type | Default | Description |
@@ -424,21 +464,6 @@ traefik.ingress.kubernetes.io/secure-headers: "true"
 | mo_platform_notification.sshSymEncKey.secretName | string | `"mo-platform-shared"` | Secret name for SSH symmetric encryption key |
 | mo_platform_notification.sshSymEncKey.secretKey | string | `"MO_CORE_NEST__SSH_SYM_ENC_KEY"` | Secret key for SSH symmetric encryption key |
 
-#### mo_platform_queue (Queue Service)
-
-| Key | Type | Default | Description |
-|-----|------|---------|-------------|
-| mo_platform_queue.enabled | bool | `true` | Enable queue service |
-| mo_platform_queue.replicas | int | `1` | Number of replicas |
-| mo_platform_queue.image.registry | string | `"ghcr.io"` | Image registry |
-| mo_platform_queue.image.repository | string | `"mogenius/mo-platform-queue"` | Image repository |
-| mo_platform_queue.image.tag | string | `"v3.0.4"` | Image tag |
-| mo_platform_queue.imagePullPolicy | string | `"IfNotPresent"` | Image pull policy |
-| mo_platform_queue.resources | object | `{}` | Resource requests/limits |
-| mo_platform_queue.tolerations | object | `{}` | Pod tolerations |
-| mo_platform_queue.sshSymEncKey.secretName | string | `"mo-platform-shared"` | Secret name for SSH symmetric encryption key |
-| mo_platform_queue.sshSymEncKey.secretKey | string | `"MO_CORE_NEST__SSH_SYM_ENC_KEY"` | Secret key for SSH symmetric encryption key |
-
 #### mo_platform_message_dispatcher (Message Dispatcher)
 
 | Key | Type | Default | Description |
@@ -456,78 +481,13 @@ traefik.ingress.kubernetes.io/secure-headers: "true"
 
 ### Valkey (Redis-compatible Cache)
 
-The platform uses [Valkey](https://valkey.io/), an open-source Redis-compatible in-memory data store, for caching and message queuing. The chart deploys multiple Valkey instances for different purposes.
-
-#### mo_platform_api_valkey
+The platform uses [Valkey](https://valkey.io/), an open-source Redis-compatible in-memory data store, for caching and message queuing. The chart deploys Valkey through the `valkey` subchart; all values under the `valkey` key are passed to the subchart.
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| mo_platform_api_valkey.enabled | bool | `true` | Enable Valkey for API service |
-| mo_platform_api_valkey.image.registry | string | `"docker.io"` | Image registry |
-| mo_platform_api_valkey.image.repository | string | `"valkey/valkey"` | Image repository |
-| mo_platform_api_valkey.image.tag | string | `"9.1.0"` | Image tag |
-| mo_platform_api_valkey.imagePullPolicy | string | `"IfNotPresent"` | Image pull policy |
-| mo_platform_api_valkey.port | int | `6379` | Service port |
-| mo_platform_api_valkey.host | string | `"mo-platform-api-valkey"` | Service hostname |
-| mo_platform_api_valkey.password.secretName | string | `"mo-redis-secret"` | Secret name for password |
-| mo_platform_api_valkey.password.secretKey | string | `"REDIS_SECRET"` | Secret key for password |
-| mo_platform_api_valkey.resources | object | `{}` | Resource requests/limits |
-| mo_platform_api_valkey.metrics.enabled | bool | `false` | Enable Prometheus metrics exporter |
-| mo_platform_api_valkey.metrics.port | int | `9121` | Metrics port |
-| mo_platform_api_valkey.metrics.serviceMonitor.enabled | bool | `false` | Enable ServiceMonitor |
-
-#### mo_valkey_shared
-
-Shared Valkey instance used for queue processing and cross-service communication.
-
-| Key | Type | Default | Description |
-|-----|------|---------|-------------|
-| mo_valkey_shared.enabled | bool | `true` | Enable shared Valkey |
-| mo_valkey_shared.tls | bool | `false` | Enable TLS |
-| mo_valkey_shared.queue_db | int | `7` | Database number for queue |
-| mo_valkey_shared.image.registry | string | `"docker.io"` | Image registry |
-| mo_valkey_shared.image.repository | string | `"valkey/valkey"` | Image repository |
-| mo_valkey_shared.image.tag | string | `"9.1.0"` | Image tag |
-| mo_valkey_shared.imagePullPolicy | string | `"IfNotPresent"` | Image pull policy |
-| mo_valkey_shared.port | int | `6379` | Service port |
-| mo_valkey_shared.host | string | `"mo-valkey-shared"` | Service hostname |
-| mo_valkey_shared.password.secretName | string | `"mo-redis-secret"` | Secret name for password |
-| mo_valkey_shared.password.secretKey | string | `"REDIS_SECRET"` | Secret key for password |
-| mo_valkey_shared.resources | object | `{}` | Resource requests/limits |
-| mo_valkey_shared.strategy | string | `"RollingUpdate"` | Update strategy |
-| mo_valkey_shared.metrics.enabled | bool | `false` | Enable Prometheus metrics exporter |
-| mo_valkey_shared.metrics.serviceMonitor.enabled | bool | `false` | Enable ServiceMonitor |
-
-#### mo_websocket_valkey
-
-| Key | Type | Default | Description |
-|-----|------|---------|-------------|
-| mo_websocket_valkey.enabled | bool | `true` | Enable Valkey for WebSocket service |
-| mo_websocket_valkey.image.registry | string | `"docker.io"` | Image registry |
-| mo_websocket_valkey.image.repository | string | `"valkey/valkey"` | Image repository |
-| mo_websocket_valkey.image.tag | string | `"9.1.0"` | Image tag |
-| mo_websocket_valkey.port | int | `6379` | Service port |
-| mo_websocket_valkey.host | string | `"mo-websocket-valkey"` | Service hostname |
-| mo_websocket_valkey.password.secretName | string | `"mo-redis-secret"` | Secret name for password |
-| mo_websocket_valkey.password.secretKey | string | `"REDIS_SECRET"` | Secret key for password |
-| mo_websocket_valkey.resources | object | `{}` | Resource requests/limits |
-| mo_websocket_valkey.metrics.enabled | bool | `false` | Enable Prometheus metrics exporter |
-
-#### mo_message_dispatcher_valkey
-
-| Key | Type | Default | Description |
-|-----|------|---------|-------------|
-| mo_message_dispatcher_valkey.enabled | bool | `true` | Enable Valkey for message dispatcher |
-| mo_message_dispatcher_valkey.image.registry | string | `"docker.io"` | Image registry |
-| mo_message_dispatcher_valkey.image.repository | string | `"valkey/valkey"` | Image repository |
-| mo_message_dispatcher_valkey.image.tag | string | `"9.1.0"` | Image tag |
-| mo_message_dispatcher_valkey.port | int | `6379` | Service port |
-| mo_message_dispatcher_valkey.host | string | `"mo-message-dispatcher-valkey"` | Service hostname |
-| mo_message_dispatcher_valkey.tls | bool | `false` | Enable TLS |
-| mo_message_dispatcher_valkey.password.secretName | string | `"mo-redis-secret"` | Secret name for password |
-| mo_message_dispatcher_valkey.password.secretKey | string | `"REDIS_SECRET"` | Secret key for password |
-| mo_message_dispatcher_valkey.resources | object | `{}` | Resource requests/limits |
-| mo_message_dispatcher_valkey.metrics.enabled | bool | `false` | Enable Prometheus metrics exporter |
+| valkey.replica.enabled | bool | `false` | Enable Valkey replicas |
+| valkey.sentinel.enabled | bool | `false` | Enable Valkey Sentinel |
+| valkey.haproxy.enabled | bool | `false` | Enable HAProxy in front of Valkey |
 
 ### MySQL
 
